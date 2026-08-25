@@ -478,7 +478,7 @@ PORT=3000
 # CONFIGURACIÓN DE GEMINI (AI)
 # ============================================
 # API Key de Google AI Studio
-GEMINI_API_KEY=TU_API_KEY_AQUI
+GEMINI_API_KEY=tu_api_key_de_google_ai_studio
 
 # Modelo a utilizar
 # Opciones: gemini-3.5-flash-lite, gemini-3.6-flash, gemini-3.7-flash
@@ -497,14 +497,14 @@ GEMINI_MAX_HISTORY=6
 # CONFIGURACIÓN DE SAP (OData)
 # ============================================
 # URL del servicio OData (sistema original FI/PP)
-SAP_BASE_URL=https://s4hana.itscloud.store:443
+SAP_BASE_URL=https://tu-servidor-sap.com:443
 
 # URL del servicio OData (sistema nuevo MM/SD/PM)
-SAP_ODATA_MAT_URL=https://s4hana.sapapp.store:443
+SAP_ODATA_MAT_URL=https://tu-servidor-sap.com:443
 
 # Credenciales de usuario técnico SAP
-SAP_USER=ITSDEMOAGENT
-SAP_PASSWORD=ITSystems@2026!
+SAP_USER=tu_usuario_sap
+SAP_PASSWORD=tu_password_sap
 
 # Cliente SAP
 SAP_CLIENT=300
@@ -512,21 +512,11 @@ SAP_CLIENT=300
 # ============================================
 # CONFIGURACIÓN DE BASE DE DATOS (PostgreSQL)
 # ============================================
-DB_USER=api_backend
-DB_PASSWORD=ITS_BACK_END2026
+DB_USER=tu_usuario_db
+DB_PASSWORD=tu_password_db
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=ag_itsystems
-
-# ============================================
-# CONFIGURACIÓN DE OLLAMA (Alternativo/Development)
-# ============================================
-# Comentado porque usamos Gemini
-# OLLAMA_BASE_URL=http://localhost:11434
-# OLLAMA_MODEL=llama3.1
-# OLLAMA_NUM_PREDICT=80
-# OLLAMA_TEMPERATURE=0.7
-# OLLAMA_CONTEXT_WINDOW=6
 ```
 
 ### 7.2 Instalación
