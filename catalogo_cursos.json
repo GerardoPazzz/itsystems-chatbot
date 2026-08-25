@@ -1,0 +1,170 @@
+{
+  "cursos": [
+    {
+      "id": "sap-fi",
+      "nombre": "SAP FI - Financial Accounting",
+      "descripcion": "Curso integral de Contabilidad Financiera en SAP. Domina los fundamentos de la gestion financiera, configuracion de libros contables, gestion de cuentas por pagar y por cobrar, conciliacion bancaria y reportes financieros segun estandares internacionales.",
+      "duracion": "40 horas",
+      "modalidad": "Virtual asincrona",
+      "nivel": "Intermedio",
+      "perfil": "Consultor Funcional SAP",
+      "categoria": "Modulo Funcional",
+      "prerrequisitos": ["Conocimientos basicos de contabilidad financiera", "Experiencia con sistemas ERP es recomendable"],
+      "modulos": [
+        "Fundamentos de SAP FI y navegacion",
+        "Plan de cuentas y tipos de sociedad",
+        "Gestion de cuentas por pagar (AP)",
+        "Gestion de cuentas por cobrar (AR)",
+        "Conciliacion bancaria",
+        "Cierre contable mensual y anual",
+        "Reportes financieros y analisis",
+        "Integracion con otros modulos SAP"
+      ],
+      "certificacion": "SAP Certified Application Associate - SAP S/4HANA Financial Accounting",
+      "dirigido": "Contadores, analistas financieros, consultores ERP, profesionales de finanzas",
+      "habilidades_adquiridas": ["Contabilidad financiera SAP", "Configuracion de modulo FI", "Reportes financieros", "Proceso de cierre contable"]
+    },
+    {
+      "id": "sap-mm",
+      "nombre": "SAP MM - Material Management",
+      "descripcion": "Curso completo de Gestion de Materiales en SAP. Aprende a optimizar la cadena de suministro, gestionar inventarios, controlar compras, evaluar proveedores y planificar necesidades de materiales.",
+      "duracion": "35 horas",
+      "modalidad": "Virtual asincrona",
+      "nivel": "Intermedio",
+      "perfil": "Consultor Funcional SAP",
+      "categoria": "Modulo Funcional",
+      "prerrequisitos": ["Conceptos basicos de logistica y supply chain", "Conocimientos de gestion de inventarios"],
+      "modulos": [
+        "Fundamentos de SAP MM y master data",
+        "Gestion de solicitudes de compra",
+        "Proceso de compras y ordenes de compra",
+        "Evaluacion de proveedores",
+        "Gestion de inventarios y almacenes",
+        "Movimientos de stock y transferencias",
+        "Planificacion de necesidades de materiales (MRP)",
+        "Integracion con WM y SD"
+      ],
+      "certificacion": "SAP Certified Application Associate - SAP S/4HANA Material Management",
+      "dirigido": "Profesionales de logistica, compradores, especialistas en supply chain, consultores de inventario",
+      "habilidades_adquiridas": ["Gestion de compras", "Control de inventarios", "Planificacion MRP", "Estrategias de aprovisionamiento"]
+    },
+    {
+      "id": "sap-sd",
+      "nombre": "SAP SD - Sales and Distribution",
+      "descripcion": "Curso especializado en Ventas y Distribucion en SAP. Maneja el proceso de ventas completo desde la cotizacion hasta la entrega, facturacion, determinacion de precios y atencion a clientes.",
+      "duracion": "35 horas",
+      "modalidad": "Virtual asincrona",
+      "nivel": "Intermedio",
+      "perfil": "Consultor Funcional SAP",
+      "categoria": "Modulo Funcional",
+      "prerrequisitos": ["Conocimientos basicos de ventas y distribucion", "Experiencia en CRM es deseable"],
+      "modulos": [
+        "Fundamentos de SAP SD y master data de ventas",
+        "Gestión de información de clientes (sold-to, ship-to)",
+        "Cotizaciones y contratos de venta",
+        "Pedidos de venta y disponibilidad",
+        "Gestión de entregas y picking",
+        "Facturación y determinación de precios",
+        "Cobranzas y gestión de crédito",
+        "Reportes de ventas y análisis de rendimiento"
+      ],
+      "certificacion": "SAP Certified Application Associate - SAP S/4HANA Sales and Distribution",
+      "dirigido": "Ejecutivos de ventas, consultores CRM, profesionales de atencion al cliente, analistas comerciales",
+      "habilidades_adquiridas": ["Proceso de ventas end-to-end", "Configuracion de precios", "Gestion de entregas", "Facturacion SAP"]
+    },
+    {
+      "id": "sap-abap",
+      "nombre": "Programacion SAP ABAP",
+      "descripcion": "Curso completo de programacion en ABAP (Advanced Business Application Programming). Aprende a desarrollar reportes, interfaces, enhancementos y extensiones en el ecosistema SAP usando tecnicas modernas de programacion.",
+      "duracion": "45 horas",
+      "modalidad": "Virtual asincrona",
+      "nivel": "Avanzado",
+      "perfil": "Desarrollador SAP",
+      "categoria": "Desarrollo",
+      "prerrequisitos": ["Conocimientos de programacion en cualquier lenguaje (preferiblemente Java, Python o C++)", "Logica de programacion orientada a objetos"],
+      "modulos": [
+        "Introduccion a SAP ABAP y entorno de desarrollo SE80",
+        "Diccionario de datos ABAP (tablas, estructuras, vistas)",
+        "Reportes ABAP clasicos y interactivos",
+        "Modulo de funciones y badis",
+        "Programacion orientada a objetos en ABAP",
+        "ALV (ABAP List Viewer) para reportes avanzados",
+        "Interfaces RFC y web services",
+        "Enhancements y user-exits",
+        "Introduccion a ABAP en S/4HANA (AMDP, CDS views)"
+      ],
+      "certificacion": "SAP Certified Development Specialist - ABAP for SAP S/4HANA",
+      "dirigido": "Desarrolladores de software, programadores, consultores tecnicos que deseen especializarse en SAP",
+      "habilidades_adquiridas": ["Programacion ABAP 7.5+", "Desarrollo de reportes", "Creacion de interfaces", "Enhancements y extensiones"]
+    },
+    {
+      "id": "sap-cap",
+      "nombre": "SAP Cloud Application Programming - CAP",
+      "descripcion": "Curso de desarrollo cloud nativo con SAP CAP (Cloud Application Programming Model). Construye servicios y aplicaciones empresariales en la nube SAP usando frameworks modernos como Node.js, Java y CDS.",
+      "duracion": "30 horas",
+      "modalidad": "Virtual asincrona",
+      "nivel": "Avanzado",
+      "perfil": "Desarrollador SAP Cloud",
+      "categoria": "Desarrollo Cloud",
+      "prerrequisitos": ["Conocimientos de programacion en JavaScript/TypeScript o Java", "Conceptos basicos de servicios REST y OData", "Familiaridad con conceptos cloud"],
+      "modulos": [
+        "Introduccion a SAP CAP y arquitectura cloud-native",
+        "Modelado de dominio con CDS (Core Data Services)",
+        "Desarrollo de servicios OData v4",
+        "Implementacion con Node.js (JavaScript/TypeScript)",
+        "Implementacion con Java (Spring Boot)",
+        "Autenticacion y autorizacion",
+        "Integracion con servicios SAP (Destination, IAS)",
+        "Despliegue en SAP Business Technology Platform",
+        "Testing y debugging en entorno CAP"
+      ],
+      "certificacion": "SAP Certified Development Associate - SAP Cloud Application Programming",
+      "dirigido": "Desarrolladores full-stack, arquitectos cloud, consultores tecnicos con experiencia en SAP",
+      "habilidades_adquiridas": ["Desarrollo cloud-native SAP", "Modelado CDS", "APIs OData", "Arquitectura Serverless"]
+    }
+  ],
+  "perfiles": [
+    {
+      "id": "consultor-funcional",
+      "nombre": "Consultor Funcional SAP",
+      "descripcion": "Profesional especializado en la configuracion y optimizacion de procesos de negocio dentro del ecosistema SAP. Entiende tanto los aspectos tecnicos como los funcionales de los modulos.",
+      "cursos_sugeridos": ["sap-fi", "sap-mm", "sap-sd"],
+      "cursos_obligatorios": ["sap-fi"],
+      "ruta_sugerida": ["sap-fi", "sap-mm", "sap-sd"],
+      "justificacion_ruta": "Se comienza con SAP FI por ser el nucleo financiero de toda implementacion SAP. Luego se contruye sobre esa base con SAP MM para gestion de materiales y finalmente SAP SD para completar el ciclo de negocio venta-compras-finanzas."
+    },
+    {
+      "id": "desarrollador",
+      "nombre": "Desarrollador SAP",
+      "descripcion": "Profesional tecnico especializado en programacion ABAP para extender y personalizar el sistema SAP. Desarrolla reportes, interfaces, enhancements y soluciones custom.",
+      "cursos_sugeridos": ["sap-abap"],
+      "cursos_obligatorios": ["sap-abap"],
+      "ruta_sugerida": ["sap-abap"],
+      "justificacion_ruta": "ABAP es el lenguaje fundamental de desarrollo en SAP. No requiere prerrequisitos funcionales profundos, pero si solides bases de programacion."
+    },
+    {
+      "id": "desarrollador-cloud",
+      "nombre": "Desarrollador SAP Cloud",
+      "descripcion": "Profesional especializado en desarrollar aplicaciones cloud-native usando tecnologias modernas como SAP CAP, Node.js y servicios de SAP BTP.",
+      "cursos_sugeridos": ["sap-cap"],
+      "cursos_obligatorios": ["sap-cap"],
+      "ruta_sugerida": ["sap-cap"],
+      "justificacion_ruta": "CAP es la nueva era del desarrollo SAP en cloud. Recomendado para quienes ya tienen experiencia con SAP on-premise o desean migrar hacia soluciones cloud."
+    },
+    {
+      "id": "consultor-tecnico",
+      "nombre": "Consultor Tecnico Integral",
+      "descripcion": "Profesional hibrido con capacidades tanto funcionales como de desarrollo. Combina configuracion de modulos con capacidades de programacion para entregar soluciones completas.",
+      "cursos_sugeridos": ["sap-fi", "sap-abap"],
+      "cursos_obligatorios": ["sap-fi", "sap-abap"],
+      "ruta_sugerida": ["sap-fi", "sap-abap"],
+      "justificacion_ruta": "Se inicia con SAP FI para entender el nucleo del negocio, y luego se complementa con ABAP para poder personalizar y extender el sistema segun necesidades especificas."
+    }
+  ],
+  "informacion_general": {
+    "metodologia": "Aprendizaje basado en proyectos practicos con laboratorios, casos de uso reales y ejercicios de configuracion en sistemas SAP sandbox.",
+    "soporte": "Tutorias personalizadas via chat durante todo el curso. Foros de discussion entre estudiantes. Grabaciones de sesiones disponibles.",
+    "acceso": "Disponible 24/7 durante 6 meses desde la fecha de inscripcion. Acceso a plataforma de aprendizaje con videos, lecturas y evaluaciones.",
+    "evaluacion": "Cada curso incluye examenes de evaluacion parciales y un proyecto final integrador. Certificado de aprobacion al completar con mas de 70%."
+  }
+}

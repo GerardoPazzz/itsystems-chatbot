@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITSYSTEMS - Asesor Academico Virtual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <h1>ITSYSTEMS</h1>
+      <span class="subtitle">Asesor Academico Virtual</span>
+    </header>
+
+    <main id="chat" class="chat-container">
+      <div id="messages" class="messages-container"></div>
+      <div id="quick-actions" class="quick-actions"></div>
+      <div id="typing-indicator" class="typing-indicator hidden">
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-text">Escribiendo...</span>
+      </div>
+    </main>
+
+    <footer class="input-area">
+      <input
+        type="text"
+        id="message-input"
+        class="message-input"
+        placeholder="Escribe tu mensaje..."
+        autocomplete="off"
+        disabled
+      >
+      <button id="send-btn" class="send-button" disabled>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </footer>
+  </div>
+
+  <div id="limit-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <h2>Chat Finalizado</h2>
+      <p>El chat ha culminado su limite de interaccion.</p>
+      <div class="modal-buttons">
+        <button id="btn-restart" class="modal-btn primary">Reiniciar chat</button>
+        <button id="btn-advisor" class="modal-btn secondary">Comunicarse con un asesor</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="registration-modal" class="registration-modal-overlay hidden">
+    <div class="registration-modal-content">
+      <h2>Registro en SAP</h2>
+      <p>Complete el formulario para registrar su solicitud</p>
+      <form id="registration-form" class="registration-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reg-nombre" class="form-label">Nombre</label>
+            <input type="text" id="reg-nombre" name="nombre" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="reg-apellidos" class="form-label">Apellidos</label>
+            <input type="text" id="reg-apellidos" name="apellidos" class="form-input" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="reg-email" class="form-label">Correo Electrónico</label>
+          <input type="email" id="reg-email" name="email" class="form-input" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingresa un correo válido" required>
+          <span id="email-error" class="field-error-msg"></span>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reg-telefono" class="form-label">Teléfono</label>
+            <input type="text" id="reg-telefono" name="telefono" class="form-input" maxlength="12" required>
+            <span id="telefono-error" class="field-error-msg"></span>
+          </div>
+          <div class="form-group">
+            <label for="reg-actividad" class="form-label">Actividad</label>
+            <input type="text" id="reg-actividad" name="actividad" class="form-input" placeholder="Ej. Desarrollador, Estudiante" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reg-sap-conocimientos" class="form-label">Conocimientos previos de SAP</label>
+            <select id="reg-sap-conocimientos" name="conocimientos" class="form-select" required>
+              <option value="">Seleccione...</option>
+              <option value="Si">Sí</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="reg-institucion" class="form-label">Institución / Empresa</label>
+            <input type="text" id="reg-institucion" name="institucion" class="form-input" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reg-sap-usuario" class="form-label">Usuario SAP</label>
+            <input type="text" id="reg-sap-usuario" name="sap_username" class="form-input" minlength="5" maxlength="8" required>
+            <span id="username-error" class="username-error-msg"></span>
+          </div>
+          <div class="form-group">
+            <label for="reg-rol" class="form-label">Rol a solicitar</label>
+            <select id="reg-rol" name="roleId" class="form-select" required>
+              <option value="">Seleccione un rol...</option>
+              <option value="S4_MM_DEMO">SAP MM (Gestión de Materiales)</option>
+              <option value="S4_SD_DEMO">SAP SD (Ventas y Distribución)</option>
+              <option value="S4_FI_DEMO">SAP FI (Contabilidad Financiera)</option>
+              <option value="S4_PP_DEMO">SAP PP (Planificación de Producción)</option>
+              <option value="S4_PM_DEMO">SAP PM (Mantenimiento de Plantas)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button type="button" id="btn-cancel-registration" class="modal-btn secondary">Cancelar</button>
+          <button type="submit" class="modal-btn primary">Enviar Solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
