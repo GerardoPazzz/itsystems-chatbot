@@ -668,22 +668,89 @@ El sistema guarda sesiones en `sesiones.json`:
 
 ### A.1 Cursos Disponibles
 
-| ID | Nombre | Duración | Nivel | Perfil |
-|----|--------|----------|-------|--------|
-| sap-fi | SAP FI - Financial Accounting | 40h | Intermedio | Consultor Funcional |
-| sap-mm | SAP MM - Material Management | 35h | Intermedio | Consultor Funcional |
-| sap-sd | SAP SD - Sales and Distribution | 35h | Intermedio | Consultor Funcional |
-| sap-abap | Programación SAP ABAP | 45h | Avanzado | Desarrollador SAP |
-| sap-cap | SAP Cloud Application Programming | 30h | Avanzado | Desarrollador Cloud |
+### A.1 Catálogo de Cursos
 
-### A.2 Perfiles de Carrera
+#### Segmento SBO
 
-| ID | Nombre | Cursos |
-|----|--------|--------|
-| consultor-funcional | Consultor Funcional SAP | FI, MM, SD |
-| desarrollador | Desarrollador SAP | ABAP |
-| desarrollador-cloud | Desarrollador SAP Cloud | CAP |
-| consultor-tecnico | Consultor Técnico Integral | FI, ABAP |
+| ID | Nombre | Modalidad | Precio (S/) |
+|----|--------|-----------|---------------|
+| sbo-b1-desarrollo-sdk-virtual | B1 DESARROLLO (SDK) | VIRTUAL | 1,700 |
+| sbo-b1-implementacion-virtual | B1 IMPLEMENTACION | VIRTUAL | 1,400 |
+| sbo-b1-contable-virtual | B1 CONTABLE | VIRTUAL | 1,200 |
+| sbo-b1-administrativo-virtual | B1 ADMINISTRATIVO | VIRTUAL | 600 |
+| sbo-b1-administrativo-online | B1 ADMINISTRATIVO | ONLINE | 600 |
+
+#### Segmento S4 HANA
+
+| ID | Nombre | Modalidad | Precio (S/) |
+|----|--------|-----------|---------------|
+| s4hana-mm-fi-pp-virtual | MM / FI / PP | VIRTUAL | 600 |
+| s4hana-pm-virtual | PM | VIRTUAL | 700 |
+| s4hana-co-ewm-virtual | CO / EWM | VIRTUAL | 700 |
+| s4hana-qm-ps-ii-virtual | QM / PS / II | VIRTUAL | 900 |
+| s4hana-sd-virtual | SD | VIRTUAL | 800 |
+| s4hana-tm-virtual | TM | VIRTUAL | 1,400 |
+| s4hana-mm-fi-pp-online | MM / FI / PP | ONLINE | 600 |
+| s4hana-pm-online | PM | ONLINE | 700 |
+| s4hana-sd-online | SD | ONLINE | 2,400 |
+| s4hana-tm-online | TM | ONLINE | 1,000 |
+| s4hana-ewm-ps-co-qm-online | EWM / PS / CO / QM | ONLINE | 800 |
+| s4hana-mm-configuracion-online | MM CONFIGURACIÓN | ONLINE | 900 |
+
+#### Segmento ECC
+
+| ID | Nombre | Modalidad | Precio (S/) |
+|----|--------|-----------|---------------|
+| ecc-hcm-virtual | HCM | VIRTUAL | 600 |
+| ecc-mm-pp-qm-wm-pm-sd-co-fi-virtual | MM/PP/QM/WM/PM/SD/CO/FI | VIRTUAL | 500 |
+
+#### Segmento HANA TÉCNICO
+
+| ID | Nombre | Modalidad | Precio (S/) |
+|----|--------|-----------|---------------|
+| hana-abap-virtual | ABAP | VIRTUAL | Por confirmar |
+| hana-abap-online | ABAP | ONLINE | 1,100 |
+| hana-abap-rap-virtual | ABAP RAP | VIRTUAL | Por confirmar |
+| hana-abap-rap-online | ABAP RAP | ONLINE | 1,100 |
+| hana-sql-online | SQL | ONLINE | Por confirmar |
+| hana-hana-sql-virtual | HANA SQL | VIRTUAL | Por confirmar |
+| hana-basis-virtual | BASIS | VIRTUAL | 1,750 |
+| hana-basis-online | BASIS | ONLINE | Por confirmar |
+| hana-basis-online-2 | BASIS | ONLINE | 2,400 |
+| hana-fiori-online | FIORI | ONLINE | 2,400 |
+| hana-btp-virtual | BTP | VIRTUAL | Por confirmar |
+| hana-developer-btp-online | DEVELOPER BTP | ONLINE | Por confirmar |
+| hana-hana-bd-online | HANA BD | ONLINE | 2,400 |
+| hana-hana-bd-adm-virtual | HANA BD ADM | VIRTUAL | Por confirmar |
+| hana-dev-fiori-s4-virtual | DEV. FIORI S4 | VIRTUAL | 2,220 |
+
+#### Segmento PRODUCTIVIDAD
+
+| ID | Nombre | Modalidad | Precio (S/) |
+|----|--------|-----------|---------------|
+| productividad-excel-soluciones-virtual | EXCEL SOLUCIONES EMPRESARIALES | VIRTUAL | 250 |
+| productividad-taller-automatizacion-virtual | TALLER AUTOMATIZACION DE DATOS | VIRTUAL | 100 |
+| productividad-contab-no-contadores-virtual | CONTAB. para no contadores | VIRTUAL | 250 |
+| productividad-ia-empresarial-online | IA EMPRESARIAL | ONLINE | 518 |
+
+### A.2 Perfiles de Carrera (14 perfiles)
+
+| ID | Nombre | Descripción |
+|----|--------|-------------|
+| consultor-sbo | Consultor SAP Business One | Especialista en implementación y configuración de B1 |
+| consultor-sbo-online | Consultor SAP Business One Online | Operaciones diarias de B1 con clases en vivo |
+| consultor-s4hana | Consultor SAP S/4HANA | Especialista en módulos funcionales de S/4HANA (VIRTUAL) |
+| consultor-s4hana-online | Consultor SAP S/4HANA Online | Especialista en módulos funcionales de S/4HANA (ONLINE) |
+| desarrollador-hana-online | Desarrollador SAP HANA Online | Desarrollo ABAP, RAP, Fiori, BTP con clases en vivo |
+| desarrollador-hana-virtual | Desarrollador SAP HANA Virtual | Desarrollo con acceso práctico al sistema |
+| administrador-hana-online | Administrador SAP HANA Online | Administración Basis, SQL, HANA BD con clases en vivo |
+| administrador-hana-virtual | Administrador SAP HANA Virtual | Administración con acceso práctico al sistema |
+| consultor-ecc | Consultor SAP ECC | Especialista en sistema heredado ECC |
+| consultor-productividad | Consultor de Productividad | Excel, automatización, contabilidad básica |
+| consultor-productividad-online | Consultor de Productividad Online | IA Empresarial aplicada |
+| consultor-tecnico-hibrido | Consultor Técnico Híbrido | Combina consultoría funcional S4HANA con habilidades técnicas |
+| consultor-datos-empresariales | Consultor de Datos Empresariales | SQL HANA + Productividad + IA |
+| consultor-automation-ai | Consultor de Automation y AI | Automatización + BTP + IA |
 
 ---
 

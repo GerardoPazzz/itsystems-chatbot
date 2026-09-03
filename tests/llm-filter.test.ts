@@ -17,46 +17,46 @@ jest.mock('fs/promises', () => ({
   readFile: jest.fn().mockResolvedValue(JSON.stringify({
     cursos: [
       {
-        id: 'sap-fi',
-        nombre: 'SAP FI - Financial Accounting',
-        descripcion: 'Curso integral de Contabilidad Financiera',
-        duracion: '40 horas',
-        nivel: 'Intermedio'
+        id: 'sbo-b1-implementacion-virtual',
+        nombre: 'B1 IMPLEMENTACION',
+        segmento: 'SBO',
+        modalidad: 'VIRTUAL',
+        dirigido: 'Consultores funcionales'
       },
       {
-        id: 'sap-mm',
-        nombre: 'SAP MM - Material Management',
-        descripcion: 'Curso completo de Gestion de Materiales',
-        duracion: '35 horas',
-        nivel: 'Intermedio'
+        id: 's4hana-mm-fi-pp-virtual',
+        nombre: 'MM / FI / PP',
+        segmento: 'S4 HANA',
+        modalidad: 'VIRTUAL',
+        dirigido: 'Consultores funcionales'
       },
       {
-        id: 'sap-sd',
-        nombre: 'SAP SD - Sales and Distribution',
-        descripcion: 'Curso especializado en Ventas y Distribucion',
-        duracion: '35 horas',
-        nivel: 'Intermedio'
+        id: 'hana-abap-virtual',
+        nombre: 'ABAP',
+        segmento: 'HANA TECNICO',
+        modalidad: 'VIRTUAL',
+        dirigido: 'Desarrolladores ABAP'
       },
       {
-        id: 'sap-abap',
-        nombre: 'Programacion SAP ABAP',
-        descripcion: 'Curso completo de programacion ABAP',
-        duracion: '45 horas',
-        nivel: 'Avanzado'
+        id: 'hana-sql-online',
+        nombre: 'SQL',
+        segmento: 'HANA TECNICO',
+        modalidad: 'ONLINE',
+        dirigido: 'Desarrolladores'
       },
       {
-        id: 'sap-cap',
-        nombre: 'SAP Cloud Application Programming',
-        descripcion: 'Desarrollo cloud nativo con CAP',
-        duracion: '30 horas',
-        nivel: 'Avanzado'
+        id: 'productividad-excel-soluciones-virtual',
+        nombre: 'EXCEL SOLUCIONES EMPRESARIALES',
+        segmento: 'PRODUCTIVIDAD',
+        modalidad: 'VIRTUAL',
+        dirigido: 'Profesionales'
       }
     ],
     perfiles: [
       {
-        id: 'consultor-funcional',
-        nombre: 'Consultor Funcional SAP',
-        descripcion: 'Especializado en configuracion y optimizacion'
+        id: 'consultor-s4hana',
+        nombre: 'Consultor Funcional SAP S/4HANA',
+        descripcion: 'Especializado en S/4HANA'
       }
     ]
   }))
@@ -77,7 +77,7 @@ describe('LLM Service - Filtrado por Categoria', () => {
 
     it('debe detectar pregunta de mercado cuando contiene "mercado"', async () => {
       const messages: Message[] = [
-        { role: 'user', content: 'SAP FI es requerido en el mercado?' }
+        { role: 'user', content: 'SAP S/4HANA es requerido en el mercado?' }
       ];
 
       (fetch as jest.Mock).mockResolvedValueOnce({
@@ -85,7 +85,7 @@ describe('LLM Service - Filtrado por Categoria', () => {
         json: async () => ({
           candidates: [{
             content: {
-              parts: [{ text: 'Sí, SAP FI es muy demandado...' }]
+              parts: [{ text: 'Sí, SAP S/4HANA es muy demandado...' }]
             }
           }]
         })
@@ -97,12 +97,12 @@ describe('LLM Service - Filtrado por Categoria', () => {
       const systemInstruction = callBody.systemInstruction.parts[0].text;
 
       expect(systemInstruction).toContain('Reglas:');
-      expect(callBody.contents[0].parts[0].text).toBe('SAP FI es requerido en el mercado?');
+      expect(callBody.contents[0].parts[0].text).toBe('SAP S/4HANA es requerido en el mercado?');
     });
 
-    it('debe detectar pregunta especifica de SAP FI', async () => {
+    it('debe detectar segmento SBO con "SAP Business One"', async () => {
       const messages: Message[] = [
-        { role: 'user', content: 'Cuanto dura el curso de SAP FI?' }
+        { role: 'user', content: 'Qué cursos de SAP Business One tienen?' }
       ];
 
       (fetch as jest.Mock).mockResolvedValueOnce({
@@ -110,7 +110,7 @@ describe('LLM Service - Filtrado por Categoria', () => {
         json: async () => ({
           candidates: [{
             content: {
-              parts: [{ text: 'El curso dura 40 horas...' }]
+              parts: [{ text: 'Tenemos cursos de B1...' }]
             }
           }]
         })
@@ -121,14 +121,12 @@ describe('LLM Service - Filtrado por Categoria', () => {
       const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
       const systemInstruction = callBody.systemInstruction.parts[0].text;
 
-      expect(systemInstruction).toContain('sap-fi');
-      expect(systemInstruction).not.toContain('sap-mm');
-      expect(systemInstruction).not.toContain('sap-sd');
+      expect(systemInstruction).toContain('SBO');
     });
 
-    it('debe detectar pregunta especifica de SAP MM', async () => {
+    it('debe detectar segmento S4 HANA con "S/4HANA"', async () => {
       const messages: Message[] = [
-        { role: 'user', content: 'Cuales son los prerrequisitos de SAP MM?' }
+        { role: 'user', content: 'Cuéntame sobre SAP S/4HANA' }
       ];
 
       (fetch as jest.Mock).mockResolvedValueOnce({
@@ -136,7 +134,7 @@ describe('LLM Service - Filtrado por Categoria', () => {
         json: async () => ({
           candidates: [{
             content: {
-              parts: [{ text: 'Los prerrequisitos son...' }]
+              parts: [{ text: 'S/4HANA es...' }]
             }
           }]
         })
@@ -147,13 +145,84 @@ describe('LLM Service - Filtrado por Categoria', () => {
       const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
       const systemInstruction = callBody.systemInstruction.parts[0].text;
 
-      expect(systemInstruction).toContain('sap-mm');
-      expect(systemInstruction).not.toContain('sap-fi');
+      expect(systemInstruction).toContain('S4 HANA');
+    });
+
+    it('debe detectar segmento HANA TECNICO con "ABAP"', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'Quiero aprender ABAP' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{
+            content: {
+              parts: [{ text: 'ABAP es...' }]
+            }
+          }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      expect(systemInstruction).toContain('HANA TECNICO');
+    });
+
+    it('debe detectar segmento PRODUCTIVIDAD con "Excel"', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'Tienen cursos de Excel empresarial?' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{
+            content: {
+              parts: [{ text: 'Sí, tenemos...' }]
+            }
+          }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      expect(systemInstruction).toContain('PRODUCTIVIDAD');
+    });
+
+    it('debe detectar segmento HANA TECNICO con "basis" para administracion', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'Quiero aprender administracion basis' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{
+            content: {
+              parts: [{ text: 'BASIS es...' }]
+            }
+          }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      expect(systemInstruction).toContain('HANA TECNICO');
     });
 
     it('debe detectar pregunta sobre perfiles/rutas', async () => {
       const messages: Message[] = [
-        { role: 'user', content: 'Que cursos tiene el perfil Consultor Funcional?' }
+        { role: 'user', content: 'Qué cursos tiene el perfil Consultor S/4HANA?' }
       ];
 
       (fetch as jest.Mock).mockResolvedValueOnce({
@@ -177,7 +246,7 @@ describe('LLM Service - Filtrado por Categoria', () => {
 
     it('debe detectar palabra "ruta" y devolver perfil', async () => {
       const messages: Message[] = [
-        { role: 'user', content: 'Cual es la ruta para ser desarrollador SAP?' }
+        { role: 'user', content: 'Cuál es la ruta para ser desarrollador ABAP?' }
       ];
 
       (fetch as jest.Mock).mockResolvedValueOnce({
@@ -224,32 +293,9 @@ describe('LLM Service - Filtrado por Categoria', () => {
       expect(callBody.contents[0].parts[0].text).toBe('Hay demanda de consultores SAP?');
     });
 
-    it('debe detectar pregunta de mercado con "trabajo"', async () => {
+    it('debe detectar pregunta de mercado con "sueldo"', async () => {
       const messages: Message[] = [
-        { role: 'user', content: 'Es fácil encontrar trabajo con SAP SD?' }
-      ];
-
-      (fetch as jest.Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          candidates: [{
-            content: {
-              parts: [{ text: 'SAP SD tiene buenas perspectivas...' }]
-            }
-          }]
-        })
-      });
-
-      await llmService.getChatReply(messages);
-
-      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
-
-      expect(callBody.contents[0].parts[0].text).toBe('Es fácil encontrar trabajo con SAP SD?');
-    });
-
-    it('debe detectar "sueldo" como pregunta de mercado', async () => {
-      const messages: Message[] = [
-        { role: 'user', content: 'Cual es el sueldo promedio de un consultor SAP?' }
+        { role: 'user', content: 'Cuál es el sueldo de un consultor SAP?' }
       ];
 
       (fetch as jest.Mock).mockResolvedValueOnce({
@@ -267,12 +313,12 @@ describe('LLM Service - Filtrado por Categoria', () => {
 
       const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
 
-      expect(callBody.contents[0].parts[0].text).toBe('Cual es el sueldo promedio de un consultor SAP?');
+      expect(callBody.contents[0].parts[0].text).toBe('Cuál es el sueldo de un consultor SAP?');
     });
 
-    it('debe detectar pregunta sobre ABAP', async () => {
+    it('debe detectar segmento HANA TECNICO con "sql" para base de datos', async () => {
       const messages: Message[] = [
-        { role: 'user', content: 'Que es SAP ABAP?' }
+        { role: 'user', content: 'Necesito aprender base de datos SQL' }
       ];
 
       (fetch as jest.Mock).mockResolvedValueOnce({
@@ -280,7 +326,7 @@ describe('LLM Service - Filtrado por Categoria', () => {
         json: async () => ({
           candidates: [{
             content: {
-              parts: [{ text: 'ABAP es...' }]
+              parts: [{ text: 'SQL es...' }]
             }
           }]
         })
@@ -291,12 +337,12 @@ describe('LLM Service - Filtrado por Categoria', () => {
       const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
       const systemInstruction = callBody.systemInstruction.parts[0].text;
 
-      expect(systemInstruction).toContain('sap-abap');
+      expect(systemInstruction).toContain('HANA TECNICO');
     });
 
-    it('debe detectar pregunta sobre CAP/Cloud', async () => {
+    it('debe detectar segmento PRODUCTIVIDAD con "excel"', async () => {
       const messages: Message[] = [
-        { role: 'user', content: 'Que es SAP CAP?' }
+        { role: 'user', content: 'Quiero aprender excel avanzado' }
       ];
 
       (fetch as jest.Mock).mockResolvedValueOnce({
@@ -304,7 +350,7 @@ describe('LLM Service - Filtrado por Categoria', () => {
         json: async () => ({
           candidates: [{
             content: {
-              parts: [{ text: 'CAP es...' }]
+              parts: [{ text: 'Tenemos un curso...' }]
             }
           }]
         })
@@ -315,13 +361,61 @@ describe('LLM Service - Filtrado por Categoria', () => {
       const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
       const systemInstruction = callBody.systemInstruction.parts[0].text;
 
-      expect(systemInstruction).toContain('sap-cap');
+      expect(systemInstruction).toContain('PRODUCTIVIDAD');
+    });
+
+    it('debe detectar BTP con "cloud foundry"', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'Qué es Cloud Foundry en SAP BTP?' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{
+            content: {
+              parts: [{ text: 'Cloud Foundry es...' }]
+            }
+          }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      expect(systemInstruction).toContain('HANA TECNICO');
+    });
+
+    it('debe detectar SQL con "hana database"', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'Necesito aprender HANA Database' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{
+            content: {
+              parts: [{ text: 'Para HANA Database...' }]
+            }
+          }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      expect(systemInstruction).toContain('HANA TECNICO');
     });
   });
 
   describe('Reglas del Sistema', () => {
 
-    it('debe incluir las 5 reglas en el system prompt', async () => {
+    it('debe incluir las 6 reglas en el system prompt', async () => {
       const messages: Message[] = [
         { role: 'user', content: 'Hola' }
       ];
@@ -331,7 +425,7 @@ describe('LLM Service - Filtrado por Categoria', () => {
         json: async () => ({
           candidates: [{
             content: {
-              parts: [{ text: 'Hola, como estas?' }]
+              parts: [{ text: 'Hola, cómo estás?' }]
             }
           }]
         })
@@ -347,7 +441,7 @@ describe('LLM Service - Filtrado por Categoria', () => {
       expect(systemInstruction).toContain('NO des rutas de estudio');
       expect(systemInstruction).toContain('Cuando el usuario pida una ruta');
       expect(systemInstruction).toContain('Se directo y profesional');
-      expect(systemInstruction).toContain('Sin frases como "creo que", "quizas"');
+      expect(systemInstruction).toContain('precios');
     });
 
     it('debe usar maxOutputTokens de config', async () => {

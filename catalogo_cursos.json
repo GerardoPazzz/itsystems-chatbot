@@ -1,169 +1,1021 @@
 {
   "cursos": [
     {
-      "id": "sap-fi",
-      "nombre": "SAP FI - Financial Accounting",
-      "descripcion": "Curso integral de Contabilidad Financiera en SAP. Domina los fundamentos de la gestion financiera, configuracion de libros contables, gestion de cuentas por pagar y por cobrar, conciliacion bancaria y reportes financieros segun estandares internacionales.",
-      "duracion": "40 horas",
-      "modalidad": "Virtual asincrona",
-      "nivel": "Intermedio",
-      "perfil": "Consultor Funcional SAP",
-      "categoria": "Modulo Funcional",
-      "prerrequisitos": ["Conocimientos basicos de contabilidad financiera", "Experiencia con sistemas ERP es recomendable"],
-      "modulos": [
-        "Fundamentos de SAP FI y navegacion",
-        "Plan de cuentas y tipos de sociedad",
-        "Gestion de cuentas por pagar (AP)",
-        "Gestion de cuentas por cobrar (AR)",
-        "Conciliacion bancaria",
-        "Cierre contable mensual y anual",
-        "Reportes financieros y analisis",
-        "Integracion con otros modulos SAP"
-      ],
-      "certificacion": "SAP Certified Application Associate - SAP S/4HANA Financial Accounting",
-      "dirigido": "Contadores, analistas financieros, consultores ERP, profesionales de finanzas",
-      "habilidades_adquiridas": ["Contabilidad financiera SAP", "Configuracion de modulo FI", "Reportes financieros", "Proceso de cierre contable"]
+      "id": "sbo-b1-desarrollo-sdk-virtual",
+      "nombre": "B1 DESARROLLO (SDK)",
+      "descripcion": "Curso práctico de desarrollo de add-ons personalizados para SAP Business One usando el SDK. Aprende a crear soluciones que se integren con B1 mediante servicios web y APIs REST. Orientado a programadores con experiencia en cualquier lenguaje de programación que quieran personalizar SAP B1.",
+      "segmento": "SBO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 1700,
+        "cuotas": 1800
+      },
+      "recursos": {
+        "acceso_aula_virtual": "2 meses",
+        "acceso_sap": "2 meses"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": ["sbo-b1-implementacion-virtual"],
+      "dirigido": "Desarrolladores e implementadores de SAP Business One",
+      "habilidades_adquiridas": ["Desarrollo de Add-ons con SDK", "Programación en SAP B1", "Integraciones con API REST", "Creación de interfaces custom"]
     },
     {
-      "id": "sap-mm",
-      "nombre": "SAP MM - Material Management",
-      "descripcion": "Curso completo de Gestion de Materiales en SAP. Aprende a optimizar la cadena de suministro, gestionar inventarios, controlar compras, evaluar proveedores y planificar necesidades de materiales.",
-      "duracion": "35 horas",
-      "modalidad": "Virtual asincrona",
-      "nivel": "Intermedio",
-      "perfil": "Consultor Funcional SAP",
-      "categoria": "Modulo Funcional",
-      "prerrequisitos": ["Conceptos basicos de logistica y supply chain", "Conocimientos de gestion de inventarios"],
-      "modulos": [
-        "Fundamentos de SAP MM y master data",
-        "Gestion de solicitudes de compra",
-        "Proceso de compras y ordenes de compra",
-        "Evaluacion de proveedores",
-        "Gestion de inventarios y almacenes",
-        "Movimientos de stock y transferencias",
-        "Planificacion de necesidades de materiales (MRP)",
-        "Integracion con WM y SD"
-      ],
-      "certificacion": "SAP Certified Application Associate - SAP S/4HANA Material Management",
-      "dirigido": "Profesionales de logistica, compradores, especialistas en supply chain, consultores de inventario",
-      "habilidades_adquiridas": ["Gestion de compras", "Control de inventarios", "Planificacion MRP", "Estrategias de aprovisionamiento"]
+      "id": "sbo-b1-implementacion-virtual",
+      "nombre": "B1 IMPLEMENTACION",
+      "descripcion": "Curso completo de metodología para implementar SAP Business One en empresas. Aprende el proceso desde el análisis de requerimientos y configuración inicial hasta la migración de datos y puesta en marcha. Ideal para consultores funcionales que lideran implementaciones de B1.",
+      "segmento": "SBO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 1400,
+        "cuotas": 1500
+      },
+      "recursos": {
+        "acceso_aula_virtual": "1.5 meses",
+        "acceso_sap": "1 mes"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Consultores funcionales e implementadores de SAP Business One",
+      "habilidades_adquiridas": ["Metodología de implementación SAP B1", "Configuración de módulos", "Migración de datos", "Gestión de proyectos de implementación"]
     },
     {
-      "id": "sap-sd",
-      "nombre": "SAP SD - Sales and Distribution",
-      "descripcion": "Curso especializado en Ventas y Distribucion en SAP. Maneja el proceso de ventas completo desde la cotizacion hasta la entrega, facturacion, determinacion de precios y atencion a clientes.",
-      "duracion": "35 horas",
-      "modalidad": "Virtual asincrona",
-      "nivel": "Intermedio",
-      "perfil": "Consultor Funcional SAP",
-      "categoria": "Modulo Funcional",
-      "prerrequisitos": ["Conocimientos basicos de ventas y distribucion", "Experiencia en CRM es deseable"],
-      "modulos": [
-        "Fundamentos de SAP SD y master data de ventas",
-        "Gestión de información de clientes (sold-to, ship-to)",
-        "Cotizaciones y contratos de venta",
-        "Pedidos de venta y disponibilidad",
-        "Gestión de entregas y picking",
-        "Facturación y determinación de precios",
-        "Cobranzas y gestión de crédito",
-        "Reportes de ventas y análisis de rendimiento"
-      ],
-      "certificacion": "SAP Certified Application Associate - SAP S/4HANA Sales and Distribution",
-      "dirigido": "Ejecutivos de ventas, consultores CRM, profesionales de atencion al cliente, analistas comerciales",
-      "habilidades_adquiridas": ["Proceso de ventas end-to-end", "Configuracion de precios", "Gestion de entregas", "Facturacion SAP"]
+      "id": "sbo-b1-contable-virtual",
+      "nombre": "B1 CONTABLE",
+      "descripcion": "Curso especializado en configurar y operar el módulo contable de SAP Business One. Aprende a manejar el plan de cuentas, crear asientos contables, generar reportes financieros y ejecutar procesos de cierre mensual y anual. Dirigido a contadores y profesionales financieros.",
+      "segmento": "SBO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 1200,
+        "cuotas": 1300
+      },
+      "recursos": {
+        "acceso_aula_virtual": "1.5 meses",
+        "acceso_sap": "1 mes"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": ["sbo-b1-implementacion-virtual"],
+      "dirigido": "Contadores y profesionales financieros que trabajan con SAP B1",
+      "habilidades_adquiridas": ["Contabilidad en SAP Business One", "Plan de cuentas y asientos", "Reportes financieros", "Cierre contable"]
     },
     {
-      "id": "sap-abap",
-      "nombre": "Programacion SAP ABAP",
-      "descripcion": "Curso completo de programacion en ABAP (Advanced Business Application Programming). Aprende a desarrollar reportes, interfaces, enhancementos y extensiones en el ecosistema SAP usando tecnicas modernas de programacion.",
-      "duracion": "45 horas",
-      "modalidad": "Virtual asincrona",
-      "nivel": "Avanzado",
-      "perfil": "Desarrollador SAP",
-      "categoria": "Desarrollo",
-      "prerrequisitos": ["Conocimientos de programacion en cualquier lenguaje (preferiblemente Java, Python o C++)", "Logica de programacion orientada a objetos"],
-      "modulos": [
-        "Introduccion a SAP ABAP y entorno de desarrollo SE80",
-        "Diccionario de datos ABAP (tablas, estructuras, vistas)",
-        "Reportes ABAP clasicos y interactivos",
-        "Modulo de funciones y badis",
-        "Programacion orientada a objetos en ABAP",
-        "ALV (ABAP List Viewer) para reportes avanzados",
-        "Interfaces RFC y web services",
-        "Enhancements y user-exits",
-        "Introduccion a ABAP en S/4HANA (AMDP, CDS views)"
-      ],
-      "certificacion": "SAP Certified Development Specialist - ABAP for SAP S/4HANA",
-      "dirigido": "Desarrolladores de software, programadores, consultores tecnicos que deseen especializarse en SAP",
-      "habilidades_adquiridas": ["Programacion ABAP 7.5+", "Desarrollo de reportes", "Creacion de interfaces", "Enhancements y extensiones"]
+      "id": "sbo-b1-administrativo-virtual",
+      "nombre": "B1 ADMINISTRATIVO",
+      "descripcion": "Curso operativo para aprender a usar SAP Business One en el día a día. Aprende a crear y administrar usuarios, manejar documentos comerciales, realizar consultas operativas y generar reportes. Práctico y directo para usuarios que necesitan operar B1 cotidianamente.",
+      "segmento": "SBO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 600,
+        "cuotas": 700
+      },
+      "recursos": {
+        "acceso_aula_virtual": "1.5 meses",
+        "acceso_sap": "1 mes"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Personal administrativo y operativo de empresas con SAP B1",
+      "habilidades_adquiridas": ["Gestión de documentos", "Operaciones day-to-day", "Consultas y reportes operativos", "Atención a usuarios"]
     },
     {
-      "id": "sap-cap",
-      "nombre": "SAP Cloud Application Programming - CAP",
-      "descripcion": "Curso de desarrollo cloud nativo con SAP CAP (Cloud Application Programming Model). Construye servicios y aplicaciones empresariales en la nube SAP usando frameworks modernos como Node.js, Java y CDS.",
-      "duracion": "30 horas",
-      "modalidad": "Virtual asincrona",
-      "nivel": "Avanzado",
-      "perfil": "Desarrollador SAP Cloud",
-      "categoria": "Desarrollo Cloud",
-      "prerrequisitos": ["Conocimientos de programacion en JavaScript/TypeScript o Java", "Conceptos basicos de servicios REST y OData", "Familiaridad con conceptos cloud"],
-      "modulos": [
-        "Introduccion a SAP CAP y arquitectura cloud-native",
-        "Modelado de dominio con CDS (Core Data Services)",
-        "Desarrollo de servicios OData v4",
-        "Implementacion con Node.js (JavaScript/TypeScript)",
-        "Implementacion con Java (Spring Boot)",
-        "Autenticacion y autorizacion",
-        "Integracion con servicios SAP (Destination, IAS)",
-        "Despliegue en SAP Business Technology Platform",
-        "Testing y debugging en entorno CAP"
-      ],
-      "certificacion": "SAP Certified Development Associate - SAP Cloud Application Programming",
-      "dirigido": "Desarrolladores full-stack, arquitectos cloud, consultores tecnicos con experiencia en SAP",
-      "habilidades_adquiridas": ["Desarrollo cloud-native SAP", "Modelado CDS", "APIs OData", "Arquitectura Serverless"]
+      "id": "sbo-b1-administrativo-online",
+      "nombre": "B1 ADMINISTRATIVO",
+      "descripcion": "Curso en vivo con instructor para aprender operaciones diarias en SAP Business One. Sesiones interactivas donde aprendes a crear usuarios, manejar documentos, hacer consultas y generar reportes. Ideal para personal administrativo que necesita usar B1 en su trabajo.",
+      "segmento": "SBO",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 600,
+        "cuotas": 700
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "lo que dure el curso"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Personal administrativo y operativo de empresas con SAP B1",
+      "habilidades_adquiridas": ["Gestión de documentos", "Operaciones day-to-day", "Consultas y reportes operativos", "Atención a usuarios"]
+    },
+    {
+      "id": "s4hana-mm-fi-pp-virtual",
+      "nombre": "MM / FI / PP",
+      "descripcion": "Curso que cubre tres módulos fundamentales de SAP S/4HANA. Aprende Gestión de Materiales para compras e inventarios, Contabilidad Financiera para control de finanzas, y Planificación de Producción para manufactura. Visión integral de los procesos centrales de S/4HANA.",
+      "segmento": "S4 HANA",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 600,
+        "cuotas": 700
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Consultores funcionales y profesionales de Supply Chain y Finanzas en S/4HANA",
+      "habilidades_adquiridas": ["Gestión de Materiales (MM)", "Contabilidad Financiera (FI)", "Planificación de Producción (PP)", "Integración entre módulos"]
+    },
+    {
+      "id": "s4hana-pm-virtual",
+      "nombre": "PM",
+      "descripcion": "Curso de gestión de mantenimiento de equipos e instalaciones industriales en SAP S/4HANA. Aprende a crear órdenes de trabajo, programar mantenimiento preventivo y correctivo, planificar recursos y analizar fallas. Para profesionales de mantenimiento industrial y gestión de plantas.",
+      "segmento": "S4 HANA",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 700,
+        "cuotas": 800
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Profesionales de mantenimiento industrial y gestión de plantas",
+      "habilidades_adquiridas": ["Gestión de mantenimiento preventivo", "Órdenes de trabajo", "Planificación de recursos", "Mantenimiento centrado en confiabilidad"]
+    },
+    {
+      "id": "s4hana-co-ewm-virtual",
+      "nombre": "CO / EWM",
+      "descripcion": "Curso que integra Controlling para control de costos y Extended Warehouse Management para logística avanzada en S/4HANA. Aprende a analizar márgenes, gestionar centros de costo, administrar almacenes extendidos y optimizar inventarios. Consultores que buscan visión financiera y logística.",
+      "segmento": "S4 HANA",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 700,
+        "cuotas": 800
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Consultores de Controlling y profesionales de logística avanzada",
+      "habilidades_adquiridas": ["Controlling (CO)", "Gestión de almacenes extendida (EWM)", "Costos de producto", "Gestión de inventarios advanced"]
+    },
+    {
+      "id": "s4hana-qm-ps-ii-virtual",
+      "nombre": "QM / PS / II",
+      "descripcion": "Curso de tres áreas avanzadas en SAP S/4HANA: Gestión de Calidad para inspecciones y muestreos, Sistema de Proyectos para planificación y seguimiento, e Inteligencia de Información para análisis de datos. Para consultores funcionales avanzados.",
+      "segmento": "S4 HANA",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 900,
+        "cuotas": 1000
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Profesionales de calidad, proyectos y gestión de información",
+      "habilidades_adquiridas": ["Gestión de Calidad (QM)", "Project System (PS)", "Information Intelligence (II)", "Inspecciones de calidad"]
+    },
+    {
+      "id": "s4hana-sd-virtual",
+      "nombre": "SD",
+      "descripcion": "Curso completo del ciclo de ventas en SAP S/4HANA. Aprende a crear cotizaciones, procesar pedidos, gestionar entregas, ejecutar facturación y configurar determinación de precios. Para profesionales de ventas, distribución y servicio al cliente.",
+      "segmento": "S4 HANA",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 800,
+        "cuotas": 900
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Profesionales de ventas, distribución y servicio al cliente",
+      "habilidades_adquiridas": ["Proceso de ventas end-to-end", "Gestión de precios y condiciones", "Entregas y facturación", "Cobranzas y gestión de crédito"]
+    },
+    {
+      "id": "s4hana-tm-virtual",
+      "nombre": "TM",
+      "descripcion": "Curso de gestión de transporte y logística en SAP S/4HANA. Aprende a planificar rutas de distribución, optimizar carga de flotas, rastrear envíos y gestionar documentos de transporte. Para profesionales de logística y operaciones de distribución.",
+      "segmento": "S4 HANA",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 1400,
+        "cuotas": 1500
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Profesionales de logística y transporte",
+      "habilidades_adquiridas": ["Gestión de transporte", "Planificación de rutas", "Optimización de flotas", "Integración con EWM"]
+    },
+    {
+      "id": "s4hana-ewm-ps-co-qm-online",
+      "nombre": "EWM / PS / CO / QM",
+      "descripcion": "Curso avanzado con clases en vivo que cubre cuatro módulos de S/4HANA: Extended Warehouse Management para almacenes, Project System para proyectos, Controlling para costos y Gestión de Calidad para manufactura. Sesiones interactivas con instructor para profundizar en cada módulo.",
+      "segmento": "S4 HANA",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 800,
+        "cuotas": 900
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Consultores funcionales avanzados en S/4HANA",
+      "habilidades_adquiridas": ["Gestión de almacenes extendida (EWM)", "Project System (PS)", "Controlling (CO)", "Gestión de Calidad (QM)"]
+    },
+    {
+      "id": "s4hana-mm-fi-pp-online",
+      "nombre": "MM / FI / PP",
+      "descripcion": "Curso fundamental con instructor en vivo sobre los tres pilares de SAP S/4HANA: MM para materiales, FI para finanzas y PP para producción. Clases interactivas con práctica directa en el sistema. Ideal para quienes inician en S/4HANA.",
+      "segmento": "S4 HANA",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 600,
+        "cuotas": 700
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Consultores funcionales y profesionales de Supply Chain y Finanzas en S/4HANA",
+      "habilidades_adquiridas": ["Gestión de Materiales (MM)", "Contabilidad Financiera (FI)", "Planificación de Producción (PP)", "Integración entre módulos"]
+    },
+    {
+      "id": "s4hana-pm-online",
+      "nombre": "PM",
+      "descripcion": "Curso en línea con instructor sobre gestión de mantenimiento industrial en S/4HANA. Sesiones en tiempo real donde aprendes órdenes de trabajo, mantenimiento preventivo, confiabilidad de activos y planificación de recursos. Para profesionales de plantas y mantenimiento.",
+      "segmento": "S4 HANA",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 700,
+        "cuotas": 800
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Profesionales de mantenimiento industrial y gestión de plantas",
+      "habilidades_adquiridas": ["Gestión de mantenimiento preventivo", "Órdenes de trabajo", "Planificación de recursos", "Mantenimiento centrado en confiabilidad"]
+    },
+    {
+      "id": "s4hana-sd-online",
+      "nombre": "SD",
+      "descripcion": "Curso en vivo del proceso comercial completo en SAP S/4HANA. Aprende cotizaciones, pedidos, entregas, facturación y determinación de precios con sesiones interactivas. Para equipos de ventas, distribución y atención al cliente.",
+      "segmento": "S4 HANA",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 2400,
+        "cuotas": 2500
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Profesionales de ventas, distribución y servicio al cliente",
+      "habilidades_adquiridas": ["Proceso de ventas end-to-end", "Gestión de precios y condiciones", "Entregas y facturación", "Cobranzas y gestión de crédito"]
+    },
+    {
+      "id": "s4hana-tm-online",
+      "nombre": "TM",
+      "descripcion": "Curso sincronico de gestión de transporte en SAP S/4HANA. Clases en vivo sobre planificación de rutas, optimización de flotas, costos logísticos y seguimiento de despachos. Para profesionales de logística que buscan certificarse en TM.",
+      "segmento": "S4 HANA",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 1000,
+        "cuotas": 1200
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Profesionales de logística y transporte",
+      "habilidades_adquiridas": ["Gestión de transporte", "Planificación de rutas", "Optimización de flotas", "Integración con EWM"]
+    },
+    {
+      "id": "s4hana-mm-configuracion-online",
+      "nombre": "MM CONFIGURACIÓN",
+      "descripcion": "Curso avanzado de configuración del módulo de Gestión de Materiales en SAP S/4HANA. Aprende a configurar estrategias de compras, determinación automática de precios de materiales, optimización del aprovisionamiento y procesos de evaluación de proveedores. Consultores MM que buscan profundidad en configuración.",
+      "segmento": "S4 HANA",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 900,
+        "cuotas": 1000
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "3 meses"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Consultores funcionales especializados en configuración de MM",
+      "habilidades_adquiridas": ["Configuración avanzada de MM", "Estrategias de aprovisionamiento", "Optimización de compras", "Integración con módulos"]
+    },
+    {
+      "id": "ecc-hcm-virtual",
+      "nombre": "HCM",
+      "descripcion": "Curso integral de gestión de capital humano en SAP ECC. Aprende administración de personal, procesamiento de nóminas y beneficios, desarrollo organizacional y gestión del tiempo. Para profesionales de recursos humanos y consultoría HCM en entornos ECC.",
+      "segmento": "ECC",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 600,
+        "cuotas": 700
+      },
+      "recursos": {
+        "acceso_aula_virtual": "3 meses",
+        "acceso_sap": "3 meses"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Profesionales de recursos humanos y consultoría HCM",
+      "habilidades_adquiridas": ["Gestión de personal", "Nómina y beneficios", "Desarrollo organizacional", "Time Management"]
+    },
+    {
+      "id": "ecc-mm-pp-qm-wm-pm-sd-co-fi-virtual",
+      "nombre": "MM/PP/QM/WM/PM/SD/CO/FI",
+      "descripcion": "Curso panorámico que abarca todos los módulos principales de SAP ECC en un solo programa. Visión completa del sistema ERP más utilizado históricamente. Para consultores y usuarios clave que necesitan entender el alcance completo de SAP ECC.",
+      "segmento": "ECC",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 500,
+        "cuotas": 600
+      },
+      "recursos": {
+        "acceso_aula_virtual": "3 meses",
+        "acceso_sap": "3 meses"
+      },
+      "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Consultores funcionales y profesionales que trabajan con SAP ECC",
+      "habilidades_adquiridas": ["Gestión de Materiales (MM)", "Planificación de Producción (PP)", "Gestión de Calidad (QM)", "Gestión de Almacenes (WM)", "Mantenimiento (PM)", "Ventas (SD)", "Controlling (CO)", "Finanzas (FI)"]
+    },
+    {
+      "id": "hana-abap-online",
+      "nombre": "ABAP",
+      "descripcion": "Curso de programación ABAP con instructor en vivo para SAP S/4HANA. Aprende a desarrollar reportes clásicos e interactivos, crear módulos de función, implementar enhancements y user-exits. Sesiones prácticas con ejercicios directos en el sistema.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 1100,
+        "cuotas": 1200
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Desarrolladores y programadores que desean especializarse en SAP",
+      "habilidades_adquiridas": ["Programación ABAP 7.5+", "Desarrollo de reportes", "Módulo de funciones y Badis", "Enhancements y user-exits"]
+    },
+    {
+      "id": "hana-sql-online",
+      "nombre": "SQL",
+      "descripcion": "Curso especializado en consultas SQL para bases de datos SAP HANA con clases en vivo. Aprende a crear vistas, procedimientos almacenados, funciones y optimizar el rendimiento de consultas. Para desarrolladores y administradores que trabajan con HANA.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": null,
+        "cuotas": null
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "lo que dure el curso"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Desarrolladores y administradores de bases de datos SAP HANA",
+      "habilidades_adquiridas": ["SQL en HANA", "Consultas advanced", "Optimización de queries", "Vistas y procedimientos"]
+    },
+    {
+      "id": "hana-developer-btp-online",
+      "nombre": "DEVELOPER BTP",
+      "descripcion": "Curso de desarrollo en SAP Business Technology Platform con instructor en vivo. Aprende a crear aplicaciones cloud-native, configurar servicios de integración, implementar autenticación y desplegar soluciones en BTP usando Cloud Foundry.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": "S.P.",
+        "cuotas": "S.P."
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "lo que dure el curso"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Desarrolladores que trabajan con SAP Business Technology Platform",
+      "habilidades_adquiridas": ["Desarrollo en BTP", "Servicios de integración", "Autenticación y autorización", "Aplicaciones cloud-native"]
+    },
+    {
+      "id": "hana-basis-online",
+      "nombre": "BASIS",
+      "descripcion": "Curso de administración del sistema SAP con sesiones en vivo. Aprende instalación, configuración, gestión de usuarios y autorizaciones, administración de paisajes y monitoreo del sistema. Instructor certificado guía cada tema.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": "S.P.",
+        "cuotas": "S.P."
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "lo que dure el curso"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Administradores de sistema y consultores técnicos Basis",
+      "habilidades_adquiridas": ["Administración del sistema SAP", "Gestión de usuarios y autorizaciones", "Transportes y paisaje", "Monitoring y troubleshooting"]
+    },
+    {
+      "id": "hana-abap-rap-online",
+      "nombre": "ABAP RAP",
+      "descripcion": "Curso moderno de RESTful Application Programming en ABAP para S/4HANA con instructor. Aprende desarrollo de servicios OData v4, creación de CDS Views y definición de comportamientos con el modelo RAP.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 1100,
+        "cuotas": 1200
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "lo que dure el curso"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": ["hana-abap-online"],
+      "dirigido": "Desarrolladores ABAP que desejam aprender el modelo de programación moderno",
+      "habilidades_adquiridas": ["RAP (RESTful Application Programming)", "Desarrollo OData v4", "CDS Views", "Behavior Definition"]
+    },
+    {
+      "id": "hana-hana-bd-online",
+      "nombre": "HANA BD",
+      "descripcion": "Curso de administración avanzada de bases de datos SAP HANA en modalidad online. Aprende backup, recovery, seguridad, replication y alta disponibilidad. Instructor certificado cubre todos los aspectos de administración HANA.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 2400,
+        "cuotas": 2500
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "lo que dure el curso"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Administradores de bases de datos HANA y profesionales de data management",
+      "habilidades_adquiridas": ["Administración de HANA Database", "Backup y recovery", "Seguridad de datos", "Performance tuning"]
+    },
+    {
+      "id": "hana-fiori-online",
+      "nombre": "FIORI",
+      "descripcion": "Curso de desarrollo SAPUI5 y Fiori Elements con clases en vivo. Aprende a crear aplicaciones web responsivas, diseñar interfaces modernas y consumir servicios OData. Instructor guía el desarrollo de apps Fiori desde cero.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 2400,
+        "cuotas": 2500
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "lo que dure el curso"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Desarrolladores frontend y consultores UI5/Fiori",
+      "habilidades_adquiridas": ["SAPUI5 / Fiori Elements", "Desarrollo de aplicaciones responsivas", "OData services", "UX design en SAP"]
+    },
+    {
+      "id": "hana-basis-online-2",
+      "nombre": "BASIS",
+      "descripcion": "Curso avanzado de administración Basis con enfoque en transportes entre sistemas y gestión de landscapes. Aprende a resolver problemas complejos, administrar múltiples entornos y optimizar el rendimiento del sistema SAP.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 2400,
+        "cuotas": 2500
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "lo que dure el curso"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Administradores de sistema y consultores técnicos Basis",
+      "habilidades_adquiridas": ["Administración del sistema SAP", "Gestión de usuarios y autorizaciones", "Transportes y paisaje", "Monitoring y troubleshooting"]
+    },
+    {
+      "id": "hana-abap-virtual",
+      "nombre": "ABAP",
+      "descripcion": "Curso completo de programación ABAP con acceso por seis meses al sistema SAP para práctica continua. Aprende desarrollo de reportes, módulos de función, enhancements y programación OO. Acceso libre para desarrollar proyectos prácticos durante todo el curso.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": null,
+        "cuotas": null
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "6 meses"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Desarrolladores y programadores que desean especializarse en SAP",
+      "habilidades_adquiridas": ["Programación ABAP 7.5+", "Desarrollo de reportes", "Módulo de funciones y Badis", "Enhancements y user-exits"]
+    },
+    {
+      "id": "hana-hana-sql-virtual",
+      "nombre": "HANA SQL",
+      "descripcion": "Curso de consultas SQL específicas para SAP HANA con laboratorio práctico incluido. Aprende consultas advanced, creación de vistas optimizadas, procedimientos almacenados y técnicas de optimización. Acceso al sistema para practicar libremente.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": null,
+        "cuotas": null
+      },
+      "recursos": {
+        "acceso_aula_virtual": "1 mes y medio",
+        "acceso_sap": "1 mes"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Desarrolladores y administradores de bases de datos SAP HANA",
+      "habilidades_adquiridas": ["SQL en HANA", "Consultas advanced", "Optimización de queries", "Vistas y procedimientos"]
+    },
+    {
+      "id": "hana-btp-virtual",
+      "nombre": "BTP",
+      "descripcion": "Curso integral de SAP Business Technology Platform con acceso al entorno. Aprende arquitectura cloud-native, servicios de integración, autenticación, deployment en Cloud Foundry y desarrollo de aplicaciones serverless. Laboratorio práctico con acceso real a BTP.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": null,
+        "cuotas": null
+      },
+      "recursos": {
+        "acceso_aula_virtual": "3 meses",
+        "acceso_sap": "-"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Desarrolladores y arquitectos que trabajan con SAP Business Technology Platform",
+      "habilidades_adquiridas": ["Arquitectura BTP", "Servicios de integración", "Application Development", "Cloud Foundry"]
+    },
+    {
+      "id": "hana-abap-rap-virtual",
+      "nombre": "ABAP RAP",
+      "descripcion": "Curso del modelo de programación RAP en ABAP con acceso al sistema para prácticas. Aprende desarrollo OData v4, CDS Views, Behavior Definition y las nuevas técnicas de desarrollo en S/4HANA. Sin límite de horas de práctica.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": null,
+        "cuotas": null
+      },
+      "recursos": {
+        "acceso_aula_virtual": "3 meses",
+        "acceso_sap": "1 mes"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": ["hana-abap-virtual"],
+      "dirigido": "Desarrolladores ABAP que desejam aprender el modelo de programación moderno",
+      "habilidades_adquiridas": ["RAP (RESTful Application Programming)", "Desarrollo OData v4", "CDS Views", "Behavior Definition"]
+    },
+    {
+      "id": "hana-hana-bd-adm-virtual",
+      "nombre": "HANA BD ADM",
+      "descripcion": "Curso de administración de bases de datos SAP HANA con laboratorio práctico. Aprende backup, recovery, seguridad, replication, alta disponibilidad y monitoreo. Acceso durante el curso para desarrollar habilidades de administrador HANA.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": null,
+        "cuotas": null
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "2 meses"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Administradores de bases de datos HANA y profesionales de data management",
+      "habilidades_adquiridas": ["Administración de HANA Database", "Backup y recovery", "Seguridad de datos", "Performance tuning"]
+    },
+    {
+      "id": "hana-dev-fiori-s4-virtual",
+      "nombre": "DEV. FIORI S4",
+      "descripcion": "Curso de desarrollo Fiori específico para S/4HANA con acceso al sistema. Aprende SAPUI5 advanced, servicios OData, Floorplan Manager y diseño de aplicaciones Fiori. Proyecto práctico de desarrollo durante el curso.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 2220,
+        "cuotas": 2331
+      },
+      "recursos": {
+        "acceso_aula_virtual": "1 mes y medio",
+        "acceso_sap": "1 mes"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Desarrolladores que crean aplicaciones Fiori en S/4HANA",
+      "habilidades_adquiridas": ["Desarrollo Fiori en S/4HANA", "SAPUI5 advanced", "OData services para Fiori", "Análisis y diseño de apps"]
+    },
+    {
+      "id": "hana-basis-virtual",
+      "nombre": "BASIS",
+      "descripcion": "Curso de administración Basis con acceso completo al sistema para prácticas. Aprende instalación, configuración, gestión de usuarios, Transportes, Solution Manager y monitoreo. Instructor certificado durante todo el programa.",
+      "segmento": "HANA TECNICO",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 1750,
+        "cuotas": 1850
+      },
+      "recursos": {
+        "acceso_aula_virtual": "3 meses",
+        "acceso_sap": "-"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Administradores de sistema y consultores técnicos Basis",
+      "habilidades_adquiridas": ["Administración del sistema SAP", "Gestión de usuarios y autorizaciones", "Transportes y paisaje", "Monitoring y troubleshooting"]
+    },
+    {
+      "id": "productividad-ia-empresarial-online",
+      "nombre": "IA EMPRESARIAL",
+      "descripcion": "Curso de inteligencia artificial generativa aplicada al entorno empresarial con instructor en vivo. Aprende a crear prompts efectivos, automatizar tareas knowledge, usar herramientas de IA para análisis y integrarlas en procesos de negocio.",
+      "segmento": "PRODUCTIVIDAD",
+      "modalidad": "ONLINE",
+      "precio": {
+        "contado": 518,
+        "cuotas": 555
+      },
+      "recursos": {
+        "acceso_aula_virtual": "sin acceso",
+        "acceso_sap": "sin acceso"
+      },
+      "notificacion_academico": "correo de bienvenida",
+      "prerrequisitos_recomendados": ["productividad-excel-soluciones-virtual"],
+      "dirigido": "Profesionales y empresas que desean integrar IA en sus procesos",
+      "habilidades_adquiridas": ["Fundamentos de IA generativa", "Prompts efectivos", "Automatización de tareas", "Análisis de datos con IA"]
+    },
+    {
+      "id": "productividad-contab-no-contadores-virtual",
+      "nombre": "CONTAB. para no contadores",
+      "descripcion": "Curso de fundamentos contables sin tecnicismos para profesionales de otras áreas. Aprende a interpretar estados financieros, analizar información contable y comunicarte efectivamente con el área financiera. Sin experiencia previa en contabilidad requerida.",
+      "segmento": "PRODUCTIVIDAD",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 250,
+        "cuotas": 300
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "sin acceso"
+      },
+      "notificacion_academico": null,
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Profesionales de otras áreas que necesitan entender conceptos contables",
+      "habilidades_adquiridas": ["Fundamentos de contabilidad", "Estados financieros básicos", "Toma de decisiones basada en números", "Comunicación con el área financiera"]
+    },
+    {
+      "id": "productividad-excel-soluciones-virtual",
+      "nombre": "EXCEL SOLUCIONES EMPRESARIALES",
+      "descripcion": "Curso completo de Excel a nivel avanzado para análisis empresarial. Aprende fórmulas complejas, tablas dinámicas, macros VBA, Power Query y técnicas de visualización de datos. Para profesionales que trabajan con datos y necesitan Excel a nivel experto.",
+      "segmento": "PRODUCTIVIDAD",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 250,
+        "cuotas": 300
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "sin acceso"
+      },
+      "notificacion_academico": null,
+      "prerrequisitos_recomendados": [],
+      "dirigido": "Profesionales que trabajan con datos y hojas de cálculo",
+      "habilidades_adquiridas": ["Fórmulas y funciones advanced", "Tablas dinámicas", "Macros y automatización", "Visualización de datos"]
+    },
+    {
+      "id": "productividad-taller-automatizacion-virtual",
+      "nombre": "TALLER AUTOMATIZACION DE DATOS",
+      "descripcion": "Curso práctico de automatización de tareas repetitivas usando macros y Power Query. Aprende a construir flujos de trabajo automatizados que reducen tiempo manual, minimizan errores y optimizan procesos de tratamiento de datos.",
+      "segmento": "PRODUCTIVIDAD",
+      "modalidad": "VIRTUAL",
+      "precio": {
+        "contado": 100,
+        "cuotas": 100
+      },
+      "recursos": {
+        "acceso_aula_virtual": "6 meses",
+        "acceso_sap": "sin acceso"
+      },
+      "notificacion_academico": null,
+      "prerrequisitos_recomendados": ["productividad-excel-soluciones-virtual"],
+      "dirigido": "Profesionales que manejan datos repetitivos y buscan automatizar procesos",
+      "habilidades_adquiridas": ["Power Query", "Automatización con macros", "Limpieza y transformación de datos", "Flujos de trabajo automatizados"]
     }
   ],
   "perfiles": [
     {
-      "id": "consultor-funcional",
-      "nombre": "Consultor Funcional SAP",
-      "descripcion": "Profesional especializado en la configuracion y optimizacion de procesos de negocio dentro del ecosistema SAP. Entiende tanto los aspectos tecnicos como los funcionales de los modulos.",
-      "cursos_sugeridos": ["sap-fi", "sap-mm", "sap-sd"],
-      "cursos_obligatorios": ["sap-fi"],
-      "ruta_sugerida": ["sap-fi", "sap-mm", "sap-sd"],
-      "justificacion_ruta": "Se comienza con SAP FI por ser el nucleo financiero de toda implementacion SAP. Luego se contruye sobre esa base con SAP MM para gestion de materiales y finalmente SAP SD para completar el ciclo de negocio venta-compras-finanzas."
+      "id": "consultor-sbo",
+      "nombre": "Consultor SAP Business One",
+      "descripcion": "Profesional especializado en la implementación, configuración y soporte del módulo SAP Business One. Maneja aspectos funcionales de los diferentes módulos de B1 incluyendo contabilidad, ventas, compras e inventario.",
+      "cursos_sugeridos": [
+        "sbo-b1-implementacion-virtual",
+        "sbo-b1-contable-virtual",
+        "sbo-b1-administrativo-virtual",
+        "sbo-b1-desarrollo-sdk-virtual"
+      ],
+      "cursos_obligatorios": [
+        "sbo-b1-implementacion-virtual"
+      ],
+      "ruta_sugerida": [
+        "sbo-b1-implementacion-virtual",
+        "sbo-b1-contable-virtual",
+        "sbo-b1-administrativo-virtual",
+        "sbo-b1-desarrollo-sdk-virtual"
+      ],
+      "justificacion_ruta": "Se inicia con Implementación para entender la metodología de puesta en marcha de SAP B1. Luego se construye sobre esa base con Contable para profundizar en el módulo financiero, Administrativo para cubrir operaciones day-to-day, y finalmente Desarrollo SDK para capacidades de personalización."
     },
     {
-      "id": "desarrollador",
-      "nombre": "Desarrollador SAP",
-      "descripcion": "Profesional tecnico especializado en programacion ABAP para extender y personalizar el sistema SAP. Desarrolla reportes, interfaces, enhancements y soluciones custom.",
-      "cursos_sugeridos": ["sap-abap"],
-      "cursos_obligatorios": ["sap-abap"],
-      "ruta_sugerida": ["sap-abap"],
-      "justificacion_ruta": "ABAP es el lenguaje fundamental de desarrollo en SAP. No requiere prerrequisitos funcionales profundos, pero si solides bases de programacion."
+      "id": "consultor-sbo-online",
+      "nombre": "Consultor SAP Business One Online",
+      "descripcion": "Profesional especializado en operaciones diarias y administración de SAP Business One con clases en vivo. Maneja aspectos operativos del sistema incluyendo gestión de usuarios, documentos y consultas.",
+      "cursos_sugeridos": [
+        "sbo-b1-administrativo-online"
+      ],
+      "cursos_obligatorios": [
+        "sbo-b1-administrativo-online"
+      ],
+      "ruta_sugerida": [
+        "sbo-b1-administrativo-online"
+      ],
+      "justificacion_ruta": "Curso orientado a operaciones diarias en SAP B1 con sesiones en vivo por instructor. Ideal para usuarios que necesitan aprender el sistema de manera interactiva."
     },
     {
-      "id": "desarrollador-cloud",
-      "nombre": "Desarrollador SAP Cloud",
-      "descripcion": "Profesional especializado en desarrollar aplicaciones cloud-native usando tecnologias modernas como SAP CAP, Node.js y servicios de SAP BTP.",
-      "cursos_sugeridos": ["sap-cap"],
-      "cursos_obligatorios": ["sap-cap"],
-      "ruta_sugerida": ["sap-cap"],
-      "justificacion_ruta": "CAP es la nueva era del desarrollo SAP en cloud. Recomendado para quienes ya tienen experiencia con SAP on-premise o desean migrar hacia soluciones cloud."
+      "id": "consultor-s4hana",
+      "nombre": "Consultor SAP S/4HANA",
+      "descripcion": "Profesional especializado en la configuración y optimización de procesos de negocio en SAP S/4HANA. Maneja módulos funcionales como MM, FI, PP, SD, PM, CO, QM, EWM, TM según el área de especialización.",
+      "cursos_sugeridos": [
+        "s4hana-mm-fi-pp-virtual",
+        "s4hana-pm-virtual",
+        "s4hana-sd-virtual",
+        "s4hana-tm-virtual",
+        "s4hana-co-ewm-virtual",
+        "s4hana-qm-ps-ii-virtual"
+      ],
+      "cursos_obligatorios": [
+        "s4hana-mm-fi-pp-virtual"
+      ],
+      "ruta_sugerida": [
+        "s4hana-mm-fi-pp-virtual",
+        "s4hana-sd-virtual",
+        "s4hana-pm-virtual",
+        "s4hana-tm-virtual",
+        "s4hana-co-ewm-virtual"
+      ],
+      "justificacion_ruta": "Se comienza con MM/FI/PP por ser los núcleos fundamentales de cualquier implementación S/4HANA. SD agrega el ciclo de ventas, PM cubre mantenimiento, TM logística y CO/EWM cierra la visión financiera y de almacenes."
     },
     {
-      "id": "consultor-tecnico",
-      "nombre": "Consultor Tecnico Integral",
-      "descripcion": "Profesional hibrido con capacidades tanto funcionales como de desarrollo. Combina configuracion de modulos con capacidades de programacion para entregar soluciones completas.",
-      "cursos_sugeridos": ["sap-fi", "sap-abap"],
-      "cursos_obligatorios": ["sap-fi", "sap-abap"],
-      "ruta_sugerida": ["sap-fi", "sap-abap"],
-      "justificacion_ruta": "Se inicia con SAP FI para entender el nucleo del negocio, y luego se complementa con ABAP para poder personalizar y extender el sistema segun necesidades especificas."
+      "id": "consultor-s4hana-online",
+      "nombre": "Consultor SAP S/4HANA Online",
+      "descripcion": "Profesional especializado en SAP S/4HANA con clases en vivo. Maneja módulos funcionales en modalidad sincronica con instructor, incluyendo MM, FI, PP, SD, PM, TM, QM y configuración avanzada.",
+      "cursos_sugeridos": [
+        "s4hana-mm-fi-pp-online",
+        "s4hana-pm-online",
+        "s4hana-sd-online",
+        "s4hana-tm-online",
+        "s4hana-ewm-ps-co-qm-online",
+        "s4hana-mm-configuracion-online"
+      ],
+      "cursos_obligatorios": [
+        "s4hana-mm-fi-pp-online"
+      ],
+      "ruta_sugerida": [
+        "s4hana-mm-fi-pp-online",
+        "s4hana-sd-online",
+        "s4hana-pm-online",
+        "s4hana-tm-online",
+        "s4hana-ewm-ps-co-qm-online"
+      ],
+      "justificacion_ruta": "Cursos en vivo que permiten interacción directa con el instructor. Se начинает con los módulos fundamentales MM/FI/PP y se avanza hacia especializaciones en ventas, mantenimiento, transporte y módulos avanzados."
+    },
+    {
+      "id": "desarrollador-hana-online",
+      "nombre": "Desarrollador SAP HANA Online",
+      "descripcion": "Profesional especializado en desarrollo dentro del ecosistema SAP HANA con clases en vivo. Maneja programación ABAP, ABAP RAP, desarrollo Fiori, UI5 y servicios en BTP.",
+      "cursos_sugeridos": [
+        "hana-abap-online",
+        "hana-abap-rap-online",
+        "hana-fiori-online",
+        "hana-developer-btp-online"
+      ],
+      "cursos_obligatorios": [
+        "hana-abap-online"
+      ],
+      "ruta_sugerida": [
+        "hana-abap-online",
+        "hana-abap-rap-online",
+        "hana-fiori-online",
+        "hana-developer-btp-online"
+      ],
+      "justificacion_ruta": "ABAP es el lenguaje base del desarrollo SAP. ABAP RAP introduce el modelo moderno de programación. Fiori y Developer BTP completan la formación para desarrollo cloud-native y frontend."
+    },
+    {
+      "id": "desarrollador-hana-virtual",
+      "nombre": "Desarrollador SAP HANA Virtual",
+      "descripcion": "Profesional especializado en desarrollo ABAP y Fiori con acceso al sistema para práctica continua. Maneja programación ABAP, ABAP RAP, desarrollo Fiori para S/4HANA y servicios en BTP.",
+      "cursos_sugeridos": [
+        "hana-abap-virtual",
+        "hana-abap-rap-virtual",
+        "hana-dev-fiori-s4-virtual",
+        "hana-btp-virtual"
+      ],
+      "cursos_obligatorios": [
+        "hana-abap-virtual"
+      ],
+      "ruta_sugerida": [
+        "hana-abap-virtual",
+        "hana-abap-rap-virtual",
+        "hana-dev-fiori-s4-virtual",
+        "hana-btp-virtual"
+      ],
+      "justificacion_ruta": "ABAP es el lenguaje base. ABAP RAP introduce el modelo moderno de S/4HANA. DEV FIORI S4 especializa en aplicaciones frontend. BTP abre las capacidades cloud-native."
+    },
+    {
+      "id": "administrador-hana-online",
+      "nombre": "Administrador SAP HANA Online",
+      "descripcion": "Profesional especializado en administración y gestión de bases de datos SAP HANA con clases en vivo. Maneja SQL, administración Basis, bases de datos HANA y monitoreo del sistema.",
+      "cursos_sugeridos": [
+        "hana-sql-online",
+        "hana-basis-online",
+        "hana-hana-bd-online",
+        "hana-basis-online-2"
+      ],
+      "cursos_obligatorios": [
+        "hana-sql-online"
+      ],
+      "ruta_sugerida": [
+        "hana-sql-online",
+        "hana-basis-online",
+        "hana-hana-bd-online",
+        "hana-basis-online-2"
+      ],
+      "justificacion_ruta": "SQL es la base para cualquier administrador HANA. BASIS cubre la administración del sistema SAP. HANA BD complementa con administración de la base de datos. La segunda versión de BASIS profundiza en temas avanzados."
+    },
+    {
+      "id": "administrador-hana-virtual",
+      "nombre": "Administrador SAP HANA Virtual",
+      "descripcion": "Profesional especializado en administración de sistemas SAP y bases de datos HANA con acceso al sistema para práctica. Maneja SQL, administración Basis, HANA Database Administration y BTP.",
+      "cursos_sugeridos": [
+        "hana-hana-sql-virtual",
+        "hana-basis-virtual",
+        "hana-hana-bd-adm-virtual",
+        "hana-btp-virtual"
+      ],
+      "cursos_obligatorios": [
+        "hana-hana-sql-virtual"
+      ],
+      "ruta_sugerida": [
+        "hana-hana-sql-virtual",
+        "hana-basis-virtual",
+        "hana-hana-bd-adm-virtual",
+        "hana-btp-virtual"
+      ],
+      "justificacion_ruta": "HANA SQL inicia en consultas y administración de base de datos. BASIS proporciona habilidades de administración del sistema SAP completo. HANA BD ADM profundiza en la base de datos. BTP abre el conocimiento cloud."
+    },
+    {
+      "id": "consultor-ecc",
+      "nombre": "Consultor SAP ECC",
+      "descripcion": "Profesional especializado en SAP ECC (ERP Central Component), el sistema heredado de SAP. Maneja la amplia gama de módulos disponibles incluyendo Finanza, Logística, Supply Chain y Recursos Humanos.",
+      "cursos_sugeridos": [
+        "ecc-mm-pp-qm-wm-pm-sd-co-fi-virtual",
+        "ecc-hcm-virtual"
+      ],
+      "cursos_obligatorios": [
+        "ecc-mm-pp-qm-wm-pm-sd-co-fi-virtual"
+      ],
+      "ruta_sugerida": [
+        "ecc-mm-pp-qm-wm-pm-sd-co-fi-virtual",
+        "ecc-hcm-virtual"
+      ],
+      "justificacion_ruta": "El curso integral de módulos ECC cubre la base completa del sistema. HCM se agrega como especialización adicional en gestión de capital humano."
+    },
+    {
+      "id": "consultor-productividad",
+      "nombre": "Consultor de Productividad",
+      "descripcion": "Profesional especializado en herramientas y técnicas para optimizar procesos empresariales. Maneja automatización de datos, Excel avanzado y contabilidad básica para no contadores.",
+      "cursos_sugeridos": [
+        "productividad-excel-soluciones-virtual",
+        "productividad-taller-automatizacion-virtual",
+        "productividad-contab-no-contadores-virtual"
+      ],
+      "cursos_obligatorios": [
+        "productividad-excel-soluciones-virtual"
+      ],
+      "ruta_sugerida": [
+        "productividad-excel-soluciones-virtual",
+        "productividad-taller-automatizacion-virtual",
+        "productividad-contab-no-contadores-virtual"
+      ],
+      "justificacion_ruta": "Se inicia con Excel para establecer fundamentos de manejo de datos. Taller de Automatización agrega capacidades de scripting y automatización. Contabilidad para no contadores proporciona visión financiera básica."
+    },
+    {
+      "id": "consultor-productividad-online",
+      "nombre": "Consultor de Productividad Online",
+      "descripcion": "Profesional especializado en inteligencia artificial aplicada al entorno empresarial con clases en vivo. Aprende a crear prompts efectivos, automatizar tareas y usar herramientas de IA generativa.",
+      "cursos_sugeridos": [
+        "productividad-ia-empresarial-online"
+      ],
+      "cursos_obligatorios": [
+        "productividad-ia-empresarial-online"
+      ],
+      "ruta_sugerida": [
+        "productividad-ia-empresarial-online"
+      ],
+      "justificacion_ruta": "Curso especializado en IA generativa empresarial con sesiones en vivo. Aprende a integrar herramientas de IA en procesos de negocio de manera práctica."
+    },
+    {
+      "id": "consultor-tecnico-hibrido",
+      "nombre": "Consultor Técnico Híbrido",
+      "descripcion": "Profesional que combina consultoría funcional en S/4HANA con habilidades técnicas de administración HANA. Capaz de entregar soluciones completas sin depender de otros especialistas.",
+      "cursos_sugeridos": [
+        "s4hana-mm-fi-pp-virtual",
+        "hana-hana-sql-virtual",
+        "hana-basis-virtual",
+        "hana-abap-virtual",
+        "hana-abap-rap-virtual"
+      ],
+      "cursos_obligatorios": [
+        "s4hana-mm-fi-pp-virtual"
+      ],
+      "ruta_sugerida": [
+        "s4hana-mm-fi-pp-virtual",
+        "hana-abap-virtual",
+        "hana-abap-rap-virtual",
+        "hana-hana-sql-virtual",
+        "hana-basis-virtual"
+      ],
+      "justificacion_ruta": "Se начинает con el núcleo funcional de S/4HANA (MM/FI/PP). Luego se adquiere capacidad técnica con ABAP y RAP para personalizaciones. SQL y BASIS complementan para administración y optimización."
+    },
+    {
+      "id": "consultor-datos-empresariales",
+      "nombre": "Consultor de Datos Empresariales",
+      "descripcion": "Profesional especializado en gestión y análisis de datos empresariales. Combina habilidades de administración HANA con herramientas de productividad para análisis y visualización de datos.",
+      "cursos_sugeridos": [
+        "hana-sql-online",
+        "hana-hana-sql-virtual",
+        "productividad-excel-soluciones-virtual",
+        "productividad-taller-automatizacion-virtual",
+        "productividad-ia-empresarial-online"
+      ],
+      "cursos_obligatorios": [
+        "hana-sql-online"
+      ],
+      "ruta_sugerida": [
+        "productividad-excel-soluciones-virtual",
+        "productividad-taller-automatizacion-virtual",
+        "hana-sql-online",
+        "hana-hana-sql-virtual",
+        "productividad-ia-empresarial-online"
+      ],
+      "justificacion_ruta": "Excel establece fundamentos de análisis. Automatización agrega capacidades de procesamiento. SQL HANA permite consultas advanced. IA Empresarial integra herramientas modernas de inteligencia artificial."
+    },
+    {
+      "id": "consultor-automation-ai",
+      "nombre": "Consultor de Automation y AI",
+      "descripcion": "Profesional especializado en diseñar soluciones de automatización inteligente usando herramientas de productividad y la nube de SAP. Combina Excel, automatización, IA y desarrollo en BTP.",
+      "cursos_sugeridos": [
+        "productividad-excel-soluciones-virtual",
+        "productividad-taller-automatizacion-virtual",
+        "productividad-ia-empresarial-online",
+        "hana-btp-virtual",
+        "hana-developer-btp-online"
+      ],
+      "cursos_obligatorios": [
+        "productividad-excel-soluciones-virtual"
+      ],
+      "ruta_sugerida": [
+        "productividad-excel-soluciones-virtual",
+        "productividad-taller-automatizacion-virtual",
+        "productividad-ia-empresarial-online",
+        "hana-btp-virtual",
+        "hana-developer-btp-online"
+      ],
+      "justificacion_ruta": "Excel proporciona fundamentos de datos. Automatización agrega capacidades de scripting. IA Empresarial introduce inteligencia artificial. BTP y Developer BTP permiten escalar soluciones a la nube."
     }
   ],
   "informacion_general": {
     "metodologia": "Aprendizaje basado en proyectos practicos con laboratorios, casos de uso reales y ejercicios de configuracion en sistemas SAP sandbox.",
-    "soporte": "Tutorias personalizadas via chat durante todo el curso. Foros de discussion entre estudiantes. Grabaciones de sesiones disponibles.",
+    "soporte": "Tutorias personalizadas via chat durante todo el curso. Foros de discusion entre estudiantes. Grabaciones de sesiones disponibles.",
     "acceso": "Disponible 24/7 durante 6 meses desde la fecha de inscripcion. Acceso a plataforma de aprendizaje con videos, lecturas y evaluaciones.",
     "evaluacion": "Cada curso incluye examenes de evaluacion parciales y un proyecto final integrador. Certificado de aprobacion al completar con mas de 70%."
   }

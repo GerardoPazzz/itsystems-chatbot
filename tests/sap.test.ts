@@ -23,7 +23,7 @@ const datosValidos = {
   actividad: 'Estudiante',
   conocimientos: 'Si',
   institucion: 'Universidad Test',
-  sap_username: 'JPEREZ001',
+  sap_username: 'test001',
   roleId: 'S4_FI_DEMO'
 };
 
@@ -81,13 +81,13 @@ describe('SAP Register Controller - Tests', () => {
       expect(response.body.error).toBe('El telefono no puede superar los 12 caracteres');
     });
 
-    it('debe responder 400 si sap_username supera 12 caracteres', async () => {
+    it('debe responder 400 si sap_username supera 8 caracteres', async () => {
       const response = await request(app)
         .post('/register')
         .send({ ...datosValidos, sap_username: '1234567890123' });
 
       expect(response.status).toBe(400);
-      expect(response.body.error).toBe('El usuario SAP no puede superar los 12 caracteres');
+      expect(response.body.error).toBe('El usuario SAP no puede superar los 8 caracteres');
     });
 
     it('debe responder 400 si roleId falta', async () => {
@@ -204,13 +204,13 @@ describe('SAP Register Controller - Tests', () => {
       sapMocks.registrarAlumno = jest.fn().mockResolvedValue({ success: true, message: 'Registro exitoso', requiresFiori: false, statusCode: 200 });
       dbMocks.guardarSolicitud = jest.fn().mockResolvedValue({ success: true, usuarioId: 'nuevo-usuario-uuid' });
 
-      const datosConMinusculas = { ...datosValidos, sap_username: 'jperez001' };
+      const datosConMinusculas = { ...datosValidos, sap_username: 'test001' };
 
       await request(app)
         .post('/register')
         .send(datosConMinusculas);
 
-      expect(sapMocks.registrarAlumno).toHaveBeenCalledWith('JPEREZ001', datosValidos.roleId);
+      expect(sapMocks.registrarAlumno).toHaveBeenCalledWith('TEST001', datosValidos.roleId);
     });
   });
 
