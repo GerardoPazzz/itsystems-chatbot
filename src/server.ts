@@ -23,7 +23,7 @@ app.get('*', (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
 });
 
-const port = process.env.PORT || 8080;
+const port = parseInt(process.env.PORT || '8080', 10);
 app.listen(port, '0.0.0.0', () => {
   console.log(`ITSYSTEMS Academic Advisor running on port ${port}`);
   console.log(`Gemini model: ${config.gemini.model}`);
