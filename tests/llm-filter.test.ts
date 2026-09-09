@@ -24,11 +24,25 @@ jest.mock('fs/promises', () => ({
         dirigido: 'Consultores funcionales'
       },
       {
-        id: 's4hana-mm-fi-pp-virtual',
-        nombre: 'MM / FI / PP',
+        id: 's4hana-mm-virtual',
+        nombre: 'MM (Gestión de Materiales)',
         segmento: 'S4 HANA',
         modalidad: 'VIRTUAL',
         dirigido: 'Consultores funcionales'
+      },
+      {
+        id: 's4hana-fi-virtual',
+        nombre: 'FI (Contabilidad y Finanzas)',
+        segmento: 'S4 HANA',
+        modalidad: 'VIRTUAL',
+        dirigido: 'Consultores financieros'
+      },
+      {
+        id: 's4hana-pp-virtual',
+        nombre: 'PP (Planificación de Producción)',
+        segmento: 'S4 HANA',
+        modalidad: 'VIRTUAL',
+        dirigido: 'Consultores de producción'
       },
       {
         id: 'hana-abap-virtual',

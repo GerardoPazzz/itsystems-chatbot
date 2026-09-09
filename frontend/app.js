@@ -96,20 +96,74 @@ const COURSES = {
     prerrequisitos: [],
     certification: 'Certificado ITSYSTEMS'
   },
-  's4hana-mm-fi-pp-virtual': {
-    name: 'MM / FI / PP',
-    shortDesc: 'Curso que cubre tres módulos fundamentales de SAP S/4HANA: MM para materiales...',
-    descripcion: 'Curso que cubre tres módulos fundamentales de SAP S/4HANA. Aprende Gestión de Materiales para compras e inventarios, Contabilidad Financiera para control de finanzas, y Planificación de Producción para manufactura.',
+  's4hana-mm-virtual': {
+    name: 'MM (Gestión de Materiales)',
+    shortDesc: 'Curso especializado en el módulo de Gestión de Materiales de SAP S/4HANA...',
+    descripcion: 'Curso especializado en el módulo de Gestión de Materiales de SAP S/4HANA. Aprende sobre estructuras organizativas, datos maestros de materiales, procesos de compras, gestión de stock, recepción de mercancías y configuración de estrategias de aprovisionamiento.',
     modalidad: 'VIRTUAL',
     segmento: 'S4 HANA',
     precio: 600,
     precioCuotas: 700,
-    dirigido: 'Consultores funcionales y profesionales de Supply Chain y Finanzas en S/4HANA',
-    habilidades: ['Gestión de Materiales (MM)', 'Contabilidad Financiera (FI)', 'Planificación de Producción (PP)', 'Integración entre módulos'],
+    dirigido: 'Consultores funcionales y profesionales de Supply Chain en S/4HANA',
+    habilidades: ['Gestión de Materiales (MM)', 'Estrategias de compras', 'Gestión de stock', 'Configuración de aprovisionamiento'],
     accesoAula: '6 meses',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Datos maestros de material' },
+      { sesion: 2, titulo: 'Aprovisionamiento por stock' },
+      { sesion: 3, titulo: 'Aprovisionamiento por consumos y servicios' },
+      { sesion: 4, titulo: 'Cotizaciones y contratos marco' },
+      { sesion: 5, titulo: 'Gestión de stock' },
+      { sesion: 6, titulo: 'SAP Fiori' }
+    ]
+  },
+  's4hana-fi-virtual': {
+    name: 'FI (Contabilidad y Finanzas)',
+    shortDesc: 'Curso especializado en el módulo de Contabilidad Financiera de SAP S/4HANA...',
+    descripcion: 'Curso especializado en el módulo de Contabilidad Financiera de SAP S/4HANA. Aprende sobre libro mayor, cuentas por cobrar, cuentas por pagar, gestión de activos fijos, bancos y procesos de cierre contable.',
+    modalidad: 'VIRTUAL',
+    segmento: 'S4 HANA',
+    precio: 600,
+    precioCuotas: 700,
+    dirigido: 'Consultores funcionales y profesionales de Finanzas en S/4HANA',
+    habilidades: ['Contabilidad Financiera (FI)', 'Libro Mayor', 'Cuentas por Cobrar/Pagar', 'Gestión de Activos Fijos'],
+    accesoAula: '6 meses',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Libro Mayor y plan de cuentas' },
+      { sesion: 2, titulo: 'Cuentas por Cobrar' },
+      { sesion: 3, titulo: 'Cuentas por Pagar' },
+      { sesion: 4, titulo: 'Pagos y Activos Fijos' },
+      { sesion: 5, titulo: 'Gestión Bancaria' },
+      { sesion: 6, titulo: 'SAP Fiori y Cierre contable' }
+    ]
+  },
+  's4hana-pp-virtual': {
+    name: 'PP (Planificación de Producción)',
+    shortDesc: 'Curso especializado en el módulo de Planificación de Producción de SAP S/4HANA...',
+    descripcion: 'Curso especializado en el módulo de Planificación de Producción de SAP S/4HANA. Aprende sobre estructuras organizativas de manufacturing, datos maestros de producción, planificación MRP, órdenes de fabricación y tipos de fabricación.',
+    modalidad: 'VIRTUAL',
+    segmento: 'S4 HANA',
+    precio: 600,
+    precioCuotas: 700,
+    dirigido: 'Consultores funcionales y profesionales de Producción en S/4HANA',
+    habilidades: ['Planificación de Producción (PP)', 'MRP', 'Órdenes de fabricación', 'Tipos de manufactura'],
+    accesoAula: '6 meses',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a SAP PP' },
+      { sesion: 2, titulo: 'Estructura organizativa y datos maestros' },
+      { sesion: 3, titulo: 'Planificación MRP' },
+      { sesion: 4, titulo: 'Órdenes de fabricación' },
+      { sesion: 5, titulo: 'Proceso de fabricación' },
+      { sesion: 6, titulo: 'Tipos de manufactura' }
+    ]
   },
   's4hana-pm-virtual': {
     name: 'PM',
@@ -124,37 +178,107 @@ const COURSES = {
     accesoAula: '6 meses',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Datos maestros de mantenimiento' },
+      { sesion: 2, titulo: 'Mantenimiento correctivo' },
+      { sesion: 3, titulo: 'Mantenimiento preventivo' },
+      { sesion: 4, titulo: 'Órdenes y proyectos' },
+      { sesion: 5, titulo: 'Informes de mantenimiento' },
+      { sesion: 6, titulo: 'Fiori en mantenimiento' }
+    ]
   },
-  's4hana-co-ewm-virtual': {
-    name: 'CO / EWM',
-    shortDesc: 'Curso que integra Controlling para control de costos y Extended Warehouse Management...',
-    descripcion: 'Curso que integra Controlling para control de costos y Extended Warehouse Management para logística avanzada en S/4HANA. Aprende a analizar márgenes, gestionar centros de costo, administrar almacenes extendidos y optimizar inventarios.',
+  's4hana-ewm-virtual': {
+    name: 'EWM (Extended Warehouse Management)',
+    shortDesc: 'Curso de gestión avanzada de almacenes con SAP S/4HANA Extended Warehouse Management...',
+    descripcion: 'Curso de gestión avanzada de almacenes con SAP S/4HANA Extended Warehouse Management. Aprende sobre estructuras organizativas, procesos de entrada y salida de mercancía, movimientos internos, inventarios y monitoreo de actividades.',
     modalidad: 'VIRTUAL',
     segmento: 'S4 HANA',
     precio: 700,
     precioCuotas: 800,
-    dirigido: 'Consultores de Controlling y profesionales de logística avanzada',
-    habilidades: ['Controlling (CO)', 'Gestión de almacenes extendida (EWM)', 'Costos de producto', 'Gestión de inventarios advanced'],
+    dirigido: 'Profesionales de logística avanzada y gestión de almacenes',
+    habilidades: ['Gestión de almacenes extendida (EWM)', 'Procesos de almacén', 'Movimientos internos', 'Inventarios EWM'],
     accesoAula: '6 meses',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Estructura organizativa' },
+      { sesion: 2, titulo: 'Datos maestros' },
+      { sesion: 3, titulo: 'Entrada de mercancía' },
+      { sesion: 4, titulo: 'Salida de mercancía' },
+      { sesion: 5, titulo: 'Procesos internos' },
+      { sesion: 6, titulo: 'Inventarios' },
+      { sesion: 7, titulo: 'Monitor de EWM' }
+    ]
   },
-  's4hana-qm-ps-ii-virtual': {
-    name: 'QM / PS / II',
-    shortDesc: 'Curso de tres áreas avanzadas en SAP S/4HANA: Gestión de Calidad, Sistema de Proyectos...',
-    descripcion: 'Curso de tres áreas avanzadas en SAP S/4HANA: Gestión de Calidad para inspecciones y muestreos, Sistema de Proyectos para planificación y seguimiento, e Inteligencia de Información para análisis de datos.',
+  's4hana-ps-virtual': {
+    name: 'PS (Gestión de Proyectos)',
+    shortDesc: 'Curso de gestión de proyectos en SAP S/4HANA...',
+    descripcion: 'Curso de gestión de proyectos en SAP S/4HANA. Aprende sobre estructuras organizativas de proyectos, datos maestros, planificación y presupuesto, ejecución y cierre de proyectos, e informes de seguimiento.',
+    modalidad: 'VIRTUAL',
+    segmento: 'S4 HANA',
+    precio: 700,
+    precioCuotas: 800,
+    dirigido: 'Profesionales de gestión de proyectos y consultores funcionales',
+    habilidades: ['Gestión de proyectos (PS)', 'Planificación de proyectos', 'Presupuestos', 'Control de proyectos'],
+    accesoAula: '6 meses',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Estructura organizativa' },
+      { sesion: 2, titulo: 'Datos maestros' },
+      { sesion: 3, titulo: 'Asignaciones operativas' },
+      { sesion: 4, titulo: 'Planificación y presupuesto' },
+      { sesion: 5, titulo: 'Ejecución del proyecto' },
+      { sesion: 6, titulo: 'Cierres del proyecto' },
+      { sesion: 7, titulo: 'Informes del proyecto' }
+    ]
+  },
+  's4hana-qm-virtual': {
+    name: 'QM (Gestión de Calidad)',
+    shortDesc: 'Curso de gestión de calidad en SAP S/4HANA...',
+    descripcion: 'Curso de gestión de calidad en SAP S/4HANA. Aprende sobre planificación de calidad, inspección de materiales, liberación de lotes, certificados de calidad y gestión de avisos de calidad.',
     modalidad: 'VIRTUAL',
     segmento: 'S4 HANA',
     precio: 900,
     precioCuotas: 1000,
-    dirigido: 'Profesionales de calidad, proyectos y gestión de información',
-    habilidades: ['Gestión de Calidad (QM)', 'Project System (PS)', 'Information Intelligence (II)', 'Inspecciones de calidad'],
+    dirigido: 'Profesionales de calidad, manufactura y gestión de información',
+    habilidades: ['Gestión de Calidad (QM)', 'Inspecciones de calidad', 'Certificados de calidad', 'Avisos de calidad'],
     accesoAula: '6 meses',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Visión general de QM' },
+      { sesion: 2, titulo: 'Planificación de calidad I' },
+      { sesion: 3, titulo: 'Planificación de calidad II' },
+      { sesion: 4, titulo: 'Inspección de insumos' },
+      { sesion: 5, titulo: 'Inspección en proceso' },
+      { sesion: 6, titulo: 'Inspección de producto terminado' },
+      { sesion: 7, titulo: 'Certificados de calidad' },
+      { sesion: 8, titulo: 'Avisos al proveedor' },
+      { sesion: 9, titulo: 'Avisos de clientes' },
+      { sesion: 10, titulo: 'Gestión de documentos' },
+      { sesion: 11, titulo: 'Reportes y evaluaciones' }
+    ]
+  },
+  's4hana-co-virtual': {
+    name: 'CO (Controlling)',
+    shortDesc: 'Curso de Controlling en SAP S/4HANA...',
+    descripcion: 'Curso de Controlling en SAP S/4HANA. Aprende sobre análisis de márgenes, gestión de centros de costo, distribución de costos y controlling de productos.',
+    modalidad: 'VIRTUAL',
+    segmento: 'S4 HANA',
+    precio: 700,
+    precioCuotas: 800,
+    dirigido: 'Consultores de Controlling y profesionales financieros',
+    habilidades: ['Controlling (CO)', 'Centros de costo', 'Análisis de márgenes', 'Costos de producto'],
+    accesoAula: '6 meses',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: []
   },
   's4hana-sd-virtual': {
     name: 'SD',
@@ -169,7 +293,16 @@ const COURSES = {
     accesoAula: '6 meses',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Estructura comercial' },
+      { sesion: 2, titulo: 'Datos maestros de clientes' },
+      { sesion: 3, titulo: 'Datos maestros de materiales' },
+      { sesion: 4, titulo: 'Circuitos comerciales' },
+      { sesion: 5, titulo: 'Gestión de entregas' },
+      { sesion: 6, titulo: 'Facturación' },
+      { sesion: 7, titulo: 'Fiori y CRM Hybris' }
+    ]
   },
   's4hana-tm-virtual': {
     name: 'TM',
@@ -184,37 +317,169 @@ const COURSES = {
     accesoAula: '6 meses',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: []
   },
-  's4hana-ewm-ps-co-qm-online': {
-    name: 'EWM / PS / CO / QM',
-    shortDesc: 'Curso avanzado con clases en vivo que cubre cuatro módulos de S/4HANA...',
-    descripcion: 'Curso avanzado con clases en vivo que cubre cuatro módulos de S/4HANA: Extended Warehouse Management para almacenes, Project System para proyectos, Controlling para costos y Gestión de Calidad para manufactura.',
+  's4hana-ewm-online': {
+    name: 'EWM (Extended Warehouse Management)',
+    shortDesc: 'Curso de gestión avanzada de almacenes con SAP S/4HANA Extended Warehouse Management con instructor en vivo...',
+    descripcion: 'Curso de gestión avanzada de almacenes con SAP S/4HANA Extended Warehouse Management con instructor en vivo. Aprende procesos de entrada, salida, movimientos internos e inventarios.',
     modalidad: 'ONLINE',
     segmento: 'S4 HANA',
     precio: 800,
     precioCuotas: 900,
-    dirigido: 'Consultores funcionales avanzados en S/4HANA',
-    habilidades: ['Gestión de almacenes extendida (EWM)', 'Project System (PS)', 'Controlling (CO)', 'Gestión de Calidad (QM)'],
+    dirigido: 'Profesionales de logística avanzada y gestión de almacenes',
+    habilidades: ['Gestión de almacenes extendida (EWM)', 'Procesos de almacén', 'Movimientos internos', 'Inventarios EWM'],
     accesoAula: 'sin acceso',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Estructura organizativa' },
+      { sesion: 2, titulo: 'Datos maestros' },
+      { sesion: 3, titulo: 'Entrada de mercancía' },
+      { sesion: 4, titulo: 'Salida de mercancía' },
+      { sesion: 5, titulo: 'Procesos internos' },
+      { sesion: 6, titulo: 'Inventarios' },
+      { sesion: 7, titulo: 'Monitor de EWM' }
+    ]
   },
-  's4hana-mm-fi-pp-online': {
-    name: 'MM / FI / PP',
-    shortDesc: 'Curso fundamental con instructor en vivo sobre los tres pilares de SAP S/4HANA...',
-    descripcion: 'Curso fundamental con instructor en vivo sobre los tres pilares de SAP S/4HANA: MM para materiales, FI para finanzas y PP para producción. Clases interactivas con práctica directa en el sistema.',
+  's4hana-ps-online': {
+    name: 'PS (Gestión de Proyectos)',
+    shortDesc: 'Curso de gestión de proyectos en SAP S/4HANA con instructor en vivo...',
+    descripcion: 'Curso de gestión de proyectos en SAP S/4HANA con instructor en vivo. Aprende sobre estructuras organizativas de proyectos, datos maestros, planificación y presupuesto, ejecución y cierre.',
+    modalidad: 'ONLINE',
+    segmento: 'S4 HANA',
+    precio: 800,
+    precioCuotas: 900,
+    dirigido: 'Profesionales de gestión de proyectos y consultores funcionales',
+    habilidades: ['Gestión de proyectos (PS)', 'Planificación de proyectos', 'Presupuestos', 'Control de proyectos'],
+    accesoAula: 'sin acceso',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Estructura organizativa' },
+      { sesion: 2, titulo: 'Datos maestros' },
+      { sesion: 3, titulo: 'Asignaciones operativas' },
+      { sesion: 4, titulo: 'Planificación y presupuesto' },
+      { sesion: 5, titulo: 'Ejecución del proyecto' },
+      { sesion: 6, titulo: 'Cierres del proyecto' },
+      { sesion: 7, titulo: 'Informes del proyecto' }
+    ]
+  },
+  's4hana-co-online': {
+    name: 'CO (Controlling)',
+    shortDesc: 'Curso de Controlling en SAP S/4HANA con instructor en vivo...',
+    descripcion: 'Curso de Controlling en SAP S/4HANA con instructor en vivo. Aprende sobre análisis de márgenes, gestión de centros de costo, distribución de costos y controlling de productos.',
+    modalidad: 'ONLINE',
+    segmento: 'S4 HANA',
+    precio: 700,
+    precioCuotas: 800,
+    dirigido: 'Consultores de Controlling y profesionales financieros',
+    habilidades: ['Controlling (CO)', 'Centros de costo', 'Análisis de márgenes', 'Costos de producto'],
+    accesoAula: 'sin acceso',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: []
+  },
+  's4hana-qm-online': {
+    name: 'QM (Gestión de Calidad)',
+    shortDesc: 'Curso de gestión de calidad en SAP S/4HANA con instructor en vivo...',
+    descripcion: 'Curso de gestión de calidad en SAP S/4HANA con instructor en vivo. Aprende sobre planificación de calidad, inspección de materiales, liberación de lotes y certificados de calidad.',
+    modalidad: 'ONLINE',
+    segmento: 'S4 HANA',
+    precio: 900,
+    precioCuotas: 1000,
+    dirigido: 'Profesionales de calidad, manufactura y gestión de información',
+    habilidades: ['Gestión de Calidad (QM)', 'Inspecciones de calidad', 'Certificados de calidad', 'Avisos de calidad'],
+    accesoAula: 'sin acceso',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Visión general de QM' },
+      { sesion: 2, titulo: 'Planificación de calidad I' },
+      { sesion: 3, titulo: 'Planificación de calidad II' },
+      { sesion: 4, titulo: 'Inspección de insumos' },
+      { sesion: 5, titulo: 'Inspección en proceso' },
+      { sesion: 6, titulo: 'Inspección de producto terminado' },
+      { sesion: 7, titulo: 'Certificados de calidad' },
+      { sesion: 8, titulo: 'Avisos al proveedor' },
+      { sesion: 9, titulo: 'Avisos de clientes' },
+      { sesion: 10, titulo: 'Gestión de documentos' },
+      { sesion: 11, titulo: 'Reportes y evaluaciones' }
+    ]
+  },
+  's4hana-mm-online': {
+    name: 'MM (Gestión de Materiales)',
+    shortDesc: 'Curso especializado en el módulo de Gestión de Materiales de SAP S/4HANA con instructor en vivo...',
+    descripcion: 'Curso especializado en el módulo de Gestión de Materiales de SAP S/4HANA con instructor en vivo. Aprende sobre estructuras organizativas, datos maestros de materiales, procesos de compras y gestión de stock.',
     modalidad: 'ONLINE',
     segmento: 'S4 HANA',
     precio: 600,
     precioCuotas: 700,
-    dirigido: 'Consultores funcionales y profesionales de Supply Chain y Finanzas en S/4HANA',
-    habilidades: ['Gestión de Materiales (MM)', 'Contabilidad Financiera (FI)', 'Planificación de Producción (PP)', 'Integración entre módulos'],
+    dirigido: 'Consultores funcionales y profesionales de Supply Chain en S/4HANA',
+    habilidades: ['Gestión de Materiales (MM)', 'Estrategias de compras', 'Gestión de stock', 'Configuración de aprovisionamiento'],
     accesoAula: 'sin acceso',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Datos maestros de material' },
+      { sesion: 2, titulo: 'Aprovisionamiento por stock' },
+      { sesion: 3, titulo: 'Aprovisionamiento por consumos y servicios' },
+      { sesion: 4, titulo: 'Cotizaciones y contratos marco' },
+      { sesion: 5, titulo: 'Gestión de stock' },
+      { sesion: 6, titulo: 'SAP Fiori' }
+    ]
+  },
+  's4hana-fi-online': {
+    name: 'FI (Contabilidad y Finanzas)',
+    shortDesc: 'Curso especializado en el módulo de Contabilidad Financiera de SAP S/4HANA con instructor en vivo...',
+    descripcion: 'Curso especializado en el módulo de Contabilidad Financiera de SAP S/4HANA con instructor en vivo. Aprende sobre libro mayor, cuentas por cobrar, cuentas por pagar, gestión de activos fijos y cierre contable.',
+    modalidad: 'ONLINE',
+    segmento: 'S4 HANA',
+    precio: 600,
+    precioCuotas: 700,
+    dirigido: 'Consultores funcionales y profesionales de Finanzas en S/4HANA',
+    habilidades: ['Contabilidad Financiera (FI)', 'Libro Mayor', 'Cuentas por Cobrar/Pagar', 'Gestión de Activos Fijos'],
+    accesoAula: 'sin acceso',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Libro Mayor y plan de cuentas' },
+      { sesion: 2, titulo: 'Cuentas por Cobrar' },
+      { sesion: 3, titulo: 'Cuentas por Pagar' },
+      { sesion: 4, titulo: 'Pagos y Activos Fijos' },
+      { sesion: 5, titulo: 'Gestión Bancaria' },
+      { sesion: 6, titulo: 'SAP Fiori y Cierre contable' }
+    ]
+  },
+  's4hana-pp-online': {
+    name: 'PP (Planificación de Producción)',
+    shortDesc: 'Curso especializado en el módulo de Planificación de Producción de SAP S/4HANA con instructor en vivo...',
+    descripcion: 'Curso especializado en el módulo de Planificación de Producción de SAP S/4HANA con instructor en vivo. Aprende sobre estructuras organizativas de manufacturing, datos maestros de producción, planificación MRP y órdenes de fabricación.',
+    modalidad: 'ONLINE',
+    segmento: 'S4 HANA',
+    precio: 600,
+    precioCuotas: 700,
+    dirigido: 'Consultores funcionales y profesionales de Producción en S/4HANA',
+    habilidades: ['Planificación de Producción (PP)', 'MRP', 'Órdenes de fabricación', 'Tipos de manufactura'],
+    accesoAula: 'sin acceso',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a SAP PP' },
+      { sesion: 2, titulo: 'Estructura organizativa y datos maestros' },
+      { sesion: 3, titulo: 'Planificación MRP' },
+      { sesion: 4, titulo: 'Órdenes de fabricación' },
+      { sesion: 5, titulo: 'Proceso de fabricación' },
+      { sesion: 6, titulo: 'Tipos de manufactura' }
+    ]
   },
   's4hana-pm-online': {
     name: 'PM',
@@ -229,7 +494,15 @@ const COURSES = {
     accesoAula: 'sin acceso',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Datos maestros de mantenimiento' },
+      { sesion: 2, titulo: 'Mantenimiento correctivo' },
+      { sesion: 3, titulo: 'Mantenimiento preventivo' },
+      { sesion: 4, titulo: 'Órdenes y proyectos' },
+      { sesion: 5, titulo: 'Informes de mantenimiento' },
+      { sesion: 6, titulo: 'Fiori en mantenimiento' }
+    ]
   },
   's4hana-sd-online': {
     name: 'SD',
@@ -244,7 +517,16 @@ const COURSES = {
     accesoAula: 'sin acceso',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Estructura comercial' },
+      { sesion: 2, titulo: 'Datos maestros de clientes' },
+      { sesion: 3, titulo: 'Datos maestros de materiales' },
+      { sesion: 4, titulo: 'Circuitos comerciales' },
+      { sesion: 5, titulo: 'Gestión de entregas' },
+      { sesion: 6, titulo: 'Facturación' },
+      { sesion: 7, titulo: 'Fiori y CRM Hybris' }
+    ]
   },
   's4hana-tm-online': {
     name: 'TM',
@@ -259,7 +541,8 @@ const COURSES = {
     accesoAula: 'sin acceso',
     accesoSap: '6 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: []
   },
   's4hana-mm-configuracion-online': {
     name: 'MM CONFIGURACIÓN',
@@ -274,7 +557,16 @@ const COURSES = {
     accesoAula: 'sin acceso',
     accesoSap: '3 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Pedidos automáticos' },
+      { sesion: 2, titulo: 'Maestro de Planificaciones MRP' },
+      { sesion: 3, titulo: 'Consignación y subcontratación' },
+      { sesion: 4, titulo: 'Introducción a SAP Fiori' },
+      { sesion: 5, titulo: 'Condiciones y liquidaciones' },
+      { sesion: 6, titulo: 'Gestión de lotes' },
+      { sesion: 7, titulo: 'Operaciones complementarias' }
+    ]
   },
   'ecc-hcm-virtual': {
     name: 'HCM',
@@ -289,22 +581,201 @@ const COURSES = {
     accesoAula: '3 meses',
     accesoSap: '3 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Organización I' },
+      { sesion: 2, titulo: 'Organización II' },
+      { sesion: 3, titulo: 'Gestión de personal I' },
+      { sesion: 4, titulo: 'Gestión de personal II' },
+      { sesion: 5, titulo: 'Gestión de tiempo' },
+      { sesion: 6, titulo: 'Gestión de nóminas' }
+    ]
   },
-  'ecc-mm-pp-qm-wm-pm-sd-co-fi-virtual': {
-    name: 'MM/PP/QM/WM/PM/SD/CO/FI',
-    shortDesc: 'Curso panorámico que abarca todos los módulos principales de SAP ECC...',
-    descripcion: 'Curso panorámico que abarca todos los módulos principales de SAP ECC en un solo programa. Visión completa del sistema ERP más utilizado históricamente.',
+  'ecc-mm-virtual': {
+    name: 'MM (Gestión de Materiales)',
+    shortDesc: 'Curso del módulo de Gestión de Materiales en SAP ECC...',
+    descripcion: 'Curso del módulo de Gestión de Materiales en SAP ECC. Aprende sobre estructuras organizativas, datos maestros, procedimientos de compras, gestión de stock y recepción de facturas.',
     modalidad: 'VIRTUAL',
     segmento: 'ECC',
     precio: 500,
     precioCuotas: 600,
-    dirigido: 'Consultores funcionales y profesionales que trabajan con SAP ECC',
-    habilidades: ['Gestión de Materiales (MM)', 'Planificación de Producción (PP)', 'Gestión de Calidad (QM)', 'Gestión de Almacenes (WM)', 'Mantenimiento (PM)', 'Ventas (SD)', 'Controlling (CO)', 'Finanzas (FI)'],
+    dirigido: 'Consultores funcionales y profesionales de Supply Chain en SAP ECC',
+    habilidades: ['Gestión de Materiales (MM)', 'Procedimientos de compras', 'Gestión de stock', 'Evaluación de proveedores'],
     accesoAula: '3 meses',
     accesoSap: '3 meses',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Estructura organizativa y datos maestros' },
+      { sesion: 2, titulo: 'Compras estándar' },
+      { sesion: 3, titulo: 'Compras de consumo y servicios' },
+      { sesion: 4, titulo: 'Gestión de stock y facturas' },
+      { sesion: 5, titulo: 'Procesos complementarios' }
+    ]
+  },
+  'ecc-fi-virtual': {
+    name: 'FI (Contabilidad y Finanzas)',
+    shortDesc: 'Curso del módulo de Contabilidad Financiera en SAP ECC...',
+    descripcion: 'Curso del módulo de Contabilidad Financiera en SAP ECC. Aprende sobre libro mayor, cuentas por cobrar, cuentas por pagar, gestión de activos fijos y bancos.',
+    modalidad: 'VIRTUAL',
+    segmento: 'ECC',
+    precio: 500,
+    precioCuotas: 600,
+    dirigido: 'Consultores funcionales y profesionales de Finanzas en SAP ECC',
+    habilidades: ['Contabilidad Financiera (FI)', 'Libro Mayor', 'Cuentas por Cobrar/Pagar', 'Gestión de Activos Fijos'],
+    accesoAula: '3 meses',
+    accesoSap: '3 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Libro Mayor y plan de cuentas' },
+      { sesion: 2, titulo: 'Cuentas por Cobrar' },
+      { sesion: 3, titulo: 'Cuentas por Pagar' },
+      { sesion: 4, titulo: 'Pagos y Activos Fijos' },
+      { sesion: 5, titulo: 'Gestión Bancaria' },
+      { sesion: 6, titulo: 'SAP Fiori y Cierre contable' }
+    ]
+  },
+  'ecc-pp-virtual': {
+    name: 'PP (Planificación de Producción)',
+    shortDesc: 'Curso del módulo de Planificación de Producción en SAP ECC...',
+    descripcion: 'Curso del módulo de Planificación de Producción en SAP ECC. Aprende sobre estructuras organizativas, datos maestros de producción, planificación MRP y órdenes de fabricación.',
+    modalidad: 'VIRTUAL',
+    segmento: 'ECC',
+    precio: 500,
+    precioCuotas: 600,
+    dirigido: 'Consultores funcionales y profesionales de Producción en SAP ECC',
+    habilidades: ['Planificación de Producción (PP)', 'MRP', 'Órdenes de fabricación', 'Tipos de manufactura'],
+    accesoAula: '3 meses',
+    accesoSap: '3 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a SAP PP' },
+      { sesion: 2, titulo: 'Estructura organizativa y datos maestros' },
+      { sesion: 3, titulo: 'Planificación MRP' },
+      { sesion: 4, titulo: 'Órdenes de fabricación' },
+      { sesion: 5, titulo: 'Proceso de fabricación' },
+      { sesion: 6, titulo: 'Tipos de manufactura' }
+    ]
+  },
+  'ecc-qm-virtual': {
+    name: 'QM (Gestión de Calidad)',
+    shortDesc: 'Curso del módulo de Gestión de Calidad en SAP ECC...',
+    descripcion: 'Curso del módulo de Gestión de Calidad en SAP ECC. Aprende sobre planificación de calidad, inspección de materiales, liberación de lotes y certificados de calidad.',
+    modalidad: 'VIRTUAL',
+    segmento: 'ECC',
+    precio: 500,
+    precioCuotas: 600,
+    dirigido: 'Profesionales de calidad, manufactura y gestión de información en SAP ECC',
+    habilidades: ['Gestión de Calidad (QM)', 'Inspecciones de calidad', 'Certificados de calidad', 'Avisos de calidad'],
+    accesoAula: '3 meses',
+    accesoSap: '3 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Visión general de QM' },
+      { sesion: 2, titulo: 'Planificación de calidad I' },
+      { sesion: 3, titulo: 'Planificación de calidad II' },
+      { sesion: 4, titulo: 'Inspección de insumos' },
+      { sesion: 5, titulo: 'Inspección en proceso' },
+      { sesion: 6, titulo: 'Inspección de producto terminado' },
+      { sesion: 7, titulo: 'Certificados de calidad' },
+      { sesion: 8, titulo: 'Avisos al proveedor' },
+      { sesion: 9, titulo: 'Avisos de clientes' },
+      { sesion: 10, titulo: 'Gestión de documentos' },
+      { sesion: 11, titulo: 'Reportes y evaluaciones' }
+    ]
+  },
+  'ecc-wm-virtual': {
+    name: 'WM (Gestión de Almacén)',
+    shortDesc: 'Curso del módulo de Gestión de Almacén en SAP ECC...',
+    descripcion: 'Curso del módulo de Gestión de Almacén en SAP ECC. Aprende sobre estructuras organizativas, datos maestros, procesos de entrada y salida de mercancía, movimientos internos e inventarios.',
+    modalidad: 'VIRTUAL',
+    segmento: 'ECC',
+    precio: 500,
+    precioCuotas: 600,
+    dirigido: 'Profesionales de logística y gestión de almacenes en SAP ECC',
+    habilidades: ['Gestión de Almacenes (WM)', 'Procesos de almacén', 'Movimientos internos', 'Inventarios WM'],
+    accesoAula: '3 meses',
+    accesoSap: '3 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Overview de SAP' },
+      { sesion: 2, titulo: 'Estructura organizativa' },
+      { sesion: 3, titulo: 'Datos maestros' },
+      { sesion: 4, titulo: 'Ingresos de mercancía' },
+      { sesion: 5, titulo: 'Salidas de mercancía' },
+      { sesion: 6, titulo: 'Movimientos internos' },
+      { sesion: 7, titulo: 'Inventarios' },
+      { sesion: 8, titulo: 'Monitor de actividades' },
+      { sesion: 9, titulo: 'Reportes del almacén' },
+      { sesion: 10, titulo: 'Ejercicios integradores' }
+    ]
+  },
+  'ecc-pm-virtual': {
+    name: 'PM (Gestión de Mantenimiento)',
+    shortDesc: 'Curso del módulo de Gestión de Mantenimiento de Planta en SAP ECC...',
+    descripcion: 'Curso del módulo de Gestión de Mantenimiento de Planta en SAP ECC. Aprende sobre datos maestros de mantenimiento, mantenimiento correctivo, preventivo y planificación de recursos.',
+    modalidad: 'VIRTUAL',
+    segmento: 'ECC',
+    precio: 500,
+    precioCuotas: 600,
+    dirigido: 'Profesionales de mantenimiento industrial y gestión de plantas en SAP ECC',
+    habilidades: ['Gestión de mantenimiento (PM)', 'Órdenes de trabajo', 'Mantenimiento preventivo', 'Planificación de recursos'],
+    accesoAula: '3 meses',
+    accesoSap: '3 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Datos maestros de mantenimiento' },
+      { sesion: 2, titulo: 'Mantenimiento correctivo' },
+      { sesion: 3, titulo: 'Mantenimiento preventivo' },
+      { sesion: 4, titulo: 'Órdenes y proyectos' },
+      { sesion: 5, titulo: 'Informes de mantenimiento' },
+      { sesion: 6, titulo: 'Fiori en mantenimiento' }
+    ]
+  },
+  'ecc-sd-virtual': {
+    name: 'SD (Ventas y Distribución)',
+    shortDesc: 'Curso del módulo de Ventas y Distribución en SAP ECC...',
+    descripcion: 'Curso del módulo de Ventas y Distribución en SAP ECC. Aprende sobre estructuras comerciales, datos maestros de clientes y materiales, circuitos comerciales, entregas y facturación.',
+    modalidad: 'VIRTUAL',
+    segmento: 'ECC',
+    precio: 500,
+    precioCuotas: 600,
+    dirigido: 'Profesionales de ventas, distribución y servicio al cliente en SAP ECC',
+    habilidades: ['Ventas y Distribución (SD)', 'Proceso de ventas', 'Gestión de entregas', 'Facturación'],
+    accesoAula: '3 meses',
+    accesoSap: '3 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Estructura comercial' },
+      { sesion: 2, titulo: 'Datos maestros de clientes' },
+      { sesion: 3, titulo: 'Datos maestros de materiales' },
+      { sesion: 4, titulo: 'Circuitos comerciales' },
+      { sesion: 5, titulo: 'Gestión de entregas' },
+      { sesion: 6, titulo: 'Facturación' },
+      { sesion: 7, titulo: 'Fiori y CRM Hybris' }
+    ]
+  },
+  'ecc-co-virtual': {
+    name: 'CO (Controlling)',
+    shortDesc: 'Curso del módulo de Controlling en SAP ECC...',
+    descripcion: 'Curso del módulo de Controlling en SAP ECC. Aprende sobre análisis de márgenes, gestión de centros de costo, distribución de costos y controlling de productos.',
+    modalidad: 'VIRTUAL',
+    segmento: 'ECC',
+    precio: 500,
+    precioCuotas: 600,
+    dirigido: 'Consultores de Controlling y profesionales financieros en SAP ECC',
+    habilidades: ['Controlling (CO)', 'Centros de costo', 'Análisis de márgenes', 'Costos de producto'],
+    accesoAula: '3 meses',
+    accesoSap: '3 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: []
   },
   'hana-abap-online': {
     name: 'ABAP',
@@ -469,7 +940,14 @@ const COURSES = {
     accesoAula: '3 meses',
     accesoSap: '-',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a BTP' },
+      { sesion: 2, titulo: 'SAP HANA Cloud' },
+      { sesion: 3, titulo: 'CAP Backend' },
+      { sesion: 4, titulo: 'Programación FrontEnd' },
+      { sesion: 5, titulo: 'SAP Build WorkZone' }
+    ]
   },
   'hana-abap-rap-virtual': {
     name: 'ABAP RAP',
@@ -514,7 +992,14 @@ const COURSES = {
     accesoAula: '1 mes y medio',
     accesoSap: '1 mes',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a SAP Fiori' },
+      { sesion: 2, titulo: 'Administración de Apps' },
+      { sesion: 3, titulo: 'UI5 I' },
+      { sesion: 4, titulo: 'UI5 II y proyecto' },
+      { sesion: 5, titulo: 'Desarrollo UI5 y pruebas' }
+    ]
   },
   'hana-basis-virtual': {
     name: 'BASIS',
@@ -531,6 +1016,261 @@ const COURSES = {
     prerrequisitos: [],
     certification: 'Certificado ITSYSTEMS'
   },
+  'hana-abap-virtual': {
+    name: 'ABAP',
+    shortDesc: 'Curso completo de programación ABAP con acceso por seis meses al sistema SAP...',
+    descripcion: 'Curso completo de programación ABAP con acceso por seis meses al sistema SAP para práctica continua. Aprende desarrollo de reportes, módulos de función, enhancements y programación OO.',
+    modalidad: 'VIRTUAL',
+    segmento: 'HANA TECNICO',
+    precio: null,
+    precioCuotas: null,
+    dirigido: 'Desarrolladores y programadores que desean especializarse en SAP',
+    habilidades: ['Programación ABAP 7.5+', 'Desarrollo de reportes', 'Módulo de funciones y Badis', 'Enhancements y user-exits'],
+    accesoAula: '6 meses',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a ABAP' },
+      { sesion: 2, titulo: 'Pantallas de selección' },
+      { sesion: 3, titulo: 'Tablas internas y ALV' },
+      { sesion: 4, titulo: 'Módulos de funciones' },
+      { sesion: 5, titulo: 'Smart Forms' },
+      { sesion: 6, titulo: 'Core Data Services' }
+    ]
+  },
+  'hana-abap-online': {
+    name: 'ABAP',
+    shortDesc: 'Curso de programación ABAP con instructor en vivo para SAP S/4HANA...',
+    descripcion: 'Curso de programación ABAP con instructor en vivo para SAP S/4HANA. Aprende a desarrollar reportes clásicos e interactivos, crear módulos de función, implementar enhancements y user-exits.',
+    modalidad: 'ONLINE',
+    segmento: 'HANA TECNICO',
+    precio: 1100,
+    precioCuotas: 1200,
+    dirigido: 'Desarrolladores y programadores que desean especializarse en SAP',
+    habilidades: ['Programación ABAP 7.5+', 'Desarrollo de reportes', 'Módulo de funciones y Badis', 'Enhancements y user-exits'],
+    accesoAula: 'sin acceso',
+    accesoSap: '6 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a ABAP' },
+      { sesion: 2, titulo: 'Pantallas de selección' },
+      { sesion: 3, titulo: 'Tablas internas y ALV' },
+      { sesion: 4, titulo: 'Módulos de funciones' },
+      { sesion: 5, titulo: 'Smart Forms' },
+      { sesion: 6, titulo: 'Core Data Services' }
+    ]
+  },
+  'hana-abap-rap-virtual': {
+    name: 'ABAP RAP',
+    shortDesc: 'Curso del modelo de programación RAP en ABAP con acceso al sistema para prácticas...',
+    descripcion: 'Curso del modelo de programación RAP en ABAP con acceso al sistema para prácticas. Aprende desarrollo OData v4, CDS Views, Behavior Definition y las nuevas técnicas de desarrollo en S/4HANA.',
+    modalidad: 'VIRTUAL',
+    segmento: 'HANA TECNICO',
+    precio: null,
+    precioCuotas: null,
+    dirigido: 'Desarrolladores ABAP que desejam aprender el modelo de programación moderno',
+    habilidades: ['RAP (RESTful Application Programming)', 'Desarrollo OData v4', 'CDS Views', 'Behavior Definition'],
+    accesoAula: '3 meses',
+    accesoSap: '1 mes',
+    prerrequisitos: ['hana-abap-virtual'],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a ABAP RAP' },
+      { sesion: 2, titulo: 'Operaciones estándar CDS' },
+      { sesion: 3, titulo: 'Comportamiento en ABAP' },
+      { sesion: 4, titulo: 'EML' },
+      { sesion: 5, titulo: 'BDL' },
+      { sesion: 6, titulo: 'Servicios de negocio' },
+      { sesion: 7, titulo: 'UI y Fiori Elements' }
+    ]
+  },
+  'hana-abap-rap-online': {
+    name: 'ABAP RAP',
+    shortDesc: 'Curso moderno de RESTful Application Programming en ABAP para S/4HANA con instructor...',
+    descripcion: 'Curso moderno de RESTful Application Programming en ABAP para S/4HANA con instructor. Aprende desarrollo de servicios OData v4, creación de CDS Views y definición de comportamientos con el modelo RAP.',
+    modalidad: 'ONLINE',
+    segmento: 'HANA TECNICO',
+    precio: 1100,
+    precioCuotas: 1200,
+    dirigido: 'Desarrolladores ABAP que desejam aprender el modelo de programación moderno',
+    habilidades: ['RAP (RESTful Application Programming)', 'Desarrollo OData v4', 'CDS Views', 'Behavior Definition'],
+    accesoAula: 'sin acceso',
+    accesoSap: 'lo que dure el curso',
+    prerrequisitos: ['hana-abap-online'],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a ABAP RAP' },
+      { sesion: 2, titulo: 'Operaciones estándar CDS' },
+      { sesion: 3, titulo: 'Comportamiento en ABAP' },
+      { sesion: 4, titulo: 'EML' },
+      { sesion: 5, titulo: 'BDL' },
+      { sesion: 6, titulo: 'Servicios de negocio' },
+      { sesion: 7, titulo: 'UI y Fiori Elements' }
+    ]
+  },
+  'hana-sql-online': {
+    name: 'SQL',
+    shortDesc: 'Curso especializado en consultas SQL para bases de datos SAP HANA con clases en vivo...',
+    descripcion: 'Curso especializado en consultas SQL para bases de datos SAP HANA con clases en vivo. Aprende a crear vistas, procedimientos almacenados, funciones y optimizar el rendimiento de consultas.',
+    modalidad: 'ONLINE',
+    segmento: 'HANA TECNICO',
+    precio: null,
+    precioCuotas: null,
+    dirigido: 'Desarrolladores y administradores de bases de datos SAP HANA',
+    habilidades: ['SQL en HANA', 'Consultas advanced', 'Optimización de queries', 'Vistas y procedimientos'],
+    accesoAula: 'sin acceso',
+    accesoSap: 'lo que dure el curso',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Fundamentos de BD' },
+      { sesion: 2, titulo: 'SELECT y filtrado' },
+      { sesion: 3, titulo: 'JOIN y reportes' },
+      { sesion: 4, titulo: 'Mantenimiento de datos' }
+    ]
+  },
+  'hana-hana-sql-virtual': {
+    name: 'HANA SQL',
+    shortDesc: 'Curso de consultas SQL específicas para SAP HANA con laboratorio práctico incluido...',
+    descripcion: 'Curso de consultas SQL específicas para SAP HANA con laboratorio práctico incluido. Aprende consultas advanced, creación de vistas optimizadas, procedimientos almacenados y técnicas de optimización.',
+    modalidad: 'VIRTUAL',
+    segmento: 'HANA TECNICO',
+    precio: null,
+    precioCuotas: null,
+    dirigido: 'Desarrolladores y administradores de bases de datos SAP HANA',
+    habilidades: ['SQL en HANA', 'Consultas advanced', 'Optimización de queries', 'Vistas y procedimientos'],
+    accesoAula: '1 mes y medio',
+    accesoSap: '1 mes',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'HANA Cloud y CDS' },
+      { sesion: 2, titulo: 'SQL Script' },
+      { sesion: 3, titulo: 'Implementación y Modelado' }
+    ]
+  },
+  'hana-basis-online': {
+    name: 'BASIS',
+    shortDesc: 'Curso de administración del sistema SAP con sesiones en vivo...',
+    descripcion: 'Curso de administración del sistema SAP con sesiones en vivo. Aprende instalación, configuración, gestión de usuarios y autorizaciones, administración de paisajes y monitoreo del sistema.',
+    modalidad: 'ONLINE',
+    segmento: 'HANA TECNICO',
+    precio: null,
+    precioCuotas: null,
+    dirigido: 'Administradores de sistema y consultores técnicos Basis',
+    habilidades: ['Administración del sistema SAP', 'Gestión de usuarios y autorizaciones', 'Transportes y paisaje', 'Monitoring y troubleshooting'],
+    accesoAula: 'sin acceso',
+    accesoSap: 'lo que dure el curso',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: []
+  },
+  'hana-basis-online-2': {
+    name: 'BASIS',
+    shortDesc: 'Curso avanzado de administración Basis con enfoque en transportes entre sistemas...',
+    descripcion: 'Curso avanzado de administración Basis con enfoque en transportes entre sistemas y gestión de landscapes. Aprende a resolver problemas complejos, administrar múltiples entornos y optimizar el rendimiento del sistema SAP.',
+    modalidad: 'ONLINE',
+    segmento: 'HANA TECNICO',
+    precio: 2400,
+    precioCuotas: 2500,
+    dirigido: 'Administradores de sistema y consultores técnicos Basis',
+    habilidades: ['Administración del sistema SAP', 'Gestión de usuarios y autorizaciones', 'Transportes y paisaje', 'Monitoring y troubleshooting'],
+    accesoAula: 'sin acceso',
+    accesoSap: 'lo que dure el curso',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: []
+  },
+  'hana-fiori-online': {
+    name: 'FIORI',
+    shortDesc: 'Curso de desarrollo SAPUI5 y Fiori Elements con clases en vivo...',
+    descripcion: 'Curso de desarrollo SAPUI5 y Fiori Elements con clases en vivo. Aprende a crear aplicaciones web responsivas, diseñar interfaces modernas y consumir servicios OData.',
+    modalidad: 'ONLINE',
+    segmento: 'HANA TECNICO',
+    precio: 2400,
+    precioCuotas: 2500,
+    dirigido: 'Desarrolladores frontend y consultores UI5/Fiori',
+    habilidades: ['SAPUI5 / Fiori Elements', 'Desarrollo de aplicaciones responsivas', 'OData services', 'UX design en SAP'],
+    accesoAula: 'sin acceso',
+    accesoSap: 'lo que dure el curso',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a Fiori' },
+      { sesion: 2, titulo: 'Administración de Apps' },
+      { sesion: 3, titulo: 'UI5 I' },
+      { sesion: 4, titulo: 'UI5 II y proyecto' },
+      { sesion: 5, titulo: 'Desarrollo UI5 y pruebas' }
+    ]
+  },
+  'hana-hana-bd-online': {
+    name: 'HANA BD',
+    shortDesc: 'Curso de administración avanzada de bases de datos SAP HANA en modalidad online...',
+    descripcion: 'Curso de administración avanzada de bases de datos SAP HANA en modalidad online. Aprende backup, recovery, seguridad, replication y alta disponibilidad.',
+    modalidad: 'ONLINE',
+    segmento: 'HANA TECNICO',
+    precio: 2400,
+    precioCuotas: 2500,
+    dirigido: 'Administradores de bases de datos HANA y profesionales de data management',
+    habilidades: ['Administración de HANA Database', 'Backup y recovery', 'Seguridad de datos', 'Performance tuning'],
+    accesoAula: 'sin acceso',
+    accesoSap: 'lo que dure el curso',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción' },
+      { sesion: 2, titulo: 'Instalación' },
+      { sesion: 3, titulo: 'Administración' },
+      { sesion: 4, titulo: 'Backup and Recovery' },
+      { sesion: 5, titulo: 'Gestión de usuarios' }
+    ]
+  },
+  'hana-hana-bd-adm-virtual': {
+    name: 'HANA BD ADM',
+    shortDesc: 'Curso de administración de bases de datos SAP HANA con laboratorio práctico...',
+    descripcion: 'Curso de administración de bases de datos SAP HANA con laboratorio práctico. Aprende backup, recovery, seguridad, replication, alta disponibilidad y monitoreo.',
+    modalidad: 'VIRTUAL',
+    segmento: 'HANA TECNICO',
+    precio: null,
+    precioCuotas: null,
+    dirigido: 'Administradores de bases de datos HANA y profesionales de data management',
+    habilidades: ['Administración de HANA Database', 'Backup y recovery', 'Seguridad de datos', 'Performance tuning'],
+    accesoAula: '6 meses',
+    accesoSap: '2 meses',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción' },
+      { sesion: 2, titulo: 'Instalación' },
+      { sesion: 3, titulo: 'Administración' },
+      { sesion: 4, titulo: 'Backup and Recovery' },
+      { sesion: 5, titulo: 'Gestión de usuarios' }
+    ]
+  },
+  'hana-developer-btp-online': {
+    name: 'DEVELOPER BTP',
+    shortDesc: 'Curso de desarrollo en SAP Business Technology Platform con instructor en vivo...',
+    descripcion: 'Curso de desarrollo en SAP Business Technology Platform con instructor en vivo. Aprende a crear aplicaciones cloud-native, configurar servicios de integración, implementar autenticación y desplegar soluciones en BTP.',
+    modalidad: 'ONLINE',
+    segmento: 'HANA TECNICO',
+    precio: null,
+    precioCuotas: null,
+    dirigido: 'Desarrolladores que trabajan con SAP Business Technology Platform',
+    habilidades: ['Desarrollo en BTP', 'Servicios de integración', 'Autenticación y autorización', 'Aplicaciones cloud-native'],
+    accesoAula: 'sin acceso',
+    accesoSap: 'lo que dure el curso',
+    prerrequisitos: [],
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Introducción a BTP' },
+      { sesion: 2, titulo: 'SAP HANA Cloud' },
+      { sesion: 3, titulo: 'CAP Backend' },
+      { sesion: 4, titulo: 'Programación FrontEnd' },
+      { sesion: 5, titulo: 'SAP Build WorkZone' }
+    ]
+  },
   'productividad-ia-empresarial-online': {
     name: 'IA EMPRESARIAL',
     shortDesc: 'Curso de inteligencia artificial generativa aplicada al entorno empresarial con instructor...',
@@ -544,7 +1284,15 @@ const COURSES = {
     accesoAula: 'sin acceso',
     accesoSap: 'sin acceso',
     prerrequisitos: ['productividad-excel-soluciones-virtual'],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Fundamentos de la IA moderna' },
+      { sesion: 2, titulo: 'Diseño de Prompts profesionales' },
+      { sesion: 3, titulo: 'Casos de uso profesionales' },
+      { sesion: 4, titulo: 'Diseño de agentes IA' },
+      { sesion: 5, titulo: 'Decisión y responsabilidad con IA' },
+      { sesion: 6, titulo: 'Integración y Agentic World' }
+    ]
   },
   'productividad-contab-no-contadores-virtual': {
     name: 'CONTAB. para no contadores',
@@ -559,7 +1307,17 @@ const COURSES = {
     accesoAula: '6 meses',
     accesoSap: 'sin acceso',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Conceptos básicos contables' },
+      { sesion: 2, titulo: 'Plan de cuentas y dinámica' },
+      { sesion: 3, titulo: 'Estado de situación financiera' },
+      { sesion: 4, titulo: 'Estado de resultados' },
+      { sesion: 5, titulo: 'Ratios e indicadores' },
+      { sesion: 6, titulo: 'Régimen tributario' },
+      { sesion: 7, titulo: 'Normas Internacionales' },
+      { sesion: 8, titulo: 'Gestión e integración SAP' }
+    ]
   },
   'productividad-excel-soluciones-virtual': {
     name: 'EXCEL SOLUCIONES EMPRESARIALES',
@@ -574,7 +1332,19 @@ const COURSES = {
     accesoAula: '6 meses',
     accesoSap: 'sin acceso',
     prerrequisitos: [],
-    certification: 'Certificado ITSYSTEMS'
+    certification: 'Certificado ITSYSTEMS',
+    temario: [
+      { sesion: 1, titulo: 'Bases de datos y formato' },
+      { sesion: 2, titulo: 'Comisiones y validaciones' },
+      { sesion: 3, titulo: 'Consulta de compras' },
+      { sesion: 4, titulo: 'Gestión de compras' },
+      { sesion: 5, titulo: 'Inventarios I' },
+      { sesion: 6, titulo: 'Inventarios II' },
+      { sesion: 7, titulo: 'Recursos Humanos' },
+      { sesion: 8, titulo: 'Tablas dinámicas' },
+      { sesion: 9, titulo: 'Finanzas y cobranzas' },
+      { sesion: 10, titulo: 'Flujo de caja y evaluación' }
+    ]
   },
   'productividad-taller-automatizacion-virtual': {
     name: 'TALLER AUTOMATIZACION DE DATOS',
@@ -616,19 +1386,19 @@ const PROFILES = {
     name: 'Consultor SAP S/4HANA',
     shortDesc: 'Profesional especializado en la configuración y optimización de procesos de negocio en SAP S/4HANA...',
     descripcion: 'Profesional especializado en la configuración y optimización de procesos de negocio en SAP S/4HANA. Maneja módulos funcionales como MM, FI, PP, SD, PM, CO, QM, EWM, TM según el área de especialización.',
-    cursosObligatorios: ['s4hana-mm-fi-pp-virtual'],
-    cursosSugeridos: ['s4hana-mm-fi-pp-virtual', 's4hana-pm-virtual', 's4hana-sd-virtual', 's4hana-tm-virtual', 's4hana-co-ewm-virtual', 's4hana-qm-ps-ii-virtual'],
-    rutaSugerida: ['s4hana-mm-fi-pp-virtual', 's4hana-sd-virtual', 's4hana-pm-virtual', 's4hana-tm-virtual', 's4hana-co-ewm-virtual'],
-    justificacion: 'Se comienza con MM/FI/PP por ser los núcleos fundamentales de cualquier implementación S/4HANA. SD agrega el ciclo de ventas, PM cubre mantenimiento, TM logística y CO/EWM cierra la visión financiera y de almacenes.'
+    cursosObligatorios: ['s4hana-mm-virtual', 's4hana-fi-virtual', 's4hana-pp-virtual'],
+    cursosSugeridos: ['s4hana-mm-virtual', 's4hana-fi-virtual', 's4hana-pp-virtual', 's4hana-pm-virtual', 's4hana-sd-virtual', 's4hana-ewm-virtual', 's4hana-qm-virtual', 's4hana-ps-virtual'],
+    rutaSugerida: ['s4hana-mm-virtual', 's4hana-fi-virtual', 's4hana-pp-virtual', 's4hana-sd-virtual', 's4hana-pm-virtual', 's4hana-ewm-virtual'],
+    justificacion: 'Se comienza con MM/FI/PP por ser los núcleos fundamentales de cualquier implementación S/4HANA. SD agrega el ciclo de ventas, PM cubre mantenimiento y EWM cierra la visión logística.'
   },
   'consultor-s4hana-online': {
     name: 'Consultor SAP S/4HANA Online',
     shortDesc: 'Profesional especializado en SAP S/4HANA con clases en vivo...',
     descripcion: 'Profesional especializado en SAP S/4HANA con clases en vivo. Maneja módulos funcionales en modalidad sincronica con instructor, incluyendo MM, FI, PP, SD, PM, TM, QM y configuración avanzada.',
-    cursosObligatorios: ['s4hana-mm-fi-pp-online'],
-    cursosSugeridos: ['s4hana-mm-fi-pp-online', 's4hana-pm-online', 's4hana-sd-online', 's4hana-tm-online', 's4hana-ewm-ps-co-qm-online', 's4hana-mm-configuracion-online'],
-    rutaSugerida: ['s4hana-mm-fi-pp-online', 's4hana-sd-online', 's4hana-pm-online', 's4hana-tm-online', 's4hana-ewm-ps-co-qm-online'],
-    justificacion: 'Cursos en vivo que permiten interacción directa con el instructor. Se comienza con los módulos fundamentales MM/FI/PP y se avanza hacia especializaciones en ventas, mantenimiento, transporte y módulos avanzados.'
+    cursosObligatorios: ['s4hana-mm-online', 's4hana-fi-online', 's4hana-pp-online'],
+    cursosSugeridos: ['s4hana-mm-online', 's4hana-fi-online', 's4hana-pp-online', 's4hana-pm-online', 's4hana-sd-online', 's4hana-ewm-online', 's4hana-qm-online', 's4hana-ps-online'],
+    rutaSugerida: ['s4hana-mm-online', 's4hana-fi-online', 's4hana-pp-online', 's4hana-sd-online', 's4hana-pm-online', 's4hana-ewm-online'],
+    justificacion: 'Cursos en vivo que permiten interacción directa con el instructor. Se comienza con los módulos fundamentales MM/FI/PP y se avanza hacia especializaciones en ventas, mantenimiento y logística.'
   },
   'desarrollador-hana-online': {
     name: 'Desarrollador SAP HANA Online',
@@ -670,10 +1440,10 @@ const PROFILES = {
     name: 'Consultor SAP ECC',
     shortDesc: 'Profesional especializado en SAP ECC (ERP Central Component), el sistema heredado de SAP...',
     descripcion: 'Profesional especializado en SAP ECC (ERP Central Component), el sistema heredado de SAP. Maneja la amplia gama de módulos disponibles incluyendo Finanza, Logística, Supply Chain y Recursos Humanos.',
-    cursosObligatorios: ['ecc-mm-pp-qm-wm-pm-sd-co-fi-virtual'],
-    cursosSugeridos: ['ecc-mm-pp-qm-wm-pm-sd-co-fi-virtual', 'ecc-hcm-virtual'],
-    rutaSugerida: ['ecc-mm-pp-qm-wm-pm-sd-co-fi-virtual', 'ecc-hcm-virtual'],
-    justificacion: 'El curso integral de módulos ECC cubre la base completa del sistema. HCM se agrega como especialización adicional en gestión de capital humano.'
+    cursosObligatorios: ['ecc-mm-virtual', 'ecc-fi-virtual'],
+    cursosSugeridos: ['ecc-mm-virtual', 'ecc-fi-virtual', 'ecc-pp-virtual', 'ecc-qm-virtual', 'ecc-wm-virtual', 'ecc-pm-virtual', 'ecc-sd-virtual', 'ecc-co-virtual', 'ecc-hcm-virtual'],
+    rutaSugerida: ['ecc-mm-virtual', 'ecc-fi-virtual', 'ecc-pp-virtual', 'ecc-sd-virtual', 'ecc-wm-virtual', 'ecc-hcm-virtual'],
+    justificacion: 'Se comienza con MM y FI por ser los módulos fundamentales. PP agrega capacidades de manufactura, SD el ciclo de ventas, WM la gestión de almacenes y HCM cierra con recursos humanos.'
   },
   'consultor-productividad': {
     name: 'Consultor de Productividad',
@@ -697,9 +1467,9 @@ const PROFILES = {
     name: 'Consultor Técnico Híbrido',
     shortDesc: 'Profesional que combina consultoría funcional en S/4HANA con habilidades técnicas de administración...',
     descripcion: 'Profesional que combina consultoría funcional en S/4HANA con habilidades técnicas de administración HANA. Capaz de entregar soluciones completas sin depender de otros especialistas.',
-    cursosObligatorios: ['s4hana-mm-fi-pp-virtual'],
-    cursosSugeridos: ['s4hana-mm-fi-pp-virtual', 'hana-hana-sql-virtual', 'hana-basis-virtual', 'hana-abap-virtual', 'hana-abap-rap-virtual'],
-    rutaSugerida: ['s4hana-mm-fi-pp-virtual', 'hana-abap-virtual', 'hana-abap-rap-virtual', 'hana-hana-sql-virtual', 'hana-basis-virtual'],
+    cursosObligatorios: ['s4hana-mm-virtual', 's4hana-fi-virtual', 's4hana-pp-virtual'],
+    cursosSugeridos: ['s4hana-mm-virtual', 's4hana-fi-virtual', 's4hana-pp-virtual', 'hana-abap-virtual', 'hana-abap-rap-virtual', 'hana-hana-sql-virtual', 'hana-basis-virtual'],
+    rutaSugerida: ['s4hana-mm-virtual', 's4hana-fi-virtual', 's4hana-pp-virtual', 'hana-abap-virtual', 'hana-abap-rap-virtual', 'hana-hana-sql-virtual', 'hana-basis-virtual'],
     justificacion: 'Se comienza con el núcleo funcional de S/4HANA (MM/FI/PP). Luego se adquiere capacidad técnica con ABAP y RAP para personalizaciones. SQL y BASIS complementan para administración y optimización.'
   },
   'consultor-datos-empresariales': {
@@ -1011,6 +1781,19 @@ function showCourseDetail(courseId) {
     ? course.prerrequisitos.map(id => COURSES[id]?.name || id).join(', ')
     : 'Ninguno';
 
+  let temarioHtml = '';
+  if (course.temario && course.temario.length > 0) {
+    const temarioItems = course.temario.map((s, i) => {
+      const temaNum = i + 1;
+      let resumen = s.titulo.split('(')[0].trim();
+      resumen = resumen.length > 45 ? resumen.substring(0, 42) + '...' : resumen;
+      return `<li><strong>${temaNum}.</strong> ${resumen}</li>`;
+    }).join('');
+    temarioHtml = `<div style="margin-top: 10px; background: #f5f5f5; padding: 10px; border-radius: 5px;"><strong>Módulos o temario:</strong><ul style="margin: 5px 0; padding-left: 20px; list-style: none;">${temarioItems}</ul></div>`;
+  } else {
+    temarioHtml = `<p style="margin-top: 10px;"><strong>Módulos o temario:</strong> <em>(Aún en planeación)</em></p>`;
+  }
+
   const botMessage = document.createElement('div');
   botMessage.className = 'message bot';
   botMessage.innerHTML = `
@@ -1023,6 +1806,7 @@ function showCourseDetail(courseId) {
       <p><strong>Acceso:</strong> Aula virtual: ${course.accesoAula} | SAP: ${course.accesoSap}</p>
       <p><strong>Prerrequisitos:</strong> ${prerrequisitosTexto}</p>
       <p><strong>Certificacion:</strong> ${course.certification}</p>
+      ${temarioHtml}
     </div>
   `;
   elements.messagesContainer.appendChild(botMessage);

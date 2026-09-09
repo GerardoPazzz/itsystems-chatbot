@@ -23,11 +23,11 @@ describe('RAG - Validacion del Catalogo de Cursos', () => {
       expect(catalogo.cursos.length).toBeGreaterThan(0);
     });
 
-    it('debe tener 38 cursos', async () => {
+    it('debe tener 54 cursos', async () => {
       const data = await readFile(CATALOGO_PATH, 'utf-8');
       const catalogo = JSON.parse(data);
 
-      expect(catalogo.cursos).toHaveLength(38);
+      expect(catalogo.cursos).toHaveLength(54);
     });
 
     it('debe tener la estructura correcta de curso con segmento', async () => {
@@ -43,6 +43,7 @@ describe('RAG - Validacion del Catalogo de Cursos', () => {
       expect(curso).toHaveProperty('recursos');
       expect(curso).toHaveProperty('dirigido');
       expect(curso).toHaveProperty('habilidades_adquiridas');
+      expect(curso).toHaveProperty('temario');
     });
 
     it('debe tener descripcion en cada curso', async () => {
