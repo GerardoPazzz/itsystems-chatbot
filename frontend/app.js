@@ -1,5 +1,5 @@
-const API_URL = 'http://localhost:3000/api/chat';
-const API_URL_SAP = 'http://localhost:3000/api/sap/register';
+const API_URL = '/api/chat';
+const API_URL_SAP = '/api/sap/register';
 
 const GUIAS_DRIVE = {
   'S4_MM_DEMO': 'https://drive.google.com/drive/folders/1xgecegsDtRC3bvNT0tUmmL9lkz4Verfd?usp=drive_link',
