@@ -23,8 +23,9 @@ app.get('*', (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
 });
 
-app.listen(config.port, () => {
-  console.log(`ITSYSTEMS Academic Advisor running on port ${config.port}`);
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+  console.log(`ITSYSTEMS Academic Advisor running on port ${port}`);
   console.log(`Gemini model: ${config.gemini.model}`);
   console.log(`Frontend static files: ${path.join(__dirname, '..', 'frontend')}`);
 });
