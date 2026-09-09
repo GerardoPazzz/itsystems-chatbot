@@ -4,7 +4,7 @@
   "description": "MVP - Asesor Academico Virtual para ITSYSTEMS",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc && xcopy /E /I /Y frontend dist\\frontend",
+    "build": "tsc && cp -r frontend dist/frontend",
     "start": "node dist/server.js",
     "dev": "ts-node src/server.ts",
     "watch": "nodemon --exec ts-node",
