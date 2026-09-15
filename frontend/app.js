@@ -1768,6 +1768,8 @@ function setupNavPills() {
 }
 
 function handleNavPillClick(action) {
+  showChatMode();
+  
   switch(action) {
     case 'cursos':
       state.currentMenu = 'cursos';
