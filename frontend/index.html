@@ -6,44 +6,99 @@
   <title>ITSYSTEMS - Asesor Academico Virtual</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="app-container">
-    <header class="header">
-      <h1>ITSYSTEMS</h1>
-      <span class="subtitle">Asesor Academico Virtual</span>
-    </header>
+<body class="app-body">
+  
+  <!-- CONTENEDOR PRINCIPAL: Centrado absoluto exacto -->
+  <main class="app-container">
+    
+    <!-- BLOQUE CENTRAL: Chat con navegación -->
+    <div class="chat-content">
+      
+      <!-- PANTALLA DE BIENVENIDA (Centrada verticalmente, solo visible al inicio) -->
+      <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-logo">
+          <svg class="welcome-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+            <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+            <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+          <h1 class="welcome-title">ITSYSTEMS</h1>
+          <span class="welcome-badge">Chatbot</span>
+        </div>
+        <p class="welcome-subtitle">Tu asistente virtual para cursos y roles SAP</p>
+        
+        <!-- Pills de navegación en la pantalla de bienvenida -->
+        <nav class="welcome-nav">
+          <button class="nav-pill" data-action="cursos">Cursos</button>
+          <button class="nav-pill" data-action="roles">Roles</button>
+          <button class="nav-pill" data-action="asesor">Asesor</button>
+          <button class="nav-pill" data-action="registro">Registro</button>
+        </nav>
+      </div>
 
-    <main id="chat" class="chat-container">
-      <div id="messages" class="messages-container"></div>
-      <div id="quick-actions" class="quick-actions"></div>
+      <!-- HISTORIAL DE CHAT (Visible cuando hay mensajes) -->
+      <div id="messages" class="messages-area hidden"></div>
       <div id="typing-indicator" class="typing-indicator hidden">
         <span class="typing-dot"></span>
         <span class="typing-dot"></span>
         <span class="typing-dot"></span>
         <span class="typing-text">Escribiendo...</span>
       </div>
-    </main>
 
-    <footer class="input-area">
-      <input
-        type="text"
-        id="message-input"
-        class="message-input"
-        placeholder="Escribe tu mensaje..."
-        autocomplete="off"
-        disabled
-      >
-      <button id="send-btn" class="send-button" disabled>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="22" y1="2" x2="11" y2="13"></line>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
-      </button>
-    </footer>
-  </div>
+      <!-- INPUT (Abajo, fijo) -->
+      <div class="input-area hidden">
+        
+        <!-- BARRA DE NAVEGACIÓN: 4 pills siempre visibles, pegados al input -->
+        <nav id="main-nav" class="nav-pills">
+          <button class="nav-pill" data-action="cursos">Cursos</button>
+          <button class="nav-pill" data-action="roles">Roles</button>
+          <button class="nav-pill" data-action="asesor">Asesor</button>
+          <button class="nav-pill" data-action="registro">Registro</button>
+        </nav>
+
+        <div class="input-container">
+          <textarea
+            id="message-input"
+            class="message-input"
+            placeholder="Escribe tu mensaje..."
+            rows="2"
+          ></textarea>
+          <div class="input-actions">
+            <button id="voice-btn" class="voice-button" title="Usar voz">
+              <svg class="mic-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+              <svg class="mic-spinner hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                <path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1">
+                  <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/>
+                </path>
+              </svg>
+            </button>
+            <button id="send-btn" class="send-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBMENÚS (Cursos/Roles - se muestra inline) -->
+      <div id="quick-actions" class="quick-actions hidden"></div>
+
+    </div>
+  </main>
 
   <div id="limit-modal" class="modal-overlay hidden">
     <div class="modal-content">

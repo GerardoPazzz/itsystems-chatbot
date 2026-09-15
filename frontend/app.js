@@ -9,16 +9,121 @@ const GUIAS_DRIVE = {
   'S4_PP_DEMO': 'https://drive.google.com/drive/folders/14I4jF5w6TinY5Or_gK4haDuq_zpTWXde?usp=drive_link'
 };
 
+const SPEECH_LANG = 'es-ES';
+const SILENCE_TIMEOUT_MS = 3000;
+
+class VoiceRecognition {
+  constructor() {
+    this.recognition = null;
+    this.isListening = false;
+    this.isSupported = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
+    this.silenceTimer = null;
+    this.finalTranscript = '';
+    this.onResultCallback = null;
+    this.onEndCallback = null;
+
+    if (this.isSupported) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      this.recognition = new SpeechRecognition();
+      this.recognition.lang = SPEECH_LANG;
+      this.recognition.continuous = true;
+      this.recognition.interimResults = true;
+      this.recognition.maxAlternatives = 1;
+    }
+  }
+
+  start(onResult, onError, onEnd) {
+    if (!this.isSupported || this.isListening) return false;
+
+    this.finalTranscript = '';
+    this.onResultCallback = onResult;
+    this.onEndCallback = onEnd;
+
+    try {
+      this.recognition.onresult = (event) => {
+        let transcript = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          transcript += event.results[i][0].transcript;
+        }
+
+        const isFinal = event.results[event.results.length - 1][0].isFinal;
+
+        if (isFinal) {
+          this.finalTranscript += (this.finalTranscript ? ' ' : '') + transcript;
+          this.onResultCallback(this.finalTranscript, true);
+        } else {
+          this.onResultCallback(transcript, false);
+        }
+
+        this.resetSilenceTimer();
+      };
+
+      this.recognition.onerror = (event) => {
+        this.clearSilenceTimer();
+        if (event.error !== 'aborted') {
+          onError(event.error);
+        }
+      };
+
+      this.recognition.onend = () => {
+        this.isListening = false;
+        this.clearSilenceTimer();
+        onEnd();
+      };
+
+      this.recognition.onspeechend = () => {
+        this.resetSilenceTimer();
+      };
+
+      this.recognition.start();
+      this.isListening = true;
+      this.startSilenceTimer();
+      return true;
+    } catch (e) {
+      onError(e.message);
+      return false;
+    }
+  }
+
+  stop() {
+    this.clearSilenceTimer();
+    if (this.recognition && this.isListening) {
+      this.recognition.stop();
+    }
+  }
+
+  startSilenceTimer() {
+    this.clearSilenceTimer();
+    this.silenceTimer = setTimeout(() => {
+      if (this.isListening) {
+        this.stop();
+      }
+    }, SILENCE_TIMEOUT_MS);
+  }
+
+  resetSilenceTimer() {
+    this.startSilenceTimer();
+  }
+
+  clearSilenceTimer() {
+    if (this.silenceTimer) {
+      clearTimeout(this.silenceTimer);
+      this.silenceTimer = null;
+    }
+  }
+}
+
+const voiceRecognition = new VoiceRecognition();
+
 const state = {
   sessionId: '',
   isTyping: false,
   limitReached: false,
-  llmModeEnabled: false,
   registrationMode: false,
   currentMenu: 'main'
 };
 
-const welcomeMessage = "Buenos dias! Soy el Asesor Academico Virtual de ITSYSTEMS. Cuentame, cual es tu objetivo profesional o area de interes en tecnologia? Para comenzar, puedo mostrarte nuestros perfiles disponibles: Consultor Funcional SAP, Desarrollador SAP, o Desarrollador SAP Cloud.";
+const welcomeMessage = "";
 
 const COURSES = {
   'sbo-b1-desarrollo-sdk-virtual': {
@@ -1598,6 +1703,7 @@ const elements = {
   messagesContainer: document.getElementById('messages'),
   messageInput: document.getElementById('message-input'),
   sendButton: document.getElementById('send-btn'),
+  voiceButton: document.getElementById('voice-btn'),
   typingIndicator: document.getElementById('typing-indicator'),
   limitModal: document.getElementById('limit-modal'),
   btnRestart: document.getElementById('btn-restart'),
@@ -1605,31 +1711,163 @@ const elements = {
   quickActions: document.getElementById('quick-actions'),
   registrationModal: document.getElementById('registration-modal'),
   registrationForm: document.getElementById('registration-form'),
-  btnCancelRegistration: document.getElementById('btn-cancel-registration')
+  btnCancelRegistration: document.getElementById('btn-cancel-registration'),
+  welcomeScreen: document.getElementById('welcome-screen'),
+  inputArea: document.querySelector('.input-area')
 };
 
 function init() {
   state.sessionId = crypto.randomUUID();
   state.limitReached = false;
-  state.llmModeEnabled = false;
   state.registrationMode = false;
   state.currentMenu = 'main';
+  state.hasMessages = false;
   console.log('Session ID:', state.sessionId);
 
-  renderMessage(welcomeMessage, 'bot', true);
-  renderQuickActions('main');
+  setupNavPills();
   setupEventListeners();
   setupUsernameValidation();
+  updateSendButtonVisibility();
 }
 
 function setupEventListeners() {
   elements.sendButton.addEventListener('click', handleSend);
   elements.messageInput.addEventListener('keydown', handleKeyDown);
+  elements.messageInput.addEventListener('input', updateSendButtonVisibility);
   elements.btnRestart.addEventListener('click', handleRestart);
   elements.btnAdvisor.addEventListener('click', handleAdvisor);
   elements.registrationForm.addEventListener('submit', handleFormSubmit);
   elements.btnCancelRegistration.addEventListener('click', closeRegistrationModal);
+
+  if (voiceRecognition.isSupported) {
+    elements.voiceButton.addEventListener('click', handleVoiceButton);
+  } else {
+    elements.voiceButton.style.display = 'none';
+  }
 }
+
+function setupNavPills() {
+  const pills = document.querySelectorAll('.nav-pill');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const action = pill.dataset.action;
+      
+      if (pill.classList.contains('active')) {
+        pill.classList.remove('active');
+        state.currentMenu = 'main';
+        elements.quickActions.classList.add('hidden');
+        elements.quickActions.innerHTML = '';
+        return;
+      }
+      
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      handleNavPillClick(action);
+    });
+  });
+}
+
+function handleNavPillClick(action) {
+  switch(action) {
+    case 'cursos':
+      state.currentMenu = 'cursos';
+      renderQuickActions('cursos');
+      break;
+    case 'roles':
+      state.currentMenu = 'roles';
+      renderQuickActions('roles');
+      break;
+    case 'asesor':
+      state.currentMenu = 'asesor';
+      showAdvisorInfo();
+      break;
+    case 'registro':
+      state.currentMenu = 'registro';
+      openRegistrationModal();
+      break;
+  }
+}
+
+function showChatMode() {
+  if (state.hasMessages) return;
+  
+  state.hasMessages = true;
+  
+  if (elements.welcomeScreen) {
+    elements.welcomeScreen.classList.add('hidden');
+  }
+  
+  elements.messagesContainer.classList.remove('hidden');
+  elements.inputArea.classList.remove('hidden');
+  
+  scrollToBottom();
+}
+
+function resetToZeroState() {
+  document.getElementById('messages').innerHTML = '';
+  document.getElementById('quick-actions').classList.add('hidden');
+  document.getElementById('quick-actions').innerHTML = '';
+  elements.messageInput.value = '';
+  
+  document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+  
+  state.hasMessages = false;
+  state.registrationMode = false;
+  state.currentMenu = 'main';
+  
+  if (elements.welcomeScreen) {
+    elements.welcomeScreen.classList.remove('hidden');
+  }
+  elements.messagesContainer.classList.add('hidden');
+  elements.inputArea.classList.add('hidden');
+}
+
+function updateSendButtonVisibility() {
+  const message = elements.messageInput.value.trim();
+  const sendBtn = elements.sendButton;
+  
+  if (message && !state.isTyping && !state.registrationMode) {
+    sendBtn.classList.add('visible');
+  } else {
+    sendBtn.classList.remove('visible');
+  }
+}
+
+function showAdvisorInfo() {
+  showChatMode();
+  
+  const advisorMessage = `
+    <p>Para contactar con un asesor humano, puedes:</p>
+    <ul>
+      <li>Enviar un correo a: <a href="mailto:asesores@itsystems.com" class="message-link">asesores@itsystems.com</a></li>
+      <li>Llamar al: +51 999 888 777</li>
+      <li>Horario de atencion: Lunes a Viernes 9:00 AM - 6:00 PM</li>
+    </ul>
+    <p>Un asesor se comunicara contigo pronto. ¿Hay algo mas en lo que pueda ayudarte?</p>
+  `;
+  renderMessage('Contactar con un asesor', 'user');
+  const botMsg = document.createElement('div');
+  botMsg.className = 'message bot';
+  botMsg.innerHTML = `<div class="message-content">${advisorMessage}</div>`;
+  elements.messagesContainer.appendChild(botMsg);
+  scrollToBottom();
+}
+
+
+
+function resetToZeroState() {
+  document.getElementById('messages').innerHTML = '';
+  document.getElementById('quick-actions').classList.add('hidden');
+  document.getElementById('quick-actions').innerHTML = '';
+  elements.messageInput.value = '';
+  
+  document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+  
+  state.registrationMode = false;
+  state.currentMenu = 'main';
+}
+
+
 
 function handleKeyDown(event) {
   if (event.key === 'Enter' && !event.shiftKey) {
@@ -1642,27 +1880,14 @@ function renderQuickActions(menuKey) {
   elements.quickActions.innerHTML = '';
 
   if (menuKey === 'main') {
-    elements.quickActions.classList.remove('hidden');
-    const grid = document.createElement('div');
-    grid.className = 'quick-actions-grid';
-
-    decisionTree.main.options.forEach(option => {
-      const btn = document.createElement('button');
-      btn.className = 'quick-btn';
-      btn.textContent = option.label;
-      btn.dataset.action = option.id;
-      btn.addEventListener('click', () => handleQuickAction(option.id));
-      grid.appendChild(btn);
-    });
-
-    elements.quickActions.appendChild(grid);
+    elements.quickActions.classList.add('hidden');
     return;
   }
 
+  elements.quickActions.classList.remove('hidden');
+
   const menu = decisionTree[menuKey];
   if (!menu) return;
-
-  elements.quickActions.classList.remove('hidden');
 
   const subMenu = document.createElement('div');
   subMenu.className = 'sub-menu';
@@ -1705,68 +1930,19 @@ function renderQuickActions(menuKey) {
 
   subMenu.appendChild(grid);
 
-  const divider = document.createElement('hr');
-  divider.className = 'menu-divider';
-  subMenu.appendChild(divider);
-
-  const llmBtn = document.createElement('button');
-  llmBtn.className = 'llm-mode-btn';
-  llmBtn.textContent = 'Pregunta personalizada sobre cursos';
-  llmBtn.addEventListener('click', () => {
-    enableLlmMode('Tengo una pregunta sobre los cursos SAP');
-  });
-  subMenu.appendChild(llmBtn);
-
   const backBtn = document.createElement('button');
   backBtn.className = 'back-btn';
-  backBtn.innerHTML = '&larr; Volver al menu principal';
+  backBtn.innerHTML = '&larr; Cerrar';
   backBtn.addEventListener('click', () => {
+    const pills = document.querySelectorAll('.nav-pill');
+    pills.forEach(p => p.classList.remove('active'));
     state.currentMenu = 'main';
+    elements.quickActions.classList.add('hidden');
     elements.quickActions.innerHTML = '';
-    renderQuickActions('main');
   });
   subMenu.appendChild(backBtn);
 
   elements.quickActions.appendChild(subMenu);
-}
-
-function handleQuickAction(actionId) {
-  state.currentMenu = actionId;
-
-  const userMessages = {
-    cursos: 'Quiero informacion sobre los cursos',
-    roles: 'Quiero conocer los roles disponibles',
-    asesor: 'Quiero contactar con un asesor',
-    registro: 'Quiero registrarme en un curso SAP'
-  };
-
-  renderMessage(userMessages[actionId], 'user');
-
-  if (actionId === 'asesor') {
-    renderMessage('Seras redirigido a un asesor de ITSYSTEMS. Puedes contactarnos via WhatsApp para una atencion personalizada.', 'bot');
-    setTimeout(() => {
-      window.open('https://wa.me/51999666333?text=Hola,%20me%20gustaria%20recibir%20asesoria%20sobre%20los%20cursos%20SAP%20de%20ITSYSTEMS', '_blank');
-    }, 500);
-    return;
-  }
-
-  if (actionId === 'registro') {
-    openRegistrationModal();
-    return;
-  }
-
-  const menu = decisionTree[actionId];
-  const botMessage = document.createElement('div');
-  botMessage.className = 'message bot';
-  botMessage.innerHTML = `
-    <div class="message-content">
-      <p>${menu.response}</p>
-    </div>
-  `;
-  elements.messagesContainer.appendChild(botMessage);
-  scrollToBottom();
-
-  renderQuickActions(actionId);
 }
 
 function showCourseDetail(courseId) {
@@ -1787,9 +1963,9 @@ function showCourseDetail(courseId) {
       const temaNum = i + 1;
       let resumen = s.titulo.split('(')[0].trim();
       resumen = resumen.length > 45 ? resumen.substring(0, 42) + '...' : resumen;
-      return `<li><strong>${temaNum}.</strong> ${resumen}</li>`;
+      return `<li style="margin-bottom: 6px;"><span style="color: var(--accent-hover); font-weight: 500;">${temaNum}.</span> ${resumen}</li>`;
     }).join('');
-    temarioHtml = `<div style="margin-top: 10px; background: #f5f5f5; padding: 10px; border-radius: 5px;"><strong>Módulos o temario:</strong><ul style="margin: 5px 0; padding-left: 20px; list-style: none;">${temarioItems}</ul></div>`;
+    temarioHtml = `<div style="margin-top: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px;"><strong style="color: var(--text-secondary); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.05em;">Módulos o temario:</strong><ul style="margin: 8px 0 0 0; padding-left: 16px; list-style: none; color: var(--text-primary);">${temarioItems}</ul></div>`;
   } else {
     temarioHtml = `<p style="margin-top: 10px;"><strong>Módulos o temario:</strong> <em>(Aún en planeación)</em></p>`;
   }
@@ -1811,8 +1987,6 @@ function showCourseDetail(courseId) {
   `;
   elements.messagesContainer.appendChild(botMessage);
   scrollToBottom();
-
-  showBackOnlyMenu('cursos');
 }
 
 function showProfileDetail(profileId) {
@@ -1838,8 +2012,6 @@ function showProfileDetail(profileId) {
   `;
   elements.messagesContainer.appendChild(botMessage);
   scrollToBottom();
-
-  showBackOnlyMenu('roles');
 }
 
 function showBackOnlyMenu(parentMenu) {
@@ -1850,9 +2022,7 @@ function showBackOnlyMenu(parentMenu) {
   backBtn.className = 'back-btn';
   backBtn.innerHTML = '&larr; Volver al menu principal';
   backBtn.addEventListener('click', () => {
-    state.currentMenu = 'main';
-    elements.quickActions.innerHTML = '';
-    renderQuickActions('main');
+    resetToZeroState();
   });
   elements.quickActions.appendChild(backBtn);
 }
@@ -1882,9 +2052,7 @@ function renderRegistrationMenu() {
   backBtn.className = 'back-btn';
   backBtn.innerHTML = '&larr; Volver al menu principal';
   backBtn.addEventListener('click', () => {
-    state.currentMenu = 'main';
-    elements.quickActions.innerHTML = '';
-    renderQuickActions('main');
+    resetToZeroState();
   });
 
   subMenu.appendChild(grid);
@@ -1915,8 +2083,8 @@ function enableRegistrationMode() {
     renderRegistrationMenu();
   });
 
-  const chatContainer = document.querySelector('.chat-container');
-  chatContainer.insertBefore(backToMenuBtn, elements.quickActions);
+  const appContainer = document.querySelector('.app-container');
+  appContainer.insertBefore(backToMenuBtn, elements.quickActions);
 }
 
 function openRegistrationModal() {
@@ -2127,59 +2295,77 @@ async function sendToSAPRegister(formData) {
   }
 }
 
-function enableLlmMode(initialMessage = null) {
-  state.llmModeEnabled = true;
-  elements.quickActions.classList.add('hidden');
-  elements.messageInput.disabled = false;
-  elements.sendButton.disabled = false;
-
-  const backToMenuBtn = document.createElement('button');
-  backToMenuBtn.className = 'llm-mode-back-btn';
-  backToMenuBtn.innerHTML = '&larr; Volver al menu principal';
-  backToMenuBtn.addEventListener('click', () => {
-    state.llmModeEnabled = false;
-    elements.messageInput.disabled = true;
-    elements.sendButton.disabled = true;
+function handleVoiceButton() {
+  if (voiceRecognition.isListening) {
+    voiceRecognition.stop();
+    setVoiceButtonState('inactive');
+  } else {
+    setVoiceButtonState('listening');
     elements.messageInput.value = '';
-    backToMenuBtn.remove();
-    renderQuickActions('main');
-  });
+    elements.messageInput.focus();
 
-  const chatContainer = document.querySelector('.chat-container');
-  chatContainer.insertBefore(backToMenuBtn, elements.quickActions);
-
-  if (initialMessage) {
-    elements.messageInput.value = initialMessage;
+    voiceRecognition.start(
+      (transcript, isFinal) => {
+        console.log('Voice result:', { transcript, isFinal });
+        elements.messageInput.value = transcript;
+      },
+      (error) => {
+        console.error('Voice recognition error:', error);
+        setVoiceButtonState('inactive');
+        if (error === 'network') {
+          alert('Error de red. Verifica tu conexion a internet e intenta nuevamente.');
+        } else if (error === 'not-allowed') {
+          alert('Se requiere acceso al microfono para usar voz. Por favor permite el acceso en tu navegador.');
+        }
+      },
+      () => {
+        setVoiceButtonState('inactive');
+      }
+    );
   }
+}
 
-  elements.messageInput.focus();
+function setVoiceButtonState(state) {
+  const voiceBtn = elements.voiceButton;
+  const micIcon = voiceBtn.querySelector('.mic-icon');
+  const spinner = voiceBtn.querySelector('.mic-spinner');
 
-  renderMessage('Perfecto! A partir de ahora puedes hacerme cualquier pregunta y la respondere con la ayuda de inteligencia artificial.', 'bot');
+  voiceBtn.classList.remove('listening', 'processing');
+
+  switch (state) {
+    case 'listening':
+      voiceBtn.classList.add('listening');
+      micIcon.classList.remove('hidden');
+      spinner.classList.add('hidden');
+      break;
+    case 'processing':
+      voiceBtn.classList.add('processing');
+      micIcon.classList.add('hidden');
+      spinner.classList.remove('hidden');
+      break;
+    case 'inactive':
+    default:
+      micIcon.classList.remove('hidden');
+      spinner.classList.add('hidden');
+  }
 }
 
 async function handleSend() {
-  if (state.registrationMode) {
-    const username = elements.messageInput.value.trim();
-    if (username) {
-      clearInput();
-      await sendToSAPRegister(username);
-    }
-    return;
-  }
-
-  if (state.llmModeEnabled) {
-    await sendToLLM();
-  }
-}
-
-async function sendToLLM() {
   const message = elements.messageInput.value.trim();
 
   if (!message || state.isTyping || state.limitReached) {
     return;
   }
 
+  if (state.registrationMode) {
+    clearInput();
+    updateSendButtonVisibility();
+    await sendToSAPRegister(message);
+    return;
+  }
+
   clearInput();
+  updateSendButtonVisibility();
   renderMessage(message, 'user');
   showTyping();
 
@@ -2187,6 +2373,7 @@ async function sendToLLM() {
     const response = await sendToAPI(message);
     hideTyping();
     renderMessage(response.reply, 'bot');
+    updateSendButtonVisibility();
 
     if (response.limitReached) {
       state.limitReached = true;
@@ -2195,6 +2382,7 @@ async function sendToLLM() {
   } catch (error) {
     hideTyping();
     renderMessage(`Error de conexion con el servidor. Asegurate de que el backend este corriendo en puerto 3000. Detalle: ${error.message}`, 'bot', false, true);
+    updateSendButtonVisibility();
   }
 
   scrollToBottom();
@@ -2254,6 +2442,8 @@ function formatMessage(text) {
 }
 
 function renderMessage(text, sender, isWelcome = false, isError = false) {
+  showChatMode();
+  
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('message', sender);
 
@@ -2283,18 +2473,14 @@ function renderMessage(text, sender, isWelcome = false, isError = false) {
 function showTyping() {
   state.isTyping = true;
   elements.typingIndicator.classList.remove('hidden');
-  elements.messageInput.disabled = true;
-  elements.sendButton.disabled = true;
+  updateSendButtonVisibility();
   scrollToBottom();
 }
 
 function hideTyping() {
   state.isTyping = false;
   elements.typingIndicator.classList.add('hidden');
-  if (!state.limitReached && (state.llmModeEnabled || state.registrationMode)) {
-    elements.messageInput.disabled = false;
-    elements.sendButton.disabled = false;
-  }
+  updateSendButtonVisibility();
 }
 
 function showLimitModal() {
@@ -2310,19 +2496,10 @@ function hideLimitModal() {
 function handleRestart() {
   state.sessionId = crypto.randomUUID();
   state.limitReached = false;
-  state.llmModeEnabled = false;
-  state.registrationMode = false;
-  state.currentMenu = 'main';
   console.log('New Session ID:', state.sessionId);
 
-  elements.messagesContainer.innerHTML = '';
+  resetToZeroState();
   hideLimitModal();
-  elements.quickActions.innerHTML = '';
-  renderMessage(welcomeMessage, 'bot', true);
-  renderQuickActions('main');
-  elements.messageInput.disabled = true;
-  elements.sendButton.disabled = true;
-  elements.messageInput.placeholder = 'Escribe tu mensaje...';
 }
 
 function handleAdvisor() {
