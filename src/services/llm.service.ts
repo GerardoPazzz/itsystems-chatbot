@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import { Message } from './memory.service';
 import { config } from '../config';
 
-const CATALOGO_FILE = resolve(process.cwd(), 'catalogo_cursos.json');
+const CATALOGO_FILE = resolve(process.cwd(), 'frontend', 'catalogo_cursos.json');
 
 interface Course {
   id: string;

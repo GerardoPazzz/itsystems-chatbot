@@ -17,7 +17,6 @@ app.get('/health', (_req: Request, res: Response) => {
 app.use('/api', chatRoutes);
 app.use('/api/sap', sapRoutes);
 
-app.use('/catalogo_cursos.json', express.static(path.join(__dirname, '..', 'catalogo_cursos.json')));
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 app.get('*', (_req: Request, res: Response) => {

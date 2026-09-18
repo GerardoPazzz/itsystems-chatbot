@@ -2,7 +2,7 @@ import { readFile } from 'fs/promises';
 import { resolve } from 'path';
 import { existsSync } from 'fs';
 
-const CATALOGO_PATH = resolve(process.cwd(), 'catalogo_cursos.json');
+const CATALOGO_PATH = resolve(process.cwd(), 'frontend', 'catalogo_cursos.json');
 const SESIONES_PATH = resolve(process.cwd(), 'sesiones.json');
 
 describe('RAG - Validacion del Catalogo de Cursos', () => {
