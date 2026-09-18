@@ -22,6 +22,11 @@
   
   --border-radius: 12px;
   --border-radius-sm: 8px;
+  
+  /* Variables para contraste mejorado móvil */
+  --message-bot-bg: rgba(15, 23, 42, 0.95);
+  --message-user-bg: #2563eb;
+  --message-border: rgba(255, 255, 255, 0.15);
 }
 
 /* ===== RESET & BASE ===== */
@@ -33,6 +38,7 @@
 
 html, body {
   height: 100%;
+  min-height: 100dvh;
 }
 
 body {
@@ -41,37 +47,33 @@ body {
   background: linear-gradient(180deg, #0c1420 0%, #080c14 100%);
   background-attachment: fixed;
   color: var(--text-primary);
-  height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ===== APP BODY: Centrado absoluto exacto ===== */
 .app-body {
-  height: 100vh;
+  min-height: 100dvh;
+  height: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ===== APP CONTAINER ===== */
 .app-container {
   width: 100%;
-  height: 100vh;
+  min-height: 100dvh;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-/* ===== CONTENEDOR CENTRAL: Chat ===== */
-.chat-content {
-  width: 100%;
-  max-width: 56rem;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 16px 24px;
 }
 
 /* ===== WELCOME SCREEN (Pantalla de bienvenida centrada) ===== */
@@ -82,7 +84,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-bottom: 120px;
+  padding-bottom: 100px;
   animation: fadeIn 0.5s ease-out;
 }
 
@@ -99,7 +101,7 @@ body {
 }
 
 .welcome-title {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 5vw, 2rem);
   font-weight: 500;
   color: var(--text-primary);
   letter-spacing: 0.05em;
@@ -119,7 +121,7 @@ body {
 }
 
 .welcome-subtitle {
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 3vw, 1rem);
   font-weight: 300;
   color: var(--text-muted);
   margin-bottom: 32px;
@@ -141,17 +143,33 @@ body {
   display: none !important;
 }
 
+/* ===== CONTENEDOR CENTRAL: Chat ===== */
+.chat-content {
+  width: 100%;
+  max-width: 56rem;
+  min-height: 100dvh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* ===== NAVIGATION PILLS ===== */
 .nav-pills {
   display: flex;
   justify-content: center;
   gap: 8px;
-  padding: 0 0 12px 0;
+  padding: 0 0 8px 0;
   flex-wrap: wrap;
 }
 
 .nav-pill {
-  padding: 10px 24px;
+  padding: 10px 16px;
+  min-height: 44px;
+  flex: 1 1 auto;
+  text-align: center;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 24px;
@@ -163,6 +181,7 @@ body {
   transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav-pill::before {
@@ -249,7 +268,7 @@ body {
 
 .message.user {
   align-self: flex-end;
-  background: var(--accent);
+  background: var(--message-user-bg);
   color: var(--text-primary);
   border-bottom-right-radius: 6px;
   max-width: 85%;
@@ -257,8 +276,8 @@ body {
 
 .message.bot {
   align-self: flex-start;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: var(--message-bot-bg);
+  border: 1px solid var(--message-border);
   color: var(--text-primary);
   border-bottom-left-radius: 6px;
   max-width: 85%;
@@ -363,6 +382,7 @@ body {
 .input-area {
   width: 100%;
   flex-shrink: 0;
+  padding-top: 8px;
 }
 
 .input-container {
@@ -385,16 +405,17 @@ body {
   flex: 1;
   background: transparent;
   border: none;
-  font-size: 1rem;
+  font-size: 16px;
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   color: var(--text-primary);
   outline: none;
   padding: 10px 12px;
-  min-height: 44px;
+  min-height: 48px;
   max-height: 120px;
   resize: none;
   line-height: 1.5;
+  -webkit-appearance: none;
 }
 
 .message-input::placeholder {
@@ -409,8 +430,10 @@ body {
 
 /* ===== SEND BUTTON ===== */
 .send-button {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   background: var(--accent);
   color: var(--text-primary);
   border: none;
@@ -438,7 +461,21 @@ body {
 
 /* ===== VOICE BUTTON ===== */
 .voice-button {
-  width: 36px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
   height: 36px;
   background: transparent;
   color: var(--text-secondary);
@@ -639,14 +676,16 @@ body {
 }
 
 .modal-btn {
-  padding: 12px 24px;
+  padding: 14px 24px;
+  min-height: 48px;
   border-radius: var(--border-radius-sm);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 400;
   font-family: 'Inter', sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .modal-btn.primary {
@@ -748,12 +787,14 @@ body {
   background: var(--bg-input);
   border: 1px solid var(--border-subtle);
   border-radius: var(--border-radius-sm);
-  font-size: 0.875rem;
+  font-size: 16px;
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   color: var(--text-primary);
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-height: 48px;
+  -webkit-appearance: none;
 }
 
 .form-input:focus,
@@ -804,30 +845,110 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  html, body {
+    height: 100%;
+    height: 100dvh;
+  }
+  
+  body {
+    height: 100dvh;
+  }
+  
   .chat-content {
     padding: 12px 16px;
+    min-height: 100dvh;
+    height: auto;
+    overflow-y: auto;
+  }
+  
+  .welcome-screen {
+    padding-bottom: 80px;
   }
   
   .nav-pills {
-    gap: 8px;
-    padding: 12px 0;
+    gap: 6px;
+    padding: 8px 0;
   }
   
   .nav-pill {
-    padding: 8px 16px;
-    font-size: 0.8125rem;
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    min-height: 44px;
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  
+  .input-container {
+    padding: 6px 10px;
+  }
+  
+  .message-input {
+    font-size: 16px;
+    padding: 8px 10px;
+    min-height: 48px;
+  }
+  
+  .send-button,
+  .voice-button {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
   }
   
   .form-row {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
+  }
+  
+  .form-input,
+  .form-select {
+    font-size: 16px;
+    min-height: 48px;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    margin: 16px;
   }
   
   .registration-modal-content {
-    padding: 24px 20px;
+    padding: 20px 16px;
+    margin: 8px;
   }
   
   .message {
     max-width: 90%;
+    padding: 12px 14px;
+  }
+  
+  .sub-menu {
+    padding: 12px;
+  }
+  
+  .sub-btn {
+    min-height: 44px;
+    padding: 10px 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav-pill {
+    padding: 8px 10px;
+    font-size: 0.8125rem;
+  }
+  
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+  
+  .welcome-badge {
+    font-size: 0.625rem;
+    padding: 3px 8px;
+  }
+  
+  .modal-btn {
+    padding: 12px 20px;
+    min-height: 48px;
   }
 }

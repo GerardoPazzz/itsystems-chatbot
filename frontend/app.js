@@ -1713,6 +1713,7 @@ const elements = {
   registrationForm: document.getElementById('registration-form'),
   btnCancelRegistration: document.getElementById('btn-cancel-registration'),
   welcomeScreen: document.getElementById('welcome-screen'),
+  welcomeNav: document.querySelector('.welcome-nav'),
   inputArea: document.querySelector('.input-area')
 };
 
@@ -1753,10 +1754,14 @@ function setupNavPills() {
       const action = pill.dataset.action;
       
       if (pill.classList.contains('active')) {
-        pill.classList.remove('active');
-        state.currentMenu = 'main';
-        elements.quickActions.classList.add('hidden');
-        elements.quickActions.innerHTML = '';
+        if (state.hasMessages) {
+          pill.classList.remove('active');
+          state.currentMenu = 'main';
+          elements.quickActions.classList.add('hidden');
+          elements.quickActions.innerHTML = '';
+        } else {
+          resetToZeroState();
+        }
         return;
       }
       
@@ -1768,7 +1773,8 @@ function setupNavPills() {
 }
 
 function handleNavPillClick(action) {
-  showChatMode();
+  elements.inputArea.classList.remove('hidden');
+  hideWelcomeNav();
   
   switch(action) {
     case 'cursos':
@@ -1790,14 +1796,29 @@ function handleNavPillClick(action) {
   }
 }
 
+function hideWelcome() {
+  if (elements.welcomeScreen && !elements.welcomeScreen.classList.contains('hidden')) {
+    elements.welcomeScreen.classList.add('hidden');
+  }
+}
+
+function hideWelcomeNav() {
+  if (elements.welcomeNav) {
+    elements.welcomeNav.style.display = 'none';
+  }
+}
+
+function showWelcomeNav() {
+  if (elements.welcomeNav) {
+    elements.welcomeNav.style.display = '';
+  }
+}
+
 function showChatMode() {
   if (state.hasMessages) return;
   
   state.hasMessages = true;
-  
-  if (elements.welcomeScreen) {
-    elements.welcomeScreen.classList.add('hidden');
-  }
+  hideWelcome();
   
   elements.messagesContainer.classList.remove('hidden');
   elements.inputArea.classList.remove('hidden');
@@ -1820,6 +1841,7 @@ function resetToZeroState() {
   if (elements.welcomeScreen) {
     elements.welcomeScreen.classList.remove('hidden');
   }
+  showWelcomeNav();
   elements.messagesContainer.classList.add('hidden');
   elements.inputArea.classList.add('hidden');
 }
@@ -1938,9 +1960,14 @@ function renderQuickActions(menuKey) {
   backBtn.addEventListener('click', () => {
     const pills = document.querySelectorAll('.nav-pill');
     pills.forEach(p => p.classList.remove('active'));
-    state.currentMenu = 'main';
     elements.quickActions.classList.add('hidden');
     elements.quickActions.innerHTML = '';
+    
+    if (state.hasMessages) {
+      state.currentMenu = 'main';
+    } else {
+      resetToZeroState();
+    }
   });
   subMenu.appendChild(backBtn);
 
@@ -1951,6 +1978,7 @@ function showCourseDetail(courseId) {
   const course = COURSES[courseId];
   if (!course) return;
 
+  hideWelcome();
   renderMessage(course.name, 'user');
 
   const precioTexto = course.precio !== null ? `S/. ${course.precio.toLocaleString()}` : 'Consultar precio';
@@ -1995,6 +2023,7 @@ function showProfileDetail(profileId) {
   const profile = PROFILES[profileId];
   if (!profile) return;
 
+  hideWelcome();
   renderMessage(profile.name, 'user');
 
   const rutaNumerada = profile.rutaSugerida.map((id, i) => `${i + 1}. ${COURSES[id]?.name || id}`).join('\n');
@@ -2214,6 +2243,7 @@ function handleFormSubmit(event) {
   });
 
   closeRegistrationModal();
+  hideWelcome();
 
   renderMessage('He completado el formulario de registro en SAP', 'user');
 
