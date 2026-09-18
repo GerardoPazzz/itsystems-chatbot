@@ -17,13 +17,14 @@ app.get('/health', (_req: Request, res: Response) => {
 app.use('/api', chatRoutes);
 app.use('/api/sap', sapRoutes);
 
+app.use('/catalogo_cursos.json', express.static(path.join(__dirname, '..', 'catalogo_cursos.json')));
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 app.get('*', (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
 });
 
-const port = parseInt(process.env.PORT || '8080', 10);
+const port = parseInt(process.env.PORT || '3000', 10);
 app.listen(port, '0.0.0.0', () => {
   console.log(`ITSYSTEMS Academic Advisor running on port ${port}`);
   console.log(`Gemini model: ${config.gemini.model}`);

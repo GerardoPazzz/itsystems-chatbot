@@ -4,6 +4,7 @@
       "id": "sbo-b1-desarrollo-sdk-virtual",
       "nombre": "B1 DESARROLLO (SDK)",
       "descripcion": "Curso práctico de desarrollo de add-ons personalizados para SAP Business One usando el SDK. Aprende a crear soluciones que se integren con B1 mediante servicios web y APIs REST. Orientado a programadores con experiencia en cualquier lenguaje de programación que quieran personalizar SAP B1.",
+      "descripcion_front": "Curso práctico de desarrollo de add-ons personalizados para SAP Business One usando el SDK. Aprende a crear soluciones que se integren con B1 mediante servicios web y APIs REST.",
       "segmento": "SBO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -30,6 +31,7 @@
       "id": "sbo-b1-implementacion-virtual",
       "nombre": "B1 IMPLEMENTACION",
       "descripcion": "Curso completo de metodología para implementar SAP Business One en empresas. Aprende el proceso desde el análisis de requerimientos y configuración inicial hasta la migración de datos y puesta en marcha. Ideal para consultores funcionales que lideran implementaciones de B1.",
+      "descripcion_front": "Curso completo de metodología para implementar SAP Business One en empresas. Aprende el proceso desde el análisis de requerimientos y configuración inicial hasta la migración de datos y puesta en marcha.",
       "segmento": "SBO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -56,6 +58,7 @@
       "id": "sbo-b1-contable-virtual",
       "nombre": "B1 CONTABLE",
       "descripcion": "Curso especializado en configurar y operar el módulo contable de SAP Business One. Aprende a manejar el plan de cuentas, crear asientos contables, generar reportes financieros y ejecutar procesos de cierre mensual y anual. Dirigido a contadores y profesionales financieros.",
+      "descripcion_front": "Curso especializado en configurar y operar el módulo contable de SAP Business One. Aprende a manejar el plan de cuentas, crear asientos contables, generar reportes financieros y ejecutar procesos de cierre.",
       "segmento": "SBO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -82,6 +85,7 @@
       "id": "sbo-b1-administrativo-virtual",
       "nombre": "B1 ADMINISTRATIVO",
       "descripcion": "Curso operativo para aprender a usar SAP Business One en el día a día. Aprende a crear y administrar usuarios, manejar documentos comerciales, realizar consultas operativas y generar reportes. Práctico y directo para usuarios que necesitan operar B1 cotidianamente.",
+      "descripcion_front": "Curso operativo para aprender a usar SAP Business One en el día a día. Aprende a crear y administrar usuarios, manejar documentos comerciales, realizar consultas operativas y generar reportes.",
       "segmento": "SBO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -109,6 +113,7 @@
       "id": "sbo-b1-administrativo-online",
       "nombre": "B1 ADMINISTRATIVO",
       "descripcion": "Curso en vivo con instructor para aprender operaciones diarias en SAP Business One. Sesiones interactivas donde aprendes a crear usuarios, manejar documentos, hacer consultas y generar reportes. Ideal para personal administrativo que necesita usar B1 en su trabajo.",
+      "descripcion_front": "Curso en vivo con instructor para aprender operaciones diarias en SAP Business One. Sesiones interactivas donde aprendes a crear usuarios, manejar documentos, hacer consultas y generar reportes.",
       "segmento": "SBO",
       "modalidad": "ONLINE",
       "precio": {
@@ -136,6 +141,7 @@
       "id": "s4hana-mm-virtual",
       "nombre": "MM (Gestión de Materiales)",
       "descripcion": "Curso especializado en el módulo de Gestión de Materiales de SAP S/4HANA. Aprende sobre estructuras organizativas, datos maestros de materiales, procesos de compras, gestión de stock, recepción de mercancías y configuración de estrategias de aprovisionamiento.",
+      "descripcion_front": "Curso especializado en el módulo de Gestión de Materiales de SAP S/4HANA. Aprende sobre estructuras organizativas, datos maestros de materiales, procesos de compras, gestión de stock, recepción de mercancías y configuración de estrategias de aprovisionamiento.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -163,6 +169,7 @@
       "id": "s4hana-fi-virtual",
       "nombre": "FI (Contabilidad y Finanzas)",
       "descripcion": "Curso especializado en el módulo de Contabilidad Financiera de SAP S/4HANA. Aprende sobre libro mayor, cuentas por cobrar, cuentas por pagar, gestión de activos fijos, bancos y procesos de cierre contable.",
+      "descripcion_front": "Curso especializado en el módulo de Contabilidad Financiera de SAP S/4HANA. Aprende sobre libro mayor, cuentas por cobrar, cuentas por pagar, gestión de activos fijos, bancos y procesos de cierre contable.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -190,6 +197,7 @@
       "id": "s4hana-pp-virtual",
       "nombre": "PP (Planificación de Producción)",
       "descripcion": "Curso especializado en el módulo de Planificación de Producción de SAP S/4HANA. Aprende sobre estructuras organizativas de manufacturing, datos maestros de producción, planificación MRP, órdenes de fabricación y tipos de fabricación.",
+      "descripcion_front": "Curso especializado en el módulo de Planificación de Producción de SAP S/4HANA. Aprende sobre estructuras organizativas de manufacturing, datos maestros de producción, planificación MRP, órdenes de fabricación y tipos de fabricación.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -217,6 +225,7 @@
       "id": "s4hana-pm-virtual",
       "nombre": "PM",
       "descripcion": "Curso de gestión de mantenimiento de equipos e instalaciones industriales en SAP S/4HANA. Aprende a crear órdenes de trabajo, programar mantenimiento preventivo y correctivo, planificar recursos y analizar fallas. Para profesionales de mantenimiento industrial y gestión de plantas.",
+      "descripcion_front": "Curso de gestión de mantenimiento de equipos e instalaciones industriales en SAP S/4HANA. Aprende a crear órdenes de trabajo, programar mantenimiento preventivo y correctivo, planificar recursos y analizar fallas.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -244,6 +253,7 @@
       "id": "s4hana-sd-virtual",
       "nombre": "SD",
       "descripcion": "Curso completo del ciclo de ventas en SAP S/4HANA. Aprende a crear cotizaciones, procesar pedidos, gestionar entregas, ejecutar facturación y configurar determinación de precios. Para profesionales de ventas, distribución y servicio al cliente.",
+      "descripcion_front": "Curso completo del ciclo de ventas en SAP S/4HANA. Aprende a crear cotizaciones, procesar pedidos, gestionar entregas, ejecutar facturación y configurar determinación de precios.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -271,7 +281,8 @@
     {
       "id": "s4hana-tm-virtual",
       "nombre": "TM",
-      "descripcion": "Curso de gestión de transporte y logística en SAP S/4HANA. Aprende a planificar rutas de distribución, optimizar carga de flotas, rastrear envíos y gestionar documentos de transporte. Para profesionales de logística y operaciones de distribución.",
+      "descripcion": "Curso de gestión de transporte y logística en SAP S/4HANA. Aprende a planificar rutas de distribución, optimizar carga de fletas, rastrear envíos y gestionar documentos de transporte. Para profesionales de logística y operaciones de distribución.",
+      "descripcion_front": "Curso de gestión de transporte y logística en SAP S/4HANA. Aprende a planificar rutas de distribución, optimizar carga de flotas, rastrear envíos y gestionar documentos de transporte.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -292,6 +303,7 @@
       "id": "s4hana-ewm-virtual",
       "nombre": "EWM (Extended Warehouse Management)",
       "descripcion": "Curso de gestión avanzada de almacenes con SAP S/4HANA Extended Warehouse Management. Aprende sobre estructuras organizativas, procesos de entrada y salida de mercancía, movimientos internos, inventarios y monitoreo de actividades.",
+      "descripcion_front": "Curso de gestión avanzada de almacenes con SAP S/4HANA Extended Warehouse Management. Aprende sobre estructuras organizativas, procesos de entrada y salida de mercancía, movimientos internos, inventarios y monitoreo de actividades.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -320,6 +332,7 @@
       "id": "s4hana-ps-virtual",
       "nombre": "PS (Gestión de Proyectos)",
       "descripcion": "Curso de gestión de proyectos en SAP S/4HANA. Aprende sobre estructuras organizativas de proyectos, datos maestros, planificación y presupuesto, ejecución y cierre de proyectos, e informes de seguimiento.",
+      "descripcion_front": "Curso de gestión de proyectos en SAP S/4HANA. Aprende sobre estructuras organizativas de proyectos, datos maestros, planificación y presupuesto, ejecución y cierre de proyectos, e informes de seguimiento.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -348,6 +361,7 @@
       "id": "s4hana-qm-virtual",
       "nombre": "QM (Gestión de Calidad)",
       "descripcion": "Curso de gestión de calidad en SAP S/4HANA. Aprende sobre planificación de calidad, inspección de materiales, liberación de lotes, certificados de calidad y gestión de avisos de calidad.",
+      "descripcion_front": "Curso de gestión de calidad en SAP S/4HANA. Aprende sobre planificación de calidad, inspección de materiales, liberación de lotes, certificados de calidad y gestión de avisos de calidad.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -380,6 +394,7 @@
       "id": "s4hana-co-virtual",
       "nombre": "CO (Controlling)",
       "descripcion": "Curso de Controlling en SAP S/4HANA. Aprende sobre análisis de márgenes, gestión de centros de costo, distribución de costos y controlling de productos.",
+      "descripcion_front": "Curso de Controlling en SAP S/4HANA. Aprende sobre análisis de márgenes, gestión de centros de costo, distribución de costos y controlling de productos.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -400,6 +415,7 @@
       "id": "s4hana-mm-online",
       "nombre": "MM (Gestión de Materiales)",
       "descripcion": "Curso especializado en el módulo de Gestión de Materiales de SAP S/4HANA con instructor en vivo. Aprende sobre estructuras organizativas, datos maestros de materiales, procesos de compras y gestión de stock.",
+      "descripcion_front": "Curso especializado en el módulo de Gestión de Materiales de SAP S/4HANA con instructor en vivo. Aprende sobre estructuras organizativas, datos maestros de materiales, procesos de compras y gestión de stock.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
@@ -427,6 +443,7 @@
       "id": "s4hana-fi-online",
       "nombre": "FI (Contabilidad y Finanzas)",
       "descripcion": "Curso especializado en el módulo de Contabilidad Financiera de SAP S/4HANA con instructor en vivo. Aprende sobre libro mayor, cuentas por cobrar, cuentas por pagar, gestión de activos fijos y cierre contable.",
+      "descripcion_front": "Curso especializado en el módulo de Contabilidad Financiera de SAP S/4HANA con instructor en vivo. Aprende sobre libro mayor, cuentas por cobrar, cuentas por pagar, gestión de activos fijos y cierre contable.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
@@ -454,6 +471,7 @@
       "id": "s4hana-pp-online",
       "nombre": "PP (Planificación de Producción)",
       "descripcion": "Curso especializado en el módulo de Planificación de Producción de SAP S/4HANA con instructor en vivo. Aprende sobre estructuras organizativas de manufacturing, datos maestros de producción, planificación MRP y órdenes de fabricación.",
+      "descripcion_front": "Curso especializado en el módulo de Planificación de Producción de SAP S/4HANA con instructor en vivo. Aprende sobre estructuras organizativas de manufacturing, datos maestros de producción, planificación MRP y órdenes de fabricación.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
@@ -481,6 +499,7 @@
       "id": "s4hana-pm-online",
       "nombre": "PM",
       "descripcion": "Curso en línea con instructor sobre gestión de mantenimiento industrial en S/4HANA. Sesiones en tiempo real donde aprendes órdenes de trabajo, mantenimiento preventivo, confiabilidad de activos y planificación de recursos.",
+      "descripcion_front": "Curso en línea con instructor sobre gestión de mantenimiento industrial en S/4HANA. Sesiones en tiempo real donde aprendes órdenes de trabajo, mantenimiento preventivo, confiabilidad de activos y planificación de recursos.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
@@ -508,6 +527,7 @@
       "id": "s4hana-sd-online",
       "nombre": "SD",
       "descripcion": "Curso en vivo del proceso comercial completo en SAP S/4HANA. Aprende cotizaciones, pedidos, entregas, facturación y determinación de precios con sesiones interactivas.",
+      "descripcion_front": "Curso en vivo del proceso comercial completo en SAP S/4HANA. Aprende cotizaciones, pedidos, entregas, facturación y determinación de precios con sesiones interactivas.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
@@ -536,6 +556,7 @@
       "id": "s4hana-tm-online",
       "nombre": "TM",
       "descripcion": "Curso sincronico de gestión de transporte en SAP S/4HANA. Clases en vivo sobre planificación de rutas, optimización de flotas, costos logísticos y seguimiento de despachos.",
+      "descripcion_front": "Curso sincronico de gestión de transporte en SAP S/4HANA. Clases en vivo sobre planificación de rutas, optimización de flotas, costos logísticos y seguimiento de despachos.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
@@ -556,6 +577,7 @@
       "id": "s4hana-ewm-online",
       "nombre": "EWM (Extended Warehouse Management)",
       "descripcion": "Curso de gestión avanzada de almacenes con SAP S/4HANA Extended Warehouse Management con instructor en vivo. Aprende procesos de entrada, salida, movimientos internos e inventarios.",
+      "descripcion_front": "Curso de gestión avanzada de almacenes con SAP S/4HANA Extended Warehouse Management con instructor en vivo. Aprende procesos de entrada, salida, movimientos internos e inventarios.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
@@ -584,6 +606,7 @@
       "id": "s4hana-ps-online",
       "nombre": "PS (Gestión de Proyectos)",
       "descripcion": "Curso de gestión de proyectos en SAP S/4HANA con instructor en vivo. Aprende sobre estructuras organizativas de proyectos, datos maestros, planificación y presupuesto, ejecución y cierre.",
+      "descripcion_front": "Curso de gestión de proyectos en SAP S/4HANA con instructor en vivo. Aprende sobre estructuras organizativas de proyectos, datos maestros, planificación y presupuesto, ejecución y cierre.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
@@ -612,11 +635,12 @@
       "id": "s4hana-co-online",
       "nombre": "CO (Controlling)",
       "descripcion": "Curso de Controlling en SAP S/4HANA con instructor en vivo. Aprende sobre análisis de márgenes, gestión de centros de costo, distribución de costos y controlling de productos.",
+      "descripcion_front": "Curso de Controlling en SAP S/4HANA con instructor en vivo. Aprende sobre análisis de márgenes, gestión de centros de costo, distribución de costos y controlling de productos.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
-        "contado": "S.P.",
-        "cuotas": "S.P."
+        "contado": "Sin precio establecido",
+        "cuotas": "Sin precio establecido"
       },
       "recursos": {
         "acceso_aula_virtual": "sin acceso",
@@ -632,6 +656,7 @@
       "id": "s4hana-qm-online",
       "nombre": "QM (Gestión de Calidad)",
       "descripcion": "Curso de gestión de calidad en SAP S/4HANA con instructor en vivo. Aprende sobre planificación de calidad, inspección de materiales, liberación de lotes y certificados de calidad.",
+      "descripcion_front": "Curso de gestión de calidad en SAP S/4HANA con instructor en vivo. Aprende sobre planificación de calidad, inspección de materiales, liberación de lotes y certificados de calidad.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
@@ -664,6 +689,7 @@
       "id": "s4hana-mm-configuracion-online",
       "nombre": "MM CONFIGURACIÓN",
       "descripcion": "Curso avanzado de configuración del módulo de Gestión de Materiales en SAP S/4HANA. Aprende a configurar estrategias de compras, determinación automática de precios de materiales, optimización del aprovisionamiento y procesos de evaluación de proveedores.",
+      "descripcion_front": "Curso avanzado de configuración del módulo de Gestión de Materiales en SAP S/4HANA. Aprende a configurar estrategias de compras, determinación automática de precios de materiales, optimización del aprovisionamiento y procesos de evaluación de proveedores.",
       "segmento": "S4 HANA",
       "modalidad": "ONLINE",
       "precio": {
@@ -692,6 +718,7 @@
       "id": "ecc-hcm-virtual",
       "nombre": "HCM",
       "descripcion": "Curso integral de gestión de capital humano en SAP ECC. Aprende administración de personal, procesamiento de nóminas y beneficios, desarrollo organizacional y gestión del tiempo.",
+      "descripcion_front": "Curso integral de gestión de capital humano en SAP ECC. Aprende administración de personal, procesamiento de nóminas y beneficios, desarrollo organizacional y gestión del tiempo.",
       "segmento": "ECC",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -719,6 +746,7 @@
       "id": "ecc-mm-virtual",
       "nombre": "MM (Gestión de Materiales)",
       "descripcion": "Curso del módulo de Gestión de Materiales en SAP ECC. Aprende sobre estructuras organizativas, datos maestros, procedimientos de compras, gestión de stock y recepción de facturas.",
+      "descripcion_front": "Curso del módulo de Gestión de Materiales en SAP ECC. Aprende sobre estructuras organizativas, datos maestros, procedimientos de compras, gestión de stock y recepción de facturas.",
       "segmento": "ECC",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -745,6 +773,7 @@
       "id": "ecc-fi-virtual",
       "nombre": "FI (Contabilidad y Finanzas)",
       "descripcion": "Curso del módulo de Contabilidad Financiera en SAP ECC. Aprende sobre libro mayor, cuentas por cobrar, cuentas por pagar, gestión de activos fijos y bancos.",
+      "descripcion_front": "Curso del módulo de Contabilidad Financiera en SAP ECC. Aprende sobre libro mayor, cuentas por cobrar, cuentas por pagar, gestión de activos fijos y bancos.",
       "segmento": "ECC",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -772,6 +801,7 @@
       "id": "ecc-pp-virtual",
       "nombre": "PP (Planificación de Producción)",
       "descripcion": "Curso del módulo de Planificación de Producción en SAP ECC. Aprende sobre estructuras organizativas, datos maestros de producción, planificación MRP y órdenes de fabricación.",
+      "descripcion_front": "Curso del módulo de Planificación de Producción en SAP ECC. Aprende sobre estructuras organizativas, datos maestros de producción, planificación MRP y órdenes de fabricación.",
       "segmento": "ECC",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -799,6 +829,7 @@
       "id": "ecc-qm-virtual",
       "nombre": "QM (Gestión de Calidad)",
       "descripcion": "Curso del módulo de Gestión de Calidad en SAP ECC. Aprende sobre planificación de calidad, inspección de materiales, liberación de lotes y certificados de calidad.",
+      "descripcion_front": "Curso del módulo de Gestión de Calidad en SAP ECC. Aprende sobre planificación de calidad, inspección de materiales, liberación de lotes y certificados de calidad.",
       "segmento": "ECC",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -831,6 +862,7 @@
       "id": "ecc-wm-virtual",
       "nombre": "WM (Gestión de Almacén)",
       "descripcion": "Curso del módulo de Gestión de Almacén en SAP ECC. Aprende sobre estructuras organizativas, datos maestros, procesos de entrada y salida de mercancía, movimientos internos e inventarios.",
+      "descripcion_front": "Curso del módulo de Gestión de Almacén en SAP ECC. Aprende sobre estructuras organizativas, datos maestros, procesos de entrada y salida de mercancía, movimientos internos e inventarios.",
       "segmento": "ECC",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -862,6 +894,7 @@
       "id": "ecc-pm-virtual",
       "nombre": "PM (Gestión de Mantenimiento)",
       "descripcion": "Curso del módulo de Gestión de Mantenimiento de Planta en SAP ECC. Aprende sobre datos maestros de mantenimiento, mantenimiento correctivo, preventivo y planificación de recursos.",
+      "descripcion_front": "Curso del módulo de Gestión de Mantenimiento de Planta en SAP ECC. Aprende sobre datos maestros de mantenimiento, mantenimiento correctivo, preventivo y planificación de recursos.",
       "segmento": "ECC",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -889,6 +922,7 @@
       "id": "ecc-sd-virtual",
       "nombre": "SD (Ventas y Distribución)",
       "descripcion": "Curso del módulo de Ventas y Distribución en SAP ECC. Aprende sobre estructuras comerciales, datos maestros de clientes y materiales, circuitos comerciales, entregas y facturación.",
+      "descripcion_front": "Curso del módulo de Ventas y Distribución en SAP ECC. Aprende sobre estructuras comerciales, datos maestros de clientes y materiales, circuitos comerciales, entregas y facturación.",
       "segmento": "ECC",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -917,6 +951,7 @@
       "id": "ecc-co-virtual",
       "nombre": "CO (Controlling)",
       "descripcion": "Curso del módulo de Controlling en SAP ECC. Aprende sobre análisis de márgenes, gestión de centros de costo, distribución de costos y controlling de productos.",
+      "descripcion_front": "Curso del módulo de Controlling en SAP ECC. Aprende sobre análisis de márgenes, gestión de centros de costo, distribución de costos y controlling de productos.",
       "segmento": "ECC",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -937,6 +972,7 @@
       "id": "hana-abap-online",
       "nombre": "ABAP",
       "descripcion": "Curso de programación ABAP con instructor en vivo para SAP S/4HANA. Aprende a desarrollar reportes clásicos e interactivos, crear módulos de función, implementar enhancements y user-exits.",
+      "descripcion_front": "Curso de programación ABAP con instructor en vivo para SAP S/4HANA. Aprende a desarrollar reportes clásicos e interactivos, crear módulos de función, implementar enhancements y user-exits.",
       "segmento": "HANA TECNICO",
       "modalidad": "ONLINE",
       "precio": {
@@ -964,6 +1000,7 @@
       "id": "hana-sql-online",
       "nombre": "SQL",
       "descripcion": "Curso especializado en consultas SQL para bases de datos SAP HANA con clases en vivo. Aprende a crear vistas, procedimientos almacenados, funciones y optimizar el rendimiento de consultas.",
+      "descripcion_front": "Curso especializado en consultas SQL para bases de datos SAP HANA con clases en vivo. Aprende a crear vistas, procedimientos almacenados, funciones y optimizar el rendimiento de consultas.",
       "segmento": "HANA TECNICO",
       "modalidad": "ONLINE",
       "precio": {
@@ -989,11 +1026,12 @@
       "id": "hana-developer-btp-online",
       "nombre": "DEVELOPER BTP",
       "descripcion": "Curso de desarrollo en SAP Business Technology Platform con instructor en vivo. Aprende a crear aplicaciones cloud-native, configurar servicios de integración, implementar autenticación y desplegar soluciones en BTP usando Cloud Foundry.",
+      "descripcion_front": "Curso de desarrollo en SAP Business Technology Platform con instructor en vivo. Aprende a crear aplicaciones cloud-native, configurar servicios de integración, implementar autenticación y desplegar soluciones en BTP usando Cloud Foundry.",
       "segmento": "HANA TECNICO",
       "modalidad": "ONLINE",
       "precio": {
-        "contado": "S.P.",
-        "cuotas": "S.P."
+        "contado": "Sin precio establecido",
+        "cuotas": "Sin precio establecido"
       },
       "recursos": {
         "acceso_aula_virtual": "sin acceso",
@@ -1015,11 +1053,12 @@
       "id": "hana-basis-online",
       "nombre": "BASIS",
       "descripcion": "Curso de administración del sistema SAP con sesiones en vivo. Aprende instalación, configuración, gestión de usuarios y autorizaciones, administración de paisajes y monitoreo del sistema.",
+      "descripcion_front": "Curso de administración del sistema SAP con sesiones en vivo. Aprende instalación, configuración, gestión de usuarios y autorizaciones, administración de paisajes y monitoreo del sistema.",
       "segmento": "HANA TECNICO",
       "modalidad": "ONLINE",
       "precio": {
-        "contado": "S.P.",
-        "cuotas": "S.P."
+        "contado": "Sin precio establecido",
+        "cuotas": "Sin precio establecido"
       },
       "recursos": {
         "acceso_aula_virtual": "sin acceso",
@@ -1035,6 +1074,7 @@
       "id": "hana-abap-rap-online",
       "nombre": "ABAP RAP",
       "descripcion": "Curso moderno de RESTful Application Programming en ABAP para S/4HANA con instructor. Aprende desarrollo de servicios OData v4, creación de CDS Views y definición de comportamientos con el modelo RAP.",
+      "descripcion_front": "Curso moderno de RESTful Application Programming en ABAP para S/4HANA con instructor. Aprende desarrollo de servicios OData v4, creación de CDS Views y definición de comportamientos con el modelo RAP.",
       "segmento": "HANA TECNICO",
       "modalidad": "ONLINE",
       "precio": {
@@ -1063,6 +1103,7 @@
       "id": "hana-hana-bd-online",
       "nombre": "HANA BD",
       "descripcion": "Curso de administración avanzada de bases de datos SAP HANA en modalidad online. Aprende backup, recovery, seguridad, replication y alta disponibilidad.",
+      "descripcion_front": "Curso de administración avanzada de bases de datos SAP HANA en modalidad online. Aprende backup, recovery, seguridad, replication y alta disponibilidad.",
       "segmento": "HANA TECNICO",
       "modalidad": "ONLINE",
       "precio": {
@@ -1089,6 +1130,7 @@
       "id": "hana-fiori-online",
       "nombre": "FIORI",
       "descripcion": "Curso de desarrollo SAPUI5 y Fiori Elements con clases en vivo. Aprende a crear aplicaciones web responsivas, diseñar interfaces modernas y consumir servicios OData.",
+      "descripcion_front": "Curso de desarrollo SAPUI5 y Fiori Elements con clases en vivo. Aprende a crear aplicaciones web responsivas, diseñar interfaces modernas y consumir servicios OData.",
       "segmento": "HANA TECNICO",
       "modalidad": "ONLINE",
       "precio": {
@@ -1115,6 +1157,7 @@
       "id": "hana-basis-online-2",
       "nombre": "BASIS",
       "descripcion": "Curso avanzado de administración Basis con enfoque en transportes entre sistemas y gestión de landscapes. Aprende a resolver problemas complejos, administrar múltiples entornos y optimizar el rendimiento del sistema SAP.",
+      "descripcion_front": "Curso avanzado de administración Basis con enfoque en transportes entre sistemas y gestión de landscapes. Aprende a resolver problemas complejos, administrar múltiples entornos y optimizar el rendimiento del sistema SAP.",
       "segmento": "HANA TECNICO",
       "modalidad": "ONLINE",
       "precio": {
@@ -1135,6 +1178,7 @@
       "id": "hana-abap-virtual",
       "nombre": "ABAP",
       "descripcion": "Curso completo de programación ABAP con acceso por seis meses al sistema SAP para práctica continua. Aprende desarrollo de reportes, módulos de función, enhancements y programación OO.",
+      "descripcion_front": "Curso completo de programación ABAP con acceso por seis meses al sistema SAP para práctica continua. Aprende desarrollo de reportes, módulos de función, enhancements y programación OO.",
       "segmento": "HANA TECNICO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -1162,6 +1206,7 @@
       "id": "hana-hana-sql-virtual",
       "nombre": "HANA SQL",
       "descripcion": "Curso de consultas SQL específicas para SAP HANA con laboratorio práctico incluido. Aprende consultas advanced, creación de vistas optimizadas, procedimientos almacenados y técnicas de optimización.",
+      "descripcion_front": "Curso de consultas SQL específicas para SAP HANA con laboratorio práctico incluido. Aprende consultas advanced, creación de vistas optimizadas, procedimientos almacenados y técnicas de optimización.",
       "segmento": "HANA TECNICO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -1186,6 +1231,7 @@
       "id": "hana-btp-virtual",
       "nombre": "BTP",
       "descripcion": "Curso integral de SAP Business Technology Platform con acceso al entorno. Aprende arquitectura cloud-native, servicios de integración, autenticación, deployment en Cloud Foundry y desarrollo de aplicaciones serverless.",
+      "descripcion_front": "Curso integral de SAP Business Technology Platform con acceso al entorno. Aprende arquitectura cloud-native, servicios de integración, autenticación, deployment en Cloud Foundry y desarrollo de aplicaciones serverless.",
       "segmento": "HANA TECNICO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -1212,6 +1258,7 @@
       "id": "hana-abap-rap-virtual",
       "nombre": "ABAP RAP",
       "descripcion": "Curso del modelo de programación RAP en ABAP con acceso al sistema para prácticas. Aprende desarrollo OData v4, CDS Views, Behavior Definition y las nuevas técnicas de desarrollo en S/4HANA.",
+      "descripcion_front": "Curso del modelo de programación RAP en ABAP con acceso al sistema para prácticas. Aprende desarrollo OData v4, CDS Views, Behavior Definition y las nuevas técnicas de desarrollo en S/4HANA.",
       "segmento": "HANA TECNICO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -1240,6 +1287,7 @@
       "id": "hana-hana-bd-adm-virtual",
       "nombre": "HANA BD ADM",
       "descripcion": "Curso de administración de bases de datos SAP HANA con laboratorio práctico. Aprende backup, recovery, seguridad, replication, alta disponibilidad y monitoreo.",
+      "descripcion_front": "Curso de administración de bases de datos SAP HANA con laboratorio práctico. Aprende backup, recovery, seguridad, replication, alta disponibilidad y monitoreo.",
       "segmento": "HANA TECNICO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -1266,6 +1314,7 @@
       "id": "hana-dev-fiori-s4-virtual",
       "nombre": "DEV. FIORI S4",
       "descripcion": "Curso de desarrollo Fiori específico para S/4HANA con acceso al sistema. Aprende SAPUI5 advanced, servicios OData, Floorplan Manager y diseño de aplicaciones Fiori.",
+      "descripcion_front": "Curso de desarrollo Fiori específico para S/4HANA con acceso al sistema. Aprende SAPUI5 advanced, servicios OData, Floorplan Manager y diseño de aplicaciones Fiori.",
       "segmento": "HANA TECNICO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -1292,6 +1341,7 @@
       "id": "hana-basis-virtual",
       "nombre": "BASIS",
       "descripcion": "Curso de administración Basis con acceso completo al sistema para prácticas. Aprende instalación, configuración, gestión de usuarios, Transportes, Solution Manager y monitoreo.",
+      "descripcion_front": "Curso de administración Basis con acceso completo al sistema para prácticas. Aprende instalación, configuración, gestión de usuarios, Transportes, Solution Manager y monitoreo.",
       "segmento": "HANA TECNICO",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -1312,6 +1362,7 @@
       "id": "productividad-ia-empresarial-online",
       "nombre": "IA EMPRESARIAL",
       "descripcion": "Curso de inteligencia artificial generativa aplicada al entorno empresarial con instructor en vivo. Aprende a crear prompts efectivos, automatizar tareas knowledge, usar herramientas de IA para análisis y integrarlas en procesos de negocio.",
+      "descripcion_front": "Curso de inteligencia artificial generativa aplicada al entorno empresarial con instructor en vivo. Aprende a crear prompts efectivos, automatizar tareas knowledge, usar herramientas de IA para análisis y integrarlas en procesos de negocio.",
       "segmento": "PRODUCTIVIDAD",
       "modalidad": "ONLINE",
       "precio": {
@@ -1339,6 +1390,7 @@
       "id": "productividad-contab-no-contadores-virtual",
       "nombre": "CONTAB. para no contadores",
       "descripcion": "Curso de fundamentos contables sin tecnicismos para profesionales de otras áreas. Aprende a interpretar estados financieros, analizar información contable y comunicarte efectivamente con el área financiera.",
+      "descripcion_front": "Curso de fundamentos contables sin tecnicismos para profesionales de otras áreas. Aprende a interpretar estados financieros, analizar información contable y comunicarte efectivamente con el área financiera.",
       "segmento": "PRODUCTIVIDAD",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -1368,6 +1420,7 @@
       "id": "productividad-excel-soluciones-virtual",
       "nombre": "EXCEL SOLUCIONES EMPRESARIALES",
       "descripcion": "Curso completo de Excel a nivel avanzado para análisis empresarial. Aprende fórmulas complejas, tablas dinámicas, macros VBA, Power Query y técnicas de visualización de datos.",
+      "descripcion_front": "Curso completo de Excel a nivel avanzado para análisis empresarial. Aprende fórmulas complejas, tablas dinámicas, macros VBA, Power Query y técnicas de visualización de datos.",
       "segmento": "PRODUCTIVIDAD",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -1399,6 +1452,7 @@
       "id": "productividad-taller-automatizacion-virtual",
       "nombre": "TALLER AUTOMATIZACION DE DATOS",
       "descripcion": "Curso práctico de automatización de tareas repetitivas usando macros y Power Query. Aprende a construir flujos de trabajo automatizados que reducen tiempo manual, minimizan errores y optimizan procesos de tratamiento de datos.",
+      "descripcion_front": "Curso práctico de automatización de tareas repetitivas usando macros y Power Query. Aprende a construir flujos de trabajo automatizados que reducen tiempo manual, minimizan errores y optimizan procesos de tratamiento de datos.",
       "segmento": "PRODUCTIVIDAD",
       "modalidad": "VIRTUAL",
       "precio": {
@@ -1421,6 +1475,7 @@
       "id": "consultor-sbo",
       "nombre": "Consultor SAP Business One",
       "descripcion": "Profesional especializado en la implementación, configuración y soporte del módulo SAP Business One. Maneja aspectos funcionales de los diferentes módulos de B1 incluyendo contabilidad, ventas, compras e inventario.",
+      "descripcion_front": "Profesional especializado en la implementación, configuración y soporte del módulo SAP Business One. Maneja aspectos funcionales de los diferentes módulos de B1 incluyendo contabilidad, ventas, compras e inventario.",
       "cursos_sugeridos": [
         "sbo-b1-implementacion-virtual",
         "sbo-b1-contable-virtual",
@@ -1442,6 +1497,7 @@
       "id": "consultor-sbo-online",
       "nombre": "Consultor SAP Business One Online",
       "descripcion": "Profesional especializado en operaciones diarias y administración de SAP Business One con clases en vivo. Maneja aspectos operativos del sistema incluyendo gestión de usuarios, documentos y consultas.",
+      "descripcion_front": "Profesional especializado en operaciones diarias y administración de SAP Business One con clases en vivo. Maneja aspectos operativos del sistema incluyendo gestión de usuarios, documentos y consultas.",
       "cursos_sugeridos": [
         "sbo-b1-administrativo-online"
       ],
@@ -1457,6 +1513,7 @@
       "id": "consultor-s4hana",
       "nombre": "Consultor SAP S/4HANA",
       "descripcion": "Profesional especializado en la configuración y optimización de procesos de negocio en SAP S/4HANA. Maneja módulos funcionales como MM, FI, PP, SD, PM, CO, QM, EWM, TM según el área de especialización.",
+      "descripcion_front": "Profesional especializado en la configuración y optimización de procesos de negocio en SAP S/4HANA. Maneja módulos funcionales como MM, FI, PP, SD, PM, CO, QM, EWM, TM según el área de especialización.",
       "cursos_sugeridos": [
         "s4hana-mm-virtual",
         "s4hana-fi-virtual",
@@ -1486,6 +1543,7 @@
       "id": "consultor-s4hana-online",
       "nombre": "Consultor SAP S/4HANA Online",
       "descripcion": "Profesional especializado en SAP S/4HANA con clases en vivo. Maneja módulos funcionales en modalidad sincronica con instructor, incluyendo MM, FI, PP, SD, PM, TM, QM y configuración avanzada.",
+      "descripcion_front": "Profesional especializado en SAP S/4HANA con clases en vivo. Maneja módulos funcionales en modalidad sincronica con instructor, incluyendo MM, FI, PP, SD, PM, TM, QM y configuración avanzada.",
       "cursos_sugeridos": [
         "s4hana-mm-online",
         "s4hana-fi-online",
@@ -1515,6 +1573,7 @@
       "id": "desarrollador-hana-online",
       "nombre": "Desarrollador SAP HANA Online",
       "descripcion": "Profesional especializado en desarrollo dentro del ecosistema SAP HANA con clases en vivo. Maneja programación ABAP, ABAP RAP, desarrollo Fiori, UI5 y servicios en BTP.",
+      "descripcion_front": "Profesional especializado en desarrollo dentro del ecosistema SAP HANA con clases en vivo. Maneja programación ABAP, ABAP RAP, desarrollo Fiori, UI5 y servicios en BTP.",
       "cursos_sugeridos": [
         "hana-abap-online",
         "hana-abap-rap-online",
@@ -1536,6 +1595,7 @@
       "id": "desarrollador-hana-virtual",
       "nombre": "Desarrollador SAP HANA Virtual",
       "descripcion": "Profesional especializado en desarrollo ABAP y Fiori con acceso al sistema para práctica continua. Maneja programación ABAP, ABAP RAP, desarrollo Fiori para S/4HANA y servicios en BTP.",
+      "descripcion_front": "Profesional especializado en desarrollo ABAP y Fiori con acceso al sistema para práctica continua. Maneja programación ABAP, ABAP RAP, desarrollo Fiori para S/4HANA y servicios en BTP.",
       "cursos_sugeridos": [
         "hana-abap-virtual",
         "hana-abap-rap-virtual",
@@ -1557,6 +1617,7 @@
       "id": "administrador-hana-online",
       "nombre": "Administrador SAP HANA Online",
       "descripcion": "Profesional especializado en administración y gestión de bases de datos SAP HANA con clases en vivo. Maneja SQL, administración Basis, bases de datos HANA y monitoreo del sistema.",
+      "descripcion_front": "Profesional especializado en administración y gestión de bases de datos SAP HANA con clases en vivo. Maneja SQL, administración Basis, bases de datos HANA y monitoreo del sistema.",
       "cursos_sugeridos": [
         "hana-sql-online",
         "hana-basis-online",
@@ -1578,6 +1639,7 @@
       "id": "administrador-hana-virtual",
       "nombre": "Administrador SAP HANA Virtual",
       "descripcion": "Profesional especializado en administración de sistemas SAP y bases de datos HANA con acceso al sistema para práctica. Maneja SQL, administración Basis, HANA Database Administration y BTP.",
+      "descripcion_front": "Profesional especializado en administración de sistemas SAP y bases de datos HANA con acceso al sistema para práctica. Maneja SQL, administración Basis, HANA Database Administration y BTP.",
       "cursos_sugeridos": [
         "hana-hana-sql-virtual",
         "hana-basis-virtual",
@@ -1599,6 +1661,7 @@
       "id": "consultor-ecc",
       "nombre": "Consultor SAP ECC",
       "descripcion": "Profesional especializado en SAP ECC (ERP Central Component), el sistema heredado de SAP. Maneja la amplia gama de módulos disponibles incluyendo Finanza, Logística, Supply Chain y Recursos Humanos.",
+      "descripcion_front": "Profesional especializado en SAP ECC (ERP Central Component), el sistema heredado de SAP. Maneja la amplia gama de módulos disponibles incluyendo Finanza, Logística, Supply Chain y Recursos Humanos.",
       "cursos_sugeridos": [
         "ecc-mm-virtual",
         "ecc-fi-virtual",
@@ -1628,6 +1691,7 @@
       "id": "consultor-productividad",
       "nombre": "Consultor de Productividad",
       "descripcion": "Profesional especializado en herramientas y técnicas para optimizar procesos empresariales. Maneja automatización de datos, Excel avanzado y contabilidad básica para no contadores.",
+      "descripcion_front": "Profesional especializado en herramientas y técnicas para optimizar procesos empresariales. Maneja automatización de datos, Excel avanzado y contabilidad básica para no contadores.",
       "cursos_sugeridos": [
         "productividad-excel-soluciones-virtual",
         "productividad-taller-automatizacion-virtual",
@@ -1647,6 +1711,7 @@
       "id": "consultor-productividad-online",
       "nombre": "Consultor de Productividad Online",
       "descripcion": "Profesional especializado en inteligencia artificial aplicada al entorno empresarial con clases en vivo. Aprende a crear prompts efectivos, automatizar tareas y usar herramientas de IA generativa.",
+      "descripcion_front": "Profesional especializado en inteligencia artificial aplicada al entorno empresarial con clases en vivo. Aprende a crear prompts efectivos, automatizar tareas y usar herramientas de IA generativa.",
       "cursos_sugeridos": [
         "productividad-ia-empresarial-online"
       ],
@@ -1662,6 +1727,7 @@
       "id": "consultor-tecnico-hibrido",
       "nombre": "Consultor Técnico Híbrido",
       "descripcion": "Profesional que combina consultoría funcional en S/4HANA con habilidades técnicas de administración HANA. Capaz de entregar soluciones completas sin depender de otros especialistas.",
+      "descripcion_front": "Profesional que combina consultoría funcional en S/4HANA con habilidades técnicas de administración HANA. Capaz de entregar soluciones completas sin depender de otros especialistas.",
       "cursos_sugeridos": [
         "s4hana-mm-virtual",
         "s4hana-fi-virtual",
@@ -1691,6 +1757,7 @@
       "id": "consultor-datos-empresariales",
       "nombre": "Consultor de Datos Empresariales",
       "descripcion": "Profesional especializado en gestión y análisis de datos empresariales. Combina habilidades de administración HANA con herramientas de productividad para análisis y visualización de datos.",
+      "descripcion_front": "Profesional especializado en gestión y análisis de datos empresariales. Combina habilidades de administración HANA con herramientas de productividad para análisis y visualización de datos.",
       "cursos_sugeridos": [
         "productividad-excel-soluciones-virtual",
         "productividad-taller-automatizacion-virtual",
@@ -1714,6 +1781,7 @@
       "id": "consultor-automation-ai",
       "nombre": "Consultor de Automation y AI",
       "descripcion": "Profesional especializado en diseñar soluciones de automatización inteligente usando herramientas de productividad y la nube de SAP. Combina Excel, automatización, IA y desarrollo en BTP.",
+      "descripcion_front": "Profesional especializado en diseñar soluciones de automatización inteligente usando herramientas de productividad y la nube de SAP. Combina Excel, automatización, IA y desarrollo en BTP.",
       "cursos_sugeridos": [
         "productividad-excel-soluciones-virtual",
         "productividad-taller-automatizacion-virtual",
