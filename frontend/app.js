@@ -442,10 +442,10 @@ function showAdvisorInfo() {
     <p>Para contactar con un asesor humano, puedes:</p>
     <ul>
       <li>Enviar un correo a: <a href="mailto:asesores@itsystems.com" class="message-link">asesores@itsystems.com</a></li>
-      <li>Llamar al: +51 999 888 777</li>
+      <li>Llamar al: <a href="https://wa.me/51999888777" target="_blank" rel="noopener noreferrer">+51 999 888 777</a></li>
       <li>Horario de atencion: Lunes a Viernes 9:00 AM - 6:00 PM</li>
     </ul>
-    <p>Un asesor se comunicara contigo pronto. ┬┐Hay algo mas en lo que pueda ayudarte?</p>
+    <p>Un asesor se comunicara contigo pronto. ¿Hay algo más en lo que pueda ayudarte?</p>
   `;
   renderMessage('Contactar con un asesor', 'user');
   const botMsg = document.createElement('div');
@@ -573,9 +573,9 @@ function showCourseDetail(courseId) {
       resumen = resumen.length > 45 ? resumen.substring(0, 42) + '...' : resumen;
       return `<li style="margin-bottom: 6px;"><span style="color: var(--accent-hover); font-weight: 500;">${temaNum}.</span> ${resumen}</li>`;
     }).join('');
-    temarioHtml = `<div style="margin-top: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px;"><strong style="color: var(--text-secondary); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.05em;">M├│dulos o temario:</strong><ul style="margin: 8px 0 0 0; padding-left: 16px; list-style: none; color: var(--text-primary);">${temarioItems}</ul></div>`;
+    temarioHtml = `<div style="margin-top: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px;"><strong style="color: var(--text-secondary); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.05em;">Módulos o temario:</strong><ul style="margin: 8px 0 0 0; padding-left: 16px; list-style: none; color: var(--text-primary);">${temarioItems}</ul></div>`;
   } else {
-    temarioHtml = `<p style="margin-top: 10px;"><strong>M├│dulos o temario:</strong> <em>(A├║n en planeaci├│n)</em></p>`;
+    temarioHtml = `<p style="margin-top: 10px;"><strong>Módulos o temario:</strong> <em>(Aún en planificación)</em></p>`;
   }
 
   const botMessage = document.createElement('div');
@@ -730,7 +730,7 @@ function setupUsernameValidation() {
   const submitBtn = document.querySelector('#registration-modal .modal-btn.primary');
 
   function validateForm() {
-    const usernameOk = usernameInput && usernameInput.value.length >= 5 && usernameInput.value.length <= 8;
+    const usernameOk = usernameInput && /^[a-zA-Z0-9]+$/.test(usernameInput.value) && usernameInput.value.length >= 5 && usernameInput.value.length <= 8;
     const emailOk = emailInput && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
     const telefonoOk = telefonoInput && telefonoInput.value.length >= 9;
     if (submitBtn) {
@@ -742,6 +742,7 @@ function setupUsernameValidation() {
     usernameInput.addEventListener('input', function() {
       const value = this.value;
       const length = value.length;
+      const isAlphanumeric = /^[a-zA-Z0-9]+$/.test(value);
 
       if (length === 0) {
         this.classList.remove('input-error', 'input-valid');
@@ -749,11 +750,15 @@ function setupUsernameValidation() {
       } else if (length < 5) {
         this.classList.add('input-error');
         this.classList.remove('input-valid');
-        if (usernameError) usernameError.textContent = 'M├¡nimo 5 caracteres';
+        if (usernameError) usernameError.textContent = 'Mínimo 5 caracteres';
       } else if (length > 8) {
         this.classList.add('input-error');
         this.classList.remove('input-valid');
-        if (usernameError) usernameError.textContent = 'M├íximo 8 caracteres';
+        if (usernameError) usernameError.textContent = 'Máximo 8 caracteres';
+      } else if (!isAlphanumeric) {
+        this.classList.add('input-error');
+        this.classList.remove('input-valid');
+        if (usernameError) usernameError.textContent = 'Solo letras y números';
       } else {
         this.classList.remove('input-error');
         this.classList.add('input-valid');
@@ -795,7 +800,7 @@ function setupUsernameValidation() {
       } else if (length < 9) {
         this.classList.add('input-error');
         this.classList.remove('input-valid');
-        if (telefonoError) telefonoError.textContent = 'M├¡nimo 9 d├¡gitos';
+        if (telefonoError) telefonoError.textContent = 'Mínimo 9 dígitos';
       } else {
         this.classList.remove('input-error');
         this.classList.add('input-valid');
@@ -846,37 +851,37 @@ async function sendToSAPRegister(formData) {
     if (data.success) {
       let successMessage;
       if (data.requiresFiori) {
-        successMessage = `┬íRegistro exitoso! Tu usuario <strong>${sapUsername}</strong> ha sido registrado en SAP.
+successMessage = `¡Registro exitoso! Tu usuario <strong>${sapUsername}</strong> ha sido registrado en SAP.
 
 <strong>Flujo de acceso:</strong>
 <ol>
   <li>Instalar SAP Logon</li>
   <li>Adjuntar las credenciales correspondientes a ITSYSTEMS</li>
-  <li>Ingresar con tu username y contrase├▒a</li>
+  <li>Ingresar con tu username y contraseña</li>
 </ol>
 
 <strong>Credenciales:</strong>
 <ul>
   <li><strong>Usuario:</strong> ${sapUsername}</li>
-  <li><strong>Contrase├▒a:</strong> ITS${sapUsername}</li>
+  <li><strong>Contraseña:</strong> ITS${sapUsername}</li>
 </ul>
 
 <strong>Como alternativa, puedes acceder desde Fiori:</strong>
 <a href="https://s4hana.sapapp.store/webgui" target="_blank" class="message-link">https://s4hana.sapapp.store/webgui</a>`;
       } else {
-        successMessage = `┬íRegistro exitoso! Tu usuario <strong>${sapUsername}</strong> ha sido registrado en SAP.
+successMessage = `¡Registro exitoso! Tu usuario <strong>${sapUsername}</strong> ha sido registrado en SAP.
 
 <strong>Flujo de acceso:</strong>
 <ol>
   <li>Instalar SAP Logon</li>
   <li>Adjuntar las credenciales correspondientes a ITSYSTEMS</li>
-  <li>Ingresar con tu username y contrase├▒a</li>
+  <li>Ingresar con tu username y contraseña</li>
 </ol>
 
 <strong>Credenciales:</strong>
 <ul>
   <li><strong>Usuario:</strong> ${sapUsername}</li>
-  <li><strong>Contrase├▒a:</strong> ITS${sapUsername}</li>
+  <li><strong>Contraseña:</strong> ITS${sapUsername}</li>
 </ul>
 
 <strong>Accede desde:</strong>
@@ -887,8 +892,8 @@ async function sendToSAPRegister(formData) {
       if (guiaDrive) {
         successMessage += `
 <br>
-<strong>Descarga la gu├¡a de instalaci├│n:</strong>
-<a href="${guiaDrive}" target="_blank" class="message-link">­ƒôÑ Ver Gu├¡a en Drive</a>`;
+<strong>Descarga la guía de instalación:</strong>
+<a href="${guiaDrive}" target="_blank" class="message-link">📁 Ver Guía en Drive</a>`;
       }
 
       renderMessage(successMessage, 'bot');

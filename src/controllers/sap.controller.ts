@@ -51,6 +51,11 @@ export const sapRegisterController = async (
       return;
     }
 
+    if (!/^[a-zA-Z0-9]+$/.test(datos.sap_username)) {
+      res.status(400).json({ error: 'El usuario SAP solo puede contener letras y números' });
+      return;
+    }
+
     if (datos.sap_username.length < 5) {
       res.status(400).json({ error: 'El usuario SAP debe tener al menos 5 caracteres' });
       return;

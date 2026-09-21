@@ -734,7 +734,7 @@ body {
   border: 1px solid var(--border-subtle);
   border-radius: var(--border-radius);
   padding: 32px;
-  max-width: 620px;
+  max-width: 650px;
   width: 100%;
   animation: scaleIn 0.3s ease-out;
   max-height: 90vh;
@@ -830,6 +830,10 @@ body {
   background-repeat: no-repeat;
   background-position: right 12px center;
   padding-right: 36px;
+}
+
+.form-select option {
+  color: #000000;
 }
 
 .form-buttons {
