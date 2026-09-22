@@ -199,10 +199,14 @@ const decisionTree = {
 function groupCoursesByName() {
   const grouped = {};
   Object.entries(COURSES).forEach(([id, course]) => {
-    if (!grouped[course.name]) {
-      grouped[course.name] = [];
+    const segment = course.segmento || 'OTROS';
+    if (!grouped[segment]) {
+      grouped[segment] = {};
     }
-    grouped[course.name].push({ id, ...course });
+    if (!grouped[segment][course.name]) {
+      grouped[segment][course.name] = [];
+    }
+    grouped[segment][course.name].push({ id, ...course });
   });
   return grouped;
 }
@@ -504,16 +508,23 @@ function renderQuickActions(menuKey) {
 
   if (menuKey === 'cursos') {
     const groupedCourses = groupCoursesByName();
-    Object.entries(groupedCourses).forEach(([name, variants]) => {
-      const btn = document.createElement('button');
-      btn.className = 'sub-btn';
-      btn.textContent = name;
-      if (variants.length === 1) {
-        btn.addEventListener('click', () => showCourseDetail(variants[0].id));
-      } else {
-        btn.addEventListener('click', () => showModalitySubmenu(name, variants, false));
-      }
-      grid.appendChild(btn);
+    Object.entries(groupedCourses).forEach(([segment, courses]) => {
+      const segmentHeader = document.createElement('div');
+      segmentHeader.className = 'segment-header';
+      segmentHeader.textContent = segment;
+      grid.appendChild(segmentHeader);
+
+      Object.entries(courses).forEach(([name, variants]) => {
+        const btn = document.createElement('button');
+        btn.className = 'sub-btn';
+        btn.textContent = name;
+        if (variants.length === 1) {
+          btn.addEventListener('click', () => showCourseDetail(variants[0].id));
+        } else {
+          btn.addEventListener('click', () => showModalitySubmenu(name, variants, false));
+        }
+        grid.appendChild(btn);
+      });
     });
   } else if (menuKey === 'roles') {
     const groupedProfiles = groupProfilesByName();
@@ -586,7 +597,7 @@ function showCourseDetail(courseId) {
       <p><strong>${course.name}</strong> [${course.modalidad}]</p>
       <p>${course.descripcion}</p>
       <p><strong>Dirigido a:</strong> ${course.dirigido}</p>
-      <p><strong>Habilidades:</strong> ${course.habilidades.slice(0, 3).join(', ')}...</p>
+      <p><strong>Habilidades:</strong> ${course.habilidades.slice(0, 3).join(', ')}.</p>
       <p><strong>Precio:</strong> ${precioTexto} (contado) | ${precioCuotasTexto} (cuotas)</p>
       <p><strong>Acceso:</strong> Aula virtual: ${course.accesoAula} | SAP: ${course.accesoSap}</p>
       <p><strong>Prerrequisitos:</strong> ${prerrequisitosTexto}</p>
