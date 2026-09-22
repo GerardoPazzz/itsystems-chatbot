@@ -280,8 +280,8 @@
     },
     {
       "id": "s4hana-tm-virtual",
-      "nombre": "TM",
-      "descripcion": "Curso de gestión de transporte y logística en SAP S/4HANA. Aprende a planificar rutas de distribución, optimizar carga de fletas, rastrear envíos y gestionar documentos de transporte. Para profesionales de logística y operaciones de distribución.",
+      "nombre": "TM S/4HANA (Gestión de Transporte)",
+      "descripcion": "Curso de gestión de transporte y logística en SAP S/4HANA. Aprende a planificar rutas de distribución, optimizar carga de flotas, rastrear envíos y gestionar documentos de transporte. Para profesionales de logística y operaciones de distribución.",
       "descripcion_front": "Curso de gestión de transporte y logística en SAP S/4HANA. Aprende a planificar rutas de distribución, optimizar carga de flotas, rastrear envíos y gestionar documentos de transporte.",
       "segmento": "S4 HANA",
       "modalidad": "VIRTUAL",
@@ -554,7 +554,7 @@
     },
     {
       "id": "s4hana-tm-online",
-      "nombre": "TM",
+      "nombre": "TM S/4HANA (Gestión de Transporte)",
       "descripcion": "Curso sincronico de gestión de transporte en SAP S/4HANA. Clases en vivo sobre planificación de rutas, optimización de flotas, costos logísticos y seguimiento de despachos.",
       "descripcion_front": "Curso sincronico de gestión de transporte en SAP S/4HANA. Clases en vivo sobre planificación de rutas, optimización de flotas, costos logísticos y seguimiento de despachos.",
       "segmento": "S4 HANA",
@@ -716,7 +716,7 @@
     },
     {
       "id": "ecc-hcm-virtual",
-      "nombre": "HCM",
+      "nombre": "HCM ECC (Gestión de Capital Humano)",
       "descripcion": "Curso integral de gestión de capital humano en SAP ECC. Aprende administración de personal, procesamiento de nóminas y beneficios, desarrollo organizacional y gestión del tiempo.",
       "descripcion_front": "Curso integral de gestión de capital humano en SAP ECC. Aprende administración de personal, procesamiento de nóminas y beneficios, desarrollo organizacional y gestión del tiempo.",
       "segmento": "ECC",
@@ -998,7 +998,7 @@
     },
     {
       "id": "hana-sql-online",
-      "nombre": "HANA SQL",
+      "nombre": "SAP HANA SQL",
       "descripcion": "Curso especializado en consultas SQL para bases de datos SAP HANA con clases en vivo. Aprende a crear vistas, procedimientos almacenados, funciones y optimizar el rendimiento de consultas.",
       "descripcion_front": "Curso especializado en consultas SQL para bases de datos SAP HANA con clases en vivo. Aprende a crear vistas, procedimientos almacenados, funciones y optimizar el rendimiento de consultas.",
       "segmento": "HANA TECNICO",
@@ -1024,7 +1024,7 @@
     },
     {
       "id": "hana-btp-online",
-      "nombre": "BTP",
+      "nombre": "BTP S/4HANA",
       "descripcion": "Curso de desarrollo en SAP Business Technology Platform con instructor en vivo. Aprende a crear aplicaciones cloud-native, configurar servicios de integración, implementar autenticación y desplegar soluciones en BTP usando Cloud Foundry.",
       "descripcion_front": "Curso de desarrollo en SAP Business Technology Platform con instructor en vivo. Aprende a crear aplicaciones cloud-native, configurar servicios de integración, implementar autenticación y desplegar soluciones en BTP usando Cloud Foundry.",
       "segmento": "HANA TECNICO",
@@ -1101,7 +1101,7 @@
     },
     {
       "id": "hana-hana-bd-online",
-      "nombre": "HANA BD",
+      "nombre": "SAP HANA Database",
       "descripcion": "Curso de administración avanzada de bases de datos SAP HANA en modalidad online. Aprende backup, recovery, seguridad, replication y alta disponibilidad.",
       "descripcion_front": "Curso de administración avanzada de bases de datos SAP HANA en modalidad online. Aprende backup, recovery, seguridad, replication y alta disponibilidad.",
       "segmento": "HANA TECNICO",
@@ -1204,7 +1204,7 @@
     },
     {
       "id": "hana-sql-virtual",
-      "nombre": "HANA SQL",
+      "nombre": "SAP HANA SQL",
       "descripcion": "Curso de consultas SQL específicas para SAP HANA con laboratorio práctico incluido. Aprende consultas advanced, creación de vistas optimizadas, procedimientos almacenados y técnicas de optimización.",
       "descripcion_front": "Curso de consultas SQL específicas para SAP HANA con laboratorio práctico incluido. Aprende consultas advanced, creación de vistas optimizadas, procedimientos almacenados y técnicas de optimización.",
       "segmento": "HANA TECNICO",
@@ -1229,7 +1229,7 @@
     },
     {
       "id": "hana-btp-virtual",
-      "nombre": "BTP",
+      "nombre": "BTP S/4HANA",
       "descripcion": "Curso integral de SAP Business Technology Platform con acceso al entorno. Aprende arquitectura cloud-native, servicios de integración, autenticación, deployment en Cloud Foundry y desarrollo de aplicaciones serverless.",
       "descripcion_front": "Curso integral de SAP Business Technology Platform con acceso al entorno. Aprende arquitectura cloud-native, servicios de integración, autenticación, deployment en Cloud Foundry y desarrollo de aplicaciones serverless.",
       "segmento": "HANA TECNICO",
@@ -1285,7 +1285,7 @@
     },
     {
       "id": "hana-hana-bd-virtual",
-      "nombre": "HANA BD",
+      "nombre": "SAP HANA Database",
       "descripcion": "Curso de administración de bases de datos SAP HANA con laboratorio práctico. Aprende backup, recovery, seguridad, replication, alta disponibilidad y monitoreo.",
       "descripcion_front": "Curso de administración de bases de datos SAP HANA con laboratorio práctico. Aprende backup, recovery, seguridad, replication, alta disponibilidad y monitoreo.",
       "segmento": "HANA TECNICO",
