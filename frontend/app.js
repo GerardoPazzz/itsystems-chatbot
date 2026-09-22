@@ -337,14 +337,16 @@ function updateSendButtonVisibility() {
 function showAdvisorInfo() {
   showChatMode();
   
+  const whatsappMessage = encodeURIComponent('Hola, tengo una consulta sobre los cursos de SAP. ¿Podrían ayudarme?');
+  
   const advisorMessage = `
-    <p>Para contactar con un asesor humano, puedes:</p>
+    <p>¡Con gusto! Aquí tienes los datos para contactar con uno de nuestros asesores:</p>
     <ul>
       <li>Enviar un correo a: <a href="mailto:asesores@itsystems.com" class="message-link">asesores@itsystems.com</a></li>
-      <li>Llamar al: <a href="https://wa.me/51999888777" target="_blank" rel="noopener noreferrer">+51 999 888 777</a></li>
-      <li>Horario de atencion: Lunes a Viernes 9:00 AM - 6:00 PM</li>
+      <li>WhatsApp: <a href="https://wa.me/51918029215?text=${whatsappMessage}" target="_blank" rel="noopener noreferrer">+51 918 029 215</a></li>
+      <li>Horario: Lunes a Viernes 9:00 AM - 6:00 PM</li>
     </ul>
-    <p>Un asesor se comunicara contigo pronto. ¿Hay algo más en lo que pueda ayudarte?</p>
+    <p>Un asesor se comunicará contigo pronto. ¿Hay algo más en lo que pueda ayudarte?</p>
   `;
   renderMessage('Contactar con un asesor', 'user');
   const botMsg = document.createElement('div');
