@@ -459,60 +459,6 @@ body {
   transform: scale(0.95);
 }
 
-/* ===== VOICE BUTTON ===== */
-.voice-button {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  min-height: 44px;
-  background: transparent;
-  color: var(--text-secondary);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-  height: 36px;
-  background: transparent;
-  color: var(--text-secondary);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-
-.voice-button:hover {
-  color: var(--text-primary);
-  background: var(--bg-hover);
-}
-
-.voice-button.listening {
-  background: var(--error);
-  color: white;
-  animation: pulse 1.5s infinite;
-}
-
-.voice-button.processing {
-  color: var(--text-muted);
-}
-
-.mic-spinner.hidden {
-  display: none;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
 /* ===== QUICK ACTIONS (Submenús) ===== */
 .quick-actions {
   padding-top: 16px;
@@ -559,7 +505,7 @@ body {
 
 .segment-header {
   padding: 10px 14px;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
   color: #ffffff;
   font-size: 0.9375rem;
   font-weight: 600;
@@ -567,7 +513,7 @@ body {
   letter-spacing: 0.08em;
   border-radius: 6px;
   margin-top: 12px;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 2px 8px rgba(30, 58, 95, 0.4);
 }
 
 .segment-header:first-child {
@@ -909,8 +855,7 @@ body {
     min-height: 48px;
   }
   
-  .send-button,
-  .voice-button {
+  .send-button {
     width: 44px;
     height: 44px;
     min-width: 44px;

@@ -9,112 +9,6 @@ const GUIAS_DRIVE = {
   'S4_PP_DEMO': 'https://drive.google.com/drive/folders/14I4jF5w6TinY5Or_gK4haDuq_zpTWXde?usp=drive_link'
 };
 
-const SPEECH_LANG = 'es-ES';
-const SILENCE_TIMEOUT_MS = 3000;
-
-class VoiceRecognition {
-  constructor() {
-    this.recognition = null;
-    this.isListening = false;
-    this.isSupported = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
-    this.silenceTimer = null;
-    this.finalTranscript = '';
-    this.onResultCallback = null;
-    this.onEndCallback = null;
-
-    if (this.isSupported) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      this.recognition = new SpeechRecognition();
-      this.recognition.lang = SPEECH_LANG;
-      this.recognition.continuous = true;
-      this.recognition.interimResults = true;
-      this.recognition.maxAlternatives = 1;
-    }
-  }
-
-  start(onResult, onError, onEnd) {
-    if (!this.isSupported || this.isListening) return false;
-
-    this.finalTranscript = '';
-    this.onResultCallback = onResult;
-    this.onEndCallback = onEnd;
-
-    try {
-      this.recognition.onresult = (event) => {
-        let transcript = '';
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          transcript += event.results[i][0].transcript;
-        }
-
-        const isFinal = event.results[event.results.length - 1][0].isFinal;
-
-        if (isFinal) {
-          this.finalTranscript += (this.finalTranscript ? ' ' : '') + transcript;
-          this.onResultCallback(this.finalTranscript, true);
-        } else {
-          this.onResultCallback(transcript, false);
-        }
-
-        this.resetSilenceTimer();
-      };
-
-      this.recognition.onerror = (event) => {
-        this.clearSilenceTimer();
-        if (event.error !== 'aborted') {
-          onError(event.error);
-        }
-      };
-
-      this.recognition.onend = () => {
-        this.isListening = false;
-        this.clearSilenceTimer();
-        onEnd();
-      };
-
-      this.recognition.onspeechend = () => {
-        this.resetSilenceTimer();
-      };
-
-      this.recognition.start();
-      this.isListening = true;
-      this.startSilenceTimer();
-      return true;
-    } catch (e) {
-      onError(e.message);
-      return false;
-    }
-  }
-
-  stop() {
-    this.clearSilenceTimer();
-    if (this.recognition && this.isListening) {
-      this.recognition.stop();
-    }
-  }
-
-  startSilenceTimer() {
-    this.clearSilenceTimer();
-    this.silenceTimer = setTimeout(() => {
-      if (this.isListening) {
-        this.stop();
-      }
-    }, SILENCE_TIMEOUT_MS);
-  }
-
-  resetSilenceTimer() {
-    this.startSilenceTimer();
-  }
-
-  clearSilenceTimer() {
-    if (this.silenceTimer) {
-      clearTimeout(this.silenceTimer);
-      this.silenceTimer = null;
-    }
-  }
-}
-
-const voiceRecognition = new VoiceRecognition();
-
 const state = {
   sessionId: '',
   isTyping: false,
@@ -283,7 +177,6 @@ const elements = {
   messagesContainer: document.getElementById('messages'),
   messageInput: document.getElementById('message-input'),
   sendButton: document.getElementById('send-btn'),
-  voiceButton: document.getElementById('voice-btn'),
   typingIndicator: document.getElementById('typing-indicator'),
   limitModal: document.getElementById('limit-modal'),
   btnRestart: document.getElementById('btn-restart'),
@@ -321,12 +214,6 @@ function setupEventListeners() {
   elements.btnAdvisor.addEventListener('click', handleAdvisor);
   elements.registrationForm.addEventListener('submit', handleFormSubmit);
   elements.btnCancelRegistration.addEventListener('click', closeRegistrationModal);
-
-  if (voiceRecognition.isSupported) {
-    elements.voiceButton.addEventListener('click', handleVoiceButton);
-  } else {
-    elements.voiceButton.style.display = 'none';
-  }
 }
 
 function setupNavPills() {
@@ -918,61 +805,6 @@ successMessage = `¡Registro exitoso! Tu usuario <strong>${sapUsername}</strong>
     hideTyping();
     renderMessage('Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.', 'bot');
     showBackOnlyMenu('registro');
-  }
-}
-
-function handleVoiceButton() {
-  if (voiceRecognition.isListening) {
-    voiceRecognition.stop();
-    setVoiceButtonState('inactive');
-  } else {
-    setVoiceButtonState('listening');
-    elements.messageInput.value = '';
-    elements.messageInput.focus();
-
-    voiceRecognition.start(
-      (transcript, isFinal) => {
-        console.log('Voice result:', { transcript, isFinal });
-        elements.messageInput.value = transcript;
-      },
-      (error) => {
-        console.error('Voice recognition error:', error);
-        setVoiceButtonState('inactive');
-        if (error === 'network') {
-          alert('Error de red. Verifica tu conexion a internet e intenta nuevamente.');
-        } else if (error === 'not-allowed') {
-          alert('Se requiere acceso al microfono para usar voz. Por favor permite el acceso en tu navegador.');
-        }
-      },
-      () => {
-        setVoiceButtonState('inactive');
-      }
-    );
-  }
-}
-
-function setVoiceButtonState(state) {
-  const voiceBtn = elements.voiceButton;
-  const micIcon = voiceBtn.querySelector('.mic-icon');
-  const spinner = voiceBtn.querySelector('.mic-spinner');
-
-  voiceBtn.classList.remove('listening', 'processing');
-
-  switch (state) {
-    case 'listening':
-      voiceBtn.classList.add('listening');
-      micIcon.classList.remove('hidden');
-      spinner.classList.add('hidden');
-      break;
-    case 'processing':
-      voiceBtn.classList.add('processing');
-      micIcon.classList.add('hidden');
-      spinner.classList.remove('hidden');
-      break;
-    case 'inactive':
-    default:
-      micIcon.classList.remove('hidden');
-      spinner.classList.add('hidden');
   }
 }
 
