@@ -550,6 +550,7 @@ function renderQuickActions(menuKey) {
   subMenu.appendChild(backBtn);
 
   elements.quickActions.appendChild(subMenu);
+  scrollToBottom();
 }
 
 function showCourseDetail(courseId) {
@@ -1125,7 +1126,10 @@ function clearInput() {
 }
 
 function scrollToBottom() {
-  elements.messagesContainer.scrollTop = elements.messagesContainer.scrollHeight;
+  const anchor = document.getElementById('chat-bottom-anchor');
+  if (anchor) {
+    anchor.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init);
