@@ -315,6 +315,14 @@ function resetToZeroState() {
   elements.inputArea.classList.add('hidden');
 }
 
+function closeSubmenu() {
+  const pills = document.querySelectorAll('.nav-pill');
+  pills.forEach(p => p.classList.remove('active'));
+  elements.quickActions.classList.add('hidden');
+  elements.quickActions.innerHTML = '';
+  state.currentMenu = 'main';
+}
+
 function updateSendButtonVisibility() {
   const message = elements.messageInput.value.trim();
   const sendBtn = elements.sendButton;
@@ -434,13 +442,8 @@ function renderQuickActions(menuKey) {
   backBtn.className = 'back-btn';
   backBtn.innerHTML = '&larr; Cerrar';
   backBtn.addEventListener('click', () => {
-    const pills = document.querySelectorAll('.nav-pill');
-    pills.forEach(p => p.classList.remove('active'));
-    elements.quickActions.classList.add('hidden');
-    elements.quickActions.innerHTML = '';
-    
     if (state.hasMessages) {
-      state.currentMenu = 'main';
+      closeSubmenu();
     } else {
       resetToZeroState();
     }
@@ -456,6 +459,7 @@ function showCourseDetail(courseId) {
   if (!course) return;
 
   hideWelcome();
+  closeSubmenu();
   renderMessage(course.name, 'user');
 
   const precioTexto = course.precio !== null ? `S/. ${course.precio.toLocaleString()}` : 'Consultar precio';
@@ -500,6 +504,7 @@ function showProfileDetail(profileId) {
   if (!profile) return;
 
   hideWelcome();
+  closeSubmenu();
   renderMessage(profile.name, 'user');
 
   const rutaNumerada = profile.rutaSugerida.map((id, i) => `${i + 1}. ${COURSES[id]?.name || id}`).join('\n');
