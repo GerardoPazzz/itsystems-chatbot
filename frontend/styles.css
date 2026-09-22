@@ -13,9 +13,9 @@
   --border-subtle: rgba(255, 255, 255, 0.1);
   --border-hover: rgba(255, 255, 255, 0.2);
   
-  --accent: #3b82f6;
-  --accent-hover: #60a5fa;
-  --accent-glow: rgba(59, 130, 246, 0.15);
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-glow: rgba(99, 102, 241, 0.15);
   
   --error: #ef4444;
   --success: #22c55e;
@@ -25,8 +25,14 @@
   
   /* Variables para contraste mejorado móvil */
   --message-bot-bg: rgba(15, 23, 42, 0.95);
-  --message-user-bg: #2563eb;
+  --message-user-bg: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   --message-border: rgba(255, 255, 255, 0.15);
+  --message-user-border: rgba(99, 102, 241, 0.3);
+
+  /* Scrollbar */
+  --scrollbar-track: #1e293b;
+  --scrollbar-thumb: #475569;
+  --scrollbar-thumb-hover: #64748b;
 }
 
 /* ===== RESET & BASE ===== */
@@ -111,13 +117,13 @@ body {
 .welcome-badge {
   font-size: 0.75rem;
   font-weight: 400;
-  color: var(--accent);
-  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent-hover);
+  background: rgba(99, 102, 241, 0.15);
   padding: 4px 12px;
   border-radius: 12px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.3);
 }
 
 .welcome-subtitle {
@@ -159,16 +165,23 @@ body {
 /* ===== NAVIGATION PILLS ===== */
 .nav-pills {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
   padding: 0 0 8px 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.nav-pills::-webkit-scrollbar {
+  display: none;
 }
 
 .nav-pill {
   padding: 10px 16px;
   min-height: 44px;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   text-align: center;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -210,7 +223,7 @@ body {
   background: var(--accent);
   color: var(--text-primary);
   border-color: var(--accent);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
 
 .nav-pill.active::before {
@@ -229,29 +242,30 @@ body {
 }
 
 .messages-area::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 .messages-area::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--scrollbar-track);
+  border-radius: 2px;
 }
 
 .messages-area::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 3px;
+  background: var(--scrollbar-thumb);
+  border-radius: 2px;
 }
 
 .messages-area::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* ===== MESSAGE ANIMATIONS ===== */
 .message {
   padding: 14px 18px;
-  border-radius: 18px;
+  border-radius: 12px;
   font-size: 0.9375rem;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.7;
   animation: messageIn 0.3s ease-out;
 }
 
@@ -270,8 +284,10 @@ body {
   align-self: flex-end;
   background: var(--message-user-bg);
   color: var(--text-primary);
-  border-bottom-right-radius: 6px;
+  border: 1px solid var(--message-user-border);
+  border-bottom-right-radius: 4px;
   max-width: 85%;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
 }
 
 .message.bot {
@@ -279,7 +295,7 @@ body {
   background: var(--message-bot-bg);
   border: 1px solid var(--message-border);
   color: var(--text-primary);
-  border-bottom-left-radius: 6px;
+  border-bottom-left-radius: 4px;
   max-width: 85%;
 }
 
@@ -291,11 +307,12 @@ body {
 }
 
 .message-content {
-  line-height: 1.6;
+  line-height: 1.7;
+  color: #D1D5DB;
 }
 
 .message-content p {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .message-content p:last-child {
@@ -303,8 +320,8 @@ body {
 }
 
 .message-content strong {
-  font-weight: 500;
-  color: var(--accent-hover);
+  font-weight: 600;
+  color: #ffffff;
 }
 
 .message-content ul,
@@ -339,7 +356,7 @@ body {
   padding: 12px 16px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: 18px;
+  border-radius: 12px;
   align-self: flex-start;
   margin-bottom: 8px;
   animation: messageIn 0.3s ease-out;
@@ -382,7 +399,9 @@ body {
 .input-area {
   width: 100%;
   flex-shrink: 0;
-  padding-top: 8px;
+  padding-top: 24px;
+  margin-top: 16px;
+  border-top: 1px solid var(--border-subtle);
 }
 
 .input-container {
@@ -541,6 +560,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-height: 44px;
 }
 
 .sub-btn:hover {
@@ -564,6 +584,7 @@ body {
   gap: 8px;
   margin-top: 12px;
   width: 100%;
+  min-height: 44px;
 }
 
 .back-btn:hover {
@@ -667,7 +688,7 @@ body {
 }
 
 .modal-btn.secondary:hover {
-  background: rgba(59, 130, 246, 0.1);
+  background: rgba(99, 102, 241, 0.1);
 }
 
 /* ===== REGISTRATION MODAL ===== */
@@ -696,8 +717,8 @@ body {
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--border-radius);
-  padding: 32px;
-  max-width: 650px;
+  padding: 24px;
+  max-width: 720px;
   width: 100%;
   animation: scaleIn 0.3s ease-out;
   max-height: 90vh;
@@ -816,105 +837,175 @@ body {
     height: 100%;
     height: 100dvh;
   }
-  
+
   body {
     height: 100dvh;
   }
-  
+
   .chat-content {
     padding: 12px 16px;
     min-height: 100dvh;
     height: auto;
     overflow-y: auto;
   }
-  
+
+  .messages-area {
+    padding: 0 4px 16px 0;
+  }
+
   .welcome-screen {
     padding-bottom: 80px;
   }
-  
+
   .nav-pills {
-    gap: 6px;
+    gap: 8px;
     padding: 8px 0;
+    justify-content: flex-start;
   }
-  
+
   .nav-pill {
-    padding: 10px 12px;
-    font-size: 0.875rem;
+    padding: 10px 14px;
+    font-size: 0.8125rem;
     min-height: 44px;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     text-align: center;
   }
-  
+
+  .message {
+    font-size: 0.875rem;
+    max-width: 90%;
+    padding: 12px 14px;
+  }
+
+  .message-content {
+    font-size: 0.875rem;
+  }
+
+  .sub-menu-title {
+    font-size: 0.8125rem;
+  }
+
+  .segment-header {
+    font-size: 0.8125rem;
+    padding: 8px 12px;
+  }
+
+  .sub-menu {
+    padding: 12px;
+  }
+
+  .sub-btn {
+    font-size: 0.8125rem;
+    min-height: 44px;
+    padding: 10px 14px;
+  }
+
+  .back-btn {
+    font-size: 0.8125rem;
+    min-height: 44px;
+    padding: 10px 14px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.125rem;
+  }
+
+  .modal-content p {
+    font-size: 0.875rem;
+  }
+
+  .modal-content {
+    padding: 20px;
+    margin: 16px;
+  }
+
+  .registration-modal-content {
+    padding: 16px 12px;
+    margin: 4px;
+  }
+
+  .registration-form {
+    gap: 12px;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+  }
+
+  .form-input,
+  .form-select {
+    font-size: 16px;
+    min-height: 48px;
+    padding: 10px 12px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .form-buttons {
+    gap: 8px;
+  }
+
+  .form-buttons .modal-btn {
+    padding: 12px 16px;
+  }
+
+  #registration-form .form-label {
+    font-size: 0.6875rem;
+  }
+
+  #registration-form .form-select {
+    font-size: 0.8125rem;
+    padding: 8px 10px;
+  }
+
+  #registration-form .form-select option {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  #registration-form #reg-sap-usuario {
+    font-size: 0.8125rem;
+  }
+
   .input-container {
     padding: 6px 10px;
   }
-  
+
   .message-input {
     font-size: 16px;
     padding: 8px 10px;
     min-height: 48px;
   }
-  
+
   .send-button {
     width: 44px;
     height: 44px;
     min-width: 44px;
     min-height: 44px;
   }
-  
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  
-  .form-input,
-  .form-select {
-    font-size: 16px;
-    min-height: 48px;
-  }
-  
-  .modal-content {
-    padding: 20px;
-    margin: 16px;
-  }
-  
-  .registration-modal-content {
-    padding: 20px 16px;
-    margin: 8px;
-  }
-  
-  .message {
-    max-width: 90%;
-    padding: 12px 14px;
-  }
-  
-  .sub-menu {
-    padding: 12px;
-  }
-  
-  .sub-btn {
-    min-height: 44px;
-    padding: 10px 14px;
-  }
 }
 
 @media (max-width: 380px) {
   .nav-pill {
-    padding: 8px 10px;
-    font-size: 0.8125rem;
+    padding: 8px 12px;
+    font-size: 0.75rem;
   }
-  
+
   .welcome-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
-  
+
   .welcome-badge {
     font-size: 0.625rem;
     padding: 3px 8px;
   }
-  
+
   .modal-btn {
-    padding: 12px 20px;
-    min-height: 48px;
+    padding: 12px 16px;
+    min-height: 44px;
+    font-size: 0.875rem;
   }
 }

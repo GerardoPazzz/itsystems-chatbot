@@ -476,11 +476,11 @@ function showCourseDetail(courseId) {
       const temaNum = i + 1;
       let resumen = s.titulo.split('(')[0].trim();
       resumen = resumen.length > 45 ? resumen.substring(0, 42) + '...' : resumen;
-      return `<li style="margin-bottom: 6px;"><span style="color: var(--accent-hover); font-weight: 500;">${temaNum}.</span> ${resumen}</li>`;
+      return `<li style="margin-bottom: 8px; line-height: 1.6;"><span style="color: var(--accent-hover); font-weight: 500;">${temaNum}.</span> <span style="color: #D1D5DB;">${resumen}</span></li>`;
     }).join('');
-    temarioHtml = `<div style="margin-top: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px;"><strong style="color: var(--text-secondary); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.05em;">Módulos o temario:</strong><ul style="margin: 8px 0 0 0; padding-left: 16px; list-style: none; color: var(--text-primary);">${temarioItems}</ul></div>`;
+    temarioHtml = `<div style="margin-top: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 8px;"><strong style="color: #D1D5DB; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Módulos o temario:</strong><ul style="margin: 8px 0 0 0; padding-left: 16px; list-style: none;">${temarioItems}</ul></div>`;
   } else {
-    temarioHtml = `<p style="margin-top: 10px;"><strong>Módulos o temario:</strong> <em>(Aún en planificación)</em></p>`;
+    temarioHtml = `<p style="margin-top: 12px; color: #D1D5DB;"><strong>Módulos o temario:</strong> <em>(Aún en planificación)</em></p>`;
   }
 
   const botMessage = document.createElement('div');
