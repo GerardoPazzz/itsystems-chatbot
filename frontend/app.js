@@ -9,12 +9,36 @@ const GUIAS_DRIVE = {
   'S4_PP_DEMO': 'https://drive.google.com/drive/folders/14I4jF5w6TinY5Or_gK4haDuq_zpTWXde?usp=drive_link'
 };
 
+const HINT_MESSAGES = {
+  cursos: [
+    "¿No sabes qué curso escoger? Pregúntale a nuestro agente de IA y te guiaremos paso a paso.",
+    "Descubre el programa SAP ideal para ti. Cuéntanos tu experiencia y recibe una recomendación personalizada.",
+    "Resuelve tus dudas sobre temarios, módulos y modalidades al instante. ¡Inicia el chat!"
+  ],
+  roles: [
+    "¿Indeciso sobre tu ruta profesional? Cuéntanos tu perfil y la IA te sugerirá el rol SAP perfecto.",
+    "Descubre las diferencias entre consultoría funcional y desarrollo técnico. ¡Pregúntanos!",
+    "Conoce las proyecciones laborales de cada especialidad. Escribe tu duda y te orientaremos ahora mismo."
+  ],
+  registro: [
+    "¿Tienes dudas sobre el proceso de registro? Nuestro agente de IA te guiará paso a paso.",
+    "Completa tu registro fácilmente. Escribe tu pregunta y te ayudaremos al instante.",
+    "Si necesitas ayuda con el formulario, nuestro agente de IA está aquí para asistirte."
+  ]
+};
+
+function getRandomHintMessage(category) {
+  const messages = HINT_MESSAGES[category] || HINT_MESSAGES.cursos;
+  return messages[Math.floor(Math.random() * messages.length)];
+}
+
 const state = {
   sessionId: '',
   isTyping: false,
   limitReached: false,
   registrationMode: false,
-  currentMenu: 'main'
+  currentMenu: 'main',
+  hasStartedChat: false
 };
 
 const welcomeMessage = "";
@@ -201,11 +225,13 @@ async function init() {
   state.registrationMode = false;
   state.currentMenu = 'main';
   state.hasMessages = false;
+  state.hasStartedChat = false;
   console.log('Session ID:', state.sessionId);
 
   setupNavPills();
   setupEventListeners();
   setupUsernameValidation();
+  setupOnboarding();
   updateSendButtonVisibility();
 }
 
@@ -217,6 +243,27 @@ function setupEventListeners() {
   elements.btnAdvisor.addEventListener('click', handleAdvisor);
   elements.registrationForm.addEventListener('submit', handleFormSubmit);
   elements.btnCancelRegistration.addEventListener('click', closeRegistrationModal);
+
+  elements.registrationModal.addEventListener('click', (e) => {
+    if (e.target === elements.registrationModal) {
+      closeRegistrationModal();
+    }
+  });
+
+  const hintModal = document.getElementById('onboarding-hint-modal');
+  const closeHintBtn = document.getElementById('close-hint-modal');
+  if (closeHintBtn && hintModal) {
+    closeHintBtn.addEventListener('click', () => {
+      hintModal.classList.add('hidden');
+      focusToInput();
+    });
+    hintModal.addEventListener('click', (e) => {
+      if (e.target === hintModal) {
+        hintModal.classList.add('hidden');
+        focusToInput();
+      }
+    });
+  }
 }
 
 function setupNavPills() {
@@ -224,7 +271,7 @@ function setupNavPills() {
   pills.forEach(pill => {
     pill.addEventListener('click', () => {
       const action = pill.dataset.action;
-      
+
       if (pill.classList.contains('active')) {
         if (state.hasMessages) {
           pill.classList.remove('active');
@@ -236,12 +283,87 @@ function setupNavPills() {
         }
         return;
       }
-      
+
       pills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
       handleNavPillClick(action);
     });
   });
+}
+
+function showOnboardingHintModal(category = 'cursos') {
+  const hintModal = document.getElementById('onboarding-hint-modal');
+  const messageText = document.getElementById('hint-message-text');
+  if (hintModal) {
+    if (messageText) {
+      messageText.textContent = getRandomHintMessage(category);
+    }
+    hintModal.classList.remove('hidden');
+  }
+}
+
+function focusToInput() {
+  elements.messageInput.focus();
+  elements.messageInput.classList.add('input-focused');
+  setTimeout(() => {
+    elements.messageInput.classList.remove('input-focused');
+  }, 1500);
+}
+
+function setupOnboarding() {
+  const onboardingContainer = document.getElementById('onboarding-container');
+  if (!onboardingContainer) return;
+
+  const buttons = onboardingContainer.querySelectorAll('.onboarding-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const action = btn.dataset.action;
+      handleOnboardingChoice(action);
+    });
+  });
+}
+
+function handleOnboardingChoice(action) {
+  state.hasStartedChat = true;
+
+  const onboardingContainer = document.getElementById('onboarding-container');
+
+  if (onboardingContainer) {
+    onboardingContainer.style.opacity = '0';
+    onboardingContainer.style.transition = 'opacity 0.3s ease';
+  }
+
+  setTimeout(() => {
+    if (onboardingContainer) {
+      onboardingContainer.classList.add('hidden');
+    }
+
+    showChatMode();
+
+    const choiceLabels = {
+      'registro': 'Iniciar Registro',
+      'cursos': 'Explorar Cursos',
+      'roles': 'Ver Roles SAP'
+    };
+
+    renderMessage(choiceLabels[action] || action, 'user');
+
+    showOnboardingHintModal(action);
+
+    setTimeout(() => {
+      switch(action) {
+        case 'registro':
+          openRegistrationModal();
+          break;
+        case 'cursos':
+          renderQuickActions('cursos');
+          break;
+        case 'roles':
+          renderQuickActions('roles');
+          break;
+      }
+    }, 100);
+  }, 300);
 }
 
 function handleNavPillClick(action) {
@@ -303,27 +425,38 @@ function resetToZeroState() {
   document.getElementById('quick-actions').classList.add('hidden');
   document.getElementById('quick-actions').innerHTML = '';
   elements.messageInput.value = '';
-  
+
   document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
-  
+
   state.hasMessages = false;
+  state.hasStartedChat = false;
   state.registrationMode = false;
   state.currentMenu = 'main';
-  
+
   if (elements.welcomeScreen) {
     elements.welcomeScreen.classList.remove('hidden');
   }
+
+  const onboardingContainer = document.getElementById('onboarding-container');
+  if (onboardingContainer) {
+    onboardingContainer.classList.remove('hidden');
+    onboardingContainer.style.opacity = '1';
+  }
+
   showWelcomeNav();
   elements.messagesContainer.classList.add('hidden');
   elements.inputArea.classList.add('hidden');
 }
 
-function closeSubmenu() {
+function closeSubmenu(showHint = false, category = 'cursos') {
   const pills = document.querySelectorAll('.nav-pill');
   pills.forEach(p => p.classList.remove('active'));
   elements.quickActions.classList.add('hidden');
   elements.quickActions.innerHTML = '';
   state.currentMenu = 'main';
+  if (showHint) {
+    showOnboardingHintModal(category);
+  }
 }
 
 function updateSendButtonVisibility() {
@@ -496,7 +629,8 @@ function renderQuickActions(menuKey) {
   backBtn.innerHTML = '&larr; Cerrar';
   backBtn.addEventListener('click', () => {
     if (state.hasMessages) {
-      closeSubmenu();
+      const category = state.currentMenu === 'roles' ? 'roles' : 'cursos';
+      closeSubmenu(true, category);
     } else {
       resetToZeroState();
     }
@@ -512,7 +646,7 @@ function showCourseDetail(courseId) {
   if (!course) return;
 
   hideWelcome();
-  closeSubmenu();
+  closeSubmenu(false);
   renderMessage(course.name, 'user');
 
   const precioTexto = course.precio !== null ? `S/. ${course.precio.toLocaleString()}` : 'Consultar precio';
@@ -525,9 +659,8 @@ function showCourseDetail(courseId) {
   if (course.temario && course.temario.length > 0) {
     const temarioItems = course.temario.map((s, i) => {
       const temaNum = i + 1;
-      let resumen = s.titulo.split('(')[0].trim();
-      resumen = resumen.length > 45 ? resumen.substring(0, 42) + '...' : resumen;
-      return `<li style="margin-bottom: 8px; line-height: 1.6;"><span style="color: var(--accent); font-weight: 500;">${temaNum}.</span> <span style="color: var(--text-secondary);">${resumen}</span></li>`;
+      const tituloCompleto = s.titulo.split('(')[0].trim();
+      return `<li style="margin-bottom: 8px; line-height: 1.6;"><span style="color: var(--accent); font-weight: 500;">${temaNum}.</span> <span style="color: var(--text-secondary);">${tituloCompleto}</span></li>`;
     }).join('');
     temarioHtml = `<div style="margin-top: 12px; background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 14px; border-radius: 8px;"><strong style="color: var(--text-secondary); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Módulos o temario:</strong><ul style="margin: 8px 0 0 0; padding-left: 16px; list-style: none;">${temarioItems}</ul></div>`;
   } else {
@@ -557,7 +690,7 @@ function showProfileDetail(profileId) {
   if (!profile) return;
 
   hideWelcome();
-  closeSubmenu();
+  closeSubmenu(false);
   renderMessage(profile.name, 'user');
 
   const rutaNumerada = profile.rutaSugerida.map((id, i) => `${i + 1}. ${COURSES[id]?.name || id}`).join('\n');
@@ -757,6 +890,7 @@ function setupUsernameValidation() {
 
 function closeRegistrationModal() {
   elements.registrationModal.classList.add('hidden');
+  showOnboardingHintModal('registro');
 }
 
 function handleFormSubmit(event) {
