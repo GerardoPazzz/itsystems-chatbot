@@ -124,6 +124,11 @@ function groupProfilesByName() {
   return grouped;
 }
 
+const MODALITY_ICONS = {
+  'VIRTUAL': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+  'ONLINE': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>'
+};
+
 function showModalitySubmenu(courseName, variants, isProfile = false) {
   elements.quickActions.innerHTML = '';
 
@@ -141,11 +146,9 @@ function showModalitySubmenu(courseName, variants, isProfile = false) {
   variants.forEach(variant => {
     const btn = document.createElement('button');
     btn.className = 'sub-btn';
-    if (isProfile) {
-      btn.textContent = variant.modalidad || 'VIRTUAL';
-    } else {
-      btn.textContent = variant.modalidad;
-    }
+    const modalityKey = (variant.modalidad || 'VIRTUAL').toUpperCase();
+    const iconSvg = MODALITY_ICONS[modalityKey] || '';
+    btn.innerHTML = `<span class="segment-icon">${iconSvg}</span><span>${variant.modalidad}</span>`;
     btn.addEventListener('click', () => {
       if (isProfile) {
         showProfileDetail(variant.id);
@@ -343,7 +346,7 @@ function showAdvisorInfo() {
     <p>¡Con gusto! Aquí tienes los datos para contactar con uno de nuestros asesores:</p>
     <ul>
       <li>Enviar un correo a: <a href="mailto:asesores@itsystems.com" class="message-link">asesores@itsystems.com</a></li>
-      <li>WhatsApp: <a href="https://wa.me/51918029215?text=${whatsappMessage}" target="_blank" rel="noopener noreferrer">+51 918 029 215</a></li>
+      <li>WhatsApp: <a href="https://wa.me/51918029215?text=${whatsappMessage}" target="_blank" rel="noopener noreferrer" class="message-link whatsapp-link">+51 918 029 215</a></li>
       <li>Horario: Lunes a Viernes 9:00 AM - 6:00 PM</li>
     </ul>
     <p>Un asesor se comunicará contigo pronto. ¿Hay algo más en lo que pueda ayudarte?</p>
@@ -378,6 +381,39 @@ function handleKeyDown(event) {
     handleSend();
   }
 }
+
+const COURSE_SEGMENT_ICONS = {
+  'SBO': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>',
+  'S4 HANA': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 21h18M5 21V11l4-2 4 2 4-2v10M9 21v-5h6v5M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>',
+  'ECC': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M7 8V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2M7 13h10"/></svg>',
+  'HANA TECNICO': {
+    'ABAP': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+    'ABAP RAP': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+    'SQL': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 5v14c0 1.66-4.03 3-9 3s-9-1.34-9-3V5"/><path d="M21 12c0 1.66-4.03 3-9 3s-9-1.34-9-3"/></svg>',
+    'HANA DATABASE': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 5v14c0 1.66-4.03 3-9 3s-9-1.34-9-3V5"/><path d="M21 12c0 1.66-4.03 3-9 3s-9-1.34-9-3"/></svg>',
+    'BTP': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>',
+    'BASIS': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>',
+    'FIORI': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>'
+  },
+  'PRODUCTIVIDAD': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
+};
+
+const ROLE_ICONS = {
+  'consultor-sbo': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>',
+  'consultor-sbo-online': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><rect x="14" y="12" width="6" height="5" rx="1"/></svg>',
+  'consultor-s4hana': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 21h18M5 21V11l4-2 4 2 4-2v10"/><rect x="9" y="13" width="6" height="4"/></svg>',
+  'consultor-s4hana-online': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 21h18M5 21V11l4-2 4 2 4-2v10"/><rect x="14" y="12" width="6" height="5" rx="1"/></svg>',
+  'desarrollador-hana-online': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  'desarrollador-hana-virtual': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><circle cx="18" cy="18" r="3"/></svg>',
+  'administrador-hana-online': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 5v14c0 1.66-4.03 3-9 3s-9-1.34-9-3V5"/></svg>',
+  'administrador-hana-virtual': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 5v14c0 1.66-4.03 3-9 3s-9-1.34-9-3V5"/><circle cx="18" cy="18" r="3"/></svg>',
+  'consultor-ecc': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M7 8V6h10v2"/></svg>',
+  'consultor-productividad': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06"/></svg>',
+  'consultor-productividad-online': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="3"/><path d="M12 8v3"/></svg>',
+  'consultor-tecnico-hibrido': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+  'consultor-datos-empresariales': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+  'consultor-automation-ai': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>'
+};
 
 function renderQuickActions(menuKey) {
   elements.quickActions.innerHTML = '';
@@ -414,7 +450,18 @@ function renderQuickActions(menuKey) {
       Object.entries(courses).forEach(([name, variants]) => {
         const btn = document.createElement('button');
         btn.className = 'sub-btn';
-        btn.textContent = name;
+
+        let iconSvg = '';
+        if (COURSE_SEGMENT_ICONS[segment]) {
+          if (typeof COURSE_SEGMENT_ICONS[segment] === 'object') {
+            const subSegment = Object.keys(COURSE_SEGMENT_ICONS[segment]).find(key => name.includes(key));
+            iconSvg = subSegment ? COURSE_SEGMENT_ICONS[segment][subSegment] : COURSE_SEGMENT_ICONS[segment]['ABAP'];
+          } else {
+            iconSvg = COURSE_SEGMENT_ICONS[segment];
+          }
+        }
+
+        btn.innerHTML = `<span class="segment-icon">${iconSvg}</span><span>${name}</span>`;
         if (variants.length === 1) {
           btn.addEventListener('click', () => showCourseDetail(variants[0].id));
         } else {
@@ -428,7 +475,11 @@ function renderQuickActions(menuKey) {
     Object.entries(groupedProfiles).forEach(([name, variants]) => {
       const btn = document.createElement('button');
       btn.className = 'sub-btn';
-      btn.textContent = name;
+
+      const profileId = variants[0].id;
+      const iconSvg = ROLE_ICONS[profileId] || '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>';
+
+      btn.innerHTML = `<span class="segment-icon">${iconSvg}</span><span>${name}</span>`;
       if (variants.length === 1) {
         btn.addEventListener('click', () => showProfileDetail(variants[0].id));
       } else {
@@ -476,11 +527,11 @@ function showCourseDetail(courseId) {
       const temaNum = i + 1;
       let resumen = s.titulo.split('(')[0].trim();
       resumen = resumen.length > 45 ? resumen.substring(0, 42) + '...' : resumen;
-      return `<li style="margin-bottom: 8px; line-height: 1.6;"><span style="color: var(--accent-hover); font-weight: 500;">${temaNum}.</span> <span style="color: #D1D5DB;">${resumen}</span></li>`;
+      return `<li style="margin-bottom: 8px; line-height: 1.6;"><span style="color: var(--accent); font-weight: 500;">${temaNum}.</span> <span style="color: var(--text-secondary);">${resumen}</span></li>`;
     }).join('');
-    temarioHtml = `<div style="margin-top: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 8px;"><strong style="color: #D1D5DB; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Módulos o temario:</strong><ul style="margin: 8px 0 0 0; padding-left: 16px; list-style: none;">${temarioItems}</ul></div>`;
+    temarioHtml = `<div style="margin-top: 12px; background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 14px; border-radius: 8px;"><strong style="color: var(--text-secondary); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Módulos o temario:</strong><ul style="margin: 8px 0 0 0; padding-left: 16px; list-style: none;">${temarioItems}</ul></div>`;
   } else {
-    temarioHtml = `<p style="margin-top: 12px; color: #D1D5DB;"><strong>Módulos o temario:</strong> <em>(Aún en planificación)</em></p>`;
+    temarioHtml = `<p style="margin-top: 12px; color: var(--text-secondary);"><strong>Módulos o temario:</strong> <em>(Aún en planificación)</em></p>`;
   }
 
   const botMessage = document.createElement('div');
@@ -526,19 +577,6 @@ function showProfileDetail(profileId) {
   `;
   elements.messagesContainer.appendChild(botMessage);
   scrollToBottom();
-}
-
-function showBackOnlyMenu(parentMenu) {
-  elements.quickActions.innerHTML = '';
-  elements.quickActions.classList.remove('hidden');
-
-  const backBtn = document.createElement('button');
-  backBtn.className = 'back-btn';
-  backBtn.innerHTML = '&larr; Volver al menu principal';
-  backBtn.addEventListener('click', () => {
-    resetToZeroState();
-  });
-  elements.quickActions.appendChild(backBtn);
 }
 
 function renderRegistrationMenu() {
@@ -724,6 +762,13 @@ function closeRegistrationModal() {
 function handleFormSubmit(event) {
   event.preventDefault();
 
+  const submitBtn = document.querySelector('#registration-modal .modal-btn.primary');
+  const originalText = submitBtn ? submitBtn.innerHTML : '';
+
+  if (submitBtn) {
+    setButtonLoading(submitBtn, true, originalText);
+  }
+
   const formData = new FormData(elements.registrationForm);
   const formDataObj = {};
   formData.forEach((value, key) => {
@@ -737,10 +782,10 @@ function handleFormSubmit(event) {
 
   showTyping();
 
-  sendToSAPRegister(formDataObj);
+  sendToSAPRegister(formDataObj, submitBtn, originalText);
 }
 
-async function sendToSAPRegister(formData) {
+async function sendToSAPRegister(formData, submitBtn, originalText) {
   const sapUsername = formData.sap_username.toLowerCase();
   const roleId = formData.roleId;
 
@@ -754,64 +799,79 @@ async function sendToSAPRegister(formData) {
     const data = await response.json();
     hideTyping();
 
+    if (submitBtn) {
+      setButtonLoading(submitBtn, false, originalText);
+    }
+
     if (data.success) {
-      let successMessage;
+      showToast('Registro guardado con exito', 'success');
+
+      const credentialsBox = `
+<div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px; margin: 10px 0;">
+  <p style="margin: 0 0 8px 0; font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">CREDENCIALES DE ACCESO</p>
+  <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 0.85rem; line-height: 1.4;">
+    <span style="color: var(--text-secondary);">Usuario:</span>
+    <strong style="color: var(--text-primary);">${sapUsername}</strong>
+    <span style="color: var(--text-secondary);">Contrasena:</span>
+    <strong style="color: var(--text-primary);">ITS${sapUsername}</strong>
+  </div>
+</div>`;
+
+      let accessSection;
       if (data.requiresFiori) {
-successMessage = `¡Registro exitoso! Tu usuario <strong>${sapUsername}</strong> ha sido registrado en SAP.
-
-<strong>Flujo de acceso:</strong>
-<ol>
-  <li>Instalar SAP Logon</li>
-  <li>Adjuntar las credenciales correspondientes a ITSYSTEMS</li>
-  <li>Ingresar con tu username y contraseña</li>
+        accessSection = `
+<p style="margin: 10px 0 6px 0; font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">PASOS PARA ACCEDER:</p>
+<ol style="margin: 0 0 6px 0; padding-left: 18px; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.4;">
+  <li style="margin-bottom: 4px;">Abre el navegador y ve a SAP Fiori</li>
+  <li style="margin-bottom: 4px;">Ingresa las credenciales mostradas arriba</li>
 </ol>
-
-<strong>Credenciales:</strong>
-<ul>
-  <li><strong>Usuario:</strong> ${sapUsername}</li>
-  <li><strong>Contraseña:</strong> ITS${sapUsername}</li>
-</ul>
-
-<strong>Como alternativa, puedes acceder desde Fiori:</strong>
+<p style="margin: 0; padding: 10px 12px; background: rgba(37, 99, 235, 0.15); border: 1px solid rgba(37, 99, 235, 0.3); border-radius: 8px; font-weight: 600; color: var(--accent); font-size: 0.9rem; text-align: center;">Listo! Ya puedes empezar a practicar</p>
+<p style="margin: 10px 0 6px 0; font-weight: 500; color: var(--text-secondary); font-size: 0.85rem;">Acceder a Fiori:</p>
 <a href="https://s4hana.sapapp.store/webgui" target="_blank" class="message-link">https://s4hana.sapapp.store/webgui</a>`;
       } else {
-successMessage = `¡Registro exitoso! Tu usuario <strong>${sapUsername}</strong> ha sido registrado en SAP.
-
-<strong>Flujo de acceso:</strong>
-<ol>
-  <li>Instalar SAP Logon</li>
-  <li>Adjuntar las credenciales correspondientes a ITSYSTEMS</li>
-  <li>Ingresar con tu username y contraseña</li>
+        accessSection = `
+<p style="margin: 10px 0 6px 0; font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">PASOS PARA ACCEDER:</p>
+<ol style="margin: 0 0 6px 0; padding-left: 18px; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.4;">
+  <li style="margin-bottom: 4px;">Abre SAP Logon en tu computadora</li>
+  <li style="margin-bottom: 4px;">Crea una nueva conexion si no la tienes</li>
+  <li style="margin-bottom: 4px;">Usa las credenciales: usuario y contrasena</li>
 </ol>
-
-<strong>Credenciales:</strong>
-<ul>
-  <li><strong>Usuario:</strong> ${sapUsername}</li>
-  <li><strong>Contraseña:</strong> ITS${sapUsername}</li>
-</ul>
-
-<strong>Accede desde:</strong>
+<p style="margin: 0; padding: 10px 12px; background: rgba(37, 99, 235, 0.15); border: 1px solid rgba(37, 99, 235, 0.3); border-radius: 8px; font-weight: 600; color: var(--accent); font-size: 0.9rem; text-align: center;">Listo! Ya puedes empezar a practicar</p>
+<p style="margin: 10px 0 6px 0; font-weight: 500; color: var(--text-secondary); font-size: 0.85rem;">Acceder al sistema:</p>
 <a href="https://s4hana.itscloud.store/webgui" target="_blank" class="message-link">https://s4hana.itscloud.store/webgui</a>`;
       }
 
       const guiaDrive = GUIAS_DRIVE[roleId];
+      let guiaSection = '';
       if (guiaDrive) {
-        successMessage += `
-<br>
-<strong>Descarga la guía de instalación:</strong>
-<a href="${guiaDrive}" target="_blank" class="message-link">📁 Ver Guía en Drive</a>`;
+        guiaSection = `
+<div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-subtle);">
+  <p style="margin: 0 0 6px 0; font-weight: 500; color: var(--text-secondary); font-size: 0.85rem;">Descarga la guia de instalacion:</p>
+  <a href="${guiaDrive}" target="_blank" class="message-link">[ Ver Guia en Drive ]</a>
+</div>`;
       }
+
+      const successMessage = `
+<p style="margin: 0 0 6px 0; font-weight: 600; color: var(--text-primary); font-size: 0.9rem;">Registro exitoso! Tu cuenta ha sido creada.</p>
+${credentialsBox}
+${accessSection}
+${guiaSection}`;
 
       renderMessage(successMessage, 'bot');
     } else {
+      showToast(data.error || 'Error al procesar la solicitud', 'error');
       renderMessage(data.error || 'Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.', 'bot');
     }
 
-    showBackOnlyMenu('registro');
   } catch (error) {
     hideTyping();
+
+    if (submitBtn) {
+      setButtonLoading(submitBtn, false, originalText);
+    }
+
+    showToast('Error al conectar con el servidor', 'error');
     renderMessage('Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.', 'bot');
-    showBackOnlyMenu('registro');
   }
 }
 
@@ -829,8 +889,12 @@ async function handleSend() {
     return;
   }
 
+  const sendBtn = elements.sendButton;
+  const originalContent = sendBtn.innerHTML;
+  sendBtn.innerHTML = '<span class="btn-spinner"></span>';
+  sendBtn.classList.add('btn-loading');
+
   clearInput();
-  updateSendButtonVisibility();
   renderMessage(message, 'user');
   showTyping();
 
@@ -838,7 +902,6 @@ async function handleSend() {
     const response = await sendToAPI(message);
     hideTyping();
     renderMessage(response.reply, 'bot');
-    updateSendButtonVisibility();
 
     if (response.limitReached) {
       state.limitReached = true;
@@ -846,10 +909,13 @@ async function handleSend() {
     }
   } catch (error) {
     hideTyping();
+    showToast('Error al conectar con el servidor', 'error');
     renderMessage(`Error de conexion con el servidor. Asegurate de que el backend este corriendo en puerto 3000. Detalle: ${error.message}`, 'bot', false, true);
-    updateSendButtonVisibility();
   }
 
+  sendBtn.innerHTML = originalContent;
+  sendBtn.classList.remove('btn-loading');
+  updateSendButtonVisibility();
   scrollToBottom();
   elements.messageInput.focus();
 }
@@ -979,6 +1045,55 @@ function scrollToBottom() {
   const anchor = document.getElementById('chat-bottom-anchor');
   if (anchor) {
     anchor.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function showToast(message, type = 'success', duration = 4000) {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+
+  const successIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  const errorIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+  const closeIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+
+  const icon = type === 'success' ? successIcon : errorIcon;
+
+  toast.innerHTML = `
+    <span class="toast-icon">${icon}</span>
+    <span class="toast-message">${message}</span>
+    <button class="toast-close" onclick="this.parentElement.remove()">${closeIcon}</button>
+  `;
+
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add('toast-out');
+    setTimeout(() => toast.remove(), 300);
+  }, duration);
+}
+
+function showLoadingSkeleton() {
+  return `
+    <div class="message bot">
+      <div class="skeleton-content">
+        <div class="skeleton-line full"></div>
+        <div class="skeleton-line medium"></div>
+        <div class="skeleton-line short"></div>
+      </div>
+    </div>
+  `;
+}
+
+function setButtonLoading(button, isLoading, originalText) {
+  if (isLoading) {
+    button.innerHTML = '<span class="btn-spinner"></span>';
+    button.classList.add('btn-loading');
+    button.disabled = true;
+  } else {
+    button.innerHTML = originalText;
+    button.classList.remove('btn-loading');
+    button.disabled = false;
   }
 }
 
