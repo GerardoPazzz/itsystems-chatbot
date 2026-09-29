@@ -21,9 +21,9 @@ const HINT_MESSAGES = {
     "Conoce las proyecciones laborales de cada especialidad. Escribe tu duda y te orientaremos ahora mismo."
   ],
   registro: [
-    "¿Tienes dudas sobre el proceso de registro? Nuestro agente de IA te guiará paso a paso.",
-    "Completa tu registro fácilmente. Escribe tu pregunta y te ayudaremos al instante.",
-    "Si necesitas ayuda con el formulario, nuestro agente de IA está aquí para asistirte."
+    "Recuerda: completa todos los campos correctamente. El usuario SAP debe tener entre 5-8 caracteres. Roles disponibles: MM (Materiales), SD (Ventas), FI (Contabilidad), PP (Producción), PM (Mantenimiento).",
+    "Antes de continuar: usa tu documento de identidad (8 dígitos) como usuario SAP si lo prefieres. Roles: MM, SD, FI, PP, PM. ¡Estoy aquí si necesitas ayuda!",
+    "Consejo: verifica que tu correo y teléfono sean correctos. El usuario SAP es de 5-8 caracteres. Roles disponibles: SAP MM, SD, FI, PP, PM. ¿Dudas? ¡Pregúntame!"
   ]
 };
 
@@ -264,6 +264,22 @@ function setupEventListeners() {
       }
     });
   }
+
+  const regHintModal = document.getElementById('registration-hint-modal');
+  const closeRegHintBtn = document.getElementById('close-registration-hint');
+  if (closeRegHintBtn && regHintModal) {
+    closeRegHintBtn.addEventListener('click', () => {
+      regHintModal.classList.add('hidden');
+      openRegistrationModal();
+      focusToInput();
+    });
+    regHintModal.addEventListener('click', (e) => {
+      if (e.target === regHintModal) {
+        regHintModal.classList.add('hidden');
+        closeRegistrationModal();
+      }
+    });
+  }
 }
 
 function setupNavPills() {
@@ -299,6 +315,20 @@ function showOnboardingHintModal(category = 'cursos') {
       messageText.textContent = getRandomHintMessage(category);
     }
     hintModal.classList.remove('hidden');
+  }
+}
+
+function showRegistrationHintModal() {
+  const hintModal = document.getElementById('registration-hint-modal');
+  if (hintModal) {
+    hintModal.classList.remove('hidden');
+  }
+}
+
+function closeRegistrationHintModal() {
+  const hintModal = document.getElementById('registration-hint-modal');
+  if (hintModal) {
+    hintModal.classList.add('hidden');
   }
 }
 
@@ -348,28 +378,28 @@ function handleOnboardingChoice(action) {
 
     renderMessage(choiceLabels[action] || action, 'user');
 
-    showOnboardingHintModal(action);
-
-    setTimeout(() => {
-      switch(action) {
-        case 'registro':
-          openRegistrationModal();
-          break;
-        case 'cursos':
-          renderQuickActions('cursos');
-          break;
-        case 'roles':
-          renderQuickActions('roles');
-          break;
-      }
-    }, 100);
+    if (action === 'registro') {
+      showRegistrationHintModal();
+    } else {
+      showOnboardingHintModal(action);
+      setTimeout(() => {
+        switch(action) {
+          case 'cursos':
+            renderQuickActions('cursos');
+            break;
+          case 'roles':
+            renderQuickActions('roles');
+            break;
+        }
+      }, 100);
+    }
   }, 300);
 }
 
 function handleNavPillClick(action) {
   elements.inputArea.classList.remove('hidden');
   hideWelcomeNav();
-  
+
   switch(action) {
     case 'cursos':
       state.currentMenu = 'cursos';
@@ -385,7 +415,7 @@ function handleNavPillClick(action) {
       break;
     case 'registro':
       state.currentMenu = 'registro';
-      openRegistrationModal();
+      showRegistrationHintModal();
       break;
   }
 }
@@ -472,9 +502,9 @@ function updateSendButtonVisibility() {
 
 function showAdvisorInfo() {
   showChatMode();
-  
+
   const whatsappMessage = encodeURIComponent('Hola, tengo una consulta sobre los cursos de SAP. ¿Podrían ayudarme?');
-  
+
   const advisorMessage = `
     <p>¡Con gusto! Aquí tienes los datos para contactar con uno de nuestros asesores:</p>
     <ul>
@@ -492,6 +522,31 @@ function showAdvisorInfo() {
   scrollToBottom();
 }
 
+function showRegistrationHelpMessage() {
+  showChatMode();
+
+  const message = `
+    <p>Si deseas registrarte más adelante, puedes volver al apartado <strong>"Registro"</strong> en cualquier momento.</p>
+    <p>Considera usar tu documento de identidad (8 dígitos) como usuario SAP si lo prefieres.</p>
+    <p><strong>Roles disponibles:</strong></p>
+    <ul>
+      <li>SAP MM - Gestión de Materiales</li>
+      <li>SAP SD - Ventas y Distribución</li>
+      <li>SAP FI - Contabilidad Financiera</li>
+      <li>SAP PP - Planificación de Producción</li>
+      <li>SAP PM - Mantenimiento de Plantas</li>
+    </ul>
+    <p>¿Hay algo más en lo que pueda ayudarte?</p>
+  `;
+
+  renderMessage('Cancelar registro', 'user');
+  const botMsg = document.createElement('div');
+  botMsg.className = 'message bot';
+  botMsg.innerHTML = `<div class="message-content">${message}</div>`;
+  elements.messagesContainer.appendChild(botMsg);
+  scrollToBottom();
+}
+
 
 
 function resetToZeroState() {
@@ -499,9 +554,9 @@ function resetToZeroState() {
   document.getElementById('quick-actions').classList.add('hidden');
   document.getElementById('quick-actions').innerHTML = '';
   elements.messageInput.value = '';
-  
+
   document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
-  
+
   state.registrationMode = false;
   state.currentMenu = 'main';
 }
@@ -890,7 +945,7 @@ function setupUsernameValidation() {
 
 function closeRegistrationModal() {
   elements.registrationModal.classList.add('hidden');
-  showOnboardingHintModal('registro');
+  showRegistrationHelpMessage();
 }
 
 function handleFormSubmit(event) {

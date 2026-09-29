@@ -83,11 +83,11 @@
     </svg>
   </div>
 
-  <main class="app-container">
-    
-    <!-- BLOQUE CENTRAL: Chat con navegación -->
-    <div class="chat-content">
+   <main class="app-container">
       
+     <!-- BLOQUE CENTRAL: Chat con navegación -->
+     <div class="chat-content">
+        
       <!-- PANTALLA DE BIENVENIDA (Centrada verticalmente, solo visible al inicio) -->
       <div id="welcome-screen" class="welcome-screen">
         <div class="welcome-logo">
@@ -263,22 +263,22 @@
         <div class="form-row">
           <div class="form-group">
             <label for="reg-nombre" class="form-label">Nombre</label>
-            <input type="text" id="reg-nombre" name="nombre" class="form-input" required>
+            <input type="text" id="reg-nombre" name="nombre" class="form-input" placeholder="Juan Carlos" required>
           </div>
           <div class="form-group">
             <label for="reg-apellidos" class="form-label">Apellidos</label>
-            <input type="text" id="reg-apellidos" name="apellidos" class="form-input" required>
+            <input type="text" id="reg-apellidos" name="apellidos" class="form-input" placeholder="Pérez García" required>
           </div>
         </div>
         <div class="form-group">
           <label for="reg-email" class="form-label">Correo Electrónico</label>
-          <input type="email" id="reg-email" name="email" class="form-input" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingresa un correo válido" required>
+          <input type="email" id="reg-email" name="email" class="form-input" placeholder="correo@ejemplo.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingresa un correo válido" required>
           <span id="email-error" class="field-error-msg"></span>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label for="reg-telefono" class="form-label">Teléfono</label>
-            <input type="text" id="reg-telefono" name="telefono" class="form-input" maxlength="12" required>
+            <input type="text" id="reg-telefono" name="telefono" class="form-input" placeholder="+51 999 999 999" maxlength="12" required>
             <span id="telefono-error" class="field-error-msg"></span>
           </div>
           <div class="form-group">
@@ -288,7 +288,17 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="reg-sap-conocimientos" class="form-label">Conocimientos previos de SAP</label>
+            <label for="reg-sap-conocimientos" class="form-label">
+              Conocimientos SAP
+              <span class="tooltip-wrapper">
+                <svg class="tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span class="tooltip-text">Indica si tienes experiencia previa con SAP para adaptar el nivel del curso.</span>
+              </span>
+            </label>
             <select id="reg-sap-conocimientos" name="conocimientos" class="form-select" required>
               <option value="">Seleccione...</option>
               <option value="Si">Sí</option>
@@ -297,17 +307,37 @@
           </div>
           <div class="form-group">
             <label for="reg-institucion" class="form-label">Institución / Empresa</label>
-            <input type="text" id="reg-institucion" name="institucion" class="form-input" required>
+            <input type="text" id="reg-institucion" name="institucion" class="form-input" placeholder="Universidad o empresa" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="reg-sap-usuario" class="form-label">Usuario SAP</label>
-            <input type="text" id="reg-sap-usuario" name="sap_username" class="form-input" minlength="5" maxlength="8" required>
+            <label for="reg-sap-usuario" class="form-label">
+              Usuario SAP
+              <span class="tooltip-wrapper">
+                <svg class="tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span class="tooltip-text">Usuario para acceder al sistema SAP de prueba. Longitud: 5-8 caracteres alfanuméricos.</span>
+              </span>
+            </label>
+            <input type="text" id="reg-sap-usuario" name="sap_username" class="form-input" placeholder="USR001" minlength="5" maxlength="8" required>
             <span id="username-error" class="username-error-msg"></span>
           </div>
           <div class="form-group">
-            <label for="reg-rol" class="form-label">Rol a solicitar</label>
+            <label for="reg-rol" class="form-label">
+              Rol a solicitar
+              <span class="tooltip-wrapper">
+                <svg class="tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span class="tooltip-text">Módulo SAP donde practicarás. Puedes solicitar cambio posteriormente.</span>
+              </span>
+            </label>
             <select id="reg-rol" name="roleId" class="form-select" required>
               <option value="">Seleccione un rol...</option>
               <option value="S4_MM_DEMO">SAP MM DEMO(Gestión de Materiales)</option>
@@ -337,6 +367,62 @@
       <h3>Resuelve tus dudas al instante</h3>
       <p id="hint-message-text">Escribe tu mensaje y nuestro agente de IA te respondera al instante.</p>
       <button id="close-hint-modal" class="onboarding-hint-btn">Comenzar a chatear</button>
+    </div>
+  </div>
+
+  <!-- REGISTRATION HINT MODAL -->
+  <div id="registration-hint-modal" class="registration-hint-overlay hidden">
+    <div class="registration-hint-modal">
+      <div class="registration-hint-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <h3>Antes de continuar...</h3>
+      <div class="registration-hint-content">
+        <div class="hint-step">
+          <span class="step-number">1</span>
+          <span class="step-text">Completa todos los campos del formulario</span>
+        </div>
+        <div class="hint-step">
+          <span class="step-number">2</span>
+          <span class="step-text">El usuario SAP debe tener <strong>5-8 caracteres</strong></span>
+        </div>
+        <div class="hint-step">
+          <span class="step-number">3</span>
+          <span class="step-text">Usa tu <strong>DNI (8 dígitos)</strong> si lo prefieres como usuario</span>
+        </div>
+      </div>
+      <div class="registration-hint-roles">
+        <p class="roles-title">Roles disponibles:</p>
+        <div class="roles-grid">
+          <div class="role-item">
+            <span class="role-tag">MM</span>
+            <span class="role-desc">Gestión de Materiales</span>
+          </div>
+          <div class="role-item">
+            <span class="role-tag">SD</span>
+            <span class="role-desc">Ventas y Distribución</span>
+          </div>
+          <div class="role-item">
+            <span class="role-tag">FI</span>
+            <span class="role-desc">Contabilidad Financiera</span>
+          </div>
+          <div class="role-item">
+            <span class="role-tag">PP</span>
+            <span class="role-desc">Planificación de Producción</span>
+          </div>
+          <div class="role-item">
+            <span class="role-tag">PM</span>
+            <span class="role-desc">Mantenimiento de Plantas</span>
+          </div>
+        </div>
+      </div>
+      <button id="close-registration-hint" class="registration-hint-btn">Entendido</button>
     </div>
   </div>
 
