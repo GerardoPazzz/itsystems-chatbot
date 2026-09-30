@@ -214,7 +214,8 @@ const elements = {
   btnCancelRegistration: document.getElementById('btn-cancel-registration'),
   welcomeScreen: document.getElementById('welcome-screen'),
   welcomeNav: document.querySelector('.welcome-nav'),
-  inputArea: document.querySelector('.input-area')
+  inputArea: document.querySelector('.input-area'),
+  inputContainer: document.querySelector('.input-container')
 };
 
 async function init() {
@@ -238,7 +239,10 @@ async function init() {
 function setupEventListeners() {
   elements.sendButton.addEventListener('click', handleSend);
   elements.messageInput.addEventListener('keydown', handleKeyDown);
-  elements.messageInput.addEventListener('input', updateSendButtonVisibility);
+  elements.messageInput.addEventListener('input', () => {
+    updateSendButtonVisibility();
+    updateCharCounter();
+  });
   elements.btnRestart.addEventListener('click', handleRestart);
   elements.btnAdvisor.addEventListener('click', handleAdvisor);
   elements.registrationForm.addEventListener('submit', handleFormSubmit);
@@ -492,11 +496,45 @@ function closeSubmenu(showHint = false, category = 'cursos') {
 function updateSendButtonVisibility() {
   const message = elements.messageInput.value.trim();
   const sendBtn = elements.sendButton;
-  
+
   if (message && !state.isTyping && !state.registrationMode) {
     sendBtn.classList.add('visible');
   } else {
     sendBtn.classList.remove('visible');
+  }
+}
+
+function updateCharCounter() {
+  let text = elements.messageInput.value;
+  let length = text.length;
+  const counter = document.getElementById('char-counter');
+  const sendBtn = elements.sendButton;
+
+  if (length > 250) {
+    text = text.substring(0, 250);
+    elements.messageInput.value = text;
+    length = 250;
+  }
+
+  if (counter) {
+    counter.textContent = `${length}/250`;
+
+    counter.classList.remove('warning', 'error');
+    elements.inputContainer.classList.remove('limit-reached');
+
+    if (length >= 250) {
+      counter.classList.add('error');
+      elements.inputContainer.classList.add('limit-reached');
+      sendBtn.classList.add('disabled');
+      sendBtn.disabled = true;
+    } else if (length >= 200) {
+      counter.classList.add('warning');
+      sendBtn.classList.remove('disabled');
+      sendBtn.disabled = false;
+    } else {
+      sendBtn.classList.remove('disabled');
+      sendBtn.disabled = false;
+    }
   }
 }
 

@@ -6,7 +6,7 @@ export const config = {
   gemini: {
     apiKey: process.env.GEMINI_API_KEY,
     model: process.env.GEMINI_MODEL || 'gemini-3.6-flash',
-    maxTokens: parseInt(process.env.GEMINI_MAX_TOKENS || '150', 10),
+    maxTokens: parseInt(process.env.GEMINI_MAX_TOKENS || '300', 10),
     temperature: parseFloat(process.env.GEMINI_TEMPERATURE || '0.7'),
     maxHistory: parseInt(process.env.GEMINI_MAX_HISTORY || '6', 10),
   },
@@ -23,5 +23,9 @@ export const config = {
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT || '5432'),
     database: process.env.DB_NAME
+  },
+  admin: {
+    user: process.env.ADMIN_USER,
+    pass: process.env.ADMIN_PASS
   }
 };

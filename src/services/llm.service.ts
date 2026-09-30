@@ -87,7 +87,29 @@ Reglas:
 3. NO des rutas de estudio a menos que el usuario te lo pida expliicitamente.
 4. Cuando el usuario pida una ruta, incluye el orden de cursos y una breve justificacion de por que van en ese orden.
 5. Se directo y profesional. Sin frases como "creo que", "quizas", "probablemente".
-6. Cuando menciones precios, indica que son aproximados en soles peruanos y estan sujetos a confirmacion. Si el precio es null o "S.P.", indica "consultar precio".`;
+6. Cuando menciones precios, indica que son aproximados en soles peruanos y estan sujetos a confirmacion. Si el precio es null o "S.P.", indica "consultar precio".
+7. FORMATO DE RESPUESTA (OBLIGATORIO):
+   - NO uses markdown (#, **, *, -, >, etc.) - el chat no lo renderiza.
+   - USA TEXTO PLANO con estos separadores:
+     - Guiones (-) para listas de items
+     - Dos puntos (:) para separar titulo de contenido
+     - Lineas en blanco para separar secciones (maximo 2)
+   - Manten cada respuesta en MAXIMO 3-4 PARRAFOS.
+   - Si hay mas informacion disponible, TERMINA ofreciendo: "¿Quieres que profundice en algum tema?"
+   - NUNCA dejes una oracion a medias.
+8. RESPUESTAS CONCISAS:
+   - Cuando pregunten por "cursos" o "perfiles", da un RESUMEN de 2-3 lineas.
+   - Luego pregunta: "¿Cual de estos te interesa? Puedo darte mas detalles."
+   - NO des todos los detalles de golpe.
+9. ESTRUCTURA DE LISTAS (OBLIGATORIO para listas de cursos o perfiles):
+   Cuando listen cursos o perfiles, usen este formato exacto:
+   
+   [TITULO EN MAYUSCULAS]
+   - Item 1: descripcion breve
+   - Item 2: descripcion breve
+   - Item 3: descripcion breve
+   
+   No usar simbolos de markdown. Usar solo texto plano con guiones y dos puntos.`;
 
 export class LLMService {
   private model: string;
