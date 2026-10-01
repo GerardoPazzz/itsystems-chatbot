@@ -6,7 +6,7 @@
   <title>ITSYSTEMS - Asesor Academico Virtual</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="app-body">
@@ -106,8 +106,16 @@
 
         <!-- ONBOARDING CONTAINER -->
         <div id="onboarding-container" class="onboarding-container">
-          <div class="onboarding-message">
-            ¡Hola! Soy tu asistente de ITSYSTEMS. Para brindarte la mejor información sobre nuestros cursos SAP, ¿te gustaría iniciar tu registro rápido o prefieres explorar los perfiles profesionales primero?
+          <div class="onboarding-message"></div>
+          <div class="onboarding-hint hidden">
+            <svg class="hint-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 12 20 22 4 22 4 12"/>
+              <rect x="2" y="7" width="20" height="5"/>
+              <line x1="12" y1="22" x2="12" y2="7"/>
+              <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+              <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+            </svg>
+            <span>Tu primera practica SAP esta a un clic. Registrate y prueba nuestro sistema SAP GRATIS</span>
           </div>
           <div class="onboarding-replies">
             <button class="onboarding-btn onboarding-btn-primary" data-action="registro">
@@ -155,7 +163,7 @@
 
           <!-- VALUE CARDS -->
           <div class="onboarding-value-cards">
-            <div class="value-card">
+            <div class="value-card" data-card="ecosistema">
               <svg class="value-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                 <line x1="8" y1="21" x2="16" y2="21"/>
@@ -164,7 +172,7 @@
               <h4>Ecosistema SAP</h4>
               <p>Aprende S/4HANA, BTP y más</p>
             </div>
-            <div class="value-card">
+            <div class="value-card" data-card="casos">
               <svg class="value-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="16 18 22 12 16 6"/>
                 <polyline points="8 6 2 12 8 18"/>
@@ -172,7 +180,7 @@
               <h4>Casos Reales</h4>
               <p>Aplica logica de negocio y bases de datos</p>
             </div>
-            <div class="value-card">
+            <div class="value-card" data-card="rutas">
               <svg class="value-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="8" r="6"/>
                 <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
@@ -190,6 +198,17 @@
           <button class="nav-pill" data-action="asesor">Asesor</button>
           <button class="nav-pill" data-action="registro">Registro</button>
         </nav>
+      </div>
+
+      <!-- MEDIA MODAL (Fuera del welcome-screen para estar siempre disponible) -->
+      <div id="media-modal" class="media-modal hidden">
+        <button class="media-modal-close" onclick="closeCardModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+        <img id="modal-image" class="media-modal-image" src="" alt="">
       </div>
 
       <!-- HISTORIAL DE CHAT (Visible cuando hay mensajes) -->

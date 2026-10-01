@@ -9,6 +9,12 @@ const GUIAS_DRIVE = {
   'S4_PP_DEMO': 'https://drive.google.com/drive/folders/14I4jF5w6TinY5Or_gK4haDuq_zpTWXde?usp=drive_link'
 };
 
+const CARD_IMAGES = {
+  'ecosistema': '/assets/images/ecosistema-sap.jpg',
+  'casos': '/assets/images/casos-reales.jpg',
+  'rutas': '/assets/images/ruta-profesional.jpg'
+};
+
 const HINT_MESSAGES = {
   cursos: [
     "¿No sabes qué curso escoger? Pregúntale a nuestro agente de IA y te guiaremos paso a paso.",
@@ -30,6 +36,41 @@ const HINT_MESSAGES = {
 function getRandomHintMessage(category) {
   const messages = HINT_MESSAGES[category] || HINT_MESSAGES.cursos;
   return messages[Math.floor(Math.random() * messages.length)];
+}
+
+const ONBOARDING_MESSAGES = [
+  "¡Hola! Soy el asistente virtual de ITSYSTEMS. Puedo ayudarte con información sobre nuestros cursos SAP, precios y cómo empezar. ¿En qué te puedo ayudar hoy?",
+  "¡Hola! Soy tu asistente virtual en ITSYSTEMS. Cuéntame, ¿qué te gustaría saber? Puedo darte información sobre cursos, precios o ayudarte con tu registro.",
+  "¡Hola! Soy el asistente virtual de ITSYSTEMS. Estoy aquí para ayudarte. Podemos explorar nuestros cursos SAP, ver precios o iniciar tu registro. ¿Qué prefieres hacer primero?"
+];
+
+function getRandomOnboardingMessage() {
+  return ONBOARDING_MESSAGES[Math.floor(Math.random() * ONBOARDING_MESSAGES.length)];
+}
+
+function typeMessage(element, text, speed = 15) {
+  let index = 0;
+  element.textContent = '';
+  element.classList.add('typing');
+
+  const repliesContainer = document.querySelector('.onboarding-replies');
+
+  function type() {
+    if (index < text.length) {
+      element.textContent += text.charAt(index);
+      index++;
+      setTimeout(type, speed);
+    } else {
+      element.classList.remove('typing');
+      if (repliesContainer) {
+        setTimeout(() => {
+          repliesContainer.classList.add('visible');
+        }, 200);
+      }
+    }
+  }
+
+  type();
 }
 
 const state = {
@@ -233,6 +274,7 @@ async function init() {
   setupEventListeners();
   setupUsernameValidation();
   setupOnboarding();
+  setupCardModalListeners();
   updateSendButtonVisibility();
 }
 
@@ -348,9 +390,50 @@ function setupOnboarding() {
   const onboardingContainer = document.getElementById('onboarding-container');
   if (!onboardingContainer) return;
 
+  const messageEl = onboardingContainer.querySelector('.onboarding-message');
+  const repliesContainer = onboardingContainer.querySelector('.onboarding-replies');
+  const hintEl = onboardingContainer.querySelector('.onboarding-hint');
+
+  if (messageEl && repliesContainer) {
+    repliesContainer.classList.remove('visible');
+    const randomMessage = getRandomOnboardingMessage();
+    typeMessage(messageEl, randomMessage, 15);
+  }
+
+  let hintTimeout;
+  let hintShownByHover = false;
+
+  const registroBtn = onboardingContainer.querySelector('[data-action="registro"]');
+
+  if (registroBtn && hintEl) {
+    registroBtn.addEventListener('mouseenter', () => {
+      if (hintEl.classList.contains('hidden')) {
+        hintEl.classList.remove('hidden');
+        hintEl.classList.add('visible');
+        hintShownByHover = true;
+      }
+    });
+
+    registroBtn.addEventListener('mouseleave', () => {
+      // No hacemos nada en mouseleave - el hint se queda visible
+    });
+
+    hintTimeout = setTimeout(() => {
+      if (hintShownByHover === false && hintEl.classList.contains('hidden')) {
+        hintEl.classList.remove('hidden');
+        hintEl.classList.add('visible');
+      }
+    }, 10000);
+  }
+
   const buttons = onboardingContainer.querySelectorAll('.onboarding-btn');
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
+      clearTimeout(hintTimeout);
+      if (hintEl) {
+        hintEl.classList.remove('visible');
+        hintEl.classList.add('hidden');
+      }
       const action = btn.dataset.action;
       handleOnboardingChoice(action);
     });
@@ -475,6 +558,21 @@ function resetToZeroState() {
   if (onboardingContainer) {
     onboardingContainer.classList.remove('hidden');
     onboardingContainer.style.opacity = '1';
+
+    const messageEl = onboardingContainer.querySelector('.onboarding-message');
+    const repliesContainer = onboardingContainer.querySelector('.onboarding-replies');
+    const hintEl = onboardingContainer.querySelector('.onboarding-hint');
+
+    if (messageEl && repliesContainer) {
+      repliesContainer.classList.remove('visible');
+      const randomMessage = getRandomOnboardingMessage();
+      typeMessage(messageEl, randomMessage, 15);
+    }
+
+    if (hintEl) {
+      hintEl.classList.remove('visible');
+      hintEl.classList.add('hidden');
+    }
   }
 
   showWelcomeNav();
@@ -584,21 +682,6 @@ function showRegistrationHelpMessage() {
   elements.messagesContainer.appendChild(botMsg);
   scrollToBottom();
 }
-
-
-
-function resetToZeroState() {
-  document.getElementById('messages').innerHTML = '';
-  document.getElementById('quick-actions').classList.add('hidden');
-  document.getElementById('quick-actions').innerHTML = '';
-  elements.messageInput.value = '';
-
-  document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
-
-  state.registrationMode = false;
-  state.currentMenu = 'main';
-}
-
 
 
 function handleKeyDown(event) {
@@ -1322,6 +1405,70 @@ function setButtonLoading(button, isLoading, originalText) {
     button.classList.remove('btn-loading');
     button.disabled = false;
   }
+}
+
+function openCardModal(cardKey) {
+  const modal = document.getElementById('media-modal');
+  const img = document.getElementById('modal-image');
+
+  if (modal && img && CARD_IMAGES[cardKey]) {
+    img.src = CARD_IMAGES[cardKey];
+
+    // Force reflow to ensure animation triggers
+    void img.offsetWidth;
+
+    modal.classList.remove('hidden');
+    modal.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeCardModal() {
+  const modal = document.getElementById('media-modal');
+  const img = document.getElementById('modal-image');
+
+  if (modal) {
+    modal.classList.remove('visible');
+    modal.classList.add('closing');
+
+    setTimeout(() => {
+      modal.classList.remove('closing');
+      modal.classList.add('hidden');
+      if (img) img.src = '';
+    }, 400);
+  } else {
+    if (img) img.src = '';
+  }
+  document.body.style.overflow = '';
+}
+
+function setupCardModalListeners() {
+  const cards = document.querySelectorAll('.value-card');
+  const modal = document.getElementById('media-modal');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const cardKey = card.dataset.card;
+      if (cardKey) {
+        openCardModal(cardKey);
+      }
+    });
+    card.style.cursor = 'pointer';
+  });
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target.classList.contains('media-modal-close')) {
+        closeCardModal();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeCardModal();
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', init);
