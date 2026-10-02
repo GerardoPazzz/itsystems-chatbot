@@ -644,8 +644,8 @@ function showAdvisorInfo() {
   const advisorMessage = `
     <p>¡Con gusto! Aquí tienes los datos para contactar con uno de nuestros asesores:</p>
     <ul>
-      <li>Enviar un correo a: <a href="mailto:asesores@itsystems.com" class="message-link">asesores@itsystems.com</a></li>
-      <li>WhatsApp: <a href="https://wa.me/51918029215?text=${whatsappMessage}" target="_blank" rel="noopener noreferrer" class="message-link whatsapp-link">+51 918 029 215</a></li>
+      <li>Enviar un correo a: <a href="mailto:info@itsystems.pe" class="message-link">asesores@itsystems.com</a></li>
+      <li>WhatsApp: <a href="https://wa.me/51940475222?text=${whatsappMessage}" target="_blank" rel="noopener noreferrer" class="message-link whatsapp-link">+51 940 475 222</a></li>
       <li>Horario: Lunes a Viernes 9:00 AM - 6:00 PM</li>
     </ul>
     <p>Un asesor se comunicará contigo pronto. ¿Hay algo más en lo que pueda ayudarte?</p>

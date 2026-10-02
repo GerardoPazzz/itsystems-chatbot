@@ -128,22 +128,15 @@ body {
 
 .welcome-logo {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 16px;
 }
 
-.welcome-icon {
-  color: var(--accent);
-  opacity: 0.9;
-}
-
-.welcome-title {
-  font-size: clamp(1.5rem, 5vw, 2rem);
-  font-weight: 500;
-  color: var(--text-primary);
-  letter-spacing: 0.05em;
-  margin: 0;
+.welcome-logo-svg {
+  width: auto;
+  height: 36px;
 }
 
 .welcome-badge {
