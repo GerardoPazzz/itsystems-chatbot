@@ -2622,27 +2622,6 @@
         "Flujos de trabajo automatizados"
       ],
       "temario": []
-    },
-    {
-      "id": "Tst-1791000653932",
-      "nombre": "tst",
-      "descripcion": "tsttst",
-      "descripcion_front": "tsttst",
-      "segmento": "",
-      "modalidad": "",
-      "precio": {
-        "contado": null,
-        "cuotas": null
-      },
-      "recursos": {
-        "acceso_aula_virtual": null,
-        "acceso_sap": null
-      },
-      "habilidades_adquiridas": [],
-      "prerrequisitos_recomendados": [],
-      "temario": [],
-      "dirigido": "tsttst",
-      "notificacion_academico": ""
     }
   ],
   "perfiles": [
