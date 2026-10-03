@@ -16,15 +16,39 @@
         "acceso_sap": "2 meses"
       },
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
-      "prerrequisitos_recomendados": ["sbo-b1-implementacion-virtual"],
+      "prerrequisitos_recomendados": [
+        "sbo-b1-implementacion-virtual",
+        "s4hana-pm-virtual",
+        "s4hana-ps-virtual"
+      ],
       "dirigido": "Desarrolladores e implementadores de SAP Business One",
-      "habilidades_adquiridas": ["Desarrollo de Add-ons con SDK", "Programación en SAP B1", "Integraciones con API REST", "Creación de interfaces custom"],
+      "habilidades_adquiridas": [
+        "Desarrollo de Add-ons con SDK",
+        "Programación en SAP B1",
+        "Integraciones con API REST",
+        "Creación de interfaces custom"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Data Interface (DI API), desarrollo SDK aplicado a inventarios, creación de proyectos C#, operaciones básicas y maestros de socios de negocios e ítems" },
-        { "sesion": 2, "titulo": "User Interface (UI API), eventos de filtros/menús/ítems, captura de eventos, combinación de UI y DI, creación de formularios y herramientas UDO con instalador ARD" },
-        { "sesion": 3, "titulo": "Utilidades avanzadas SQL (QueryOptions, SQL Query, Cross Join) e introducción a la arquitectura y consumo de Service Layer mediante Postman" },
-        { "sesion": 4, "titulo": "Crystal Reports (desarrollo de queries, diseño de formatos e integración de formatos personalizados dentro de SAP Business One)" },
-        { "sesion": 5, "titulo": "Taller final de preguntas, consultas y revisiones técnicas" }
+        {
+          "sesion": 1,
+          "titulo": "Data Interface (DI API), desarrollo SDK aplicado a inventarios, creación de proyectos C#, operaciones básicas y maestros de socios de negocios e ítems"
+        },
+        {
+          "sesion": 2,
+          "titulo": "User Interface (UI API), eventos de filtros/menús/ítems, captura de eventos, combinación de UI y DI, creación de formularios y herramientas UDO con instalador ARD"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Utilidades avanzadas SQL (QueryOptions, SQL Query, Cross Join) e introducción a la arquitectura y consumo de Service Layer mediante Postman"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Crystal Reports (desarrollo de queries, diseño de formatos e integración de formatos personalizados dentro de SAP Business One)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Taller final de preguntas, consultas y revisiones técnicas"
+        }
       ]
     },
     {
@@ -45,13 +69,33 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales e implementadores de SAP Business One",
-      "habilidades_adquiridas": ["Metodología de implementación SAP B1", "Configuración de módulos", "Migración de datos", "Gestión de proyectos de implementación"],
+      "habilidades_adquiridas": [
+        "Metodología de implementación SAP B1",
+        "Configuración de módulos",
+        "Migración de datos",
+        "Gestión de proyectos de implementación"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Creación de campos y tablas de usuario, creación de objetos de usuario (UDO) y determinación inicial de cuentas de mayor" },
-        { "sesion": 2, "titulo": "Determinación avanzada de cuentas, parametrización de documentos en cabecera/detalle y procedimientos de autorización" },
-        { "sesion": 3, "titulo": "Validaciones de transacciones de negocio, consultas mediante el Query Manager y llamadas a Stored Procedures" },
-        { "sesion": 4, "titulo": "Configuración de búsquedas formateadas y diseño de layouts usando PLD y Crystal Reports" },
-        { "sesion": 5, "titulo": "Carga masiva de datos maestros (Socios de negocios, artículos, plan de cuentas) mediante Data Transfer Workbench (DTW), flujos de compras/asientos y sistema de alertas" }
+        {
+          "sesion": 1,
+          "titulo": "Creación de campos y tablas de usuario, creación de objetos de usuario (UDO) y determinación inicial de cuentas de mayor"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Determinación avanzada de cuentas, parametrización de documentos en cabecera/detalle y procedimientos de autorización"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Validaciones de transacciones de negocio, consultas mediante el Query Manager y llamadas a Stored Procedures"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Configuración de búsquedas formateadas y diseño de layouts usando PLD y Crystal Reports"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Carga masiva de datos maestros (Socios de negocios, artículos, plan de cuentas) mediante Data Transfer Workbench (DTW), flujos de compras/asientos y sistema de alertas"
+        }
       ]
     },
     {
@@ -70,15 +114,37 @@
         "acceso_sap": "1 mes"
       },
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
-      "prerrequisitos_recomendados": ["sbo-b1-implementacion-virtual"],
+      "prerrequisitos_recomendados": [
+        "sbo-b1-implementacion-virtual"
+      ],
       "dirigido": "Contadores y profesionales financieros que trabajan con SAP B1",
-      "habilidades_adquiridas": ["Contabilidad en SAP Business One", "Plan de cuentas y asientos", "Reportes financieros", "Cierre contable"],
+      "habilidades_adquiridas": [
+        "Contabilidad en SAP Business One",
+        "Plan de cuentas y asientos",
+        "Reportes financieros",
+        "Cierre contable"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Documentos por cobrar y por pagar (registros con detracciones, retenciones y percepciones)" },
-        { "sesion": 2, "titulo": "Gestión de bancos (cobranzas, depósitos, pagos y reconciliación externa de extractos bancarios)" },
-        { "sesion": 3, "titulo": "Gestión contable I (mantenimiento del plan de cuentas, determinación de cuentas, asientos de diario, asientos de planilla y reconciliaciones internas)" },
-        { "sesion": 4, "titulo": "Gestión contable II (centros de costos, normas de reparto, proyectos, presupuestos y módulo de activo fijo con depreciación)" },
-        { "sesion": 5, "titulo": "Cierre contable (ajustes por diferencia de cambio y de conversión, y proceso de cierre anual)" }
+        {
+          "sesion": 1,
+          "titulo": "Documentos por cobrar y por pagar (registros con detracciones, retenciones y percepciones)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Gestión de bancos (cobranzas, depósitos, pagos y reconciliación externa de extractos bancarios)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Gestión contable I (mantenimiento del plan de cuentas, determinación de cuentas, asientos de diario, asientos de planilla y reconciliaciones internas)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Gestión contable II (centros de costos, normas de reparto, proyectos, presupuestos y módulo de activo fijo con depreciación)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Cierre contable (ajustes por diferencia de cambio y de conversión, y proceso de cierre anual)"
+        }
       ]
     },
     {
@@ -99,14 +165,37 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Personal administrativo y operativo de empresas con SAP B1",
-      "habilidades_adquiridas": ["Gestión de documentos", "Operaciones day-to-day", "Consultas y reportes operativos", "Atención a usuarios"],
+      "habilidades_adquiridas": [
+        "Gestión de documentos",
+        "Operaciones day-to-day",
+        "Consultas y reportes operativos",
+        "Atención a usuarios"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Conceptos básicos, entorno de trabajo, conexión de la empresa al sistema e introducción a los datos maestros" },
-        { "sesion": 2, "titulo": "Compra, venta e inventario - Parte I (logística y flujos de documentos para compras y ventas nacionales en entornos mixtos)" },
-        { "sesion": 3, "titulo": "Compra, venta e inventario - Parte II (casuísticas complejas, procesos de importación internacional, transferencias de stock e informes de auditoría)" },
-        { "sesion": 4, "titulo": "Gestión de bancos - Parte I (pagos efectuados, pagos recibidos/cobranzas y sus respectivos medios de pago)" },
-        { "sesion": 5, "titulo": "Gestión de bancos - Parte II (depósitos, facturas de anticipo a clientes/proveedores, pagos parciales y reconciliaciones internas)" },
-        { "sesion": 6, "titulo": "Reportes contables y financieros (informes de libro mayor, balances generales, estados de pérdidas y ganancias, y reportes de antigüedad de saldos)" }
+        {
+          "sesion": 1,
+          "titulo": "Conceptos básicos, entorno de trabajo, conexión de la empresa al sistema e introducción a los datos maestros"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Compra, venta e inventario - Parte I (logística y flujos de documentos para compras y ventas nacionales en entornos mixtos)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Compra, venta e inventario - Parte II (casuísticas complejas, procesos de importación internacional, transferencias de stock e informes de auditoría)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Gestión de bancos - Parte I (pagos efectuados, pagos recibidos/cobranzas y sus respectivos medios de pago)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de bancos - Parte II (depósitos, facturas de anticipo a clientes/proveedores, pagos parciales y reconciliaciones internas)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Reportes contables y financieros (informes de libro mayor, balances generales, estados de pérdidas y ganancias, y reportes de antigüedad de saldos)"
+        }
       ]
     },
     {
@@ -127,14 +216,37 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Personal administrativo y operativo de empresas con SAP B1",
-      "habilidades_adquiridas": ["Gestión de documentos", "Operaciones day-to-day", "Consultas y reportes operativos", "Atención a usuarios"],
+      "habilidades_adquiridas": [
+        "Gestión de documentos",
+        "Operaciones day-to-day",
+        "Consultas y reportes operativos",
+        "Atención a usuarios"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Conceptos básicos, entorno de trabajo, conexión de la empresa al sistema e introducción a los datos maestros" },
-        { "sesion": 2, "titulo": "Compra, venta e inventario - Parte I (logística y flujos de documentos para compras y ventas nacionales en entornos mixtos)" },
-        { "sesion": 3, "titulo": "Compra, venta e inventario - Parte II (casuísticas complejas, procesos de importación internacional, transferencias de stock e informes de auditoría)" },
-        { "sesion": 4, "titulo": "Gestión de bancos - Parte I (pagos efectuados, pagos recibidos/cobranzas y sus respectivos medios de pago)" },
-        { "sesion": 5, "titulo": "Gestión de bancos - Parte II (depósitos, facturas de anticipo a clientes/proveedores, pagos parciales y reconciliaciones internas)" },
-        { "sesion": 6, "titulo": "Reportes contables y financieros (informes de libro mayor, balances generales, estados de pérdidas y ganancias, y reportes de antigüedad de saldos)" }
+        {
+          "sesion": 1,
+          "titulo": "Conceptos básicos, entorno de trabajo, conexión de la empresa al sistema e introducción a los datos maestros"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Compra, venta e inventario - Parte I (logística y flujos de documentos para compras y ventas nacionales en entornos mixtos)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Compra, venta e inventario - Parte II (casuísticas complejas, procesos de importación internacional, transferencias de stock e informes de auditoría)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Gestión de bancos - Parte I (pagos efectuados, pagos recibidos/cobranzas y sus respectivos medios de pago)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de bancos - Parte II (depósitos, facturas de anticipo a clientes/proveedores, pagos parciales y reconciliaciones internas)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Reportes contables y financieros (informes de libro mayor, balances generales, estados de pérdidas y ganancias, y reportes de antigüedad de saldos)"
+        }
       ]
     },
     {
@@ -155,14 +267,37 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales y profesionales de Supply Chain en S/4HANA",
-      "habilidades_adquiridas": ["Gestión de Materiales (MM)", "Estrategias de compras", "Gestión de stock", "Configuración de aprovisionamiento"],
+      "habilidades_adquiridas": [
+        "Gestión de Materiales (MM)",
+        "Estrategias de compras",
+        "Gestión de stock",
+        "Configuración de aprovisionamiento"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Niveles de organización y creación, modificación y ampliación del dato maestro de material e índices" },
-        { "sesion": 2, "titulo": "Aprovisionamiento estándar por stock (compras por stock, creación, reporte y liberación de SOLPED, órdenes de compra y registros de entrada MIGO)" },
-        { "sesion": 3, "titulo": "Aprovisionamiento estándar por consumos y servicios (tipos de imputación/posición, maestro de servicios y hojas de entrada de servicios)" },
-        { "sesion": 4, "titulo": "Peticiones de ofertas, cotizaciones y contratos marco (registro de cotizaciones, comparación de precios, contratos por pedido abierto y planes de entrega)" },
-        { "sesion": 5, "titulo": "Gestión de stock (reportes, traspasos en el mismo centro, traslados entre diferentes centros, inventarios simples y reservas logísticas)" },
-        { "sesion": 6, "titulo": "SAP Fiori (accesos mediante Logon, WebGUI y Fiori Launchpad, Apps Reference Library, reportes avanzados y evaluación final)" }
+        {
+          "sesion": 1,
+          "titulo": "Niveles de organización y creación, modificación y ampliación del dato maestro de material e índices"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Aprovisionamiento estándar por stock (compras por stock, creación, reporte y liberación de SOLPED, órdenes de compra y registros de entrada MIGO)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Aprovisionamiento estándar por consumos y servicios (tipos de imputación/posición, maestro de servicios y hojas de entrada de servicios)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Peticiones de ofertas, cotizaciones y contratos marco (registro de cotizaciones, comparación de precios, contratos por pedido abierto y planes de entrega)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de stock (reportes, traspasos en el mismo centro, traslados entre diferentes centros, inventarios simples y reservas logísticas)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "SAP Fiori (accesos mediante Logon, WebGUI y Fiori Launchpad, Apps Reference Library, reportes avanzados y evaluación final)"
+        }
       ]
     },
     {
@@ -183,14 +318,37 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales y profesionales de Finanzas en S/4HANA",
-      "habilidades_adquiridas": ["Contabilidad Financiera (FI)", "Libro Mayor", "Cuentas por Cobrar/Pagar", "Gestión de Activos Fijos"],
+      "habilidades_adquiridas": [
+        "Contabilidad Financiera (FI)",
+        "Libro Mayor",
+        "Cuentas por Cobrar/Pagar",
+        "Gestión de Activos Fijos"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Generalidades de SAP y Libro Mayor (GL): plan de cuentas, registros contables, documentos tipo/periódicos, apertura/cierre de periodos y reportes" },
-        { "sesion": 2, "titulo": "Cuentas por Cobrar (AR): maestro de deudores, funciones de Business Partner (BP), registro de facturas/notas de crédito, operaciones con IGV, cobranzas y compensaciones" },
-        { "sesion": 3, "titulo": "Cuentas por Pagar (AP): maestro de proveedores (BP), facturas locales e importaciones, anticipos, anulaciones y reportes" },
-        { "sesion": 4, "titulo": "Gestión de pagos y Contabilidad de Activos Fijos (AA): pagos individuales/masivos, cheques, altas, bajas, traslados y ejecución de depreciación" },
-        { "sesion": 5, "titulo": "Gestión de Cuentas Bancarias (FI-BL): bancos propios, operaciones contables, libro caja, gestión de cheques y cobranzas" },
-        { "sesion": 6, "titulo": "SAP Fiori y Cierre contable mensual/anual: navegación web/App, provisiones, valoración de moneda extranjera y arrastre de saldos" }
+        {
+          "sesion": 1,
+          "titulo": "Generalidades de SAP y Libro Mayor (GL): plan de cuentas, registros contables, documentos tipo/periódicos, apertura/cierre de periodos y reportes"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Cuentas por Cobrar (AR): maestro de deudores, funciones de Business Partner (BP), registro de facturas/notas de crédito, operaciones con IGV, cobranzas y compensaciones"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Cuentas por Pagar (AP): maestro de proveedores (BP), facturas locales e importaciones, anticipos, anulaciones y reportes"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Gestión de pagos y Contabilidad de Activos Fijos (AA): pagos individuales/masivos, cheques, altas, bajas, traslados y ejecución de depreciación"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de Cuentas Bancarias (FI-BL): bancos propios, operaciones contables, libro caja, gestión de cheques y cobranzas"
+        },
+        {
+          "sesion": 6,
+          "titulo": "SAP Fiori y Cierre contable mensual/anual: navegación web/App, provisiones, valoración de moneda extranjera y arrastre de saldos"
+        }
       ]
     },
     {
@@ -211,14 +369,37 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales y profesionales de Producción en S/4HANA",
-      "habilidades_adquiridas": ["Planificación de Producción (PP)", "MRP", "Órdenes de fabricación", "Tipos de manufactura"],
+      "habilidades_adquiridas": [
+        "Planificación de Producción (PP)",
+        "MRP",
+        "Órdenes de fabricación",
+        "Tipos de manufactura"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción (interfaz general, impacto con otros módulos, navegación, favoritos, variantes y reportería)" },
-        { "sesion": 2, "titulo": "Estructura organizativa y datos maestros (unidades de la cadena de suministro, listas de materiales BOM, modelado de manufactura y hojas de ruta)" },
-        { "sesion": 3, "titulo": "Planificación de producción (gestión de la demanda, verificación de disponibilidad, requisitos y ejecución de MRP, órdenes previsionales)" },
-        { "sesion": 4, "titulo": "Órdenes de fabricación (procesamiento, creación, programación, costeo, planificación de capacidad, liberación y reportes)" },
-        { "sesion": 5, "titulo": "Fabricación (puesta a disposición de materiales, consumo de materia prima, notificaciones, entrada de mercancía y liquidación de órdenes)" },
-        { "sesion": 6, "titulo": "Tipos de fabricación (producción controlada por órdenes/procesos, fabricación repetitiva y metodología KANBAN)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción (interfaz general, impacto con otros módulos, navegación, favoritos, variantes y reportería)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Estructura organizativa y datos maestros (unidades de la cadena de suministro, listas de materiales BOM, modelado de manufactura y hojas de ruta)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Planificación de producción (gestión de la demanda, verificación de disponibilidad, requisitos y ejecución de MRP, órdenes previsionales)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Órdenes de fabricación (procesamiento, creación, programación, costeo, planificación de capacidad, liberación y reportes)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Fabricación (puesta a disposición de materiales, consumo de materia prima, notificaciones, entrada de mercancía y liquidación de órdenes)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Tipos de fabricación (producción controlada por órdenes/procesos, fabricación repetitiva y metodología KANBAN)"
+        }
       ]
     },
     {
@@ -239,14 +420,37 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de mantenimiento industrial y gestión de plantas",
-      "habilidades_adquiridas": ["Gestión de mantenimiento preventivo", "Órdenes de trabajo", "Planificación de recursos", "Mantenimiento centrado en confiabilidad"],
+      "habilidades_adquiridas": [
+        "Gestión de mantenimiento preventivo",
+        "Órdenes de trabajo",
+        "Planificación de recursos",
+        "Mantenimiento centrado en confiabilidad"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Datos maestros de mantenimiento (estructura organizativa, puestos de trabajo, objetos y ubicaciones técnicas, equipos, listas de materiales BOM y números de serie)" },
-        { "sesion": 2, "titulo": "Mantenimiento no planificado / correctivo (gestión de avisos, órdenes de mantenimiento, cálculo de costes, ejecución, cierre y servicios externos)" },
-        { "sesion": 3, "titulo": "Mantenimiento planificado / preventivo (planes de mantenimiento, predictivo, hojas de ruta, contadores, puntos de medida, estrategias basadas en tiempo/rendimiento y programación)" },
-        { "sesion": 4, "titulo": "Preparación, ejecución y proyectos orientados al mantenimiento de planta (escenario estándar PM-PS, vinculación de órdenes con proyectos y presupuestos)" },
-        { "sesion": 5, "titulo": "Informes de mantenimiento (indicadores MTTR/MTBR, análisis de paradas, costes y resumen de gestión)" },
-        { "sesion": 6, "titulo": "Fiori aplicado al mantenimiento de planta (conceptos básicos, diseño de Apps, notificaciones y reparaciones de averías)" }
+        {
+          "sesion": 1,
+          "titulo": "Datos maestros de mantenimiento (estructura organizativa, puestos de trabajo, objetos y ubicaciones técnicas, equipos, listas de materiales BOM y números de serie)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Mantenimiento no planificado / correctivo (gestión de avisos, órdenes de mantenimiento, cálculo de costes, ejecución, cierre y servicios externos)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Mantenimiento planificado / preventivo (planes de mantenimiento, predictivo, hojas de ruta, contadores, puntos de medida, estrategias basadas en tiempo/rendimiento y programación)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Preparación, ejecución y proyectos orientados al mantenimiento de planta (escenario estándar PM-PS, vinculación de órdenes con proyectos y presupuestos)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Informes de mantenimiento (indicadores MTTR/MTBR, análisis de paradas, costes y resumen de gestión)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Fiori aplicado al mantenimiento de planta (conceptos básicos, diseño de Apps, notificaciones y reparaciones de averías)"
+        }
       ]
     },
     {
@@ -267,15 +471,41 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de ventas, distribución y servicio al cliente",
-      "habilidades_adquiridas": ["Proceso de ventas end-to-end", "Gestión de precios y condiciones", "Entregas y facturación", "Cobranzas y gestión de crédito"],
+      "habilidades_adquiridas": [
+        "Proceso de ventas end-to-end",
+        "Gestión de precios y condiciones",
+        "Entregas y facturación",
+        "Cobranzas y gestión de crédito"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Estructura comercial (sociedades, centros, puestos de expedición, áreas de ventas, oficinas y grupos de vendedores)" },
-        { "sesion": 2, "titulo": "Datos maestros de clientes (Business Partner), maestros de precios, descuentos, límites de crédito y creación de condiciones con escala" },
-        { "sesion": 3, "titulo": "Datos maestros de materiales de venta (asignación de sectores, grupo de carga) y ejercicios prácticos de gestión" },
-        { "sesion": 4, "titulo": "Circuitos comerciales (verificación de disponibilidad, documentos estándar, pedidos de servicios, urgentes y al contado)" },
-        { "sesion": 5, "titulo": "Gestión de entregas (estructuras, procesos colectivos, picking, órdenes de transporte, embalaje y salida de mercancías)" },
-        { "sesion": 6, "titulo": "Facturación (clases de factura, facturación basada en pedidos, pool e impresión de facturas, consecuencias contables y facturación electrónica)" },
-        { "sesion": 7, "titulo": "Introducción al concepto Fiori en S/4HANA, aplicaciones comerciales, integración con herramientas Cloud y generalidades de CRM Hybris" }
+        {
+          "sesion": 1,
+          "titulo": "Estructura comercial (sociedades, centros, puestos de expedición, áreas de ventas, oficinas y grupos de vendedores)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Datos maestros de clientes (Business Partner), maestros de precios, descuentos, límites de crédito y creación de condiciones con escala"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Datos maestros de materiales de venta (asignación de sectores, grupo de carga) y ejercicios prácticos de gestión"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Circuitos comerciales (verificación de disponibilidad, documentos estándar, pedidos de servicios, urgentes y al contado)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de entregas (estructuras, procesos colectivos, picking, órdenes de transporte, embalaje y salida de mercancías)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Facturación (clases de factura, facturación basada en pedidos, pool e impresión de facturas, consecuencias contables y facturación electrónica)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Introducción al concepto Fiori en S/4HANA, aplicaciones comerciales, integración con herramientas Cloud y generalidades de CRM Hybris"
+        }
       ]
     },
     {
@@ -296,7 +526,12 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de logística y transporte",
-      "habilidades_adquiridas": ["Gestión de transporte", "Planificación de rutas", "Optimización de flotas", "Integración con EWM"],
+      "habilidades_adquiridas": [
+        "Gestión de transporte",
+        "Planificación de rutas",
+        "Optimización de flotas",
+        "Integración con EWM"
+      ],
       "temario": []
     },
     {
@@ -317,15 +552,41 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de logística avanzada y gestión de almacenes",
-      "habilidades_adquiridas": ["Gestión de almacenes extendida (EWM)", "Procesos de almacén", "Movimientos internos", "Inventarios EWM"],
+      "habilidades_adquiridas": [
+        "Gestión de almacenes extendida (EWM)",
+        "Procesos de almacén",
+        "Movimientos internos",
+        "Inventarios EWM"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Estructura organizativa de la plataforma extendida" },
-        { "sesion": 2, "titulo": "Gestión de datos maestros (Business Partners, recursos y ubicaciones del almacén)" },
-        { "sesion": 3, "titulo": "Procesos de entrada de mercancía (estrategias de entrada fija, de bultos, por ubicación y procesos con órdenes de compra)" },
-        { "sesion": 4, "titulo": "Procesos de salida de mercancía (estrategias de salida, salida por pedido de venta, consumo interno y por traslado)" },
-        { "sesion": 5, "titulo": "Procesos internos en almacén (reaprovisionamiento, movimientos entre ubicaciones y desguace/SCRAP)" },
-        { "sesion": 6, "titulo": "Procesos de inventario (creación de documentos, toma de inventario, gestión y contabilización de diferencias)" },
-        { "sesion": 7, "titulo": "Monitor de EWM (gestión de tareas, recursos y colas de trabajo)" }
+        {
+          "sesion": 1,
+          "titulo": "Estructura organizativa de la plataforma extendida"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Gestión de datos maestros (Business Partners, recursos y ubicaciones del almacén)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Procesos de entrada de mercancía (estrategias de entrada fija, de bultos, por ubicación y procesos con órdenes de compra)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Procesos de salida de mercancía (estrategias de salida, salida por pedido de venta, consumo interno y por traslado)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Procesos internos en almacén (reaprovisionamiento, movimientos entre ubicaciones y desguace/SCRAP)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Procesos de inventario (creación de documentos, toma de inventario, gestión y contabilización de diferencias)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Monitor de EWM (gestión de tareas, recursos y colas de trabajo)"
+        }
       ]
     },
     {
@@ -346,15 +607,41 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de gestión de proyectos y consultores funcionales",
-      "habilidades_adquiridas": ["Gestión de proyectos (PS)", "Planificación de proyectos", "Presupuestos", "Control de proyectos"],
+      "habilidades_adquiridas": [
+        "Gestión de proyectos (PS)",
+        "Planificación de proyectos",
+        "Presupuestos",
+        "Control de proyectos"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción a la estructura organizativa, subcomponentes de sistemas de proyectos (puestos de trabajo) e integración con otros módulos SAP" },
-        { "sesion": 2, "titulo": "Datos maestros (definición de proyectos de inversión y de gastos, elementos PEP, grafos, operaciones, relaciones de ordenación y componentes)" },
-        { "sesion": 3, "titulo": "Asignaciones operativas (creación de PEP y grafos operativos/estándar, planificación de costos mensuales/anuales, liberación de proyectos y activos fijos)" },
-        { "sesion": 4, "titulo": "Planificación y presupuesto (conceptos, distribución de recursos, materiales, personal, reparto de costes PSP y presupuestos anuales/totales)" },
-        { "sesion": 5, "titulo": "Ejecución del proyecto (visualización de contabilizaciones reales, traslado de costos e ingresos, y gestión de notificaciones)" },
-        { "sesion": 6, "titulo": "Cierres del proyecto (control de contabilizaciones y notificaciones para los cierres de periodo)" },
-        { "sesion": 7, "titulo": "Informes del proyecto (análisis de progreso, resúmenes del proyecto y comparativos de plan vs. real de compras PEP)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción a la estructura organizativa, subcomponentes de sistemas de proyectos (puestos de trabajo) e integración con otros módulos SAP"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Datos maestros (definición de proyectos de inversión y de gastos, elementos PEP, grafos, operaciones, relaciones de ordenación y componentes)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Asignaciones operativas (creación de PEP y grafos operativos/estándar, planificación de costos mensuales/anuales, liberación de proyectos y activos fijos)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Planificación y presupuesto (conceptos, distribución de recursos, materiales, personal, reparto de costes PSP y presupuestos anuales/totales)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Ejecución del proyecto (visualización de contabilizaciones reales, traslado de costos e ingresos, y gestión de notificaciones)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Cierres del proyecto (control de contabilizaciones y notificaciones para los cierres de periodo)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Informes del proyecto (análisis de progreso, resúmenes del proyecto y comparativos de plan vs. real de compras PEP)"
+        }
       ]
     },
     {
@@ -375,19 +662,57 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de calidad, manufactura y gestión de información",
-      "habilidades_adquiridas": ["Gestión de Calidad (QM)", "Inspecciones de calidad", "Certificados de calidad", "Avisos de calidad"],
+      "habilidades_adquiridas": [
+        "Gestión de Calidad (QM)",
+        "Inspecciones de calidad",
+        "Certificados de calidad",
+        "Avisos de calidad"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Visión general del módulo de gestión de la calidad" },
-        { "sesion": 2, "titulo": "Planificación de la calidad I (vista de calidad en maestro de materiales, clases de inspección y catálogo de características maestras cualitativas)" },
-        { "sesion": 3, "titulo": "Planificación de la calidad II (características cuantitativas, procedimientos de muestreo y planes de inspección en recetas de planificación)" },
-        { "sesion": 4, "titulo": "Inspección y liberación de insumos (gestión de lotes de inspección, registro de resultados y decisiones de empleo)" },
-        { "sesion": 5, "titulo": "Inspección durante el proceso productivo (gestión de lotes y registro en puntos de inspección específicos)" },
-        { "sesion": 6, "titulo": "Inspección y liberación de producto terminado" },
-        { "sesion": 7, "titulo": "Certificados de calidad (modelos de certificados y emisión de los mismos)" },
-        { "sesion": 8, "titulo": "Gestión de avisos de calidad para reclamos al proveedor" },
-        { "sesion": 9, "titulo": "Gestión de avisos de calidad para reclamos de clientes y problemas internos de la planta" },
-        { "sesion": 10, "titulo": "Gestión de documentos vinculando el sistema DMS al lote de inspección" },
-        { "sesion": 11, "titulo": "Reportes, historial de resultados, repasos y evaluaciones del módulo" }
+        {
+          "sesion": 1,
+          "titulo": "Visión general del módulo de gestión de la calidad"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Planificación de la calidad I (vista de calidad en maestro de materiales, clases de inspección y catálogo de características maestras cualitativas)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Planificación de la calidad II (características cuantitativas, procedimientos de muestreo y planes de inspección en recetas de planificación)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Inspección y liberación de insumos (gestión de lotes de inspección, registro de resultados y decisiones de empleo)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Inspección durante el proceso productivo (gestión de lotes y registro en puntos de inspección específicos)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Inspección y liberación de producto terminado"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Certificados de calidad (modelos de certificados y emisión de los mismos)"
+        },
+        {
+          "sesion": 8,
+          "titulo": "Gestión de avisos de calidad para reclamos al proveedor"
+        },
+        {
+          "sesion": 9,
+          "titulo": "Gestión de avisos de calidad para reclamos de clientes y problemas internos de la planta"
+        },
+        {
+          "sesion": 10,
+          "titulo": "Gestión de documentos vinculando el sistema DMS al lote de inspección"
+        },
+        {
+          "sesion": 11,
+          "titulo": "Reportes, historial de resultados, repasos y evaluaciones del módulo"
+        }
       ]
     },
     {
@@ -408,7 +733,12 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores de Controlling y profesionales financieros",
-      "habilidades_adquiridas": ["Controlling (CO)", "Centros de costo", "Análisis de márgenes", "Costos de producto"],
+      "habilidades_adquiridas": [
+        "Controlling (CO)",
+        "Centros de costo",
+        "Análisis de márgenes",
+        "Costos de producto"
+      ],
       "temario": []
     },
     {
@@ -429,14 +759,37 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales y profesionales de Supply Chain en S/4HANA",
-      "habilidades_adquiridas": ["Gestión de Materiales (MM)", "Estrategias de compras", "Gestión de stock", "Configuración de aprovisionamiento"],
+      "habilidades_adquiridas": [
+        "Gestión de Materiales (MM)",
+        "Estrategias de compras",
+        "Gestión de stock",
+        "Configuración de aprovisionamiento"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Niveles de organización y creación, modificación y ampliación del dato maestro de material e índices" },
-        { "sesion": 2, "titulo": "Aprovisionamiento estándar por stock (compras por stock, creación, reporte y liberación de SOLPED, órdenes de compra y registros de entrada MIGO)" },
-        { "sesion": 3, "titulo": "Aprovisionamiento estándar por consumos y servicios (tipos de imputación/posición, maestro de servicios y hojas de entrada de servicios)" },
-        { "sesion": 4, "titulo": "Peticiones de ofertas, cotizaciones y contratos marco (registro de cotizaciones, comparación de precios, contratos por pedido abierto y planes de entrega)" },
-        { "sesion": 5, "titulo": "Gestión de stock (reportes, traspasos en el mismo centro, traslados entre diferentes centros, inventarios simples y reservas logísticas)" },
-        { "sesion": 6, "titulo": "SAP Fiori (accesos mediante Logon, WebGUI y Fiori Launchpad, Apps Reference Library, reportes avanzados y evaluación final)" }
+        {
+          "sesion": 1,
+          "titulo": "Niveles de organización y creación, modificación y ampliación del dato maestro de material e índices"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Aprovisionamiento estándar por stock (compras por stock, creación, reporte y liberación de SOLPED, órdenes de compra y registros de entrada MIGO)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Aprovisionamiento estándar por consumos y servicios (tipos de imputación/posición, maestro de servicios y hojas de entrada de servicios)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Peticiones de ofertas, cotizaciones y contratos marco (registro de cotizaciones, comparación de precios, contratos por pedido abierto y planes de entrega)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de stock (reportes, traspasos en el mismo centro, traslados entre diferentes centros, inventarios simples y reservas logísticas)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "SAP Fiori (accesos mediante Logon, WebGUI y Fiori Launchpad, Apps Reference Library, reportes avanzados y evaluación final)"
+        }
       ]
     },
     {
@@ -457,14 +810,37 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales y profesionales de Finanzas en S/4HANA",
-      "habilidades_adquiridas": ["Contabilidad Financiera (FI)", "Libro Mayor", "Cuentas por Cobrar/Pagar", "Gestión de Activos Fijos"],
+      "habilidades_adquiridas": [
+        "Contabilidad Financiera (FI)",
+        "Libro Mayor",
+        "Cuentas por Cobrar/Pagar",
+        "Gestión de Activos Fijos"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Generalidades de SAP y Libro Mayor (GL): plan de cuentas, registros contables, documentos tipo/periódicos, apertura/cierre de periodos y reportes" },
-        { "sesion": 2, "titulo": "Cuentas por Cobrar (AR): maestro de deudores, funciones de Business Partner (BP), registro de facturas/notas de crédito, operaciones con IGV, cobranzas y compensaciones" },
-        { "sesion": 3, "titulo": "Cuentas por Pagar (AP): maestro de proveedores (BP), facturas locales e importaciones, anticipos, anulaciones y reportes" },
-        { "sesion": 4, "titulo": "Gestión de pagos y Contabilidad de Activos Fijos (AA): pagos individuales/masivos, cheques, altas, bajas, traslados y ejecución de depreciación" },
-        { "sesion": 5, "titulo": "Gestión de Cuentas Bancarias (FI-BL): bancos propios, operaciones contables, libro caja, gestión de cheques y cobranzas" },
-        { "sesion": 6, "titulo": "SAP Fiori y Cierre contable mensual/anual: navegación web/App, provisiones, valoración de moneda extranjera y arrastre de saldos" }
+        {
+          "sesion": 1,
+          "titulo": "Generalidades de SAP y Libro Mayor (GL): plan de cuentas, registros contables, documentos tipo/periódicos, apertura/cierre de periodos y reportes"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Cuentas por Cobrar (AR): maestro de deudores, funciones de Business Partner (BP), registro de facturas/notas de crédito, operaciones con IGV, cobranzas y compensaciones"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Cuentas por Pagar (AP): maestro de proveedores (BP), facturas locales e importaciones, anticipos, anulaciones y reportes"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Gestión de pagos y Contabilidad de Activos Fijos (AA): pagos individuales/masivos, cheques, altas, bajas, traslados y ejecución de depreciación"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de Cuentas Bancarias (FI-BL): bancos propios, operaciones contables, libro caja, gestión de cheques y cobranzas"
+        },
+        {
+          "sesion": 6,
+          "titulo": "SAP Fiori y Cierre contable mensual/anual: navegación web/App, provisiones, valoración de moneda extranjera y arrastre de saldos"
+        }
       ]
     },
     {
@@ -485,14 +861,37 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales y profesionales de Producción en S/4HANA",
-      "habilidades_adquiridas": ["Planificación de Producción (PP)", "MRP", "Órdenes de fabricación", "Tipos de manufactura"],
+      "habilidades_adquiridas": [
+        "Planificación de Producción (PP)",
+        "MRP",
+        "Órdenes de fabricación",
+        "Tipos de manufactura"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción (interfaz general, impacto con otros módulos, navegación, favoritos, variantes y reportería)" },
-        { "sesion": 2, "titulo": "Estructura organizativa y datos maestros (unidades de la cadena de suministro, listas de materiales BOM, modelado de manufactura y hojas de ruta)" },
-        { "sesion": 3, "titulo": "Planificación de producción (gestión de la demanda, verificación de disponibilidad, requisitos y ejecución de MRP, órdenes previsionales)" },
-        { "sesion": 4, "titulo": "Órdenes de fabricación (procesamiento, creación, programación, costeo, planificación de capacidad, liberación y reportes)" },
-        { "sesion": 5, "titulo": "Fabricación (puesta a disposición de materiales, consumo de materia prima, notificaciones, entrada de mercancía y liquidación de órdenes)" },
-        { "sesion": 6, "titulo": "Tipos de fabricación (producción controlada por órdenes/procesos, fabricación repetitiva y metodología KANBAN)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción (interfaz general, impacto con otros módulos, navegación, favoritos, variantes y reportería)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Estructura organizativa y datos maestros (unidades de la cadena de suministro, listas de materiales BOM, modelado de manufactura y hojas de ruta)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Planificación de producción (gestión de la demanda, verificación de disponibilidad, requisitos y ejecución de MRP, órdenes previsionales)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Órdenes de fabricación (procesamiento, creación, programación, costeo, planificación de capacidad, liberación y reportes)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Fabricación (puesta a disposición de materiales, consumo de materia prima, notificaciones, entrada de mercancía y liquidación de órdenes)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Tipos de fabricación (producción controlada por órdenes/procesos, fabricación repetitiva y metodología KANBAN)"
+        }
       ]
     },
     {
@@ -513,14 +912,37 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de mantenimiento industrial y gestión de plantas",
-      "habilidades_adquiridas": ["Gestión de mantenimiento preventivo", "Órdenes de trabajo", "Planificación de recursos", "Mantenimiento centrado en confiabilidad"],
+      "habilidades_adquiridas": [
+        "Gestión de mantenimiento preventivo",
+        "Órdenes de trabajo",
+        "Planificación de recursos",
+        "Mantenimiento centrado en confiabilidad"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Datos maestros de mantenimiento (estructura organizativa, puestos de trabajo, objetos y ubicaciones técnicas, equipos, listas de materiales BOM y números de serie)" },
-        { "sesion": 2, "titulo": "Mantenimiento no planificado / correctivo (gestión de avisos, órdenes de mantenimiento, cálculo de costes, ejecución, cierre y servicios externos)" },
-        { "sesion": 3, "titulo": "Mantenimiento planificado / preventivo (planes de mantenimiento, predictivo, hojas de ruta, contadores, puntos de medida, estrategias basadas en tiempo/rendimiento y programación)" },
-        { "sesion": 4, "titulo": "Preparación, ejecución y proyectos orientados al mantenimiento de planta (escenario estándar PM-PS, vinculación de órdenes con proyectos y presupuestos)" },
-        { "sesion": 5, "titulo": "Informes de mantenimiento (indicadores MTTR/MTBR, análisis de paradas, costes y resumen de gestión)" },
-        { "sesion": 6, "titulo": "Fiori aplicado al mantenimiento de planta (conceptos básicos, diseño de Apps, notificaciones y reparaciones de averías)" }
+        {
+          "sesion": 1,
+          "titulo": "Datos maestros de mantenimiento (estructura organizativa, puestos de trabajo, objetos y ubicaciones técnicas, equipos, listas de materiales BOM y números de serie)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Mantenimiento no planificado / correctivo (gestión de avisos, órdenes de mantenimiento, cálculo de costes, ejecución, cierre y servicios externos)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Mantenimiento planificado / preventivo (planes de mantenimiento, predictivo, hojas de ruta, contadores, puntos de medida, estrategias basadas en tiempo/rendimiento y programación)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Preparación, ejecución y proyectos orientados al mantenimiento de planta (escenario estándar PM-PS, vinculación de órdenes con proyectos y presupuestos)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Informes de mantenimiento (indicadores MTTR/MTBR, análisis de paradas, costes y resumen de gestión)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Fiori aplicado al mantenimiento de planta (conceptos básicos, diseño de Apps, notificaciones y reparaciones de averías)"
+        }
       ]
     },
     {
@@ -541,15 +963,41 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de ventas, distribución y servicio al cliente",
-      "habilidades_adquiridas": ["Proceso de ventas end-to-end", "Gestión de precios y condiciones", "Entregas y facturación", "Cobranzas y gestión de crédito"],
+      "habilidades_adquiridas": [
+        "Proceso de ventas end-to-end",
+        "Gestión de precios y condiciones",
+        "Entregas y facturación",
+        "Cobranzas y gestión de crédito"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Estructura comercial (sociedades, centros, puestos de expedición, áreas de ventas, oficinas y grupos de vendedores)" },
-        { "sesion": 2, "titulo": "Datos maestros de clientes (Business Partner), maestros de precios, descuentos, límites de crédito y creación de condiciones con escala" },
-        { "sesion": 3, "titulo": "Datos maestros de materiales de venta (asignación de sectores, grupo de carga) y ejercicios prácticos de gestión" },
-        { "sesion": 4, "titulo": "Circuitos comerciales (verificación de disponibilidad, documentos estándar, pedidos de servicios, urgentes y al contado)" },
-        { "sesion": 5, "titulo": "Gestión de entregas (estructuras, procesos colectivos, picking, órdenes de transporte, embalaje y salida de mercancías)" },
-        { "sesion": 6, "titulo": "Facturación (clases de factura, facturación basada en pedidos, pool e impresión de facturas, consecuencias contables y facturación electrónica)" },
-        { "sesion": 7, "titulo": "Introducción al concepto Fiori en S/4HANA, aplicaciones comerciales, integración con herramientas Cloud y generalidades de CRM Hybris" }
+        {
+          "sesion": 1,
+          "titulo": "Estructura comercial (sociedades, centros, puestos de expedición, áreas de ventas, oficinas y grupos de vendedores)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Datos maestros de clientes (Business Partner), maestros de precios, descuentos, límites de crédito y creación de condiciones con escala"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Datos maestros de materiales de venta (asignación de sectores, grupo de carga) y ejercicios prácticos de gestión"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Circuitos comerciales (verificación de disponibilidad, documentos estándar, pedidos de servicios, urgentes y al contado)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de entregas (estructuras, procesos colectivos, picking, órdenes de transporte, embalaje y salida de mercancías)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Facturación (clases de factura, facturación basada en pedidos, pool e impresión de facturas, consecuencias contables y facturación electrónica)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Introducción al concepto Fiori en S/4HANA, aplicaciones comerciales, integración con herramientas Cloud y generalidades de CRM Hybris"
+        }
       ]
     },
     {
@@ -570,7 +1018,12 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de logística y transporte",
-      "habilidades_adquiridas": ["Gestión de transporte", "Planificación de rutas", "Optimización de flotas", "Integración con EWM"],
+      "habilidades_adquiridas": [
+        "Gestión de transporte",
+        "Planificación de rutas",
+        "Optimización de flotas",
+        "Integración con EWM"
+      ],
       "temario": []
     },
     {
@@ -591,15 +1044,41 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de logística avanzada y gestión de almacenes",
-      "habilidades_adquiridas": ["Gestión de almacenes extendida (EWM)", "Procesos de almacén", "Movimientos internos", "Inventarios EWM"],
+      "habilidades_adquiridas": [
+        "Gestión de almacenes extendida (EWM)",
+        "Procesos de almacén",
+        "Movimientos internos",
+        "Inventarios EWM"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Estructura organizativa de la plataforma extendida" },
-        { "sesion": 2, "titulo": "Gestión de datos maestros (Business Partners, recursos y ubicaciones del almacén)" },
-        { "sesion": 3, "titulo": "Procesos de entrada de mercancía (estrategias de entrada fija, de bultos, por ubicación y procesos con órdenes de compra)" },
-        { "sesion": 4, "titulo": "Procesos de salida de mercancía (estrategias de salida, salida por pedido de venta, consumo interno y por traslado)" },
-        { "sesion": 5, "titulo": "Procesos internos en almacén (reaprovisionamiento, movimientos entre ubicaciones y desguace/SCRAP)" },
-        { "sesion": 6, "titulo": "Procesos de inventario (creación de documentos, toma de inventario, gestión y contabilización de diferencias)" },
-        { "sesion": 7, "titulo": "Monitor de EWM (gestión de tareas, recursos y colas de trabajo)" }
+        {
+          "sesion": 1,
+          "titulo": "Estructura organizativa de la plataforma extendida"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Gestión de datos maestros (Business Partners, recursos y ubicaciones del almacén)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Procesos de entrada de mercancía (estrategias de entrada fija, de bultos, por ubicación y procesos con órdenes de compra)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Procesos de salida de mercancía (estrategias de salida, salida por pedido de venta, consumo interno y por traslado)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Procesos internos en almacén (reaprovisionamiento, movimientos entre ubicaciones y desguace/SCRAP)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Procesos de inventario (creación de documentos, toma de inventario, gestión y contabilización de diferencias)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Monitor de EWM (gestión de tareas, recursos y colas de trabajo)"
+        }
       ]
     },
     {
@@ -620,15 +1099,41 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de gestión de proyectos y consultores funcionales",
-      "habilidades_adquiridas": ["Gestión de proyectos (PS)", "Planificación de proyectos", "Presupuestos", "Control de proyectos"],
+      "habilidades_adquiridas": [
+        "Gestión de proyectos (PS)",
+        "Planificación de proyectos",
+        "Presupuestos",
+        "Control de proyectos"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción a la estructura organizativa, subcomponentes de sistemas de proyectos (puestos de trabajo) e integración con otros módulos SAP" },
-        { "sesion": 2, "titulo": "Datos maestros (definición de proyectos de inversión y de gastos, elementos PEP, grafos, operaciones, relaciones de ordenación y componentes)" },
-        { "sesion": 3, "titulo": "Asignaciones operativas (creación de PEP y grafos operativos/estándar, planificación de costos mensuales/anuales, liberación de proyectos y activos fijos)" },
-        { "sesion": 4, "titulo": "Planificación y presupuesto (conceptos, distribución de recursos, materiales, personal, reparto de costes PSP y presupuestos anuales/totales)" },
-        { "sesion": 5, "titulo": "Ejecución del proyecto (visualización de contabilizaciones reales, traslado de costos e ingresos, y gestión de notificaciones)" },
-        { "sesion": 6, "titulo": "Cierres del proyecto (control de contabilizaciones y notificaciones para los cierres de periodo)" },
-        { "sesion": 7, "titulo": "Informes del proyecto (análisis de progreso, resúmenes del proyecto y comparativos de plan vs. real de compras PEP)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción a la estructura organizativa, subcomponentes de sistemas de proyectos (puestos de trabajo) e integración con otros módulos SAP"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Datos maestros (definición de proyectos de inversión y de gastos, elementos PEP, grafos, operaciones, relaciones de ordenación y componentes)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Asignaciones operativas (creación de PEP y grafos operativos/estándar, planificación de costos mensuales/anuales, liberación de proyectos y activos fijos)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Planificación y presupuesto (conceptos, distribución de recursos, materiales, personal, reparto de costes PSP y presupuestos anuales/totales)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Ejecución del proyecto (visualización de contabilizaciones reales, traslado de costos e ingresos, y gestión de notificaciones)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Cierres del proyecto (control de contabilizaciones y notificaciones para los cierres de periodo)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Informes del proyecto (análisis de progreso, resúmenes del proyecto y comparativos de plan vs. real de compras PEP)"
+        }
       ]
     },
     {
@@ -649,7 +1154,12 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores de Controlling y profesionales financieros",
-      "habilidades_adquiridas": ["Controlling (CO)", "Centros de costo", "Análisis de márgenes", "Costos de producto"],
+      "habilidades_adquiridas": [
+        "Controlling (CO)",
+        "Centros de costo",
+        "Análisis de márgenes",
+        "Costos de producto"
+      ],
       "temario": []
     },
     {
@@ -670,19 +1180,57 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de calidad, manufactura y gestión de información",
-      "habilidades_adquiridas": ["Gestión de Calidad (QM)", "Inspecciones de calidad", "Certificados de calidad", "Avisos de calidad"],
+      "habilidades_adquiridas": [
+        "Gestión de Calidad (QM)",
+        "Inspecciones de calidad",
+        "Certificados de calidad",
+        "Avisos de calidad"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Visión general del módulo de gestión de la calidad" },
-        { "sesion": 2, "titulo": "Planificación de la calidad I (vista de calidad en maestro de materiales, clases de inspección y catálogo de características maestras cualitativas)" },
-        { "sesion": 3, "titulo": "Planificación de la calidad II (características cuantitativas, procedimientos de muestreo y planes de inspección en recetas de planificación)" },
-        { "sesion": 4, "titulo": "Inspección y liberación de insumos (gestión de lotes de inspección, registro de resultados y decisiones de empleo)" },
-        { "sesion": 5, "titulo": "Inspección durante el proceso productivo (gestión de lotes y registro en puntos de inspección específicos)" },
-        { "sesion": 6, "titulo": "Inspección y liberación de producto terminado" },
-        { "sesion": 7, "titulo": "Certificados de calidad (modelos de certificados y emisión de los mismos)" },
-        { "sesion": 8, "titulo": "Gestión de avisos de calidad para reclamos al proveedor" },
-        { "sesion": 9, "titulo": "Gestión de avisos de calidad para reclamos de clientes y problemas internos de la planta" },
-        { "sesion": 10, "titulo": "Gestión de documentos vinculando el sistema DMS al lote de inspección" },
-        { "sesion": 11, "titulo": "Reportes, historial de resultados, repasos y evaluaciones del módulo" }
+        {
+          "sesion": 1,
+          "titulo": "Visión general del módulo de gestión de la calidad"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Planificación de la calidad I (vista de calidad en maestro de materiales, clases de inspección y catálogo de características maestras cualitativas)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Planificación de la calidad II (características cuantitativas, procedimientos de muestreo y planes de inspección en recetas de planificación)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Inspección y liberación de insumos (gestión de lotes de inspección, registro de resultados y decisiones de empleo)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Inspección durante el proceso productivo (gestión de lotes y registro en puntos de inspección específicos)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Inspección y liberación de producto terminado"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Certificados de calidad (modelos de certificados y emisión de los mismos)"
+        },
+        {
+          "sesion": 8,
+          "titulo": "Gestión de avisos de calidad para reclamos al proveedor"
+        },
+        {
+          "sesion": 9,
+          "titulo": "Gestión de avisos de calidad para reclamos de clientes y problemas internos de la planta"
+        },
+        {
+          "sesion": 10,
+          "titulo": "Gestión de documentos vinculando el sistema DMS al lote de inspección"
+        },
+        {
+          "sesion": 11,
+          "titulo": "Reportes, historial de resultados, repasos y evaluaciones del módulo"
+        }
       ]
     },
     {
@@ -703,15 +1251,41 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales especializados en configuración de MM",
-      "habilidades_adquiridas": ["Configuración avanzada de MM", "Estrategias de aprovisionamiento", "Optimización de compras", "Integración con módulos"],
+      "habilidades_adquiridas": [
+        "Configuración avanzada de MM",
+        "Estrategias de aprovisionamiento",
+        "Optimización de compras",
+        "Integración con módulos"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción a aprovisionamiento con pedidos automáticos, modificación de solicitudes de pedido (SOLPED), creación y liberación en masa" },
-        { "sesion": 2, "titulo": "Maestro de Planificaciones MRP (vistas de planificación, tipos de MRP, métodos de aprovisionamiento, estrategias y ejecución del plan)" },
-        { "sesion": 3, "titulo": "Aprovisionamiento con Stock Especial: consignación y subcontratación (operaciones, condiciones en el proveedor BP y ejercicios prácticos)" },
-        { "sesion": 4, "titulo": "Introducción a SAP Fiori (rampa de lanzamiento, librería, objetos, grupos, catálogos, mosaicos, servicios y despliegue por roles)" },
-        { "sesion": 5, "titulo": "Pedidos automáticos (condiciones en maestro de materiales y proveedor BP), creación de servicios a comprar y liquidaciones" },
-        { "sesion": 6, "titulo": "Gestión de lotes (actualización y sistema de información de lotes)" },
-        { "sesion": 7, "titulo": "Operaciones complementarias (variación de operaciones clásicas, pedidos por traspaso, inventario y reservas por traspasos)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción a aprovisionamiento con pedidos automáticos, modificación de solicitudes de pedido (SOLPED), creación y liberación en masa"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Maestro de Planificaciones MRP (vistas de planificación, tipos de MRP, métodos de aprovisionamiento, estrategias y ejecución del plan)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Aprovisionamiento con Stock Especial: consignación y subcontratación (operaciones, condiciones en el proveedor BP y ejercicios prácticos)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Introducción a SAP Fiori (rampa de lanzamiento, librería, objetos, grupos, catálogos, mosaicos, servicios y despliegue por roles)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Pedidos automáticos (condiciones en maestro de materiales y proveedor BP), creación de servicios a comprar y liquidaciones"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Gestión de lotes (actualización y sistema de información de lotes)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Operaciones complementarias (variación de operaciones clásicas, pedidos por traspaso, inventario y reservas por traspasos)"
+        }
       ]
     },
     {
@@ -732,14 +1306,37 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de recursos humanos y consultoría HCM",
-      "habilidades_adquiridas": ["Gestión de personal", "Nómina y beneficios", "Desarrollo organizacional", "Time Management"],
+      "habilidades_adquiridas": [
+        "Gestión de personal",
+        "Nómina y beneficios",
+        "Desarrollo organizacional",
+        "Time Management"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Gestión de la organización I (administración de unidades organizativas, funciones y posiciones)" },
-        { "sesion": 2, "titulo": "Gestión de la organización II (vinculación de objetos, navegación, transacciones utilizadas e infotipos/reportes principales)" },
-        { "sesion": 3, "titulo": "Gestión de personal I (estructuras, transacciones, menús, operaciones y explicación detallada de infotipos principales)" },
-        { "sesion": 4, "titulo": "Gestión de personal II (medidas de personal, Employee/Manager Self Services, infotipos complementarios y personalizados para Perú)" },
-        { "sesion": 5, "titulo": "Gestión de tiempo (tipos y evaluación de tiempos, horarios de trabajo, infotipos de tiempos y contingentes de absentismos)" },
-        { "sesion": 6, "titulo": "Gestión de nóminas (área de nómina, registro de gestión, infotipos y cálculo de nómina)" }
+        {
+          "sesion": 1,
+          "titulo": "Gestión de la organización I (administración de unidades organizativas, funciones y posiciones)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Gestión de la organización II (vinculación de objetos, navegación, transacciones utilizadas e infotipos/reportes principales)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Gestión de personal I (estructuras, transacciones, menús, operaciones y explicación detallada de infotipos principales)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Gestión de personal II (medidas de personal, Employee/Manager Self Services, infotipos complementarios y personalizados para Perú)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de tiempo (tipos y evaluación de tiempos, horarios de trabajo, infotipos de tiempos y contingentes de absentismos)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Gestión de nóminas (área de nómina, registro de gestión, infotipos y cálculo de nómina)"
+        }
       ]
     },
     {
@@ -760,13 +1357,33 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales y profesionales de Supply Chain en SAP ECC",
-      "habilidades_adquiridas": ["Gestión de Materiales (MM)", "Procedimientos de compras", "Gestión de stock", "Evaluación de proveedores"],
+      "habilidades_adquiridas": [
+        "Gestión de Materiales (MM)",
+        "Procedimientos de compras",
+        "Gestión de stock",
+        "Evaluación de proveedores"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Estructura organizativa y datos maestros (mandante, sociedad, centro, almacén, organizaciones de compras, maestros de materiales, servicios y proveedores)" },
-        { "sesion": 2, "titulo": "Procedimientos de liberación y compras estándar (estrategias, códigos de liberación, solicitudes de pedido, peticiones de oferta, cotizaciones y pedidos de compra por stock)" },
-        { "sesion": 3, "titulo": "Compras de consumo y servicios (SOLPED de consumo, ofertas de consumo, pedidos de servicios y hojas de entrada de servicios HES)" },
-        { "sesion": 4, "titulo": "Gestión de stock y recepción de facturas logísticas (movimientos MIGO de entradas, salidas, traslados, tipos de stock, reservas, valoración separada e importaciones con costos indirectos)" },
-        { "sesion": 5, "titulo": "Procesos complementarios a la gestión de materiales (recuento, ajuste de diferencias, inventarios físicos, consignación, maquila/subcontratación e introducción al MRP)" }
+        {
+          "sesion": 1,
+          "titulo": "Estructura organizativa y datos maestros (mandante, sociedad, centro, almacén, organizaciones de compras, maestros de materiales, servicios y proveedores)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Procedimientos de liberación y compras estándar (estrategias, códigos de liberación, solicitudes de pedido, peticiones de oferta, cotizaciones y pedidos de compra por stock)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Compras de consumo y servicios (SOLPED de consumo, ofertas de consumo, pedidos de servicios y hojas de entrada de servicios HES)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Gestión de stock y recepción de facturas logísticas (movimientos MIGO de entradas, salidas, traslados, tipos de stock, reservas, valoración separada e importaciones con costos indirectos)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Procesos complementarios a la gestión de materiales (recuento, ajuste de diferencias, inventarios físicos, consignación, maquila/subcontratación e introducción al MRP)"
+        }
       ]
     },
     {
@@ -787,14 +1404,37 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales y profesionales de Finanzas en SAP ECC",
-      "habilidades_adquiridas": ["Contabilidad Financiera (FI)", "Libro Mayor", "Cuentas por Cobrar/Pagar", "Gestión de Activos Fijos"],
+      "habilidades_adquiridas": [
+        "Contabilidad Financiera (FI)",
+        "Libro Mayor",
+        "Cuentas por Cobrar/Pagar",
+        "Gestión de Activos Fijos"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Generalidades de SAP y Libro Mayor (GL): plan de cuentas, registros contables, documentos tipo/periódicos, apertura/cierre de periodos y reportes" },
-        { "sesion": 2, "titulo": "Cuentas por Cobrar (AR): maestro de deudores, funciones de Business Partner (BP), registro de facturas/notas de crédito, operaciones con IGV, cobranzas y compensaciones" },
-        { "sesion": 3, "titulo": "Cuentas por Pagar (AP): maestro de proveedores (BP), facturas locales e importaciones, anticipos, anulaciones y reportes" },
-        { "sesion": 4, "titulo": "Gestión de pagos y Contabilidad de Activos Fijos (AA): pagos individuales/masivos, cheques, altas, bajas, traslados y ejecución de depreciación" },
-        { "sesion": 5, "titulo": "Gestión de Cuentas Bancarias (FI-BL): bancos propios, operaciones contables, libro caja, gestión de cheques y cobranzas" },
-        { "sesion": 6, "titulo": "SAP Fiori y Cierre contable mensual/anual: navegación web/App, provisiones, valoración de moneda extranjera y arrastre de saldos" }
+        {
+          "sesion": 1,
+          "titulo": "Generalidades de SAP y Libro Mayor (GL): plan de cuentas, registros contables, documentos tipo/periódicos, apertura/cierre de periodos y reportes"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Cuentas por Cobrar (AR): maestro de deudores, funciones de Business Partner (BP), registro de facturas/notas de crédito, operaciones con IGV, cobranzas y compensaciones"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Cuentas por Pagar (AP): maestro de proveedores (BP), facturas locales e importaciones, anticipos, anulaciones y reportes"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Gestión de pagos y Contabilidad de Activos Fijos (AA): pagos individuales/masivos, cheques, altas, bajas, traslados y ejecución de depreciación"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de Cuentas Bancarias (FI-BL): bancos propios, operaciones contables, libro caja, gestión de cheques y cobranzas"
+        },
+        {
+          "sesion": 6,
+          "titulo": "SAP Fiori y Cierre contable mensual/anual: navegación web/App, provisiones, valoración de moneda extranjera y arrastre de saldos"
+        }
       ]
     },
     {
@@ -815,14 +1455,37 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores funcionales y profesionales de Producción en SAP ECC",
-      "habilidades_adquiridas": ["Planificación de Producción (PP)", "MRP", "Órdenes de fabricación", "Tipos de manufactura"],
+      "habilidades_adquiridas": [
+        "Planificación de Producción (PP)",
+        "MRP",
+        "Órdenes de fabricación",
+        "Tipos de manufactura"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción (interfaz general, impacto con otros módulos, navegación, favoritos, variantes y reportería)" },
-        { "sesion": 2, "titulo": "Estructura organizativa y datos maestros (unidades de la cadena de suministro, listas de materiales BOM, modelado de manufactura y hojas de ruta)" },
-        { "sesion": 3, "titulo": "Planificación de producción (gestión de la demanda, verificación de disponibilidad, requisitos y ejecución de MRP, órdenes provisio nales)" },
-        { "sesion": 4, "titulo": "Órdenes de fabricación (procesamiento, creación, programación, costeo, planificación de capacidad, liberación y reportes)" },
-        { "sesion": 5, "titulo": "Fabricación (puesta a disposición de materiales, consumo de materia prima, notificaciones, entrada de mercancía y liquidación de órdenes)" },
-        { "sesion": 6, "titulo": "Tipos de fabricación (producción controlada por órdenes/procesos, fabricación repetitiva y metodología KANBAN)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción (interfaz general, impacto con otros módulos, navegación, favoritos, variantes y reportería)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Estructura organizativa y datos maestros (unidades de la cadena de suministro, listas de materiales BOM, modelado de manufactura y hojas de ruta)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Planificación de producción (gestión de la demanda, verificación de disponibilidad, requisitos y ejecución de MRP, órdenes provisio nales)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Órdenes de fabricación (procesamiento, creación, programación, costeo, planificación de capacidad, liberación y reportes)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Fabricación (puesta a disposición de materiales, consumo de materia prima, notificaciones, entrada de mercancía y liquidación de órdenes)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Tipos de fabricación (producción controlada por órdenes/procesos, fabricación repetitiva y metodología KANBAN)"
+        }
       ]
     },
     {
@@ -843,19 +1506,57 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de calidad, manufactura y gestión de información en SAP ECC",
-      "habilidades_adquiridas": ["Gestión de Calidad (QM)", "Inspecciones de calidad", "Certificados de calidad", "Avisos de calidad"],
+      "habilidades_adquiridas": [
+        "Gestión de Calidad (QM)",
+        "Inspecciones de calidad",
+        "Certificados de calidad",
+        "Avisos de calidad"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Visión general del módulo de gestión de la calidad" },
-        { "sesion": 2, "titulo": "Planificación de la calidad I (vista de calidad en maestro de materiales, clases de inspección y catálogo de características maestras cualitativas)" },
-        { "sesion": 3, "titulo": "Planificación de la calidad II (características cuantitativas, procedimientos de muestreo y planes de inspección en recetas de planificación)" },
-        { "sesion": 4, "titulo": "Inspección y liberación de insumos (gestión de lotes de inspección, registro de resultados y decisiones de empleo)" },
-        { "sesion": 5, "titulo": "Inspección durante el proceso productivo (gestión de lotes y registro en puntos de inspección específicos)" },
-        { "sesion": 6, "titulo": "Inspección y liberación de producto terminado" },
-        { "sesion": 7, "titulo": "Certificados de calidad (modelos de certificados y emisión de los mismos)" },
-        { "sesion": 8, "titulo": "Gestión de avisos de calidad para reclamos al proveedor" },
-        { "sesion": 9, "titulo": "Gestión de avisos de calidad para reclamos de clientes y problemas internos de la planta" },
-        { "sesion": 10, "titulo": "Gestión de documentos vinculando el sistema DMS al lote de inspección" },
-        { "sesion": 11, "titulo": "Reportes, historial de resultados, repasos y evaluaciones del módulo" }
+        {
+          "sesion": 1,
+          "titulo": "Visión general del módulo de gestión de la calidad"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Planificación de la calidad I (vista de calidad en maestro de materiales, clases de inspección y catálogo de características maestras cualitativas)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Planificación de la calidad II (características cuantitativas, procedimientos de muestreo y planes de inspección en recetas de planificación)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Inspección y liberación de insumos (gestión de lotes de inspección, registro de resultados y decisiones de empleo)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Inspección durante el proceso productivo (gestión de lotes y registro en puntos de inspección específicos)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Inspección y liberación de producto terminado"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Certificados de calidad (modelos de certificados y emisión de los mismos)"
+        },
+        {
+          "sesion": 8,
+          "titulo": "Gestión de avisos de calidad para reclamos al proveedor"
+        },
+        {
+          "sesion": 9,
+          "titulo": "Gestión de avisos de calidad para reclamos de clientes y problemas internos de la planta"
+        },
+        {
+          "sesion": 10,
+          "titulo": "Gestión de documentos vinculando el sistema DMS al lote de inspección"
+        },
+        {
+          "sesion": 11,
+          "titulo": "Reportes, historial de resultados, repasos y evaluaciones del módulo"
+        }
       ]
     },
     {
@@ -876,18 +1577,53 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de logística y gestión de almacenes en SAP ECC",
-      "habilidades_adquiridas": ["Gestión de Almacenes (WM)", "Procesos de almacén", "Movimientos internos", "Inventarios WM"],
+      "habilidades_adquiridas": [
+        "Gestión de Almacenes (WM)",
+        "Procesos de almacén",
+        "Movimientos internos",
+        "Inventarios WM"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Overview de SAP (MySAP ERP, procesos de negocio soportados, ventajas comparativas y navegación)" },
-        { "sesion": 2, "titulo": "Estructura organizativa (definición de elementos WM, tipo de almacén, área de almacenamiento y tipo de ubicación)" },
-        { "sesion": 3, "titulo": "Datos maestros (maestro de materiales, indicadores y personalización de estructuras de contenedores, áreas de almacenamiento)" },
-        { "sesion": 4, "titulo": "Ingresos de mercancía (ingresos por documentos de material, por entrega y contabilización de ingresos)" },
-        { "sesion": 5, "titulo": "Salidas de mercancía (salidas por entrega, picking, estrategias de picking y contabilización de salidas)" },
-        { "sesion": 6, "titulo": "Movimientos internos (permutación y transferencias de ubicaciones)" },
-        { "sesion": 7, "titulo": "Inventarios (documentos de inventario)" },
-        { "sesion": 8, "titulo": "Monitor de actividades" },
-        { "sesion": 9, "titulo": "Reportes del almacén" },
-        { "sesion": 10, "titulo": "Ejercicios casuísticos integradores" }
+        {
+          "sesion": 1,
+          "titulo": "Overview de SAP (MySAP ERP, procesos de negocio soportados, ventajas comparativas y navegación)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Estructura organizativa (definición de elementos WM, tipo de almacén, área de almacenamiento y tipo de ubicación)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Datos maestros (maestro de materiales, indicadores y personalización de estructuras de contenedores, áreas de almacenamiento)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Ingresos de mercancía (ingresos por documentos de material, por entrega y contabilización de ingresos)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Salidas de mercancía (salidas por entrega, picking, estrategias de picking y contabilización de salidas)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Movimientos internos (permutación y transferencias de ubicaciones)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Inventarios (documentos de inventario)"
+        },
+        {
+          "sesion": 8,
+          "titulo": "Monitor de actividades"
+        },
+        {
+          "sesion": 9,
+          "titulo": "Reportes del almacén"
+        },
+        {
+          "sesion": 10,
+          "titulo": "Ejercicios casuísticos integradores"
+        }
       ]
     },
     {
@@ -908,14 +1644,37 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de mantenimiento industrial y gestión de plantas en SAP ECC",
-      "habilidades_adquiridas": ["Gestión de mantenimiento (PM)", "Órdenes de trabajo", "Mantenimiento preventivo", "Planificación de recursos"],
+      "habilidades_adquiridas": [
+        "Gestión de mantenimiento (PM)",
+        "Órdenes de trabajo",
+        "Mantenimiento preventivo",
+        "Planificación de recursos"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Datos maestros de mantenimiento (estructura organizativa, puestos de trabajo, objetos y ubicaciones técnicas, equipos, listas de materiales BOM y números de serie)" },
-        { "sesion": 2, "titulo": "Mantenimiento no planificado / correctivo (gestión de avisos, órdenes de mantenimiento, cálculo de costes, ejecución, cierre y servicios externos)" },
-        { "sesion": 3, "titulo": "Mantenimiento planificado / preventivo (planes de mantenimiento, predictivo, hojas de ruta, contadores, puntos de medida, estrategias basadas en tiempo/rendimiento y programación)" },
-        { "sesion": 4, "titulo": "Preparación, ejecución y proyectos orientados al mantenimiento de planta (escenario estándar PM-PS, vinculación de órdenes con proyectos y presupuestos)" },
-        { "sesion": 5, "titulo": "Informes de mantenimiento (indicadores MTTR/MTBR, análisis de paradas, costes y resumen de gestión)" },
-        { "sesion": 6, "titulo": "Fiori aplicado al mantenimiento de planta (conceptos básicos, diseño de Apps, notificaciones y reparaciones de averías)" }
+        {
+          "sesion": 1,
+          "titulo": "Datos maestros de mantenimiento (estructura organizativa, puestos de trabajo, objetos y ubicaciones técnicas, equipos, listas de materiales BOM y números de serie)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Mantenimiento no planificado / correctivo (gestión de avisos, órdenes de mantenimiento, cálculo de costes, ejecución, cierre y servicios externos)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Mantenimiento planificado / preventivo (planes de mantenimiento, predictivo, hojas de ruta, contadores, puntos de medida, estrategias basadas en tiempo/rendimiento y programación)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Preparación, ejecución y proyectos orientados al mantenimiento de planta (escenario estándar PM-PS, vinculación de órdenes con proyectos y presupuestos)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Informes de mantenimiento (indicadores MTTR/MTBR, análisis de paradas, costes y resumen de gestión)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Fiori aplicado al mantenimiento de planta (conceptos básicos, diseño de Apps, notificaciones y reparaciones de averías)"
+        }
       ]
     },
     {
@@ -936,15 +1695,41 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de ventas, distribución y servicio al cliente en SAP ECC",
-      "habilidades_adquiridas": ["Ventas y Distribución (SD)", "Proceso de ventas", "Gestión de entregas", "Facturación"],
+      "habilidades_adquiridas": [
+        "Ventas y Distribución (SD)",
+        "Proceso de ventas",
+        "Gestión de entregas",
+        "Facturación"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Estructura comercial (sociedades, centros, puestos de expedición, áreas de ventas, oficinas y grupos de vendedores)" },
-        { "sesion": 2, "titulo": "Datos maestros de clientes (Business Partner), maestros de precios, descuentos, límites de crédito y creación de condiciones con escala" },
-        { "sesion": 3, "titulo": "Datos maestros de materiales de venta (asignación de sectores, grupo de carga) y ejercicios prácticos de gestión" },
-        { "sesion": 4, "titulo": "Circuitos comerciales (verificación de disponibilidad, documentos estándar, pedidos de servicios, urgentes y al contado)" },
-        { "sesion": 5, "titulo": "Gestión de entregas (estructuras, procesos colectivos, picking, órdenes de transporte, embalaje y salida de mercancías)" },
-        { "sesion": 6, "titulo": "Facturación (clases de factura, facturación basada en pedidos, pool e impresión de facturas, consecuencias contables y facturación electrónica)" },
-        { "sesion": 7, "titulo": "Introducción al concepto Fiori en S/4HANA, aplicaciones comerciales, integración con herramientas Cloud y generalidades de CRM Hybris" }
+        {
+          "sesion": 1,
+          "titulo": "Estructura comercial (sociedades, centros, puestos de expedición, áreas de ventas, oficinas y grupos de vendedores)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Datos maestros de clientes (Business Partner), maestros de precios, descuentos, límites de crédito y creación de condiciones con escala"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Datos maestros de materiales de venta (asignación de sectores, grupo de carga) y ejercicios prácticos de gestión"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Circuitos comerciales (verificación de disponibilidad, documentos estándar, pedidos de servicios, urgentes y al contado)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Gestión de entregas (estructuras, procesos colectivos, picking, órdenes de transporte, embalaje y salida de mercancías)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Facturación (clases de factura, facturación basada en pedidos, pool e impresión de facturas, consecuencias contables y facturación electrónica)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Introducción al concepto Fiori en S/4HANA, aplicaciones comerciales, integración con herramientas Cloud y generalidades de CRM Hybris"
+        }
       ]
     },
     {
@@ -965,7 +1750,12 @@
       "notificacion_academico": "correo con usuario y contraseña + manual para ingresar al aula virtual",
       "prerrequisitos_recomendados": [],
       "dirigido": "Consultores de Controlling y profesionales financieros en SAP ECC",
-      "habilidades_adquiridas": ["Controlling (CO)", "Centros de costo", "Análisis de márgenes", "Costos de producto"],
+      "habilidades_adquiridas": [
+        "Controlling (CO)",
+        "Centros de costo",
+        "Análisis de márgenes",
+        "Costos de producto"
+      ],
       "temario": []
     },
     {
@@ -986,14 +1776,37 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Desarrolladores y programadores que desean especializarse en SAP",
-      "habilidades_adquiridas": ["Programación ABAP 7.5+", "Desarrollo de reportes", "Módulo de funciones y Badis", "Enhancements y user-exits"],
+      "habilidades_adquiridas": [
+        "Programación ABAP 7.5+",
+        "Desarrollo de reportes",
+        "Módulo de funciones y Badis",
+        "Enhancements y user-exits"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción al lenguaje SAP S/4 ABAP, SAP Logon, ABAP Workbench, organización de proyectos, debugging, sentencias básicas y tipos de datos" },
-        { "sesion": 2, "titulo": "Pantallas de selección, includes, subrutinas, sentencias condicionales/iterativas, operadores y sentencias básicas SQL" },
-        { "sesion": 3, "titulo": "Estructuras, tablas internas, áreas de trabajo (Workarea), sentencias JOIN SELECT, clase cl_gui_alv_grid y asignación de programas a transacciones Z" },
-        { "sesion": 4, "titulo": "Módulos de funciones, BAPIs, clase cl_salv_table, Modul Pool (dynpros, lógica de proceso, Screen Painter)" },
-        { "sesion": 5, "titulo": "Smart Forms (elementos, estilos, carga de logos), pruebas de ejecución, acceso a Spool e implementación de funcionalidad PDF" },
-        { "sesion": 6, "titulo": "Introducción a Core Data Services (CDS): características, acceso por Eclipse IDE, visualización por SAP Logon y reportes con CDS" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción al lenguaje SAP S/4 ABAP, SAP Logon, ABAP Workbench, organización de proyectos, debugging, sentencias básicas y tipos de datos"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Pantallas de selección, includes, subrutinas, sentencias condicionales/iterativas, operadores y sentencias básicas SQL"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Estructuras, tablas internas, áreas de trabajo (Workarea), sentencias JOIN SELECT, clase cl_gui_alv_grid y asignación de programas a transacciones Z"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Módulos de funciones, BAPIs, clase cl_salv_table, Modul Pool (dynpros, lógica de proceso, Screen Painter)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Smart Forms (elementos, estilos, carga de logos), pruebas de ejecución, acceso a Spool e implementación de funcionalidad PDF"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Introducción a Core Data Services (CDS): características, acceso por Eclipse IDE, visualización por SAP Logon y reportes con CDS"
+        }
       ]
     },
     {
@@ -1004,8 +1817,8 @@
       "segmento": "HANA TECNICO",
       "modalidad": "ONLINE",
       "precio": {
-        "contado": null,
-        "cuotas": null
+        "contado": "",
+        "cuotas": ""
       },
       "recursos": {
         "acceso_aula_virtual": "sin acceso",
@@ -1014,12 +1827,29 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Desarrolladores y administradores de bases de datos SAP HANA",
-      "habilidades_adquiridas": ["SQL en HANA", "Consultas advanced", "Optimización de queries", "Vistas y procedimientos"],
+      "habilidades_adquiridas": [
+        "SQL en HANA",
+        "Consultas advanced",
+        "Optimización de queries",
+        "Vistas y procedimientos"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "De la hoja de cálculo a la base de datos (fundamentos de organización, diferencias con archivos aislados y anatomía de una tabla)" },
-        { "sesion": 2, "titulo": "Recuperación selectiva de información (sentencia SELECT, filtrado con WHERE, criterios de ordenamiento y operadores básicos)" },
-        { "sesion": 3, "titulo": "Conectividad entre tablas y resúmenes (lógica de relación, vinculación mediante JOIN, cálculos automáticos y generación de reportes agrupados)" },
-        { "sesion": 4, "titulo": "Mantenimiento y carga de datos externos (modificación con UPDATE, eliminación controlada, importación desde Excel/CSV y práctica integradora)" }
+        {
+          "sesion": 1,
+          "titulo": "De la hoja de cálculo a la base de datos (fundamentos de organización, diferencias con archivos aislados y anatomía de una tabla)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Recuperación selectiva de información (sentencia SELECT, filtrado con WHERE, criterios de ordenamiento y operadores básicos)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Conectividad entre tablas y resúmenes (lógica de relación, vinculación mediante JOIN, cálculos automáticos y generación de reportes agrupados)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Mantenimiento y carga de datos externos (modificación con UPDATE, eliminación controlada, importación desde Excel/CSV y práctica integradora)"
+        }
       ]
     },
     {
@@ -1040,13 +1870,33 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Desarrolladores que trabajan con SAP Business Technology Platform",
-      "habilidades_adquiridas": ["Desarrollo en BTP", "Servicios de integración", "Autenticación y autorización", "Aplicaciones cloud-native"],
+      "habilidades_adquiridas": [
+        "Desarrollo en BTP",
+        "Servicios de integración",
+        "Autenticación y autorización",
+        "Aplicaciones cloud-native"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción a BTP (Pilares de BTP, Modelos comerciales, Arquitectura de BTP, Creación de cuenta TRIAL)" },
-        { "sesion": 2, "titulo": "SAP HANA Cloud (Configuración de SAP HANA Cloud en BTP, Creación y administración de instancia de base de datos SAP HANA Cloud)" },
-        { "sesion": 3, "titulo": "Programación de BackEnd en framework SAP CAP con BTP (Definición de entidades, Creación de proyecto backend en SAP CAP con SAP BAS, Despliegue en Cloud Foundry, Conectividad con SQLite y SAP HANA Cloud)" },
-        { "sesion": 4, "titulo": "Programación de FrontEnd (Configuración de destino, Creación de proyecto frontend con SAP FIORI + SAP FIORI Elements + SAPUI5, Despliegue en Cloud Foundry)" },
-        { "sesion": 5, "titulo": "SAP Build WorkZone (Creación y configuración de sitio WorkZone, Unificación de Proyecto backend + frontend, Configuración de roles, catálogos, grupos y aplicaciones en WorkZone, Presentación de aplicación)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción a BTP (Pilares de BTP, Modelos comerciales, Arquitectura de BTP, Creación de cuenta TRIAL)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "SAP HANA Cloud (Configuración de SAP HANA Cloud en BTP, Creación y administración de instancia de base de datos SAP HANA Cloud)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Programación de BackEnd en framework SAP CAP con BTP (Definición de entidades, Creación de proyecto backend en SAP CAP con SAP BAS, Despliegue en Cloud Foundry, Conectividad con SQLite y SAP HANA Cloud)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Programación de FrontEnd (Configuración de destino, Creación de proyecto frontend con SAP FIORI + SAP FIORI Elements + SAPUI5, Despliegue en Cloud Foundry)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "SAP Build WorkZone (Creación y configuración de sitio WorkZone, Unificación de Proyecto backend + frontend, Configuración de roles, catálogos, grupos y aplicaciones en WorkZone, Presentación de aplicación)"
+        }
       ]
     },
     {
@@ -1067,7 +1917,12 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Administradores de sistema y consultores técnicos Basis",
-      "habilidades_adquiridas": ["Administración del sistema SAP", "Gestión de usuarios y autorizaciones", "Transportes y paisaje", "Monitoring y troubleshooting"],
+      "habilidades_adquiridas": [
+        "Administración del sistema SAP",
+        "Gestión de usuarios y autorizaciones",
+        "Transportes y paisaje",
+        "Monitoring y troubleshooting"
+      ],
       "temario": []
     },
     {
@@ -1086,17 +1941,45 @@
         "acceso_sap": "lo que dure el curso"
       },
       "notificacion_academico": "correo de bienvenida",
-      "prerrequisitos_recomendados": ["hana-abap-online"],
+      "prerrequisitos_recomendados": [
+        "hana-abap-online"
+      ],
       "dirigido": "Desarrolladores ABAP que desejam aprender el modelo de programación moderno",
-      "habilidades_adquiridas": ["RAP (RESTful Application Programming)", "Desarrollo OData v4", "CDS Views", "Behavior Definition"],
+      "habilidades_adquiridas": [
+        "RAP (RESTful Application Programming)",
+        "Desarrollo OData v4",
+        "CDS Views",
+        "Behavior Definition"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción, arquitectura, conceptos, objetos y herramientas de desarrollo ABAP, y disponibilidad del modelo" },
-        { "sesion": 2, "titulo": "Operaciones estándar y específicas para una entidad CDS, y modelado de datos Core Data Services (estructura, sintaxis, asociaciones y anotaciones)" },
-        { "sesion": 3, "titulo": "Definición y edición de un comportamiento en ABAP Development Tools, tipos de implementación, pool de comportamiento, y propiedades/mapeo de campos" },
-        { "sesion": 4, "titulo": "Lenguaje de Manipulación de Entidades (EML): tipos de datos, operaciones y uso fuera de implementaciones" },
-        { "sesion": 5, "titulo": "Implementación de Lenguaje de Definición de Comportamiento (BDL): API del proveedor, tiempo de ejecución, e interfaces de manejadores de interacción y guardado" },
-        { "sesion": 6, "titulo": "Servicios de negocio (capa de proyección, definición, vinculación y pruebas con SAP Gateway y Fiori Elements Preview)" },
-        { "sesion": 7, "titulo": "Interfaces de usuario y herramientas de desarrollo SAP Fiori Elements" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción, arquitectura, conceptos, objetos y herramientas de desarrollo ABAP, y disponibilidad del modelo"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Operaciones estándar y específicas para una entidad CDS, y modelado de datos Core Data Services (estructura, sintaxis, asociaciones y anotaciones)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Definición y edición de un comportamiento en ABAP Development Tools, tipos de implementación, pool de comportamiento, y propiedades/mapeo de campos"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Lenguaje de Manipulación de Entidades (EML): tipos de datos, operaciones y uso fuera de implementaciones"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Implementación de Lenguaje de Definición de Comportamiento (BDL): API del proveedor, tiempo de ejecución, e interfaces de manejadores de interacción y guardado"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Servicios de negocio (capa de proyección, definición, vinculación y pruebas con SAP Gateway y Fiori Elements Preview)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Interfaces de usuario y herramientas de desarrollo SAP Fiori Elements"
+        }
       ]
     },
     {
@@ -1117,13 +2000,33 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Administradores de bases de datos HANA y profesionales de data management",
-      "habilidades_adquiridas": ["Administración de HANA Database", "Backup y recovery", "Seguridad de datos", "Performance tuning"],
+      "habilidades_adquiridas": [
+        "Administración de HANA Database",
+        "Backup y recovery",
+        "Seguridad de datos",
+        "Performance tuning"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción (documentación, soporte, arquitectura multi-motor, roadmap y opciones de despliegue)" },
-        { "sesion": 2, "titulo": "Instalación (sizing del servidor, instalación de S.O. y DB, seguridad, actualizaciones, tipos de usuarios, roles y privilegios)" },
-        { "sesion": 3, "titulo": "Administración de SAP HANA (herramientas de administración, tareas de operación, minichecks y traces)" },
-        { "sesion": 4, "titulo": "Backup and Recovery (fundamentos, métodos, herramientas, validación, monitoreo y estrategias de recuperación)" },
-        { "sesion": 5, "titulo": "Mantenimiento y gestión avanzada de usuarios" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción (documentación, soporte, arquitectura multi-motor, roadmap y opciones de despliegue)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Instalación (sizing del servidor, instalación de S.O. y DB, seguridad, actualizaciones, tipos de usuarios, roles y privilegios)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Administración de SAP HANA (herramientas de administración, tareas de operación, minichecks y traces)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Backup and Recovery (fundamentos, métodos, herramientas, validación, monitoreo y estrategias de recuperación)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Mantenimiento y gestión avanzada de usuarios"
+        }
       ]
     },
     {
@@ -1144,13 +2047,33 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Desarrolladores frontend y consultores UI5/Fiori",
-      "habilidades_adquiridas": ["SAPUI5 / Fiori Elements", "Desarrollo de aplicaciones responsivas", "OData services", "UX design en SAP"],
+      "habilidades_adquiridas": [
+        "SAPUI5 / Fiori Elements",
+        "Desarrollo de aplicaciones responsivas",
+        "OData services",
+        "UX design en SAP"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción a SAP Fiori en S/4HANA, arquitectura, modelos, despliegue de aplicaciones estándar, catálogos/grupos personalizados y configuración de roles" },
-        { "sesion": 2, "titulo": "Administración de SAP Fiori Apps, anotaciones básicas para reportes, filtrado de datos y carga de valores de ayuda" },
-        { "sesion": 3, "titulo": "Bases de implementación UI5 I (estrategias UX, diseño de experiencia de usuario, procesos de desarrollo, herramientas SAP Business Application y cuentas SAP BTP)" },
-        { "sesion": 4, "titulo": "Bases de implementación UI5 II y proyecto guiado de creación de aplicaciones UI5" },
-        { "sesion": 5, "titulo": "Desarrollo UI5 y pruebas (Fiori App Library, Fiori Launchpad Designer, servicios OData, vistas CDS, uso de SADL y repositorios GitHub)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción a SAP Fiori en S/4HANA, arquitectura, modelos, despliegue de aplicaciones estándar, catálogos/grupos personalizados y configuración de roles"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Administración de SAP Fiori Apps, anotaciones básicas para reportes, filtrado de datos y carga de valores de ayuda"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Bases de implementación UI5 I (estrategias UX, diseño de experiencia de usuario, procesos de desarrollo, herramientas SAP Business Application y cuentas SAP BTP)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Bases de implementación UI5 II y proyecto guiado de creación de aplicaciones UI5"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Desarrollo UI5 y pruebas (Fiori App Library, Fiori Launchpad Designer, servicios OData, vistas CDS, uso de SADL y repositorios GitHub)"
+        }
       ]
     },
     {
@@ -1171,7 +2094,12 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Administradores de sistema y consultores técnicos Basis",
-      "habilidades_adquiridas": ["Administración del sistema SAP", "Gestión de usuarios y autorizaciones", "Transportes y paisaje", "Monitoring y troubleshooting"],
+      "habilidades_adquiridas": [
+        "Administración del sistema SAP",
+        "Gestión de usuarios y autorizaciones",
+        "Transportes y paisaje",
+        "Monitoring y troubleshooting"
+      ],
       "temario": []
     },
     {
@@ -1192,14 +2120,37 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Desarrolladores y programadores que desean especializarse en SAP",
-      "habilidades_adquiridas": ["Programación ABAP 7.5+", "Desarrollo de reportes", "Módulo de funciones y Badis", "Enhancements y user-exits"],
+      "habilidades_adquiridas": [
+        "Programación ABAP 7.5+",
+        "Desarrollo de reportes",
+        "Módulo de funciones y Badis",
+        "Enhancements y user-exits"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción al lenguaje SAP S/4 ABAP, SAP Logon, ABAP Workbench, organización de proyectos, debugging, sentencias básicas y tipos de datos" },
-        { "sesion": 2, "titulo": "Pantallas de selección, includes, subrutinas, sentencias condicionales/iterativas, operadores y sentencias básicas SQL" },
-        { "sesion": 3, "titulo": "Estructuras, tablas internas, áreas de trabajo (Workarea), sentencias JOIN SELECT, clase cl_gui_alv_grid y asignación de programas a transacciones Z" },
-        { "sesion": 4, "titulo": "Módulos de funciones, BAPIs, clase cl_salv_table, Modul Pool (dynpros, lógica de proceso, Screen Painter)" },
-        { "sesion": 5, "titulo": "Smart Forms (elementos, estilos, carga de logos), pruebas de ejecución, acceso a Spool e implementación de funcionalidad PDF" },
-        { "sesion": 6, "titulo": "Introducción a Core Data Services (CDS): características, acceso por Eclipse IDE, visualización por SAP Logon y reportes con CDS" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción al lenguaje SAP S/4 ABAP, SAP Logon, ABAP Workbench, organización de proyectos, debugging, sentencias básicas y tipos de datos"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Pantallas de selección, includes, subrutinas, sentencias condicionales/iterativas, operadores y sentencias básicas SQL"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Estructuras, tablas internas, áreas de trabajo (Workarea), sentencias JOIN SELECT, clase cl_gui_alv_grid y asignación de programas a transacciones Z"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Módulos de funciones, BAPIs, clase cl_salv_table, Modul Pool (dynpros, lógica de proceso, Screen Painter)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Smart Forms (elementos, estilos, carga de logos), pruebas de ejecución, acceso a Spool e implementación de funcionalidad PDF"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Introducción a Core Data Services (CDS): características, acceso por Eclipse IDE, visualización por SAP Logon y reportes con CDS"
+        }
       ]
     },
     {
@@ -1220,11 +2171,25 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Desarrolladores y administradores de bases de datos SAP HANA",
-      "habilidades_adquiridas": ["SQL en HANA", "Consultas advanced", "Optimización de queries", "Vistas y procedimientos"],
+      "habilidades_adquiridas": [
+        "SQL en HANA",
+        "Consultas advanced",
+        "Optimización de queries",
+        "Vistas y procedimientos"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción a SAP HANA Cloud, arquitectura Cloud Foundry en BTP, uso de HANA Database Explorer, SAP HANA Live y Core Data Services (CDS)" },
-        { "sesion": 2, "titulo": "SQL Script para SAP HANA (lectura de datos simples y múltiples, funciones definidas por el usuario, procedimientos SQL, programación imperativa vs. declarativa)" },
-        { "sesion": 3, "titulo": "Implementación y Modelado (modelos de información, contenedores de datos HDI, modelado de jerarquías SQL, control de accesos mediante Role Collections y replicación de datos)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción a SAP HANA Cloud, arquitectura Cloud Foundry en BTP, uso de HANA Database Explorer, SAP HANA Live y Core Data Services (CDS)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "SQL Script para SAP HANA (lectura de datos simples y múltiples, funciones definidas por el usuario, procedimientos SQL, programación imperativa vs. declarativa)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Implementación y Modelado (modelos de información, contenedores de datos HDI, modelado de jerarquías SQL, control de accesos mediante Role Collections y replicación de datos)"
+        }
       ]
     },
     {
@@ -1245,13 +2210,33 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Desarrolladores y arquitectos que trabajan con SAP Business Technology Platform",
-      "habilidades_adquiridas": ["Arquitectura BTP", "Servicios de integración", "Application Development", "Cloud Foundry"],
+      "habilidades_adquiridas": [
+        "Arquitectura BTP",
+        "Servicios de integración",
+        "Application Development",
+        "Cloud Foundry"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción a BTP (Pilares de BTP, Modelos comerciales, Arquitectura de BTP, Creación de cuenta TRIAL)" },
-        { "sesion": 2, "titulo": "SAP HANA Cloud (Configuración de SAP HANA Cloud en BTP, Creación y administración de instancia de base de datos SAP HANA Cloud)" },
-        { "sesion": 3, "titulo": "Programación de BackEnd en framework SAP CAP con BTP (Definición de entidades, Creación de proyecto backend en SAP CAP con SAP BAS, Despliegue en Cloud Foundry, Conectividad con SQLite y SAP HANA Cloud)" },
-        { "sesion": 4, "titulo": "Programación de FrontEnd (Configuración de destino, Creación de proyecto frontend con SAP FIORI + SAP FIORI Elements + SAPUI5, Despliegue en Cloud Foundry)" },
-        { "sesion": 5, "titulo": "SAP Build WorkZone (Creación y configuración de sitio WorkZone, Unificación de Proyecto backend + frontend, Configuración de roles, catálogos, grupos y aplicaciones en WorkZone, Presentación de aplicación)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción a BTP (Pilares de BTP, Modelos comerciales, Arquitectura de BTP, Creación de cuenta TRIAL)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "SAP HANA Cloud (Configuración de SAP HANA Cloud en BTP, Creación y administración de instancia de base de datos SAP HANA Cloud)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Programación de BackEnd en framework SAP CAP con BTP (Definición de entidades, Creación de proyecto backend en SAP CAP con SAP BAS, Despliegue en Cloud Foundry, Conectividad con SQLite y SAP HANA Cloud)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Programación de FrontEnd (Configuración de destino, Creación de proyecto frontend con SAP FIORI + SAP FIORI Elements + SAPUI5, Despliegue en Cloud Foundry)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "SAP Build WorkZone (Creación y configuración de sitio WorkZone, Unificación de Proyecto backend + frontend, Configuración de roles, catálogos, grupos y aplicaciones en WorkZone, Presentación de aplicación)"
+        }
       ]
     },
     {
@@ -1270,17 +2255,45 @@
         "acceso_sap": "1 mes"
       },
       "notificacion_academico": "correo de bienvenida",
-      "prerrequisitos_recomendados": ["hana-abap-virtual"],
+      "prerrequisitos_recomendados": [
+        "hana-abap-virtual"
+      ],
       "dirigido": "Desarrolladores ABAP que desejam aprender el modelo de programación moderno",
-      "habilidades_adquiridas": ["RAP (RESTful Application Programming)", "Desarrollo OData v4", "CDS Views", "Behavior Definition"],
+      "habilidades_adquiridas": [
+        "RAP (RESTful Application Programming)",
+        "Desarrollo OData v4",
+        "CDS Views",
+        "Behavior Definition"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción, arquitectura, conceptos, objetos y herramientas de desarrollo ABAP, y disponibilidad del modelo" },
-        { "sesion": 2, "titulo": "Operaciones estándar y específicas para una entidad CDS, y modelado de datos Core Data Services (estructura, sintaxis, asociaciones y anotaciones)" },
-        { "sesion": 3, "titulo": "Definición y edición de un comportamiento en ABAP Development Tools, tipos de implementación, pool de comportamiento, y propiedades/mapeo de campos" },
-        { "sesion": 4, "titulo": "Lenguaje de Manipulación de Entidades (EML): tipos de datos, operaciones y uso fuera de implementaciones" },
-        { "sesion": 5, "titulo": "Implementación de Lenguaje de Definición de Comportamiento (BDL): API del proveedor, tiempo de ejecución, e interfaces de manejadores de interacción y guardado" },
-        { "sesion": 6, "titulo": "Servicios de negocio (capa de proyección, definición, vinculación y pruebas con SAP Gateway y Fiori Elements Preview)" },
-        { "sesion": 7, "titulo": "Interfaces de usuario y herramientas de desarrollo SAP Fiori Elements" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción, arquitectura, conceptos, objetos y herramientas de desarrollo ABAP, y disponibilidad del modelo"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Operaciones estándar y específicas para una entidad CDS, y modelado de datos Core Data Services (estructura, sintaxis, asociaciones y anotaciones)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Definición y edición de un comportamiento en ABAP Development Tools, tipos de implementación, pool de comportamiento, y propiedades/mapeo de campos"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Lenguaje de Manipulación de Entidades (EML): tipos de datos, operaciones y uso fuera de implementaciones"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Implementación de Lenguaje de Definición de Comportamiento (BDL): API del proveedor, tiempo de ejecución, e interfaces de manejadores de interacción y guardado"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Servicios de negocio (capa de proyección, definición, vinculación y pruebas con SAP Gateway y Fiori Elements Preview)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Interfaces de usuario y herramientas de desarrollo SAP Fiori Elements"
+        }
       ]
     },
     {
@@ -1301,13 +2314,33 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Administradores de bases de datos HANA y profesionales de data management",
-      "habilidades_adquiridas": ["Administración de HANA Database", "Backup y recovery", "Seguridad de datos", "Performance tuning"],
+      "habilidades_adquiridas": [
+        "Administración de HANA Database",
+        "Backup y recovery",
+        "Seguridad de datos",
+        "Performance tuning"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción (documentación, soporte, arquitectura multi-motor, roadmap y opciones de despliegue)" },
-        { "sesion": 2, "titulo": "Instalación (sizing del servidor, instalación de S.O. y DB, seguridad, actualizaciones, tipos de usuarios, roles y privilegios)" },
-        { "sesion": 3, "titulo": "Administración de SAP HANA (herramientas de administración, tareas de operación, minichecks y traces)" },
-        { "sesion": 4, "titulo": "Backup and Recovery (fundamentos, métodos, herramientas, validación, monitoreo y estrategias de recuperación)" },
-        { "sesion": 5, "titulo": "Mantenimiento y gestión avanzada de usuarios" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción (documentación, soporte, arquitectura multi-motor, roadmap y opciones de despliegue)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Instalación (sizing del servidor, instalación de S.O. y DB, seguridad, actualizaciones, tipos de usuarios, roles y privilegios)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Administración de SAP HANA (herramientas de administración, tareas de operación, minichecks y traces)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Backup and Recovery (fundamentos, métodos, herramientas, validación, monitoreo y estrategias de recuperación)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Mantenimiento y gestión avanzada de usuarios"
+        }
       ]
     },
     {
@@ -1328,13 +2361,33 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Desarrolladores que crean aplicaciones Fiori en S/4HANA",
-      "habilidades_adquiridas": ["Desarrollo Fiori en S/4HANA", "SAPUI5 advanced", "OData services para Fiori", "Análisis y diseño de apps"],
+      "habilidades_adquiridas": [
+        "Desarrollo Fiori en S/4HANA",
+        "SAPUI5 advanced",
+        "OData services para Fiori",
+        "Análisis y diseño de apps"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Introducción a SAP Fiori en S/4HANA, arquitectura, modelos, despliegue de aplicaciones estándar, catálogos/grupos personalizados y configuración de roles" },
-        { "sesion": 2, "titulo": "Administración de SAP Fiori Apps, anotaciones básicas para reportes, filtrado de datos y carga de valores de ayuda" },
-        { "sesion": 3, "titulo": "Bases de implementación UI5 I (estrategias UX, diseño de experiencia de usuario, procesos de desarrollo, herramientas SAP Business Application y cuentas SAP BTP)" },
-        { "sesion": 4, "titulo": "Bases de implementación UI5 II y proyecto guiado de creación de aplicaciones UI5" },
-        { "sesion": 5, "titulo": "Desarrollo UI5 y pruebas (Fiori App Library, Fiori Launchpad Designer, servicios OData, vistas CDS, uso de SADL y repositorios GitHub)" }
+        {
+          "sesion": 1,
+          "titulo": "Introducción a SAP Fiori en S/4HANA, arquitectura, modelos, despliegue de aplicaciones estándar, catálogos/grupos personalizados y configuración de roles"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Administración de SAP Fiori Apps, anotaciones básicas para reportes, filtrado de datos y carga de valores de ayuda"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Bases de implementación UI5 I (estrategias UX, diseño de experiencia de usuario, procesos de desarrollo, herramientas SAP Business Application y cuentas SAP BTP)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Bases de implementación UI5 II y proyecto guiado de creación de aplicaciones UI5"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Desarrollo UI5 y pruebas (Fiori App Library, Fiori Launchpad Designer, servicios OData, vistas CDS, uso de SADL y repositorios GitHub)"
+        }
       ]
     },
     {
@@ -1355,7 +2408,12 @@
       "notificacion_academico": "correo de bienvenida",
       "prerrequisitos_recomendados": [],
       "dirigido": "Administradores de sistema y consultores técnicos Basis",
-      "habilidades_adquiridas": ["Administración del sistema SAP", "Gestión de usuarios y autorizaciones", "Transportes y paisaje", "Monitoring y troubleshooting"],
+      "habilidades_adquiridas": [
+        "Administración del sistema SAP",
+        "Gestión de usuarios y autorizaciones",
+        "Transportes y paisaje",
+        "Monitoring y troubleshooting"
+      ],
       "temario": []
     },
     {
@@ -1374,16 +2432,41 @@
         "acceso_sap": "sin acceso"
       },
       "notificacion_academico": "correo de bienvenida",
-      "prerrequisitos_recomendados": ["productividad-excel-soluciones-virtual"],
+      "prerrequisitos_recomendados": [
+        "productividad-excel-soluciones-virtual"
+      ],
       "dirigido": "Profesionales y empresas que desean integrar IA en sus procesos",
-      "habilidades_adquiridas": ["Fundamentos de IA generativa", "Prompts efectivos", "Automatización de tareas", "Análisis de datos con IA"],
+      "habilidades_adquiridas": [
+        "Fundamentos de IA generativa",
+        "Prompts efectivos",
+        "Automatización de tareas",
+        "Análisis de datos con IA"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Fundamentos de la IA moderna (qué es y qué no es la IA, funcionamiento y rol profesional)" },
-        { "sesion": 2, "titulo": "Diseño de Prompts profesionales (fundamentos del prompting, estructura del prompt y roles de la IA)" },
-        { "sesion": 3, "titulo": "Casos de uso profesionales con IA (análisis de problemas por profesión y mapa de trabajo cooperativo)" },
-        { "sesion": 4, "titulo": "Diseño de agentes IA (definición de agentes, diferencias con prompts y laboratorio práctico de construcción)" },
-        { "sesion": 5, "titulo": "Decisión y responsabilidad con IA (análisis de decisiones asistidas, criterio ético, responsabilidad humana y casos reales)" },
-        { "sesion": 6, "titulo": "Integración y futuro - Agentic World (desarrollo, prompts finales y presentación de un proyecto colaborativo aplicable)" }
+        {
+          "sesion": 1,
+          "titulo": "Fundamentos de la IA moderna (qué es y qué no es la IA, funcionamiento y rol profesional)"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Diseño de Prompts profesionales (fundamentos del prompting, estructura del prompt y roles de la IA)"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Casos de uso profesionales con IA (análisis de problemas por profesión y mapa de trabajo cooperativo)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Diseño de agentes IA (definición de agentes, diferencias con prompts y laboratorio práctico de construcción)"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Decisión y responsabilidad con IA (análisis de decisiones asistidas, criterio ético, responsabilidad humana y casos reales)"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Integración y futuro - Agentic World (desarrollo, prompts finales y presentación de un proyecto colaborativo aplicable)"
+        }
       ]
     },
     {
@@ -1404,16 +2487,45 @@
       "notificacion_academico": null,
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales de otras áreas que necesitan entender conceptos contables",
-      "habilidades_adquiridas": ["Fundamentos de contabilidad", "Estados financieros básicos", "Toma de decisiones basada en números", "Comunicación con el área financiera"],
+      "habilidades_adquiridas": [
+        "Fundamentos de contabilidad",
+        "Estados financieros básicos",
+        "Toma de decisiones basada en números",
+        "Comunicación con el área financiera"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Conceptos básicos, objetivo de la contabilidad, PCGA (partida doble, devengado) e introducción a los estados financieros" },
-        { "sesion": 2, "titulo": "Plan de cuentas y dinámica contable, características, tipos, aplicaciones de cada rubro y asientos contables tipo" },
-        { "sesion": 3, "titulo": "Estado de situación financiera (balance general): activos (bancos, inventarios, activos fijos), pasivos (proveedores, deudas) y patrimonio (capital, reservas)" },
-        { "sesion": 4, "titulo": "Estado de resultados (ganancias y pérdidas): diferencias entre gasto, costo e ingresos, comprobantes de pago, libros contables y tributarios" },
-        { "sesion": 5, "titulo": "Ratios e indicadores financieros: liquidez, rentabilidad, solvencia, saldos contables y movimientos" },
-        { "sesion": 6, "titulo": "Régimen tributario (SUNAT): tipos de contribuyentes, regímenes de retenciones, detracciones y rentas (categorías 1ra a 5ta, fuente extranjera)" },
-        { "sesion": 7, "titulo": "Normas Internacionales de Contabilidad (NIC): descripción y aplicaciones generales" },
-        { "sesion": 8, "titulo": "Gestión e integración con otras áreas SAP (logística, ventas, controlling) y cierre contable" }
+        {
+          "sesion": 1,
+          "titulo": "Conceptos básicos, objetivo de la contabilidad, PCGA (partida doble, devengado) e introducción a los estados financieros"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Plan de cuentas y dinámica contable, características, tipos, aplicaciones de cada rubro y asientos contables tipo"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Estado de situación financiera (balance general): activos (bancos, inventarios, activos fijos), pasivos (proveedores, deudas) y patrimonio (capital, reservas)"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Estado de resultados (ganancias y pérdidas): diferencias entre gasto, costo e ingresos, comprobantes de pago, libros contables y tributarios"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Ratios e indicadores financieros: liquidez, rentabilidad, solvencia, saldos contables y movimientos"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Régimen tributario (SUNAT): tipos de contribuyentes, regímenes de retenciones, detracciones y rentas (categorías 1ra a 5ta, fuente extranjera)"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Normas Internacionales de Contabilidad (NIC): descripción y aplicaciones generales"
+        },
+        {
+          "sesion": 8,
+          "titulo": "Gestión e integración con otras áreas SAP (logística, ventas, controlling) y cierre contable"
+        }
       ]
     },
     {
@@ -1434,18 +2546,53 @@
       "notificacion_academico": null,
       "prerrequisitos_recomendados": [],
       "dirigido": "Profesionales que trabajan con datos y hojas de cálculo",
-      "habilidades_adquiridas": ["Fórmulas y funciones advanced", "Tablas dinámicas", "Macros y automatización", "Visualización de datos"],
+      "habilidades_adquiridas": [
+        "Fórmulas y funciones advanced",
+        "Tablas dinámicas",
+        "Macros y automatización",
+        "Visualización de datos"
+      ],
       "temario": [
-        { "sesion": 1, "titulo": "Administración y optimización de bases de datos de ventas, formato condicional, formato de tabla, reporte automatizado con funciones estadísticas y resúmenes con funciones BD" },
-        { "sesion": 2, "titulo": "Asignación de comisiones de venta (funciones SI, SI anidada, Y, O, BUSCARV) y sistemas de consulta/cotizaciones con validación de datos y macros" },
-        { "sesion": 3, "titulo": "Consulta de compras con criterios simples y múltiples (funciones INDICE y COINCIDIR), optimización, ordenamiento y subtotales" },
-        { "sesion": 4, "titulo": "Gestión de compras con macros, optimización de presupuestos mediante SOLVER y plantillas automatizadas para órdenes de compra" },
-        { "sesion": 5, "titulo": "Inventarios I: códigos automatizados, registro de entrega de mercancías mediante macros y reportes con tablas relacionadas" },
-        { "sesion": 6, "titulo": "Inventarios II: consultas con funciones de búsqueda, controles de formulario, gráficos con indicadores meta y alertas de vencimiento de facturas" },
-        { "sesion": 7, "titulo": "Excel para Recursos Humanos: fichas de búsqueda, reporte de gastos, boletas de pago, evaluación de desempeño y encuestas de clima laboral (escala de Likert)" },
-        { "sesion": 8, "titulo": "Tablas dinámicas, gráficos dinámicos, creación de reportes ejecutivos y dashboards con Power Pivot" },
-        { "sesion": 9, "titulo": "Excel para finanzas, pagos y cobranzas: proyecciones, automatización de presupuestos, cálculo de tasas e interés de préstamos (funciones TASA, PAGO, NPER, VA, VF)" },
-        { "sesion": 10, "titulo": "Flujo de caja para viabilidad de proyectos, análisis de sensibilidad, capital de trabajo, evaluación de inversiones (VNA y TIR) y gráficos de dispersión para estudios de mercado" }
+        {
+          "sesion": 1,
+          "titulo": "Administración y optimización de bases de datos de ventas, formato condicional, formato de tabla, reporte automatizado con funciones estadísticas y resúmenes con funciones BD"
+        },
+        {
+          "sesion": 2,
+          "titulo": "Asignación de comisiones de venta (funciones SI, SI anidada, Y, O, BUSCARV) y sistemas de consulta/cotizaciones con validación de datos y macros"
+        },
+        {
+          "sesion": 3,
+          "titulo": "Consulta de compras con criterios simples y múltiples (funciones INDICE y COINCIDIR), optimización, ordenamiento y subtotales"
+        },
+        {
+          "sesion": 4,
+          "titulo": "Gestión de compras con macros, optimización de presupuestos mediante SOLVER y plantillas automatizadas para órdenes de compra"
+        },
+        {
+          "sesion": 5,
+          "titulo": "Inventarios I: códigos automatizados, registro de entrega de mercancías mediante macros y reportes con tablas relacionadas"
+        },
+        {
+          "sesion": 6,
+          "titulo": "Inventarios II: consultas con funciones de búsqueda, controles de formulario, gráficos con indicadores meta y alertas de vencimiento de facturas"
+        },
+        {
+          "sesion": 7,
+          "titulo": "Excel para Recursos Humanos: fichas de búsqueda, reporte de gastos, boletas de pago, evaluación de desempeño y encuestas de clima laboral (escala de Likert)"
+        },
+        {
+          "sesion": 8,
+          "titulo": "Tablas dinámicas, gráficos dinámicos, creación de reportes ejecutivos y dashboards con Power Pivot"
+        },
+        {
+          "sesion": 9,
+          "titulo": "Excel para finanzas, pagos y cobranzas: proyecciones, automatización de presupuestos, cálculo de tasas e interés de préstamos (funciones TASA, PAGO, NPER, VA, VF)"
+        },
+        {
+          "sesion": 10,
+          "titulo": "Flujo de caja para viabilidad de proyectos, análisis de sensibilidad, capital de trabajo, evaluación de inversiones (VNA y TIR) y gráficos de dispersión para estudios de mercado"
+        }
       ]
     },
     {
@@ -1464,10 +2611,38 @@
         "acceso_sap": "sin acceso"
       },
       "notificacion_academico": null,
-      "prerrequisitos_recomendados": ["productividad-excel-soluciones-virtual"],
+      "prerrequisitos_recomendados": [
+        "productividad-excel-soluciones-virtual"
+      ],
       "dirigido": "Profesionales que manejan datos repetitivos y buscan automatizar procesos",
-      "habilidades_adquiridas": ["Power Query", "Automatización con macros", "Limpieza y transformación de datos", "Flujos de trabajo automatizados"],
+      "habilidades_adquiridas": [
+        "Power Query",
+        "Automatización con macros",
+        "Limpieza y transformación de datos",
+        "Flujos de trabajo automatizados"
+      ],
       "temario": []
+    },
+    {
+      "id": "Tst-1791000653932",
+      "nombre": "tst",
+      "descripcion": "tsttst",
+      "descripcion_front": "tsttst",
+      "segmento": "",
+      "modalidad": "",
+      "precio": {
+        "contado": null,
+        "cuotas": null
+      },
+      "recursos": {
+        "acceso_aula_virtual": null,
+        "acceso_sap": null
+      },
+      "habilidades_adquiridas": [],
+      "prerrequisitos_recomendados": [],
+      "temario": [],
+      "dirigido": "tsttst",
+      "notificacion_academico": ""
     }
   ],
   "perfiles": [
