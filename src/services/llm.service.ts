@@ -71,7 +71,7 @@ interface GeminiGenerateResponse {
   };
 }
 
-type QuestionType = 'market' | 'specific' | 'profile' | 'general';
+type QuestionType = 'market' | 'specific' | 'profile' | 'general' | 'registro';
 
 interface CategoryResult {
   type: QuestionType;
@@ -82,10 +82,14 @@ interface CategoryResult {
 const RULES = `Eres el Asesor Academico Virtual de ITSYSTEMS.
 
 Reglas:
-1. Solo responde sobre temas del catalogo. Preguntas de mercado laboral puedes responderlas con tu conocimiento general.
-2. Si preguntan sobre un tema fuera del catalogo, indica que no manejamos ese tema y ofrece los perfiles disponibles.
+ 1. Solo responde sobre temas del catalogo. Preguntas de mercado laboral puedes responderlas con tu conocimiento general.
+ 2. ITSYSTEMS ofrece CURSOS de formacion en SAP (consultar catalogo) y ACCOUNT DEMO de SAP (acceso de prueba sin costo y temporal).
+    - ACCOUNT DEMO: Acceso de prueba al sistema SAP, SIN COSTO, TEMPORAL (7 dias de duracion). Disponible en 5 modulos: S4 MM (Gestion de Materiales), S4 SD (Ventas y Distribucion), S4 PM (Mantenimiento), S4 FI (Finanzas), S4 PP (Produccion). Una vez registrado podras ver videos demos ya preparados.
+    - CURSOS: Formacion completa disponible en el catalogo. Cada curso tiene su propio temario, duracion y precio.
+    - NO confudas los ACCOUNT DEMO con los CURSOS del catalogo. Son cosas distintas.
+    - Si preguntan por "demo", "prueba", "prueba gratuita", "demo gratuita", "acceso de prueba", "SAP de prueba", "ver SAP", "probar SAP", etc., informa sobre los ACCOUNT DEMO disponibles y no los confundas con los cursos de formacion.
 3. NO des rutas de estudio a menos que el usuario te lo pida expliicitamente.
-4. Cuando el usuario pida una ruta, incluye el orden de cursos y una breve justificacion de por que van en ese orden.
+ 4. Cuando el usuario pida una ruta, incluye el orden de cursos y una breve justificacion de por que van en ese orden.
 5. Se directo y profesional. Sin frases como "creo que", "quizas", "probablemente".
 6. Cuando menciones precios, indica que son aproximados en soles peruanos y estan sujetos a confirmacion. Si el precio es null o "S.P.", indica "consultar precio".
 7. FORMATO DE RESPUESTA (OBLIGATORIO):
@@ -156,6 +160,13 @@ export class LLMService {
 
     if (hasMarketKeywords) {
       return { type: 'market', courseIds: [] };
+    }
+
+    const registroKeywords = ['registro', 'registrarme', 'registrarse', 'registrar', 'demo', 'probar', 'prueba', 'inscripcion', 'inscribirme', 'inscribirse', 'alta', 'darse de alta', 'sign up', 'signup', 'obtener acceso', 'crear cuenta', 'cuenta demo'];
+    const hasRegistroKeywords = registroKeywords.some(keyword => lowerMessage.includes(keyword));
+
+    if (hasRegistroKeywords) {
+      return { type: 'registro', courseIds: [] };
     }
 
     const segmentKeywords: Record<string, string[]> = {
@@ -279,15 +290,40 @@ export class LLMService {
     return this.catalog.perfiles || [];
   }
 
-  private buildSystemPrompt(courses: Course[], profiles: Profile[]): string {
+  private getRegistroInfo(): { modulosDemo: string[]; duracionDias: number } {
+    return {
+      modulosDemo: [
+        'S4 MM - Gestion de Materiales',
+        'S4 SD - Ventas y Distribucion',
+        'S4 PM - Mantenimiento',
+        'S4 FI - Finanzas',
+        'S4 PP - Produccion'
+      ],
+      duracionDias: 7
+    };
+  }
+
+  private buildSystemPrompt(courses: Course[], profiles: Profile[], categoryType?: QuestionType): string {
     let context = RULES;
 
-    if (courses.length > 0) {
-      context += `\n\nCursos disponibles:\n${JSON.stringify(courses, null, 2)}`;
-    }
+    if (categoryType === 'registro') {
+      const registroInfo = this.getRegistroInfo();
+      context += `\n\nCONTEXTO ESPECIAL - REGISTRO DEMO:\n`;
+      context += `El usuario ha mostrado interes en REGISTRARSE para una cuenta DEMO de SAP.\n`;
+      context += `Para registrarte, usa la opcion "Registrar" en el chatbot.\n`;
+      context += `\nMODULOS DISPONIBLES PARA DEMO:\n`;
+      context += registroInfo.modulosDemo.map(m => `- ${m}`).join('\n');
+      context += `\n\nDuracion de la cuenta DEMO: ${registroInfo.duracionDias} dias.\n`;
+      context += `El usuario debe completar el formulario de registro para obtener sus credenciales SAP.\n`;
+      context += `Responde de forma clara y directa, invitando al usuario a usar la opcion "Registrar".`;
+    } else {
+      if (courses.length > 0) {
+        context += `\n\nCursos disponibles:\n${JSON.stringify(courses, null, 2)}`;
+      }
 
-    if (profiles.length > 0) {
-      context += `\n\nPerfiles disponibles:\n${JSON.stringify(profiles, null, 2)}`;
+      if (profiles.length > 0) {
+        context += `\n\nPerfiles disponibles:\n${JSON.stringify(profiles, null, 2)}`;
+      }
     }
 
     return context;
@@ -318,13 +354,17 @@ export class LLMService {
         courses = [];
         profiles = [];
         break;
+      case 'registro':
+        courses = [];
+        profiles = [];
+        break;
       case 'general':
       default:
         courses = this.getRelevantCourses(category.courseIds);
         break;
     }
 
-    const systemPrompt = this.buildSystemPrompt(courses, profiles);
+    const systemPrompt = this.buildSystemPrompt(courses, profiles, category.type);
 
     const contents: GeminiContent[] = recentMessages.map(msg => ({
       role: msg.role === 'assistant' ? 'model' : msg.role,

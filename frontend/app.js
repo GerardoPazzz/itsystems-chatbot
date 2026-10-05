@@ -27,9 +27,9 @@ const HINT_MESSAGES = {
     "Conoce las proyecciones laborales de cada especialidad. Escribe tu duda y te orientaremos ahora mismo."
   ],
   registro: [
-    "Recuerda: completa todos los campos correctamente. El usuario SAP debe tener entre 5-8 caracteres. Roles disponibles: MM (Materiales), SD (Ventas), FI (Contabilidad), PP (Producción), PM (Mantenimiento).",
-    "Antes de continuar: usa tu documento de identidad (8 dígitos) como usuario SAP si lo prefieres. Roles: MM, SD, FI, PP, PM. ¡Estoy aquí si necesitas ayuda!",
-    "Consejo: verifica que tu correo y teléfono sean correctos. El usuario SAP es de 5-8 caracteres. Roles disponibles: SAP MM, SD, FI, PP, PM. ¿Dudas? ¡Pregúntame!"
+    "Recuerda: completa todos los campos correctamente. Tu usuario SAP se autogenerara. Roles disponibles: MM (Materiales), SD (Ventas), FI (Contabilidad), PP (Producción), PM (Mantenimiento).",
+    "Antes de continuar: tu usuario SAP se autogenerara automaticamente. Roles: MM, SD, FI, PP, PM. Si te has registrado antes con un email o telefono, no podras registrarte de nuevo.",
+    "Consejo: verifica que tu correo y telefono sean correctos. Tu usuario SAP se autogenerara. Roles disponibles: SAP MM, SD, FI, PP, PM. ¿Dudas? ¡Preguntame!"
   ]
 };
 
@@ -272,7 +272,7 @@ async function init() {
 
   setupNavPills();
   setupEventListeners();
-  setupUsernameValidation();
+  setupFormValidation();
   setupOnboarding();
   setupCardModalListeners();
   updateSendButtonVisibility();
@@ -952,16 +952,14 @@ function openRegistrationModal() {
   elements.registrationModal.classList.remove('hidden');
   elements.registrationForm.reset();
 
-  const usernameInput = document.getElementById('reg-sap-usuario');
-  const usernameError = document.getElementById('username-error');
   const emailInput = document.getElementById('reg-email');
   const emailError = document.getElementById('email-error');
   const telefonoInput = document.getElementById('reg-telefono');
   const telefonoError = document.getElementById('telefono-error');
   const submitBtn = document.querySelector('#registration-modal .modal-btn.primary');
 
-  const inputs = [usernameInput, emailInput, telefonoInput];
-  const errors = [usernameError, emailError, telefonoError];
+  const inputs = [emailInput, telefonoInput];
+  const errors = [emailError, telefonoError];
 
   inputs.forEach(input => {
     if (input) input.classList.remove('input-error', 'input-valid');
@@ -973,9 +971,7 @@ function openRegistrationModal() {
   if (submitBtn) submitBtn.disabled = true;
 }
 
-function setupUsernameValidation() {
-  const usernameInput = document.getElementById('reg-sap-usuario');
-  const usernameError = document.getElementById('username-error');
+function setupFormValidation() {
   const emailInput = document.getElementById('reg-email');
   const emailError = document.getElementById('email-error');
   const telefonoInput = document.getElementById('reg-telefono');
@@ -983,42 +979,11 @@ function setupUsernameValidation() {
   const submitBtn = document.querySelector('#registration-modal .modal-btn.primary');
 
   function validateForm() {
-    const usernameOk = usernameInput && /^[a-zA-Z0-9]+$/.test(usernameInput.value) && usernameInput.value.length >= 5 && usernameInput.value.length <= 8;
     const emailOk = emailInput && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
     const telefonoOk = telefonoInput && telefonoInput.value.length >= 9;
     if (submitBtn) {
-      submitBtn.disabled = !(usernameOk && emailOk && telefonoOk);
+      submitBtn.disabled = !(emailOk && telefonoOk);
     }
-  }
-
-  if (usernameInput) {
-    usernameInput.addEventListener('input', function() {
-      const value = this.value;
-      const length = value.length;
-      const isAlphanumeric = /^[a-zA-Z0-9]+$/.test(value);
-
-      if (length === 0) {
-        this.classList.remove('input-error', 'input-valid');
-        if (usernameError) usernameError.textContent = '';
-      } else if (length < 5) {
-        this.classList.add('input-error');
-        this.classList.remove('input-valid');
-        if (usernameError) usernameError.textContent = 'Mínimo 5 caracteres';
-      } else if (length > 8) {
-        this.classList.add('input-error');
-        this.classList.remove('input-valid');
-        if (usernameError) usernameError.textContent = 'Máximo 8 caracteres';
-      } else if (!isAlphanumeric) {
-        this.classList.add('input-error');
-        this.classList.remove('input-valid');
-        if (usernameError) usernameError.textContent = 'Solo letras y números';
-      } else {
-        this.classList.remove('input-error');
-        this.classList.add('input-valid');
-        if (usernameError) usernameError.textContent = '';
-      }
-      validateForm();
-    });
   }
 
   if (emailInput) {
@@ -1053,7 +1018,7 @@ function setupUsernameValidation() {
       } else if (length < 9) {
         this.classList.add('input-error');
         this.classList.remove('input-valid');
-        if (telefonoError) telefonoError.textContent = 'Mínimo 9 dígitos';
+        if (telefonoError) telefonoError.textContent = 'Minimo 9 digitos';
       } else {
         this.classList.remove('input-error');
         this.classList.add('input-valid');
@@ -1096,7 +1061,6 @@ function handleFormSubmit(event) {
 }
 
 async function sendToSAPRegister(formData, submitBtn, originalText) {
-  const sapUsername = formData.sap_username.toLowerCase();
   const roleId = formData.roleId;
 
   try {
@@ -1113,6 +1077,33 @@ async function sendToSAPRegister(formData, submitBtn, originalText) {
       setButtonLoading(submitBtn, false, originalText);
     }
 
+    if (data.error) {
+      if (data.error === 'email') {
+        document.getElementById('email-error').textContent = data.message;
+        document.getElementById('email-error').classList.remove('hidden');
+        document.getElementById('reg-email').classList.add('input-error');
+        elements.registrationModal.classList.remove('hidden');
+      } else if (data.error === 'telefono') {
+        document.getElementById('telefono-error').textContent = data.message;
+        document.getElementById('telefono-error').classList.remove('hidden');
+        document.getElementById('reg-telefono').classList.add('input-error');
+        elements.registrationModal.classList.remove('hidden');
+      } else if (data.error === 'email_telefono') {
+        document.getElementById('email-error').textContent = 'Este email ya esta registrado.';
+        document.getElementById('email-error').classList.remove('hidden');
+        document.getElementById('reg-email').classList.add('input-error');
+        document.getElementById('telefono-error').textContent = 'Este telefono ya esta registrado.';
+        document.getElementById('telefono-error').classList.remove('hidden');
+        document.getElementById('reg-telefono').classList.add('input-error');
+        elements.registrationModal.classList.remove('hidden');
+      } else {
+        showToast(data.message || 'Error al procesar la solicitud', 'error');
+        renderMessage(data.message || 'Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.', 'bot');
+      }
+      return;
+    }
+
+    const sapUsername = data.sapUsername;
     if (data.success) {
       showToast('Registro guardado con exito', 'success');
 
@@ -1123,8 +1114,9 @@ async function sendToSAPRegister(formData, submitBtn, originalText) {
     <span style="color: var(--text-secondary);">Usuario:</span>
     <strong style="color: var(--text-primary);">${sapUsername}</strong>
     <span style="color: var(--text-secondary);">Contrasena:</span>
-    <strong style="color: var(--text-primary);">ITS${sapUsername}</strong>
+    <strong style="color: var(--text-primary);">ITS${sapUsername.toLowerCase()}</strong>
   </div>
+  <p style="margin: 8px 0 0 0; font-size: 0.75rem; color: var(--text-secondary);">Nota: Al iniciar sesion por primera vez debera actualizar su clave por una nueva</p>
 </div>`;
 
       let accessSection;

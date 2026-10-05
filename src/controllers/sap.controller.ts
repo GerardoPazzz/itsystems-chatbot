@@ -3,10 +3,9 @@ import { registrarAlumno } from '../services/sap.service';
 import {
   obtenerUsuarioPorEmail,
   obtenerUsuarioPorTelefono,
-  obtenerUsuarioPorSapUsername,
-  verificarCoincidenciaCompleta,
   verificarRolExistente,
   guardarSolicitud,
+  generarUsernameUnico,
   DatosUsuario
 } from '../services/db.service';
 
@@ -36,11 +35,6 @@ export const sapRegisterController = async (
       return;
     }
 
-    if (!datos.sap_username || typeof datos.sap_username !== 'string' || datos.sap_username.trim() === '') {
-      res.status(400).json({ error: 'Usuario SAP es requerido' });
-      return;
-    }
-
     if (!datos.roleId || typeof datos.roleId !== 'string') {
       res.status(400).json({ error: 'Rol es requerido' });
       return;
@@ -51,47 +45,40 @@ export const sapRegisterController = async (
       return;
     }
 
-    if (!/^[a-zA-Z0-9]+$/.test(datos.sap_username)) {
-      res.status(400).json({ error: 'El usuario SAP solo puede contener letras y números' });
-      return;
-    }
-
-    if (datos.sap_username.length < 5) {
-      res.status(400).json({ error: 'El usuario SAP debe tener al menos 5 caracteres' });
-      return;
-    }
-
-    if (datos.sap_username.length > 8) {
-      res.status(400).json({ error: 'El usuario SAP no puede superar los 8 caracteres' });
-      return;
-    }
-
     const emailId = await obtenerUsuarioPorEmail(datos.email.trim());
     const telefonoId = await obtenerUsuarioPorTelefono(datos.telefono?.trim() || '');
-    const usernameId = await obtenerUsuarioPorSapUsername(datos.sap_username.trim().toUpperCase());
 
-    const algunExistente = emailId || telefonoId || usernameId;
-
-    if (algunExistente) {
-      const coincidencias = await verificarCoincidenciaCompleta(
-        datos.email.trim(),
-        datos.telefono?.trim() || '',
-        datos.sap_username.trim().toUpperCase()
-      );
-
-      if (coincidencias.coinciden && coincidencias.usuarioId) {
-        const rolExiste = await verificarRolExistente(coincidencias.usuarioId, datos.roleId);
-        if (rolExiste) {
-          res.status(400).json({ error: 'Ya tienes asignado el rol que solicitaste. Si deseas cambiar de rol, contacta a un asesor.' });
-          return;
-        }
-      } else {
-        res.status(400).json({
-          error: 'Los datos que proporcionaste ya están registrados en nuestro sistema. Si deseas registrar un nuevo rol, usa el mismo usuario SAP con el que te registraste inicialmente.'
-        });
+    if (emailId && telefonoId) {
+      const rolExiste = await verificarRolExistente(emailId, datos.roleId);
+      if (rolExiste) {
+        res.status(400).json({ error: 'email_telefono', message: 'Este email y telefono ya estan registrados. Si ya tienes un rol asignado, contacta a un asesor para cambiarlo.' });
         return;
       }
+      res.status(400).json({ error: 'email_telefono', message: 'Este email y telefono ya estan registrados.' });
+      return;
     }
+
+    if (emailId) {
+      const rolExiste = await verificarRolExistente(emailId, datos.roleId);
+      if (rolExiste) {
+        res.status(400).json({ error: 'email', message: 'Este email ya esta registrado. Si ya tienes un rol asignado, contacta a un asesor para cambiarlo.' });
+        return;
+      }
+      res.status(400).json({ error: 'email', message: 'Este email ya esta registrado.' });
+      return;
+    }
+
+    if (telefonoId) {
+      const rolExiste = await verificarRolExistente(telefonoId, datos.roleId);
+      if (rolExiste) {
+        res.status(400).json({ error: 'telefono', message: 'Este telefono ya esta registrado. Si ya tienes un rol asignado, contacta a un asesor para cambiarlo.' });
+        return;
+      }
+      res.status(400).json({ error: 'telefono', message: 'Este telefono ya esta registrado.' });
+      return;
+    }
+
+    const sapUsername = await generarUsernameUnico();
 
     const usuarioData: DatosUsuario = {
       nombre: datos.nombre.trim(),
@@ -100,32 +87,32 @@ export const sapRegisterController = async (
       telefono: datos.telefono?.trim() || '',
       actividad: datos.actividad?.trim() || '',
       conocimientos: datos.conocimientos || '',
-      institucion: datos.institucion?.trim() || '',
-      sap_username: datos.sap_username.trim().toUpperCase()
+      institucion: datos.institucion?.trim() || ''
     };
 
-    const resultSap = await registrarAlumno(usuarioData.sap_username, datos.roleId);
+    const resultSap = await registrarAlumno(sapUsername, datos.roleId);
 
     if (!resultSap.success) {
       res.status(resultSap.statusCode).json({ error: 'Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.' });
       return;
     }
 
-    await guardarSolicitud(usuarioData, datos.roleId);
+    await guardarSolicitud(usuarioData, datos.roleId, sapUsername);
 
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       message: 'Registro exitoso',
-      requiresFiori: resultSap.requiresFiori 
+      requiresFiori: resultSap.requiresFiori,
+      sapUsername: sapUsername
     });
   } catch (error: any) {
     console.error('[Controller] Error:', error.message);
 
     if (error.message.includes('ya esta registrado') || error.message.includes('ya ha sido asignado')) {
-      res.status(400).json({ error: error.message });
+      res.status(400).json({ error: 'general', message: error.message });
       return;
     }
 
-    res.status(500).json({ error: 'Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.' });
+    res.status(500).json({ error: 'general', message: 'Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.' });
   }
 };

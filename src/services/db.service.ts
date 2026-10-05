@@ -1,7 +1,7 @@
 import { Pool } from 'pg';
 import { config } from '../config';
 
-const pool = new Pool({
+export const pool = new Pool({
   user: config.db.user!,
   password: config.db.password!,
   host: config.db.host!,
@@ -20,7 +20,7 @@ export interface DatosUsuario {
   actividad: string;
   conocimientos: string;
   institucion: string;
-  sap_username: string;
+  sap_username?: string;
 }
 
 export async function verificarEmailExistente(email: string): Promise<boolean> {
@@ -39,6 +39,12 @@ export async function verificarSapUsernameExistente(sap_username: string): Promi
   const query = `SELECT id FROM usuarios_sap WHERE sap_username = $1`;
   const result = await pool.query(query, [sap_username]);
   return result.rows.length > 0;
+}
+
+export async function generarUsernameUnico(): Promise<string> {
+  const result = await pool.query('SELECT nextval(\'sap_usernames_seq\')');
+  const num = result.rows[0].nextval;
+  return 'UT' + num.toString().padStart(6, '0');
 }
 
 export async function obtenerUsuarioPorEmail(email: string): Promise<string | null> {
@@ -102,15 +108,16 @@ export async function verificarSolicitudExistente(
 
 export async function guardarSolicitud(
   datos: DatosUsuario,
-  rol_solicitado: string
+  rol_solicitado: string,
+  sap_username: string
 ): Promise<{ success: boolean; usuarioId: string }> {
   const client = await pool.connect();
 
   try {
     await client.query('BEGIN');
 
-    const usuarioQuery = `SELECT id FROM usuarios_sap WHERE telefono = $1 AND sap_username = $2`;
-    const usuarioResult = await client.query(usuarioQuery, [datos.telefono, datos.sap_username]);
+    const usuarioQuery = `SELECT id FROM usuarios_sap WHERE telefono = $1 AND email = $2`;
+    const usuarioResult = await client.query(usuarioQuery, [datos.telefono, datos.email]);
 
     let usuarioId: string;
 
@@ -130,7 +137,7 @@ export async function guardarSolicitud(
         datos.actividad,
         datos.conocimientos,
         datos.institucion,
-        datos.sap_username
+        sap_username
       ]);
       usuarioId = insertResult.rows[0].id;
     }

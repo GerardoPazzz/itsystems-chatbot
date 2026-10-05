@@ -31,19 +31,15 @@ function isJunkInput(message: string): { isJunk: boolean; reason?: string } {
     return { isJunk: true, reason: 'puntuacion' };
   }
 
-  if (/[bcdfghjklmnpqrstvwxyz]{5,}/i.test(trimmed)) {
-    return { isJunk: true, reason: 'random' };
-  }
-
+  const excepciones = /itsystems?|sap|sbo|s4hana?|ecc|b1|mm|sd|fi|pp|pm|co|qm|wm|tm|ps|ewm|basis|abap|fiori|btp|sdk/gi;
   const words = trimmed.split(/\s+/);
-  if (words.length <= 2 && trimmed.length < 8) {
-    const saludos = /^(hola|buenos|dias|tardes|noches)$/i;
+  const tieneExcepcion = words.some(word => excepciones.test(word));
 
-    const palabrasCortasValidas = /^(sap|sbo|s4|hana|ecc|b1|mm|sd|fi|pp|pm|co|qm|wm|tm|ps|ewm|basis|abap|fiori|btp|sdk|asesor|asesores|curso|cursos|formacion|precio|precios|costo|costos|cuota|cuotas|consulta|consultas|duda|dudas|rol|roles|perfil|perfiles|registro|informacion|catalogo|temario|modulo|modulos|virtual|online|presencial|itsystems)$/i;
-
-    if (!saludos.test(trimmed) && !palabrasCortasValidas.test(trimmed)) {
-      return { isJunk: true, reason: 'vago' };
+  if (/[bcdfghjklmnpqrstvwxyz]{5,}/i.test(trimmed)) {
+    if (tieneExcepcion) {
+      return { isJunk: false };
     }
+    return { isJunk: true, reason: 'random' };
   }
 
   return { isJunk: false };
@@ -52,9 +48,7 @@ function isJunkInput(message: string): { isJunk: boolean; reason?: string } {
 const JUNK_RESPONSES = {
   'puntuacion': '¡Hola! Parece que solo enviaste símbolos. Para poder ayudarte con información sobre nuestros cursos SAP, ¿podrías escribir tu pregunta con palabras? 😊',
 
-  'random': '¡Hola! Tu mensaje no parece tener sentido claro. ¿Podrías escribirlo de otra forma? Estoy aquí para ayudarte con cualquier duda sobre cursos o roles SAP.',
-
-  'vago': '¡Hola! Tu mensaje es un poco corto para entenderte bien. ¿Podrías darme más detalles sobre lo que necesitas? Por ejemplo, puedes preguntarme sobre cursos SAP, precios o perfiles profesionales.'
+  'random': '¡Hola! Tu mensaje no parece tener sentido claro. ¿Podrías escribirlo de otra forma? Estoy aquí para ayudarte con cualquier duda sobre cursos o roles SAP.'
 };
 
 export const chatController = async (req: Request, res: Response): Promise<void> => {
