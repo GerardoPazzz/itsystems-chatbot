@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -133,7 +133,7 @@
               <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
               <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
             </svg>
-            <span>Tu primera practica SAP esta a un clic. Registrate y prueba nuestro sistema SAP GRATIS</span>
+            <span>Tu primera practica SAP está a un clic. Registrate y prueba nuestro sistema SAP GRATIS</span>
           </div>
           <div class="onboarding-replies">
             <button class="onboarding-btn onboarding-btn-primary" data-action="registro">
@@ -196,7 +196,7 @@
                 <polyline points="8 6 2 12 8 18"/>
               </svg>
               <h4>Casos Reales</h4>
-              <p>Aplica logica de negocio y bases de datos</p>
+              <p>Aplica lógica de negocio y bases de datos</p>
             </div>
             <div class="value-card" data-card="rutas">
               <svg class="value-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -230,6 +230,9 @@
       </div>
 
       <!-- HISTORIAL DE CHAT (Visible cuando hay mensajes) -->
+      <button id="back-to-initial" class="back-arrow" style="display: none;">
+        &larr; Volver
+      </button>
       <div id="messages" class="messages-area hidden"></div>
       <div id="chat-bottom-anchor"></div>
       <div id="typing-indicator" class="typing-indicator hidden">
@@ -286,7 +289,7 @@
         </svg>
       </div>
       <h2>Chat Finalizado</h2>
-      <p>El chat ha culminado su limite de interaccion.</p>
+      <p>El chat ha culminado su límite de interacción.</p>
       <div class="modal-buttons">
         <button id="btn-restart" class="modal-btn primary">Reiniciar chat</button>
         <button id="btn-advisor" class="modal-btn whatsapp">Comunicarse con un asesor</button>
@@ -374,7 +377,7 @@
         </div>
         <div class="form-buttons">
           <button type="button" id="btn-cancel-registration" class="modal-btn secondary">Cancelar</button>
-          <button type="submit" class="modal-btn primary">Enviar Solicitud</button>
+          <button type="submit" class="modal-btn primary">Crear cuenta demo</button>
         </div>
       </form>
     </div>
@@ -389,7 +392,7 @@
         </svg>
       </div>
       <h3>Resuelve tus dudas al instante</h3>
-      <p id="hint-message-text">Escribe tu mensaje y nuestro agente de IA te respondera al instante.</p>
+      <p id="hint-message-text">Escribe tu mensaje y nuestro agente de IA te responderá al instante.</p>
       <button id="close-hint-modal" class="onboarding-hint-btn">Comenzar a chatear</button>
     </div>
   </div>
@@ -414,11 +417,11 @@
         </div>
         <div class="hint-step">
           <span class="step-number">2</span>
-          <span class="step-text">Tu usuario SAP se autogenerara</span>
+          <span class="step-text">Tu usuario SAP se autogenerará</span>
         </div>
         <div class="hint-step">
           <span class="step-number">3</span>
-          <span class="step-text">Si te has registrado anteriormente con un email o telefono, no se podra registrar denuevo</span>
+          <span class="step-text">Si te has registrado anteriormente con un email o teléfono, no se podrá registrar de nuevo</span>
         </div>
       </div>
       <div class="registration-hint-roles">
@@ -453,3 +456,4 @@
   <script src="app.js"></script>
 </body>
 </html>
+

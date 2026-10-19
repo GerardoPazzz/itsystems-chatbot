@@ -504,6 +504,32 @@ body {
   padding: 16px 24px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+.back-arrow {
+  position: absolute;
+  top: 16px;
+  left: 24px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+.back-arrow:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+.back-arrow.hidden {
+  display: none;
 }
 
 /* ===== NAVIGATION PILLS ===== */

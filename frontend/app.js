@@ -27,9 +27,9 @@ const HINT_MESSAGES = {
     "Conoce las proyecciones laborales de cada especialidad. Escribe tu duda y te orientaremos ahora mismo."
   ],
   registro: [
-    "Recuerda: completa todos los campos correctamente. Tu usuario SAP se autogenerara. Roles disponibles: MM (Materiales), SD (Ventas), FI (Contabilidad), PP (Producción), PM (Mantenimiento).",
-    "Antes de continuar: tu usuario SAP se autogenerara automaticamente. Roles: MM, SD, FI, PP, PM. Si te has registrado antes con un email o telefono, no podras registrarte de nuevo.",
-    "Consejo: verifica que tu correo y telefono sean correctos. Tu usuario SAP se autogenerara. Roles disponibles: SAP MM, SD, FI, PP, PM. ¿Dudas? ¡Preguntame!"
+    "Recuerda: completa todos los campos correctamente. Tu usuario SAP se autogenerará. Roles disponibles: MM (Materiales), SD (Ventas), FI (Contabilidad), PP (Producción), PM (Mantenimiento).",
+    "Antes de continuar: tu usuario SAP se autogenerará automáticamente. Roles: MM, SD, FI, PP, PM. Si te has registrado antes con un email o teléfono, no podrás registrarte de nuevo.",
+    "Consejo: verifica que tu correo y teléfono sean correctos. Tu usuario SAP se autogenerará. Roles disponibles: SAP MM, SD, FI, PP, PM. ¿Dudas? ¡Pregúntame!"
   ]
 };
 
@@ -256,7 +256,8 @@ const elements = {
   welcomeScreen: document.getElementById('welcome-screen'),
   welcomeNav: document.querySelector('.welcome-nav'),
   inputArea: document.querySelector('.input-area'),
-  inputContainer: document.querySelector('.input-container')
+  inputContainer: document.querySelector('.input-container'),
+  backToInitial: document.getElementById('back-to-initial')
 };
 
 async function init() {
@@ -294,6 +295,42 @@ function setupEventListeners() {
     if (e.target === elements.registrationModal) {
       closeRegistrationModal();
     }
+  });
+
+  elements.backToInitial.addEventListener('click', () => {
+    document.getElementById('messages').innerHTML = '';
+    document.getElementById('messages').classList.add('hidden');
+    document.getElementById('quick-actions').classList.add('hidden');
+    document.getElementById('quick-actions').innerHTML = '';
+    elements.inputArea.classList.add('hidden');
+    elements.messageInput.value = '';
+    elements.messageInput.disabled = true;
+    elements.sendButton.disabled = true;
+    elements.messageInput.placeholder = 'Escribe tu mensaje...';
+
+    showWelcomeNav();
+    elements.welcomeScreen.classList.remove('hidden');
+    elements.backToInitial.style.display = 'none';
+
+    const onboardingContainer = document.getElementById('onboarding-container');
+    if (onboardingContainer) {
+      onboardingContainer.classList.remove('hidden');
+      onboardingContainer.style.opacity = '1';
+    }
+
+    document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+
+    closeSubmenu();
+    elements.registrationModal.classList.add('hidden');
+    const hintModal = document.getElementById('onboarding-hint-modal');
+    const regHintModal = document.getElementById('registration-hint-modal');
+    if (hintModal) hintModal.classList.add('hidden');
+    if (regHintModal) regHintModal.classList.add('hidden');
+
+    state.currentMenu = 'main';
+    state.hasMessages = false;
+    state.hasStartedChat = false;
+    state.registrationMode = false;
   });
 
   const hintModal = document.getElementById('onboarding-hint-modal');
@@ -523,17 +560,26 @@ function showWelcomeNav() {
   if (elements.welcomeNav) {
     elements.welcomeNav.style.display = '';
   }
+  if (elements.backToInitial) {
+    elements.backToInitial.style.display = 'none';
+  }
 }
 
 function showChatMode() {
   if (state.hasMessages) return;
-  
+
   state.hasMessages = true;
   hideWelcome();
-  
+
+  if (state.hasStartedChat) {
+    elements.backToInitial.style.display = 'flex';
+  }
+
   elements.messagesContainer.classList.remove('hidden');
   elements.inputArea.classList.remove('hidden');
-  
+  elements.messageInput.disabled = false;
+  elements.sendButton.disabled = false;
+
   scrollToBottom();
 }
 
@@ -1089,16 +1135,16 @@ async function sendToSAPRegister(formData, submitBtn, originalText) {
         document.getElementById('reg-telefono').classList.add('input-error');
         elements.registrationModal.classList.remove('hidden');
       } else if (data.error === 'email_telefono') {
-        document.getElementById('email-error').textContent = 'Este email ya esta registrado.';
+        document.getElementById('email-error').textContent = 'Este email ya está registrado.';
         document.getElementById('email-error').classList.remove('hidden');
         document.getElementById('reg-email').classList.add('input-error');
-        document.getElementById('telefono-error').textContent = 'Este telefono ya esta registrado.';
+        document.getElementById('telefono-error').textContent = 'Este teléfono ya está registrado.';
         document.getElementById('telefono-error').classList.remove('hidden');
         document.getElementById('reg-telefono').classList.add('input-error');
         elements.registrationModal.classList.remove('hidden');
       } else {
         showToast(data.message || 'Error al procesar la solicitud', 'error');
-        renderMessage(data.message || 'Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.', 'bot');
+        renderMessage(data.message || 'Ocurrió un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.', 'bot');
       }
       return;
     }
@@ -1107,62 +1153,15 @@ async function sendToSAPRegister(formData, submitBtn, originalText) {
     if (data.success) {
       showToast('Registro guardado con exito', 'success');
 
-      const credentialsBox = `
-<div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px; margin: 10px 0;">
-  <p style="margin: 0 0 8px 0; font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">CREDENCIALES DE ACCESO</p>
-  <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 0.85rem; line-height: 1.4;">
-    <span style="color: var(--text-secondary);">Usuario:</span>
-    <strong style="color: var(--text-primary);">${sapUsername}</strong>
-    <span style="color: var(--text-secondary);">Contrasena:</span>
-    <strong style="color: var(--text-primary);">ITS${sapUsername.toLowerCase()}</strong>
-  </div>
-  <p style="margin: 8px 0 0 0; font-size: 0.75rem; color: var(--text-secondary);">Nota: Al iniciar sesion por primera vez debera actualizar su clave por una nueva</p>
-</div>`;
+      const webguiUrl = data.requiresFiori ? 'https://s4hana.sapapp.store/webgui' : 'https://s4hana.itscloud.store/webgui';
+      const manualUrl = GUIAS_DRIVE[roleId] || 'https://drive.google.com';
 
-      let accessSection;
-      if (data.requiresFiori) {
-        accessSection = `
-<p style="margin: 10px 0 6px 0; font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">PASOS PARA ACCEDER:</p>
-<ol style="margin: 0 0 6px 0; padding-left: 18px; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.4;">
-  <li style="margin-bottom: 4px;">Abre el navegador y ve a SAP Fiori</li>
-  <li style="margin-bottom: 4px;">Ingresa las credenciales mostradas arriba</li>
-</ol>
-<p style="margin: 0; padding: 10px 12px; background: rgba(37, 99, 235, 0.15); border: 1px solid rgba(37, 99, 235, 0.3); border-radius: 8px; font-weight: 600; color: var(--accent); font-size: 0.9rem; text-align: center;">Listo! Ya puedes empezar a practicar</p>
-<p style="margin: 10px 0 6px 0; font-weight: 500; color: var(--text-secondary); font-size: 0.85rem;">Acceder a Fiori:</p>
-<a href="https://s4hana.sapapp.store/webgui" target="_blank" class="message-link">https://s4hana.sapapp.store/webgui</a>`;
-      } else {
-        accessSection = `
-<p style="margin: 10px 0 6px 0; font-weight: 600; color: var(--text-primary); font-size: 0.85rem;">PASOS PARA ACCEDER:</p>
-<ol style="margin: 0 0 6px 0; padding-left: 18px; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.4;">
-  <li style="margin-bottom: 4px;">Abre SAP Logon en tu computadora</li>
-  <li style="margin-bottom: 4px;">Crea una nueva conexion si no la tienes</li>
-  <li style="margin-bottom: 4px;">Usa las credenciales: usuario y contrasena</li>
-</ol>
-<p style="margin: 0; padding: 10px 12px; background: rgba(37, 99, 235, 0.15); border: 1px solid rgba(37, 99, 235, 0.3); border-radius: 8px; font-weight: 600; color: var(--accent); font-size: 0.9rem; text-align: center;">Listo! Ya puedes empezar a practicar</p>
-<p style="margin: 10px 0 6px 0; font-weight: 500; color: var(--text-secondary); font-size: 0.85rem;">Acceder al sistema:</p>
-<a href="https://s4hana.itscloud.store/webgui" target="_blank" class="message-link">https://s4hana.itscloud.store/webgui</a>`;
-      }
-
-      const guiaDrive = GUIAS_DRIVE[roleId];
-      let guiaSection = '';
-      if (guiaDrive) {
-        guiaSection = `
-<div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-subtle);">
-  <p style="margin: 0 0 6px 0; font-weight: 500; color: var(--text-secondary); font-size: 0.85rem;">Descarga la guia de instalacion:</p>
-  <a href="${guiaDrive}" target="_blank" class="message-link">[ Ver Guia en Drive ]</a>
-</div>`;
-      }
-
-      const successMessage = `
-<p style="margin: 0 0 6px 0; font-weight: 600; color: var(--text-primary); font-size: 0.9rem;">Registro exitoso! Tu cuenta ha sido creada.</p>
-${credentialsBox}
-${accessSection}
-${guiaSection}`;
+      const successMessage = `<p style="margin: 0 0 10px 0; font-weight: 600; color: var(--text-primary); font-size: 1rem;">Tu cuenta ha sido creada con exito!</p><div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 12px; margin-bottom: 8px;"><p style="margin: 0 0 6px 0; font-weight: 600; color: var(--text-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">Credenciales</p><div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 0.9rem; line-height: 1.4;"><span style="color: var(--text-secondary);">Usuario:</span><strong style="color: var(--text-primary);">${sapUsername}</strong><span style="color: var(--text-secondary);">Contrasena:</span><strong style="color: var(--text-primary);">ITS${sapUsername.toLowerCase()}</strong></div><p style="margin: 8px 0 0 0; padding: 5px 8px; background: rgba(37, 99, 235, 0.08); border-radius: 4px; font-size: 0.75rem; color: var(--text-secondary);">Recuerda: al iniciar sesion por primera vez tendras que actualizar tu contrasena.</p></div><div style="display: flex; flex-direction: column; gap: 8px; margin: 8px 0;"><a href="${webguiUrl}" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 12px; background: #2563eb; border: 1px solid #1d4ed8; border-radius: 6px; text-decoration: none; cursor: pointer; transition: all 0.15s;" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'"><span style="font-weight: 600; color: #ffffff; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px;">Entrar por WebGui</span></a><a href="${manualUrl}" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 12px; background: #2563eb; border: 1px solid #1d4ed8; border-radius: 6px; text-decoration: none; cursor: pointer; transition: all 0.15s;" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'"><span style="font-weight: 600; color: #ffffff; font-size: 1rem; text-decoration: underline; text-underline-offset: 3px;">Usar SAP Logon / GUI 8.0 (Manual)</span></a></div><div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 10px 12px;"><p style="margin: 0 0 4px 0; font-weight: 600; color: var(--text-primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">Pasos para acceder</p><ol style="margin: 0; padding-left: 18px; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.4;"><li>Escoge una de las opciones de arriba</li><li>Ingresa con las credenciales adjuntas</li></ol></div>`;
 
       renderMessage(successMessage, 'bot');
     } else {
       showToast(data.error || 'Error al procesar la solicitud', 'error');
-      renderMessage(data.error || 'Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.', 'bot');
+      renderMessage(data.error || 'Ocurrió un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.', 'bot');
     }
 
   } catch (error) {
@@ -1173,7 +1172,7 @@ ${guiaSection}`;
     }
 
     showToast('Error al conectar con el servidor', 'error');
-    renderMessage('Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.', 'bot');
+    renderMessage('Ocurrió un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.', 'bot');
   }
 }
 
@@ -1212,7 +1211,7 @@ async function handleSend() {
   } catch (error) {
     hideTyping();
     showToast('Error al conectar con el servidor', 'error');
-    renderMessage(`Error de conexion con el servidor. Asegurate de que el backend este corriendo en puerto 3000. Detalle: ${error.message}`, 'bot', false, true);
+    renderMessage(`Error de conexión con el servidor. Asegúrate de que el backend esté corriendo en puerto 3000. Detalle: ${error.message}`, 'bot', false, true);
   }
 
   sendBtn.innerHTML = originalContent;
@@ -1336,7 +1335,7 @@ function handleRestart() {
 }
 
 function handleAdvisor() {
-  alert('Pronto podras comunicarte con un asesor de ITSYSTEMS. Gracias por tu paciencia.');
+  alert('Pronto podrás comunicarte con un asesor de ITSYSTEMS. Gracias por tu paciencia.');
 }
 
 function clearInput() {
