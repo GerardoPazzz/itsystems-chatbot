@@ -146,7 +146,7 @@ const decisionTree = {
     response: 'Contamos con cursos tecnicos y funcionales en el ecosistema SAP. Cada curso te prepara para roles especificos en el mercado laboral.'
   },
   roles: {
-    title: 'Perfiles Profesionales',
+    title: 'Planes Profesionales',
     response: 'Preparamos a nuestros estudiantes para roles de alta demanda en el mercado SAP.'
   },
   registro: {
@@ -228,12 +228,12 @@ function showModalitySubmenu(courseName, variants, isProfile = false) {
 
   const backBtn = document.createElement('button');
   backBtn.className = 'back-btn';
-  backBtn.innerHTML = isProfile ? '&larr; Volver a perfiles' : '&larr; Volver a cursos';
+  backBtn.innerHTML = isProfile ? '&larr; Volver a perfiles' : '&larr; Volver a categorías';
   backBtn.addEventListener('click', () => {
     if (isProfile) {
       renderQuickActions('roles');
     } else {
-      renderQuickActions('cursos');
+      showSegmentsView();
     }
   });
   subMenu.appendChild(backBtn);
@@ -770,6 +770,112 @@ const ROLE_ICONS = {
   'consultor-automation-ai': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>'
 };
 
+function showSegmentsView() {
+  elements.quickActions.innerHTML = '';
+  elements.quickActions.classList.remove('hidden');
+
+  const subMenu = document.createElement('div');
+  subMenu.className = 'sub-menu';
+
+  const title = document.createElement('div');
+  title.className = 'sub-menu-title';
+  title.textContent = 'Selecciona una categoría';
+  subMenu.appendChild(title);
+
+  const grid = document.createElement('div');
+  grid.className = 'sub-menu-grid';
+
+  const groupedCourses = groupCoursesByName();
+  Object.keys(groupedCourses).sort().forEach(segment => {
+    const btn = document.createElement('button');
+    btn.className = 'sub-btn';
+
+    let iconSvg = '';
+    if (COURSE_SEGMENT_ICONS[segment]) {
+      if (typeof COURSE_SEGMENT_ICONS[segment] === 'object') {
+        iconSvg = COURSE_SEGMENT_ICONS[segment]['ABAP'] || '';
+      } else {
+        iconSvg = COURSE_SEGMENT_ICONS[segment];
+      }
+    }
+
+    const courseCount = Object.values(groupedCourses[segment]).flat().length;
+    btn.innerHTML = `<span class="segment-icon">${iconSvg}</span><span>${segment}</span><span class="course-count">${courseCount}</span>`;
+    btn.addEventListener('click', () => showSegmentCourses(segment));
+    grid.appendChild(btn);
+  });
+
+  subMenu.appendChild(grid);
+
+  const backBtn = document.createElement('button');
+  backBtn.className = 'back-btn';
+  backBtn.innerHTML = '&larr; Cerrar';
+  backBtn.addEventListener('click', () => {
+    if (state.hasMessages) {
+      closeSubmenu(true, 'cursos');
+    } else {
+      resetToZeroState();
+    }
+  });
+  subMenu.appendChild(backBtn);
+
+  elements.quickActions.appendChild(subMenu);
+  scrollToBottom();
+}
+
+function showSegmentCourses(segment) {
+  elements.quickActions.innerHTML = '';
+  elements.quickActions.classList.remove('hidden');
+
+  const subMenu = document.createElement('div');
+  subMenu.className = 'sub-menu';
+
+  const title = document.createElement('div');
+  title.className = 'sub-menu-title';
+  title.textContent = segment;
+  subMenu.appendChild(title);
+
+  const grid = document.createElement('div');
+  grid.className = 'sub-menu-grid';
+
+  const groupedCourses = groupCoursesByName();
+  const segmentCourses = groupedCourses[segment] || {};
+
+  Object.entries(segmentCourses).forEach(([name, variants]) => {
+    const btn = document.createElement('button');
+    btn.className = 'sub-btn';
+
+    let iconSvg = '';
+    if (COURSE_SEGMENT_ICONS[segment]) {
+      if (typeof COURSE_SEGMENT_ICONS[segment] === 'object') {
+        const subSegment = Object.keys(COURSE_SEGMENT_ICONS[segment]).find(key => name.includes(key));
+        iconSvg = subSegment ? COURSE_SEGMENT_ICONS[segment][subSegment] : COURSE_SEGMENT_ICONS[segment]['ABAP'];
+      } else {
+        iconSvg = COURSE_SEGMENT_ICONS[segment];
+      }
+    }
+
+    btn.innerHTML = `<span class="segment-icon">${iconSvg}</span><span>${name}</span>`;
+    if (variants.length === 1) {
+      btn.addEventListener('click', () => showCourseDetail(variants[0].id));
+    } else {
+      btn.addEventListener('click', () => showModalitySubmenu(name, variants, false));
+    }
+    grid.appendChild(btn);
+  });
+
+  subMenu.appendChild(grid);
+
+  const backBtn = document.createElement('button');
+  backBtn.className = 'back-btn';
+  backBtn.innerHTML = '&larr; Volver a categorías';
+  backBtn.addEventListener('click', () => showSegmentsView());
+  subMenu.appendChild(backBtn);
+
+  elements.quickActions.appendChild(subMenu);
+  scrollToBottom();
+}
+
 function renderQuickActions(menuKey) {
   elements.quickActions.innerHTML = '';
 
@@ -795,36 +901,8 @@ function renderQuickActions(menuKey) {
   grid.className = 'sub-menu-grid';
 
   if (menuKey === 'cursos') {
-    const groupedCourses = groupCoursesByName();
-    Object.entries(groupedCourses).forEach(([segment, courses]) => {
-      const segmentHeader = document.createElement('div');
-      segmentHeader.className = 'segment-header';
-      segmentHeader.textContent = segment;
-      grid.appendChild(segmentHeader);
-
-      Object.entries(courses).forEach(([name, variants]) => {
-        const btn = document.createElement('button');
-        btn.className = 'sub-btn';
-
-        let iconSvg = '';
-        if (COURSE_SEGMENT_ICONS[segment]) {
-          if (typeof COURSE_SEGMENT_ICONS[segment] === 'object') {
-            const subSegment = Object.keys(COURSE_SEGMENT_ICONS[segment]).find(key => name.includes(key));
-            iconSvg = subSegment ? COURSE_SEGMENT_ICONS[segment][subSegment] : COURSE_SEGMENT_ICONS[segment]['ABAP'];
-          } else {
-            iconSvg = COURSE_SEGMENT_ICONS[segment];
-          }
-        }
-
-        btn.innerHTML = `<span class="segment-icon">${iconSvg}</span><span>${name}</span>`;
-        if (variants.length === 1) {
-          btn.addEventListener('click', () => showCourseDetail(variants[0].id));
-        } else {
-          btn.addEventListener('click', () => showModalitySubmenu(name, variants, false));
-        }
-        grid.appendChild(btn);
-      });
-    });
+    showSegmentsView();
+    return;
   } else if (menuKey === 'roles') {
     const groupedProfiles = groupProfilesByName();
     Object.entries(groupedProfiles).forEach(([name, variants]) => {

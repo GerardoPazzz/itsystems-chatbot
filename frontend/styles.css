@@ -16,6 +16,7 @@
   --accent: #2563EB;
   --accent-hover: #3B82F6;
   --accent-glow: rgba(37, 99, 235, 0.15);
+  --accent-secondary: rgba(59, 130, 246, 0.07);
 
   --error: #ef4444;
   --success: #22c55e;
@@ -262,8 +263,9 @@ body {
 
 @media (min-width: 500px) {
   .onboarding-secondary-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     gap: 12px;
   }
 }
@@ -314,17 +316,16 @@ body {
 }
 
 .onboarding-btn-secondary {
-  background: transparent;
+  background: var(--accent-secondary);
   color: var(--text-secondary);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(59, 130, 246, 0.25);
 }
 
 .onboarding-btn-secondary:hover {
-  border-color: var(--accent);
+  border-color: rgba(59, 130, 246, 0.4);
   color: var(--text-primary);
-  background: rgba(37, 99, 235, 0.08);
+  background: rgba(59, 130, 246, 0.12);
   transform: translateY(-1px);
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.2);
 }
 
 .onboarding-btn-secondary:active {
@@ -990,6 +991,15 @@ body {
 .sub-btn:hover {
   background: var(--bg-hover);
   border-color: var(--border-hover);
+}
+
+.course-count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.08);
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: auto;
 }
 
 .back-btn {
