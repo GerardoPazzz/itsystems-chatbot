@@ -719,6 +719,37 @@ body {
   word-break: break-all;
 }
 
+/* ===== BOTON DE ACCION EN MENSAJES (Iniciar DEMO) ===== */
+.message-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  margin-top: 8px;
+  background: var(--accent);
+  border: 1px solid #1d4ed8;
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  width: 100%;
+  max-width: 320px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.message-action-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.message-action-btn:active {
+  transform: scale(0.98);
+}
+
 /* ===== TYPING INDICATOR ===== */
 .typing-indicator {
   display: flex;
@@ -1200,6 +1231,19 @@ body {
   color: var(--text-secondary);
 }
 
+.required-mark {
+  color: var(--error);
+  margin-left: 3px;
+  font-weight: 500;
+}
+
+.optional-mark {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 300;
+  margin-left: 4px;
+}
+
 .form-input,
 .form-select {
   padding: 12px 14px;
@@ -1227,6 +1271,10 @@ body {
 }
 
 .form-input.input-error {
+  border-color: var(--error);
+}
+
+.form-select.input-error {
   border-color: var(--error);
 }
 

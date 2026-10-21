@@ -27,9 +27,9 @@ const HINT_MESSAGES = {
     "Conoce las proyecciones laborales de cada especialidad. Escribe tu duda y te orientaremos ahora mismo."
   ],
   registro: [
-    "Recuerda: completa todos los campos correctamente. Tu usuario SAP se autogenerará. Roles disponibles: MM (Materiales), SD (Ventas), FI (Contabilidad), PP (Producción), PM (Mantenimiento).",
-    "Antes de continuar: tu usuario SAP se autogenerará automáticamente. Roles: MM, SD, FI, PP, PM. Si te has registrado antes con un email o teléfono, no podrás registrarte de nuevo.",
-    "Consejo: verifica que tu correo y teléfono sean correctos. Tu usuario SAP se autogenerará. Roles disponibles: SAP MM, SD, FI, PP, PM. ¿Dudas? ¡Pregúntame!"
+    "Recuerda: completa todos los campos obligatorios. Tu usuario SAP se autogenerará. Módulos disponibles: MM (Materiales), SD (Ventas), FI (Contabilidad), PP (Producción), PM (Mantenimiento).",
+    "Antes de continuar: tu usuario SAP se autogenerará automáticamente. Módulos: MM, SD, FI, PP, PM. Si te has registrado antes con un email o teléfono, no podrás registrarte de nuevo.",
+    "Consejo: verifica que tu correo y teléfono sean correctos. Tu usuario SAP se autogenerará. Módulos disponibles: SAP MM, SD, FI, PP, PM. ¿Dudas? ¡Pregúntame!"
   ]
 };
 
@@ -1072,85 +1072,115 @@ function enableRegistrationMode() {
   appContainer.insertBefore(backToMenuBtn, elements.quickActions);
 }
 
-function openRegistrationModal() {
+function openRegistrationModal(roleId) {
   elements.registrationModal.classList.remove('hidden');
   elements.registrationForm.reset();
 
-  const emailInput = document.getElementById('reg-email');
-  const emailError = document.getElementById('email-error');
-  const telefonoInput = document.getElementById('reg-telefono');
-  const telefonoError = document.getElementById('telefono-error');
-  const submitBtn = document.querySelector('#registration-modal .modal-btn.primary');
-
-  const inputs = [emailInput, telefonoInput];
-  const errors = [emailError, telefonoError];
-
-  inputs.forEach(input => {
-    if (input) input.classList.remove('input-error', 'input-valid');
-  });
-  errors.forEach(error => {
-    if (error) error.textContent = '';
-  });
-
-  if (submitBtn) submitBtn.disabled = true;
-}
-
-function setupFormValidation() {
-  const emailInput = document.getElementById('reg-email');
-  const emailError = document.getElementById('email-error');
-  const telefonoInput = document.getElementById('reg-telefono');
-  const telefonoError = document.getElementById('telefono-error');
-  const submitBtn = document.querySelector('#registration-modal .modal-btn.primary');
-
-  function validateForm() {
-    const emailOk = emailInput && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
-    const telefonoOk = telefonoInput && telefonoInput.value.length >= 9;
-    if (submitBtn) {
-      submitBtn.disabled = !(emailOk && telefonoOk);
+  if (roleId) {
+    const roleSelect = document.getElementById('reg-rol');
+    if (roleSelect) {
+      roleSelect.value = roleId;
     }
   }
 
-  if (emailInput) {
-    emailInput.addEventListener('input', function() {
-      const value = this.value;
-      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const submitBtn = document.querySelector('#registration-modal .modal-btn.primary');
 
-      if (value.length === 0) {
-        this.classList.remove('input-error', 'input-valid');
-        if (emailError) emailError.textContent = '';
-      } else if (!isValid) {
-        this.classList.add('input-error');
-        this.classList.remove('input-valid');
-        if (emailError) emailError.textContent = 'Ingrese un correo valido';
-      } else {
-        this.classList.remove('input-error');
-        this.classList.add('input-valid');
-        if (emailError) emailError.textContent = '';
-      }
-      validateForm();
-    });
+  REQUIRED_REGISTRATION_FIELDS.forEach(field => {
+    const input = document.getElementById(field.id);
+    const error = document.getElementById(field.errorId);
+    if (input) input.classList.remove('input-error', 'input-valid');
+    if (error) error.textContent = '';
+  });
+
+  if (submitBtn) submitBtn.disabled = false;
+}
+
+const REQUIRED_REGISTRATION_FIELDS = [
+  {
+    id: 'reg-nombre',
+    errorId: 'nombre-error',
+    validate: v => v.trim() !== '',
+    message: 'Ingrese su nombre'
+  },
+  {
+    id: 'reg-apellidos',
+    errorId: 'apellidos-error',
+    validate: v => v.trim() !== '',
+    message: 'Ingrese sus apellidos'
+  },
+  {
+    id: 'reg-email',
+    errorId: 'email-error',
+    validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+    message: 'Ingrese un correo valido'
+  },
+  {
+    id: 'reg-telefono',
+    errorId: 'telefono-error',
+    validate: v => v.trim().length >= 9,
+    message: 'Minimo 9 digitos'
+  },
+  {
+    id: 'reg-rol',
+    errorId: 'rol-error',
+    validate: v => v !== '',
+    message: 'Seleccione un modulo SAP'
+  }
+];
+
+function validateRegistrationField(field) {
+  const input = document.getElementById(field.id);
+  const error = document.getElementById(field.errorId);
+  if (!input) return true;
+
+  const value = input.value || '';
+  const isValid = field.validate(value);
+
+  if (isValid) {
+    input.classList.remove('input-error');
+    input.classList.add('input-valid');
+    if (error) error.textContent = '';
+  } else {
+    input.classList.add('input-error');
+    input.classList.remove('input-valid');
+    if (error) error.textContent = field.message;
   }
 
-  if (telefonoInput) {
-    telefonoInput.addEventListener('input', function() {
-      const value = this.value;
-      const length = value.length;
+  return isValid;
+}
 
-      if (length === 0) {
-        this.classList.remove('input-error', 'input-valid');
-        if (telefonoError) telefonoError.textContent = '';
-      } else if (length < 9) {
-        this.classList.add('input-error');
-        this.classList.remove('input-valid');
-        if (telefonoError) telefonoError.textContent = 'Minimo 9 digitos';
-      } else {
-        this.classList.remove('input-error');
-        this.classList.add('input-valid');
-        if (telefonoError) telefonoError.textContent = '';
-      }
-      validateForm();
+function validateRegistrationForm() {
+  let valid = true;
+  let firstInvalid = null;
+
+  REQUIRED_REGISTRATION_FIELDS.forEach(field => {
+    const input = document.getElementById(field.id);
+    if (!input) return;
+
+    const isValid = validateRegistrationField(field);
+    if (!isValid) {
+      valid = false;
+      if (!firstInvalid) firstInvalid = input;
+    }
+  });
+
+  return { valid, firstInvalid };
+}
+
+function setupFormValidation() {
+  REQUIRED_REGISTRATION_FIELDS.forEach(field => {
+    const input = document.getElementById(field.id);
+    if (!input) return;
+
+    const eventName = input.tagName === 'SELECT' ? 'change' : 'input';
+    input.addEventListener(eventName, function() {
+      validateRegistrationField(field);
     });
-  }
+
+    input.addEventListener('blur', function() {
+      validateRegistrationField(field);
+    });
+  });
 }
 
 function closeRegistrationModal() {
@@ -1160,6 +1190,17 @@ function closeRegistrationModal() {
 
 function handleFormSubmit(event) {
   event.preventDefault();
+
+  const { valid, firstInvalid } = validateRegistrationForm();
+
+  if (!valid) {
+    showToast('Complete los campos obligatorios marcados', 'error');
+    if (firstInvalid) {
+      firstInvalid.focus();
+      firstInvalid.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+    return;
+  }
 
   const submitBtn = document.querySelector('#registration-modal .modal-btn.primary');
   const originalText = submitBtn ? submitBtn.innerHTML : '';
@@ -1282,6 +1323,10 @@ async function handleSend() {
     hideTyping();
     renderMessage(response.reply, 'bot');
 
+    if (response.showDemoAction && response.demoModule && response.demoRoleId) {
+      renderDemoActionButton(response.demoModuleCode || response.demoModule, response.demoRoleId);
+    }
+
     if (response.limitReached) {
       state.limitReached = true;
       showLimitModal();
@@ -1374,6 +1419,30 @@ function renderMessage(text, sender, isWelcome = false, isError = false) {
     contentDiv.innerHTML = formatMessage(text);
   }
 
+  messageDiv.appendChild(contentDiv);
+  elements.messagesContainer.appendChild(messageDiv);
+
+  scrollToBottom();
+}
+
+function renderDemoActionButton(moduleCode, roleId) {
+  showChatMode();
+
+  const messageDiv = document.createElement('div');
+  messageDiv.classList.add('message', 'bot');
+
+  const contentDiv = document.createElement('div');
+  contentDiv.classList.add('message-content');
+
+  const btn = document.createElement('button');
+  btn.className = 'message-action-btn';
+  btn.type = 'button';
+  btn.textContent = `Iniciar DEMO ${moduleCode} en SAP`;
+  btn.addEventListener('click', () => {
+    openRegistrationModal(roleId);
+  });
+
+  contentDiv.appendChild(btn);
   messageDiv.appendChild(contentDiv);
   elements.messagesContainer.appendChild(messageDiv);
 

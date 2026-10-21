@@ -301,37 +301,39 @@
     <div class="registration-modal-content">
       <h2>Registro en SAP</h2>
       <p>Complete el formulario para registrar su solicitud</p>
-      <form id="registration-form" class="registration-form">
+      <form id="registration-form" class="registration-form" novalidate>
         <div class="form-row">
           <div class="form-group">
-            <label for="reg-nombre" class="form-label">Nombre</label>
+            <label for="reg-nombre" class="form-label">Nombre <span class="required-mark">*</span></label>
             <input type="text" id="reg-nombre" name="nombre" class="form-input" placeholder="Juan Carlos" required>
+            <span id="nombre-error" class="field-error-msg"></span>
           </div>
           <div class="form-group">
-            <label for="reg-apellidos" class="form-label">Apellidos</label>
+            <label for="reg-apellidos" class="form-label">Apellidos <span class="required-mark">*</span></label>
             <input type="text" id="reg-apellidos" name="apellidos" class="form-input" placeholder="Pérez García" required>
+            <span id="apellidos-error" class="field-error-msg"></span>
           </div>
         </div>
         <div class="form-group">
-          <label for="reg-email" class="form-label">Correo Electrónico</label>
+          <label for="reg-email" class="form-label">Correo Electrónico <span class="required-mark">*</span></label>
           <input type="email" id="reg-email" name="email" class="form-input" placeholder="correo@ejemplo.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingresa un correo válido" required>
           <span id="email-error" class="field-error-msg"></span>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="reg-telefono" class="form-label">Teléfono</label>
+            <label for="reg-telefono" class="form-label">Teléfono <span class="required-mark">*</span></label>
             <input type="text" id="reg-telefono" name="telefono" class="form-input" placeholder="+51 999 999 999" maxlength="12" required>
             <span id="telefono-error" class="field-error-msg"></span>
           </div>
           <div class="form-group">
-            <label for="reg-actividad" class="form-label">Actividad</label>
-            <input type="text" id="reg-actividad" name="actividad" class="form-input" placeholder="Ej. Desarrollador, Estudiante" required>
+            <label for="reg-actividad" class="form-label">Actividad <span class="optional-mark">(opcional)</span></label>
+            <input type="text" id="reg-actividad" name="actividad" class="form-input" placeholder="Ej. Desarrollador, Estudiante">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label for="reg-sap-conocimientos" class="form-label">
-              Conocimientos SAP
+              Conocimientos SAP <span class="optional-mark">(opcional)</span>
               <span class="tooltip-wrapper">
                 <svg class="tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
@@ -341,21 +343,21 @@
                 <span class="tooltip-text">Indica si tienes experiencia previa con SAP para adaptar el nivel del curso.</span>
               </span>
             </label>
-            <select id="reg-sap-conocimientos" name="conocimientos" class="form-select" required>
+            <select id="reg-sap-conocimientos" name="conocimientos" class="form-select">
               <option value="">Seleccione...</option>
               <option value="Si">Sí</option>
               <option value="No">No</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="reg-institucion" class="form-label">Institución / Empresa</label>
-            <input type="text" id="reg-institucion" name="institucion" class="form-input" placeholder="Universidad o empresa" required>
+            <label for="reg-institucion" class="form-label">Institución / Empresa <span class="optional-mark">(opcional)</span></label>
+            <input type="text" id="reg-institucion" name="institucion" class="form-input" placeholder="Universidad o empresa">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label for="reg-rol" class="form-label">
-              Rol a solicitar
+              Módulo SAP a adquirir <span class="required-mark">*</span>
               <span class="tooltip-wrapper">
                 <svg class="tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
@@ -366,13 +368,14 @@
               </span>
             </label>
             <select id="reg-rol" name="roleId" class="form-select" required>
-              <option value="">Seleccione un rol...</option>
-              <option value="S4_MM_DEMO">SAP MM DEMO(Gestión de Materiales)</option>
-              <option value="S4_SD_DEMO">SAP SD DEMO(Ventas y Distribución)</option>
-              <option value="S4_FI_DEMO">SAP FI DEMO(Contabilidad Financiera)</option>
-              <option value="S4_PP_DEMO">SAP PP DEMO(Planificación de Producción)</option>
-              <option value="S4_PM_DEMO">SAP PM DEMO(Mantenimiento de Plantas)</option>
+              <option value="">Seleccione un módulo...</option>
+              <option value="S4_MM_DEMO">SAP MM (Gestión de Materiales)</option>
+              <option value="S4_SD_DEMO">SAP SD (Ventas y Distribución)</option>
+              <option value="S4_FI_DEMO">SAP FI (Contabilidad Financiera)</option>
+              <option value="S4_PP_DEMO">SAP PP (Planificación de Producción)</option>
+              <option value="S4_PM_DEMO">SAP PM (Mantenimiento de Plantas)</option>
             </select>
+            <span id="rol-error" class="field-error-msg"></span>
           </div>
         </div>
         <div class="form-buttons">
@@ -425,7 +428,7 @@
         </div>
       </div>
       <div class="registration-hint-roles">
-        <p class="roles-title">Roles disponibles:</p>
+        <p class="roles-title">Módulos disponibles:</p>
         <div class="roles-grid">
           <div class="role-item">
             <span class="role-tag">MM</span>

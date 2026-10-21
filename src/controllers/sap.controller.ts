@@ -85,9 +85,9 @@ export const sapRegisterController = async (
       apellidos: datos.apellidos.trim(),
       email: datos.email.trim(),
       telefono: datos.telefono?.trim() || '',
-      actividad: datos.actividad?.trim() || '',
-      conocimientos: datos.conocimientos || '',
-      institucion: datos.institucion?.trim() || ''
+      actividad: datos.actividad?.trim() || 'N/A',
+      conocimientos: datos.conocimientos?.trim() || 'N/A',
+      institucion: datos.institucion?.trim() || 'N/A'
     };
 
     const resultSap = await registrarAlumno(sapUsername, datos.roleId);

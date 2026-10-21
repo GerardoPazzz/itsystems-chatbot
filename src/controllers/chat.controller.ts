@@ -83,19 +83,26 @@ export const chatController = async (req: Request, res: Response): Promise<void>
       const response = JUNK_RESPONSES[junkCheck.reason as keyof typeof JUNK_RESPONSES];
       await memoryService.appendMessage(sessionId.trim(), 'user', sanitized);
       await memoryService.appendMessage(sessionId.trim(), 'assistant', response);
-      res.json({ reply: response, limitReached: false });
+      res.json({ reply: response, limitReached: false, intent: 'general' });
       return;
     }
 
     const userResult = await memoryService.appendMessage(sessionId.trim(), 'user', sanitized);
 
-    const reply = await llmService.getChatReply(userResult.messages);
+    const reply = await llmService.getChatReply(userResult.messages, sessionId.trim());
 
     const assistantResult = await memoryService.appendMessage(sessionId.trim(), 'assistant', reply);
 
+    const intent = llmService.detectIntent(userResult.messages, sessionId.trim());
+
     res.json({
       reply,
-      limitReached: assistantResult.limitReached
+      limitReached: assistantResult.limitReached,
+      intent: intent.intent,
+      demoModule: intent.demoModule,
+      demoRoleId: intent.roleId,
+      demoModuleCode: intent.moduleCode,
+      showDemoAction: intent.showDemoAction
     });
   } catch (error) {
     console.error('Error en chatController:', error);

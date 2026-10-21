@@ -21,6 +21,14 @@ jest.mock('../src/services/llm.service', () => {
           return Promise.resolve('No dispongo de informacion sobre precios en el catalogo. Los cursos disponibles son SAP BTP e Introduccion a SAP HANA Cloud.');
         }
         return Promise.resolve('Respuesta generica de prueba.');
+      }),
+      detectIntent: jest.fn().mockImplementation((messages) => {
+        const list = Array.isArray(messages) ? messages : [messages];
+        const text = list[list.length - 1].content.toLowerCase();
+        if (text.includes('demo') && text.includes('mm')) {
+          return { intent: 'registro', demoModule: 'MM', roleId: 'S4_MM_DEMO', moduleCode: 'MM', showDemoAction: true };
+        }
+        return { intent: 'general', showDemoAction: false };
       })
     }))
   };
@@ -51,6 +59,40 @@ describe('Chat Controller - Tests de Endpoint', () => {
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('reply');
+    });
+  });
+
+  describe('testChatEndpointIntentDemo', () => {
+    it('POST /api/chat debe propagar intent y demoModule cuando pide demo de MM', async () => {
+      const response = await request(app)
+        .post('/api/chat')
+        .send({ sessionId: 'test-demo-001', message: 'quiero una demo de MM' });
+
+      expect(response.status).toBe(200);
+      expect(response.body.intent).toBe('registro');
+      expect(response.body.demoModule).toBe('MM');
+      expect(response.body.demoRoleId).toBe('S4_MM_DEMO');
+      expect(response.body.demoModuleCode).toBe('MM');
+    });
+
+    it('POST /api/chat debe devolver intent general en mensajes sin demo', async () => {
+      const response = await request(app)
+        .post('/api/chat')
+        .send({ sessionId: 'test-demo-002', message: 'Hola, que tal?' });
+
+      expect(response.status).toBe(200);
+      expect(response.body.intent).toBe('general');
+      expect(response.body.demoModule).toBeUndefined();
+      expect(response.body.showDemoAction).toBe(false);
+    });
+
+    it('POST /api/chat debe propagar showDemoAction cuando corresponde', async () => {
+      const response = await request(app)
+        .post('/api/chat')
+        .send({ sessionId: 'test-demo-003', message: 'quiero una demo de MM' });
+
+      expect(response.status).toBe(200);
+      expect(response.body.showDemoAction).toBe(true);
     });
   });
 

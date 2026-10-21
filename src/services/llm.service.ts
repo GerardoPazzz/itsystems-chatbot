@@ -77,6 +77,107 @@ interface CategoryResult {
   type: QuestionType;
   courseIds: string[];
   profileId?: string;
+  demoModule?: string;
+}
+
+export interface IntentResult {
+  intent: QuestionType;
+  demoModule?: string;
+  roleId?: string;
+  moduleCode?: string;
+  showDemoAction: boolean;
+}
+
+interface DemoContextState {
+  active: boolean;
+  module?: string;
+  shownModule?: string;
+  updatedAt: number;
+}
+
+interface IntentAnalysis {
+  category: CategoryResult;
+  demoModule?: string;
+  showDemoAction: boolean;
+}
+
+export const DEMO_MODULES: Record<string, { roleId: string; code: string }> = {
+  'MM': { roleId: 'S4_MM_DEMO', code: 'MM' },
+  'SD': { roleId: 'S4_SD_DEMO', code: 'SD' },
+  'FI': { roleId: 'S4_FI_DEMO', code: 'FI' },
+  'PP': { roleId: 'S4_PP_DEMO', code: 'PP' },
+  'PM': { roleId: 'S4_PM_DEMO', code: 'PM' }
+};
+
+const DEMO_MODULE_KEYWORDS: Record<string, string[]> = {
+  'MM': ['mm', 'materiales', 'gestion de materiales', 'almacen', 'compras', 'procurement', 'inventory'],
+  'SD': ['sd', 'ventas', 'distribucion', 'ventas y distribucion'],
+  'FI': ['fi', 'finanzas', 'contabilidad', 'contabilidad financiera'],
+  'PP': ['pp', 'produccion', 'planificacion de produccion', 'manufactura'],
+  'PM': ['pm', 'mantenimiento', 'mantenimiento de plantas']
+};
+
+const REGISTRO_KEYWORDS = [
+  'registro', 'registrarme', 'registrarse', 'registrar', 'demo', 'probar', 'prueba',
+  'inscripcion', 'inscribirme', 'inscribirse', 'alta', 'darse de alta', 'sign up',
+  'signup', 'obtener acceso', 'crear cuenta', 'cuenta demo'
+];
+
+// Consultas que invalidan el contexto de demo heredado: si el usuario pregunta
+// por precio/duracion/temario de un curso, o pide informacion sobre formacion,
+// no debe ofrecerse el boton de demo.
+const QUERY_KEYWORDS = [
+  'precio', 'precios', 'costo', 'costos', 'cuanto', 'valor', 'cuotas', 'cuanto cuesta',
+  'duracion', 'horas', 'cuanto dura', 'cuantas horas',
+  'temario', 'contenido', 'que incluye',
+  'requisitos', 'prerrequisitos',
+  'horario', 'modalidad', 'certificado', 'instructor',
+  'informacion', 'diferencia', 'diferencias', 'comparacion', 'opinion', 'opiniones',
+  // Formacion: las demos y los cursos son productos distintos.
+  'curso', 'cursos', 'capacitacion', 'formacion', 'entrenamiento', 'certificacion',
+  // Verbos de consulta: el usuario pide informacion, no el acceso a la demo.
+  'cuentame', 'informame', 'explica', 'explícame', 'explicame', 'enseñame', 'ensename',
+  'detalles', 'dime', 'sabes', 'que es', 'cual es', 'ejemplo', 'hablame'
+];
+
+// Verbos de solicitud: indican que el usuario pide el acceso, no que pregunta.
+const REQUEST_VERB_KEYWORDS = [
+  'quiero', 'quisiera', 'me gustaria', 'dame', 'danos', 'otorgame', 'activame',
+  'habilitame', 'reserva', 'reservame', 'consigue', 'consigueme', 'abrime'
+];
+
+const CONTEXT_WINDOW = 3;
+const DEMO_CONTEXT_TTL_MS = 30 * 60 * 1000;
+
+function normalizeText(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+function containsKeyword(normalizedText: string, keyword: string): boolean {
+  const normalizedKeyword = normalizeText(keyword).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  // La 's' final opcional permite plurales: "demos" -> "demo", "pruebas" -> "prueba".
+  return new RegExp(`(^|[^a-z0-9])${normalizedKeyword}s?([^a-z0-9]|$)`, 'i').test(normalizedText);
+}
+
+function detectDemoModule(normalizedMessage: string): string | undefined {
+  let bestModule: string | undefined;
+  let bestPosition = Number.MAX_SAFE_INTEGER;
+
+  for (const [moduleKey, keywords] of Object.entries(DEMO_MODULE_KEYWORDS)) {
+    for (const keyword of keywords) {
+      const normalizedKeyword = normalizeText(keyword);
+      const position = normalizedMessage.indexOf(normalizedKeyword);
+      if (position !== -1 && position < bestPosition) {
+        bestPosition = position;
+        bestModule = moduleKey;
+      }
+    }
+  }
+
+  return bestModule;
 }
 
 const RULES = `Eres el Asesor Academico Virtual de ITSYSTEMS.
@@ -122,6 +223,7 @@ export class LLMService {
   private maxHistory: number;
   private catalog: Catalogo | null;
   private catalogLoaded: boolean;
+  private demoContexts: Map<string, DemoContextState>;
 
   constructor() {
     this.model = config.gemini.model;
@@ -130,6 +232,7 @@ export class LLMService {
     this.maxHistory = config.gemini.maxHistory;
     this.catalog = null;
     this.catalogLoaded = false;
+    this.demoContexts = new Map();
     this.loadCatalog();
   }
 
@@ -146,27 +249,27 @@ export class LLMService {
   }
 
   private detectCategory(message: string): CategoryResult {
-    const lowerMessage = message.toLowerCase();
+    const lowerMessage = normalizeText(message);
+
+    const hasRegistroKeywords = REGISTRO_KEYWORDS.some(keyword => containsKeyword(lowerMessage, keyword));
+
+    if (hasRegistroKeywords) {
+      const demoModule = detectDemoModule(lowerMessage);
+      return { type: 'registro', courseIds: [], demoModule };
+    }
 
     const profileKeywords = ['perfil', 'perfiles', 'ruta', 'rutas', 'ruta de estudio', 'rutas de estudio', 'camino', 'caminos', 'aprender desde cero'];
-    const hasProfileKeywords = profileKeywords.some(keyword => lowerMessage.includes(keyword));
+    const hasProfileKeywords = profileKeywords.some(keyword => containsKeyword(lowerMessage, keyword));
 
     if (hasProfileKeywords) {
       return { type: 'profile', courseIds: [] };
     }
 
     const marketKeywords = ['mercado', 'demanda', 'trabajo', 'requerido', 'oportunidad', 'carrera', 'salary', 'sueldo', 'empleo', 'profesional'];
-    const hasMarketKeywords = marketKeywords.some(keyword => lowerMessage.includes(keyword));
+    const hasMarketKeywords = marketKeywords.some(keyword => containsKeyword(lowerMessage, keyword));
 
     if (hasMarketKeywords) {
       return { type: 'market', courseIds: [] };
-    }
-
-    const registroKeywords = ['registro', 'registrarme', 'registrarse', 'registrar', 'demo', 'probar', 'prueba', 'inscripcion', 'inscribirme', 'inscribirse', 'alta', 'darse de alta', 'sign up', 'signup', 'obtener acceso', 'crear cuenta', 'cuenta demo'];
-    const hasRegistroKeywords = registroKeywords.some(keyword => lowerMessage.includes(keyword));
-
-    if (hasRegistroKeywords) {
-      return { type: 'registro', courseIds: [] };
     }
 
     const segmentKeywords: Record<string, string[]> = {
@@ -242,14 +345,14 @@ export class LLMService {
 
     const detectedSegmentIds: string[] = [];
     for (const [segment, keywords] of Object.entries(segmentKeywords)) {
-      if (keywords.some(keyword => lowerMessage.includes(keyword))) {
+      if (keywords.some(keyword => containsKeyword(lowerMessage, keyword))) {
         detectedSegmentIds.push(segment);
       }
     }
 
     const detectedCourseIds: string[] = [];
     for (const [courseId, keywords] of Object.entries(courseNameKeywords)) {
-      if (keywords.some(keyword => lowerMessage.includes(keyword))) {
+      if (keywords.some(keyword => containsKeyword(lowerMessage, keyword))) {
         detectedCourseIds.push(courseId);
       }
     }
@@ -303,19 +406,33 @@ export class LLMService {
     };
   }
 
-  private buildSystemPrompt(courses: Course[], profiles: Profile[], categoryType?: QuestionType): string {
+  private buildSystemPrompt(courses: Course[], profiles: Profile[], categoryType?: QuestionType, demoModule?: string): string {
     let context = RULES;
 
     if (categoryType === 'registro') {
       const registroInfo = this.getRegistroInfo();
-      context += `\n\nCONTEXTO ESPECIAL - REGISTRO DEMO:\n`;
-      context += `El usuario ha mostrado interes en REGISTRARSE para una cuenta DEMO de SAP.\n`;
-      context += `Para registrarte, usa la opcion "Registrar" en el chatbot.\n`;
-      context += `\nMODULOS DISPONIBLES PARA DEMO:\n`;
-      context += registroInfo.modulosDemo.map(m => `- ${m}`).join('\n');
-      context += `\n\nDuracion de la cuenta DEMO: ${registroInfo.duracionDias} dias.\n`;
-      context += `El usuario debe completar el formulario de registro para obtener sus credenciales SAP.\n`;
-      context += `Responde de forma clara y directa, invitando al usuario a usar la opcion "Registrar".`;
+
+      if (demoModule) {
+        const modulo = DEMO_MODULES[demoModule];
+        const nombreModulo = modulo ? `SAP ${modulo.code}` : 'SAP';
+        context += `\n\nCONTEXTO ESPECIAL - REGISTRO DEMO CON MODULO:\n`;
+        context += `El usuario pidio una DEMO del modulo ${nombreModulo}.\n`;
+        context += `Responde en MAXIMO 2 lineas, incluyendo:\n`;
+        context += `- Que la demo de ${nombreModulo} es sin costo y temporal (${registroInfo.duracionDias} dias)\n`;
+        context += `- Que solo se puede solicitar una demo por registro\n`;
+        context += `NO listes los otros modulos. NO uses markdown. NO uses listas.\n`;
+        context += `NO termines con "¿Quieres que profundice en algun tema?". El usuario ya tiene un boton para registrarse, asi que no hace falta ofrecer mas informacion.`;
+      } else {
+        context += `\n\nCONTEXTO ESPECIAL - REGISTRO DEMO:\n`;
+        context += `El usuario ha mostrado interes en REGISTRARSE para una cuenta DEMO de SAP.\n`;
+        context += `Para registrarte, usa la opcion "Registrar" en el chatbot.\n`;
+        context += `\nMODULOS DISPONIBLES PARA DEMO:\n`;
+        context += registroInfo.modulosDemo.map(m => `- ${m}`).join('\n');
+        context += `\n\nDuracion de la cuenta DEMO: ${registroInfo.duracionDias} dias.\n`;
+        context += `El usuario debe completar el formulario de registro para obtener sus credenciales SAP.\n`;
+        context += `Cada usuario puede solicitar solo una demo a la vez.\n`;
+        context += `Responde de forma clara y directa, invitando al usuario a usar la opcion "Registrar".`;
+      }
     } else {
       if (courses.length > 0) {
         context += `\n\nCursos disponibles:\n${JSON.stringify(courses, null, 2)}`;
@@ -329,7 +446,164 @@ export class LLMService {
     return context;
   }
 
-  async getChatReply(messages: Message[]): Promise<string> {
+  private getDemoContext(sessionId: string | undefined): DemoContextState | undefined {
+    if (!sessionId) return undefined;
+    const ctx = this.demoContexts.get(sessionId);
+    if (!ctx) return undefined;
+    if (Date.now() - ctx.updatedAt > DEMO_CONTEXT_TTL_MS) {
+      this.demoContexts.delete(sessionId);
+      return undefined;
+    }
+    return ctx;
+  }
+
+  private activateDemoContext(sessionId: string | undefined, module?: string): void {
+    if (!sessionId) return;
+    const current = this.getDemoContext(sessionId);
+    this.demoContexts.set(sessionId, {
+      active: true,
+      module: module ?? current?.module,
+      shownModule: current?.shownModule,
+      updatedAt: Date.now()
+    });
+  }
+
+  private markDemoActionShown(sessionId: string | undefined, module: string): void {
+    if (!sessionId) return;
+    const current = this.getDemoContext(sessionId);
+    this.demoContexts.set(sessionId, {
+      active: current?.active ?? true,
+      module: current?.module ?? module,
+      shownModule: module,
+      updatedAt: Date.now()
+    });
+  }
+
+  clearDemoContext(sessionId: string): void {
+    this.demoContexts.delete(sessionId);
+  }
+
+  private extractSignals(messages: Message[]): {
+    rawCurrent: string;
+    normalizedCurrent: string;
+    hasRegistroCurrent: boolean;
+    hasRegistroWindow: boolean;
+    hasRegistroPrevious: boolean;
+    hasRequestVerb: boolean;
+    moduleCurrent?: string;
+    moduleContext?: string;
+  } | null {
+    const userMessages = messages.filter(m => m.role === 'user');
+    const current = userMessages[userMessages.length - 1];
+
+    if (!current) return null;
+
+    const normalizedCurrent = normalizeText(current.content);
+    const windowMessages = userMessages.slice(-CONTEXT_WINDOW);
+    const previousMessages = userMessages.slice(-CONTEXT_WINDOW - 1, -1);
+
+    let moduleContext: string | undefined;
+    for (let i = previousMessages.length - 1; i >= 0; i--) {
+      const found = detectDemoModule(normalizeText(previousMessages[i].content));
+      if (found) {
+        moduleContext = found;
+        break;
+      }
+    }
+
+    const previousUser = userMessages.length >= 2 ? userMessages[userMessages.length - 2] : undefined;
+
+    return {
+      rawCurrent: current.content,
+      normalizedCurrent,
+      hasRegistroCurrent: REGISTRO_KEYWORDS.some(keyword => containsKeyword(normalizedCurrent, keyword)),
+      hasRegistroWindow: windowMessages.some(msg =>
+        REGISTRO_KEYWORDS.some(keyword => containsKeyword(normalizeText(msg.content), keyword))
+      ),
+      hasRegistroPrevious: previousUser
+        ? REGISTRO_KEYWORDS.some(keyword => containsKeyword(normalizeText(previousUser.content), keyword))
+        : false,
+      hasRequestVerb: REQUEST_VERB_KEYWORDS.some(keyword => containsKeyword(normalizedCurrent, keyword)),
+      moduleCurrent: detectDemoModule(normalizedCurrent),
+      moduleContext
+    };
+  }
+
+  private analyze(messages: Message[], sessionId?: string): IntentAnalysis {
+    const signals = this.extractSignals(messages);
+
+    if (!signals) {
+      return { category: { type: 'general', courseIds: [] }, showDemoAction: false };
+    }
+
+    const {
+      rawCurrent, normalizedCurrent, hasRegistroCurrent, hasRegistroWindow,
+      hasRegistroPrevious, hasRequestVerb, moduleCurrent, moduleContext
+    } = signals;
+
+    const context = this.getDemoContext(sessionId);
+
+    const isQuery = QUERY_KEYWORDS.some(keyword => containsKeyword(normalizedCurrent, keyword));
+    const queryBlocksAction = isQuery && !hasRegistroCurrent;
+
+    const registroIntent = hasRegistroCurrent || hasRegistroWindow || !!context?.active;
+
+    if (registroIntent && !queryBlocksAction) {
+      const demoModule = moduleCurrent ?? context?.module ?? moduleContext;
+
+      // El boton de demo solo se genera en el mensaje donde el usuario lo solicita.
+      // Mencionar un modulo no es suficiente: la conversacion puede haber cambiado
+      // de rumbo, y en ese caso no debe volver a ofrecerse el acceso.
+      const showDemoAction = !!demoModule && (
+        hasRegistroCurrent ||                       // peticion explicita ("quiero una demo de MM")
+        (context?.shownModule !== demoModule && (
+          (hasRequestVerb && !!moduleCurrent) ||   // peticion eliptica ("quiero en sap mm")
+          hasRegistroPrevious                       // continuation inmediata de una peticion ("y la de SD?")
+        ))
+      );
+
+      return {
+        category: { type: 'registro', courseIds: [], demoModule },
+        demoModule,
+        showDemoAction
+      };
+    }
+
+    return { category: this.detectCategory(rawCurrent), showDemoAction: false };
+  }
+
+  detectIntent(messages: Message[] | string, sessionId?: string): IntentResult {
+    const messageList: Message[] = typeof messages === 'string'
+      ? [{ role: 'user', content: messages }]
+      : messages;
+
+    const signals = this.extractSignals(messageList);
+
+    if (signals?.hasRegistroCurrent) {
+      this.activateDemoContext(sessionId, signals.moduleCurrent ?? signals.moduleContext);
+    }
+
+    const analysis = this.analyze(messageList, sessionId);
+
+    if (analysis.showDemoAction && analysis.demoModule) {
+      this.markDemoActionShown(sessionId, analysis.demoModule);
+    }
+
+    const result: IntentResult = {
+      intent: analysis.category.type,
+      demoModule: analysis.demoModule,
+      showDemoAction: analysis.showDemoAction
+    };
+
+    if (analysis.demoModule && DEMO_MODULES[analysis.demoModule]) {
+      result.roleId = DEMO_MODULES[analysis.demoModule].roleId;
+      result.moduleCode = DEMO_MODULES[analysis.demoModule].code;
+    }
+
+    return result;
+  }
+
+  async getChatReply(messages: Message[], sessionId?: string): Promise<string> {
     if (!this.catalogLoaded) {
       await this.loadCatalog();
     }
@@ -338,7 +612,8 @@ export class LLMService {
     const recentMessages = userAssistantMessages.slice(-this.maxHistory);
     const currentMessage = recentMessages[recentMessages.length - 1]?.content || '';
 
-    const category = this.detectCategory(currentMessage);
+    const analysis = this.analyze(messages, sessionId);
+    const category = analysis.category;
 
     let courses: Course[] = [];
     let profiles: Profile[] = [];
@@ -364,7 +639,7 @@ export class LLMService {
         break;
     }
 
-    const systemPrompt = this.buildSystemPrompt(courses, profiles, category.type);
+    const systemPrompt = this.buildSystemPrompt(courses, profiles, category.type, category.demoModule);
 
     const contents: GeminiContent[] = recentMessages.map(msg => ({
       role: msg.role === 'assistant' ? 'model' : msg.role,

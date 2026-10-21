@@ -540,4 +540,357 @@ describe('LLM Service - Filtrado por Categoria', () => {
       await expect(llmService.getChatReply(messages)).rejects.toThrow('Respuesta invalida de Gemini: sin contenido.');
     });
   });
+
+  describe('detectIntent - Intencion de registro DEMO', () => {
+
+    const ask = (content: string): Message[] => [{ role: 'user', content }];
+
+    it('debe detectar intencion registro con modulo MM', () => {
+      const result = llmService.detectIntent(ask('quiero una demo de MM'));
+
+      expect(result.intent).toBe('registro');
+      expect(result.demoModule).toBe('MM');
+      expect(result.roleId).toBe('S4_MM_DEMO');
+      expect(result.moduleCode).toBe('MM');
+    });
+
+    it('debe detectar el modulo por su nombre funcional (materiales -> MM)', () => {
+      const result = llmService.detectIntent(ask('necesito una demo de materiales'));
+
+      expect(result.intent).toBe('registro');
+      expect(result.demoModule).toBe('MM');
+    });
+
+    it('debe detectar el modulo SD con "ventas"', () => {
+      const result = llmService.detectIntent(ask('necesito prueba de ventas'));
+
+      expect(result.intent).toBe('registro');
+      expect(result.demoModule).toBe('SD');
+      expect(result.roleId).toBe('S4_SD_DEMO');
+    });
+
+    it('debe detectar el modulo FI con "finanzas"', () => {
+      const result = llmService.detectIntent(ask('demo de finanzas'));
+
+      expect(result.demoModule).toBe('FI');
+      expect(result.roleId).toBe('S4_FI_DEMO');
+    });
+
+    it('debe detectar el modulo PP con "produccion"', () => {
+      const result = llmService.detectIntent(ask('demo de produccion'));
+
+      expect(result.demoModule).toBe('PP');
+      expect(result.roleId).toBe('S4_PP_DEMO');
+    });
+
+    it('debe detectar el modulo PM con "mantenimiento"', () => {
+      const result = llmService.detectIntent(ask('quiero probar mantenimiento'));
+
+      expect(result.demoModule).toBe('PM');
+      expect(result.roleId).toBe('S4_PM_DEMO');
+    });
+
+    it('debe devolver registro sin modulo cuando no se menciona ninguno', () => {
+      const result = llmService.detectIntent(ask('quiero registrarme'));
+
+      expect(result.intent).toBe('registro');
+      expect(result.demoModule).toBeUndefined();
+      expect(result.roleId).toBeUndefined();
+    });
+
+    it('debe devolver solo el primer modulo cuando se mencionan varios', () => {
+      const result = llmService.detectIntent(ask('quiero demo de MM y finanzas'));
+
+      expect(result.demoModule).toBe('MM');
+    });
+
+    it('debe conservar la intencion de registro aunque mentione trabajo', () => {
+      const result = llmService.detectIntent(ask('quiero una demo de MM para trabajar'));
+
+      expect(result.intent).toBe('registro');
+      expect(result.demoModule).toBe('MM');
+    });
+
+    it('debe detectar registro con palabra acentuada (inscripcion)', () => {
+      const result = llmService.detectIntent(ask('quiero información sobre la inscripción'));
+
+      expect(result.intent).toBe('registro');
+    });
+
+    it('no debe detectar registro por palabras que contienen los keywords', () => {
+      const result = llmService.detectIntent(ask('no me falta nada, todo esta bien'));
+
+      expect(result.intent).not.toBe('registro');
+    });
+
+    it('no debe asignar modulo cuando el mensaje no pide demo', () => {
+      const result = llmService.detectIntent(ask('quiero saber sobre el curso de MM'));
+
+      expect(result.demoModule).toBeUndefined();
+    });
+  });
+
+  describe('detectIntent - Contexto de conversacion', () => {
+
+    const convo = (sessionId?: string) => {
+      const messages: Message[] = [
+        { role: 'user', content: 'que cursos tengo demos disponibles?' },
+        { role: 'assistant', content: 'Tenemos demos de MM, SD, FI, PP y PM.' },
+        { role: 'user', content: 'quiero en sap mm' }
+      ];
+      return llmService.detectIntent(messages, sessionId);
+    };
+
+    it('debe activar demo cuando la intencion viene del contexto y el mensaje actual trae modulo', () => {
+      const result = convo();
+
+      expect(result.intent).toBe('registro');
+      expect(result.demoModule).toBe('MM');
+      expect(result.roleId).toBe('S4_MM_DEMO');
+    });
+
+    it('debe usar el prompt corto de modulo cuando la intencion viene del contexto', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'que cursos tengo demos disponibles?' },
+        { role: 'assistant', content: 'Tenemos MM, SD, FI, PP y PM.' },
+        { role: 'user', content: 'quiero en sap mm' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{ content: { parts: [{ text: 'La demo de SAP MM es sin costo.' }] } }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      expect(systemInstruction).toContain('REGISTRO DEMO CON MODULO');
+      expect(systemInstruction).toContain('SAP MM');
+      expect(systemInstruction).toContain('solo se puede solicitar una demo por registro');
+      expect(systemInstruction).not.toContain('S4 SD - Ventas y Distribucion');
+    });
+
+    it('debe activar demo con contexto persistente de sesion mas alla de la ventana', () => {
+      const sessionId = 'sesion-contexto-001';
+
+      llmService.detectIntent([{ role: 'user', content: 'que demos hay?' }], sessionId);
+
+      const resultado = llmService.detectIntent([
+        { role: 'user', content: 'que demos hay?' },
+        { role: 'assistant', content: 'MM, SD, FI, PP, PM' },
+        { role: 'user', content: 'cuentame sobre el curso de BTP' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'y la de FI?' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'quiero esa' }
+      ], sessionId);
+
+      expect(resultado.intent).toBe('registro');
+    });
+
+    it('NO debe activar demo si el mensaje actual es una consulta de precio del curso', () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'quiero una demo de MM' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: '¿cuánto cuesta el curso de MM?' }
+      ];
+
+      const result = llmService.detectIntent(messages);
+
+      expect(result.intent).not.toBe('registro');
+      expect(result.demoModule).toBeUndefined();
+    });
+
+    it('NO debe activar demo ante una consulta de duracion o temario', () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'quiero una demo de MM' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: '¿que temario tiene el curso de materiales?' }
+      ];
+
+      const result = llmService.detectIntent(messages);
+
+      expect(result.demoModule).toBeUndefined();
+    });
+
+    it('debe heredar el modulo del contexto cuando el mensaje actual no lo menciona', () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'quiero una demo de finanzas' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'quiero registrarme' }
+      ];
+
+      const result = llmService.detectIntent(messages);
+
+      expect(result.intent).toBe('registro');
+      expect(result.demoModule).toBe('FI');
+    });
+
+    it('NO debe arrastrar el contexto entre sesiones distintas', () => {
+      llmService.detectIntent([{ role: 'user', content: 'quiero una demo de MM' }], 'sesion-A');
+
+      const result = llmService.detectIntent(
+        [{ role: 'user', content: 'quiero en sap mm' }],
+        'sesion-B'
+      );
+
+      expect(result.intent).not.toBe('registro');
+    });
+  });
+
+  describe('showDemoAction - Boton unico por solicitud', () => {
+
+    it('debe mostrar el boton en la primera solicitud de demo', () => {
+      const result = llmService.detectIntent([{ role: 'user', content: 'quiero una demo de MM' }], 'sesion-unica-1');
+
+      expect(result.intent).toBe('registro');
+      expect(result.demoModule).toBe('MM');
+      expect(result.showDemoAction).toBe(true);
+    });
+
+    it('NO debe volver a mostrar el boton si se menciona el mismo modulo', () => {
+      const sessionId = 'sesion-unica-2';
+
+      const primero = llmService.detectIntent([{ role: 'user', content: 'quiero una demo de MM' }], sessionId);
+      expect(primero.showDemoAction).toBe(true);
+
+      const segundo = llmService.detectIntent([
+        { role: 'user', content: 'quiero una demo de MM' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'cuentame mas sobre MM' }
+      ], sessionId);
+
+      // "cuentame mas sobre MM" es una consulta de informacion, no una solicitud de demo.
+      expect(segundo.intent).not.toBe('registro');
+      expect(segundo.showDemoAction).toBe(false);
+    });
+
+    it('debe volver a mostrar el boton si se solicita un modulo distinto', () => {
+      const sessionId = 'sesion-unica-3';
+
+      llmService.detectIntent([{ role: 'user', content: 'quiero una demo de MM' }], sessionId);
+
+      const otro = llmService.detectIntent([
+        { role: 'user', content: 'quiero una demo de MM' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'y la de SD?' }
+      ], sessionId);
+
+      expect(otro.demoModule).toBe('SD');
+      expect(otro.showDemoAction).toBe(true);
+    });
+
+    it('debe volver a mostrar el boton ante una solicitud explicita nueva', () => {
+      const sessionId = 'sesion-unica-4';
+
+      llmService.detectIntent([{ role: 'user', content: 'quiero una demo de MM' }], sessionId);
+
+      const nuevo = llmService.detectIntent([
+        { role: 'user', content: 'quiero una demo de MM' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'quiero una demo de MM' }
+      ], sessionId);
+
+      expect(nuevo.showDemoAction).toBe(true);
+    });
+
+    it('NO debe mostrar el boton cuando el mensaje es una consulta de precio', () => {
+      const sessionId = 'sesion-unica-5';
+
+      llmService.detectIntent([{ role: 'user', content: 'quiero una demo de MM' }], sessionId);
+
+      const consulta = llmService.detectIntent([
+        { role: 'user', content: 'quiero una demo de MM' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: '¿cuánto cuesta el curso de SD?' }
+      ], sessionId);
+
+      expect(consulta.showDemoAction).toBe(false);
+    });
+
+    it('debe mostrar el boton cuando la intencion viene del contexto y es la primera vez', () => {
+      const sessionId = 'sesion-unica-6';
+
+      llmService.detectIntent([{ role: 'user', content: 'que demos hay?' }], sessionId);
+
+      const resultado = llmService.detectIntent([
+        { role: 'user', content: 'que demos hay?' },
+        { role: 'assistant', content: 'MM, SD, FI, PP, PM' },
+        { role: 'user', content: 'quiero en sap mm' }
+      ], sessionId);
+
+      expect(resultado.demoModule).toBe('MM');
+      expect(resultado.showDemoAction).toBe(true);
+    });
+
+    it('NO debe mostrar el boton si la conversacion ya cambio de rumbo a cursos', () => {
+      const sessionId = 'sesion-rumbo-1';
+
+      llmService.detectIntent([{ role: 'user', content: 'quiero una demo de MM' }], sessionId);
+
+      const desvio = llmService.detectIntent([
+        { role: 'user', content: 'quiero una demo de MM' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'cuentame sobre el curso de SD' }
+      ], sessionId);
+
+      expect(desvio.showDemoAction).toBe(false);
+    });
+
+    it('NO debe mostrar el boton en un mensaje posterior a un desvio hacia formacion', () => {
+      const sessionId = 'sesion-rumbo-2';
+
+      llmService.detectIntent([{ role: 'user', content: 'quiero una demo de MM' }], sessionId);
+
+      llmService.detectIntent([
+        { role: 'user', content: 'quiero una demo de MM' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'cuentame sobre el curso de SD' }
+      ], sessionId);
+
+      const posterior = llmService.detectIntent([
+        { role: 'user', content: 'quiero una demo de MM' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'cuentame sobre el curso de SD' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'y de PP?' }
+      ], sessionId);
+
+      expect(posterior.showDemoAction).toBe(false);
+    });
+
+    it('debe mostrar el boton ante una peticion eliptica con verbo de solicitud', () => {
+      const sessionId = 'sesion-rumbo-3';
+
+      llmService.detectIntent([{ role: 'user', content: 'que cursoss hay?' }], sessionId);
+
+      const peticion = llmService.detectIntent([
+        { role: 'user', content: 'que demos hay?' },
+        { role: 'assistant', content: 'MM, SD, FI, PP, PM' },
+        { role: 'user', content: 'quiero en sap mm' }
+      ], sessionId);
+
+      expect(peticion.demoModule).toBe('MM');
+      expect(peticion.showDemoAction).toBe(true);
+    });
+
+    it('debe mostrar el boton si el mensaje es continuacion inmediata de la solicitud para otro modulo', () => {
+      const sessionId = 'sesion-rumbo-4';
+
+      llmService.detectIntent([{ role: 'user', content: 'quiero una demo de MM' }], sessionId);
+
+      const continuacion = llmService.detectIntent([
+        { role: 'user', content: 'quiero una demo de MM' },
+        { role: 'assistant', content: '...' },
+        { role: 'user', content: 'y de PP?' }
+      ], sessionId);
+
+      expect(continuacion.demoModule).toBe('PP');
+      expect(continuacion.showDemoAction).toBe(true);
+    });
+  });
 });
