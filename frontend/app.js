@@ -291,12 +291,6 @@ function setupEventListeners() {
   elements.registrationForm.addEventListener('submit', handleFormSubmit);
   elements.btnCancelRegistration.addEventListener('click', closeRegistrationModal);
 
-  elements.registrationModal.addEventListener('click', (e) => {
-    if (e.target === elements.registrationModal) {
-      closeRegistrationModal();
-    }
-  });
-
   elements.backToInitial.addEventListener('click', () => {
     document.getElementById('messages').innerHTML = '';
     document.getElementById('messages').classList.add('hidden');
@@ -359,7 +353,6 @@ function setupEventListeners() {
     regHintModal.addEventListener('click', (e) => {
       if (e.target === regHintModal) {
         regHintModal.classList.add('hidden');
-        closeRegistrationModal();
       }
     });
   }
@@ -708,9 +701,8 @@ function showRegistrationHelpMessage() {
   showChatMode();
 
   const message = `
-    <p>Si deseas registrarte más adelante, puedes volver al apartado <strong>"Registro"</strong> en cualquier momento.</p>
-    <p>Considera usar tu documento de identidad (8 dígitos) como usuario SAP si lo prefieres.</p>
-    <p><strong>Roles disponibles:</strong></p>
+    <p>Si deseas registrarte más adelante, puedes volver al apartado <strong>"Registrar"</strong> en cualquier momento.</p>
+    <p><strong>Módulos disponibles:</strong></p>
     <ul>
       <li>SAP MM - Gestión de Materiales</li>
       <li>SAP SD - Ventas y Distribución</li>
@@ -1301,6 +1293,10 @@ async function handleSend() {
   if (!message || state.isTyping || state.limitReached) {
     return;
   }
+
+  // Al enviar un mensaje propio se cierran los desplegables de las pills,
+  // como si no se hubiera hecho click en ninguna.
+  closeSubmenu(false);
 
   if (state.registrationMode) {
     clearInput();
