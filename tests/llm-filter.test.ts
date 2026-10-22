@@ -481,6 +481,82 @@ describe('LLM Service - Filtrado por Categoria', () => {
       expect(callBody.generationConfig.maxOutputTokens).toBe(500);
     });
 
+    it('debe mantener el prompt compacto al injectar el catalogo', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'Que capacitaciones dictan' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{
+            content: {
+              parts: [{ text: 'Tenemos 54 capacitaciones.' }]
+            }
+          }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      // El catalogo completo (54 cursos) ocupaba ~114 KB. Ahora debe ser un resumen.
+      expect(systemInstruction.length).toBeLessThan(30 * 1024);
+      expect(systemInstruction).toContain('Cursos disponibles (resumen)');
+    });
+
+    it('debe inyectar el detalle cuando se pide un atributo de un modulo', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'dame el temario del curso de MM' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{
+            content: {
+              parts: [{ text: 'El temario es...' }]
+            }
+          }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      expect(systemInstruction).toContain('Cursos disponibles (detalle)');
+      expect(systemInstruction).toContain('temario');
+    });
+
+    it('debe incluir la regla de objetividad en el system prompt', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'Hola' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{
+            content: {
+              parts: [{ text: 'Hola!' }]
+            }
+          }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      expect(systemInstruction).toContain('OBJETIVIDAD');
+      expect(systemInstruction).toContain('No inventes precios');
+    });
+
     it('debe usar temperature de config', async () => {
       const messages: Message[] = [
         { role: 'user', content: 'Hola' }

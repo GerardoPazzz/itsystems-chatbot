@@ -23,6 +23,7 @@ interface Course {
   prerrequisitos_recomendados?: string[];
   dirigido?: string;
   habilidades_adquiridas?: string[];
+  temario?: { sesion?: number; titulo?: string }[];
 }
 
 interface Profile {
@@ -78,6 +79,7 @@ interface CategoryResult {
   courseIds: string[];
   profileId?: string;
   demoModule?: string;
+  detailModule?: string;
 }
 
 export interface IntentResult {
@@ -146,6 +148,15 @@ const REQUEST_VERB_KEYWORDS = [
   'habilitame', 'reserva', 'reservame', 'consigue', 'consigueme', 'abrime'
 ];
 
+// Palabras que piden un atributo concreto del curso: activan el contexto detallado.
+const ATTRIBUTE_KEYWORDS = [
+  'precio', 'precios', 'costo', 'costos', 'cuanto cuesta', 'cuanto vale', 'valor', 'cuotas',
+  'temario', 'contenido', 'que incluye', 'incluye', 'sesiones', 'que abarca',
+  'duracion', 'horas', 'cuanto dura', 'cuantas horas',
+  'requisitos', 'prerrequisitos', 'certificado', 'certificacion',
+  'horario', 'modalidad', 'dirigido', 'a quien va dirigido', 'habilidades'
+];
+
 const CONTEXT_WINDOW = 3;
 const DEMO_CONTEXT_TTL_MS = 30 * 60 * 1000;
 
@@ -193,28 +204,33 @@ Reglas:
  4. Cuando el usuario pida una ruta, incluye el orden de cursos y una breve justificacion de por que van en ese orden.
 5. Se directo y profesional. Sin frases como "creo que", "quizas", "probablemente".
 6. Cuando menciones precios, indica que son aproximados en soles peruanos y estan sujetos a confirmacion. Si el precio es null o "S.P.", indica "consultar precio".
-7. FORMATO DE RESPUESTA (OBLIGATORIO):
+ 7. FORMATO DE RESPUESTA (OBLIGATORIO):
    - NO uses markdown (#, **, *, -, >, etc.) - el chat no lo renderiza.
    - USA TEXTO PLANO con estos separadores:
      - Guiones (-) para listas de items
      - Dos puntos (:) para separar titulo de contenido
      - Lineas en blanco para separar secciones (maximo 2)
-   - Manten cada respuesta en MAXIMO 3-4 PARRAFOS.
-   - Si hay mas informacion disponible, TERMINA ofreciendo: "¿Quieres que profundice en algum tema?"
+   - Manten cada respuesta en MAXIMO 2-3 PARRAFOS.
+   - Ofrece "¿Quieres que profundice en algun tema?" SOLO si queda informacion relevante sin mostrar. No lo repitas en todas las respuestas.
    - NUNCA dejes una oracion a medias.
-8. RESPUESTAS CONCISAS:
-   - Cuando pregunten por "cursos" o "perfiles", da un RESUMEN de 2-3 lineas.
-   - Luego pregunta: "¿Cual de estos te interesa? Puedo darte mas detalles."
+ 8. RESPUESTAS CONCISAS (esta regla tiene prioridad sobre la regla 9):
+   - Cuando pregunten por "cursos", "capacitaciones" o "perfiles", da un RESUMEN de 2-3 lineas.
+   - Indica de forma breve cual es el siguiente paso (por ejemplo, "¿Cual te interesa?"). Varia la redaccion, no repitas siempre la misma frase de cierre.
    - NO des todos los detalles de golpe.
-9. ESTRUCTURA DE LISTAS (OBLIGATORIO para listas de cursos o perfiles):
+ 9. ESTRUCTURA DE LISTAS (OBLIGATORIO para listas de cursos o perfiles):
    Cuando listen cursos o perfiles, usen este formato exacto:
-   
+
    [TITULO EN MAYUSCULAS]
    - Item 1: descripcion breve
    - Item 2: descripcion breve
    - Item 3: descripcion breve
-   
-   No usar simbolos de markdown. Usar solo texto plano con guiones y dos puntos.`;
+
+   - Si la lista tiene mas de 6 elementos, muestra SOLO los 6 mas relevantes y di que hay mas disponibles bajo demanda.
+   No usar simbolos de markdown. Usar solo texto plano con guiones y dos puntos.
+10. OBJETIVIDAD (OBLIGATORIO):
+   - Basa tu respuesta SOLO en los datos del catalogo que te entrego. No inventes precios, duraciones, temarios, requisitos ni caracteristicas.
+   - Si el dato no aparece en el catalogo, di "consultar" o "no tengo ese dato" en lugar de suponerlo.
+   - Responde solo lo que te preguntan. No repitas informacion que ya te dio el usuario.`;
 
 export class LLMService {
   private model: string;
@@ -359,11 +375,31 @@ export class LLMService {
 
     const allDetected = [...new Set([...detectedSegmentIds, ...detectedCourseIds])];
 
+    // Si pide un atributo concreto (precio, temario, duracion...) sobre un modulo
+    // especifico, se activa el contexto detallado de ese modulo.
+    const hasAttributeKeywords = ATTRIBUTE_KEYWORDS.some(keyword => containsKeyword(lowerMessage, keyword));
+    const detailModule = hasAttributeKeywords ? detectDemoModule(lowerMessage) : undefined;
+
     if (allDetected.length > 0) {
-      return { type: 'specific', courseIds: allDetected };
+      return { type: 'specific', courseIds: allDetected, detailModule };
     }
 
-    return { type: 'general', courseIds: [] };
+    return { type: 'general', courseIds: [], detailModule };
+  }
+
+  /**
+   * Busca en el catalogo los cursos asociados a un modulo (MM, SD, FI, PP, PM)
+   * para poder responder con el detalle cuando se pide un atributo concreto.
+   */
+  private findCoursesByModule(module: string): Course[] {
+    if (!this.catalog) return [];
+
+    const matches = this.catalog.cursos.filter(course => {
+      const normalizedName = normalizeText(course.nombre);
+      return detectDemoModule(normalizedName) === module;
+    });
+
+    return matches.slice(0, 6);
   }
 
   private getRelevantCourses(courseIds: string[]): Course[] {
@@ -406,7 +442,7 @@ export class LLMService {
     };
   }
 
-  private buildSystemPrompt(courses: Course[], profiles: Profile[], categoryType?: QuestionType, demoModule?: string): string {
+  private buildSystemPrompt(courses: Course[], profiles: Profile[], categoryType?: QuestionType, demoModule?: string, detailMode: boolean = false): string {
     let context = RULES;
 
     if (categoryType === 'registro') {
@@ -435,15 +471,62 @@ export class LLMService {
       }
     } else {
       if (courses.length > 0) {
-        context += `\n\nCursos disponibles:\n${JSON.stringify(courses, null, 2)}`;
+        context += this.buildCourseContext(courses, detailMode);
       }
 
       if (profiles.length > 0) {
-        context += `\n\nPerfiles disponibles:\n${JSON.stringify(profiles, null, 2)}`;
+        context += this.buildProfileContext(profiles);
       }
     }
 
     return context;
+  }
+
+  /**
+   * Construye el contexto de cursos segun su cantidad:
+   * - pocos cursos -> detalle completo (descripcion, temario, habilidades, precio)
+   * - muchos cursos  -> resumen compacto (id, nombre, modalidad, precio, descripcion corta)
+   */
+  private buildCourseContext(courses: Course[], detailMode: boolean): string {
+    const useDetail = detailMode || courses.length <= 3;
+
+    if (useDetail) {
+      const detail = courses.map(course => ({
+        id: course.id,
+        nombre: course.nombre,
+        segmento: course.segmento,
+        modalidad: course.modalidad,
+        descripcion: course.descripcion,
+        precio: course.precio,
+        dirigido: course.dirigido,
+        temario: (course.temario || []).map((t: any) => t.titulo),
+        habilidades_adquiridas: course.habilidades_adquiridas
+      }));
+
+      return `\n\nCursos disponibles (detalle):\n${JSON.stringify(detail, null, 2)}`;
+    }
+
+    const summary = courses.map(course => {
+      const precio = course.precio?.contado
+        ? `precio contado ${course.precio.contado}, cuotas ${course.precio.cuotas ?? 'consultar'}`
+        : 'precio: consultar';
+      const descripcion = (course.descripcion || '').slice(0, 160);
+      return `- ${course.id}: ${course.nombre} | ${course.segmento} | ${course.modalidad} | ${precio} | ${descripcion}`;
+    });
+
+    return `\n\nCursos disponibles (resumen):\n${summary.join('\n')}`;
+  }
+
+  private buildProfileContext(profiles: Profile[]): string {
+    const compact = profiles.map(profile => ({
+      id: profile.id,
+      nombre: profile.nombre,
+      descripcion: profile.descripcion,
+      cursos_sugeridos: profile.cursos_sugeridos,
+      cursos_obligatorios: profile.cursos_obligatorios
+    }));
+
+    return `\n\nPerfiles disponibles:\n${JSON.stringify(compact, null, 2)}`;
   }
 
   private getDemoContext(sessionId: string | undefined): DemoContextState | undefined {
@@ -639,7 +722,17 @@ export class LLMService {
         break;
     }
 
-    const systemPrompt = this.buildSystemPrompt(courses, profiles, category.type, category.demoModule);
+    let detailMode = false;
+
+    if (category.detailModule && category.type !== 'registro' && category.type !== 'market') {
+      const moduleCourses = this.findCoursesByModule(category.detailModule);
+      if (moduleCourses.length > 0) {
+        courses = moduleCourses;
+        detailMode = true;
+      }
+    }
+
+    const systemPrompt = this.buildSystemPrompt(courses, profiles, category.type, category.demoModule, detailMode);
 
     const contents: GeminiContent[] = recentMessages.map(msg => ({
       role: msg.role === 'assistant' ? 'model' : msg.role,
