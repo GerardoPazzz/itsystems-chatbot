@@ -21,6 +21,7 @@ jest.mock('fs/promises', () => ({
         nombre: 'B1 IMPLEMENTACION',
         segmento: 'SBO',
         modalidad: 'VIRTUAL',
+        duracion: '30 horas',
         dirigido: 'Consultores funcionales'
       },
       {
@@ -28,6 +29,7 @@ jest.mock('fs/promises', () => ({
         nombre: 'MM (Gestión de Materiales)',
         segmento: 'S4 HANA',
         modalidad: 'VIRTUAL',
+        duracion: '30 horas',
         dirigido: 'Consultores funcionales'
       },
       {
@@ -35,6 +37,7 @@ jest.mock('fs/promises', () => ({
         nombre: 'FI (Contabilidad y Finanzas)',
         segmento: 'S4 HANA',
         modalidad: 'VIRTUAL',
+        duracion: '30 horas',
         dirigido: 'Consultores financieros'
       },
       {
@@ -42,6 +45,7 @@ jest.mock('fs/promises', () => ({
         nombre: 'PP (Planificación de Producción)',
         segmento: 'S4 HANA',
         modalidad: 'VIRTUAL',
+        duracion: '30 horas',
         dirigido: 'Consultores de producción'
       },
       {
@@ -49,6 +53,7 @@ jest.mock('fs/promises', () => ({
         nombre: 'ABAP',
         segmento: 'HANA TECNICO',
         modalidad: 'VIRTUAL',
+        duracion: '30 horas',
         dirigido: 'Desarrolladores ABAP'
       },
       {
@@ -56,6 +61,7 @@ jest.mock('fs/promises', () => ({
         nombre: 'SQL',
         segmento: 'HANA TECNICO',
         modalidad: 'ONLINE',
+        duracion: '24 horas',
         dirigido: 'Desarrolladores'
       },
       {
@@ -63,6 +69,7 @@ jest.mock('fs/promises', () => ({
         nombre: 'EXCEL SOLUCIONES EMPRESARIALES',
         segmento: 'PRODUCTIVIDAD',
         modalidad: 'VIRTUAL',
+        duracion: '30 horas',
         dirigido: 'Profesionales'
       }
     ],
@@ -555,6 +562,55 @@ describe('LLM Service - Filtrado por Categoria', () => {
 
       expect(systemInstruction).toContain('OBJETIVIDAD');
       expect(systemInstruction).toContain('No inventes precios');
+    });
+
+    it('debe incluir la duracion en el detalle del curso', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'dame el temario del curso de MM' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{
+            content: {
+              parts: [{ text: 'El temario es...' }]
+            }
+          }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      expect(systemInstruction).toContain('"duracion"');
+    });
+
+    it('debe incluir la duracion en el resumen del catalogo', async () => {
+      const messages: Message[] = [
+        { role: 'user', content: 'Que capacitaciones dictan' }
+      ];
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          candidates: [{
+            content: {
+              parts: [{ text: 'Tenemos 54 capacitaciones.' }]
+            }
+          }]
+        })
+      });
+
+      await llmService.getChatReply(messages);
+
+      const callBody = JSON.parse((fetch as jest.Mock).mock.calls[0][1].body);
+      const systemInstruction = callBody.systemInstruction.parts[0].text;
+
+      expect(systemInstruction).toContain('Cursos disponibles (resumen)');
+      expect(systemInstruction).toMatch(/duracion: consultar|\d+ horas/);
     });
 
     it('debe usar temperature de config', async () => {

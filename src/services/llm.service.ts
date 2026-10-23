@@ -11,6 +11,7 @@ interface Course {
   descripcion?: string;
   segmento?: string;
   modalidad?: string;
+  duracion?: string;
   precio?: {
     contado?: number | null | string;
     cuotas?: number | null | string;
@@ -496,6 +497,7 @@ export class LLMService {
         nombre: course.nombre,
         segmento: course.segmento,
         modalidad: course.modalidad,
+        duracion: course.duracion,
         descripcion: course.descripcion,
         precio: course.precio,
         dirigido: course.dirigido,
@@ -511,7 +513,8 @@ export class LLMService {
         ? `precio contado ${course.precio.contado}, cuotas ${course.precio.cuotas ?? 'consultar'}`
         : 'precio: consultar';
       const descripcion = (course.descripcion || '').slice(0, 160);
-      return `- ${course.id}: ${course.nombre} | ${course.segmento} | ${course.modalidad} | ${precio} | ${descripcion}`;
+      const duracion = course.duracion || 'duracion: consultar';
+      return `- ${course.id}: ${course.nombre} | ${course.segmento} | ${course.modalidad} | ${duracion} | ${precio} | ${descripcion}`;
     });
 
     return `\n\nCursos disponibles (resumen):\n${summary.join('\n')}`;

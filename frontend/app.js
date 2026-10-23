@@ -102,6 +102,7 @@ async function loadCatalog() {
         shortDesc: curso.descripcion_front,
         modalidad: curso.modalidad,
         segmento: curso.segmento,
+        duracion: curso.duracion,
         precio: curso.precio.contado,
         precioCuotas: curso.precio.cuotas,
         dirigido: curso.dirigido,
@@ -946,6 +947,7 @@ function showCourseDetail(courseId) {
   const prerrequisitosTexto = course.prerrequisitos.length > 0
     ? course.prerrequisitos.map(id => COURSES[id]?.name || id).join(', ')
     : 'Ninguno';
+  const duracionTexto = course.duracion || 'A consultar';
 
   let temarioHtml = '';
   if (course.temario && course.temario.length > 0) {
@@ -965,6 +967,7 @@ function showCourseDetail(courseId) {
     <div class="message-content">
       <p><strong>${course.name}</strong> [${course.modalidad}]</p>
       <p>${course.descripcion}</p>
+      <p><strong>Duración:</strong> ${duracionTexto}</p>
       <p><strong>Dirigido a:</strong> ${course.dirigido}</p>
       <p><strong>Habilidades:</strong> ${course.habilidades.slice(0, 3).join(', ')}.</p>
       <p><strong>Precio:</strong> ${precioTexto} (contado) | ${precioCuotasTexto} (cuotas)</p>
