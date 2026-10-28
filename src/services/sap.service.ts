@@ -2,8 +2,10 @@ import axios from 'axios';
 import https from 'https';
 import { config } from '../config';
 
-// Tope total de cada llamada a SAP. El timeout de axios no cubre bien la fase
-// de DNS ni de conexion, por eso se anade AbortSignal.timeout como tope final.
+// Tope por peticion. El timeout de axios aplica a cada request; el
+// AbortSignal.timeout se anade en cada llamada (no en el config del
+// cliente) porque un signal compartido se aborta una sola vez y dejaria
+// todas las peticiones posteriores con el error 'canceled'.
 const SAP_TIMEOUT_MS = 15000;
 const SAP_ABORT_MS = 20000;
 
@@ -12,7 +14,6 @@ const sapClientOriginal = axios.create({
   httpsAgent: new https.Agent({ rejectUnauthorized: false }),
   withCredentials: true,
   timeout: SAP_TIMEOUT_MS,
-  signal: AbortSignal.timeout(SAP_ABORT_MS),
   auth: {
     username: config.sap.user!,
     password: config.sap.password!
@@ -24,7 +25,6 @@ const sapClientNew = axios.create({
   httpsAgent: new https.Agent({ rejectUnauthorized: false }),
   withCredentials: true,
   timeout: SAP_TIMEOUT_MS,
-  signal: AbortSignal.timeout(SAP_ABORT_MS),
   auth: {
     username: config.sap.user!,
     password: config.sap.password!
@@ -62,7 +62,8 @@ async function registrarNuevoOData(
     const tokenResponse = await sapClientNew.get(
       '/sap/opu/odata/sap/ZITS_ODATA_MAT_SRV',
       {
-        headers: { 'X-CSRF-Token': 'Fetch' }
+        headers: { 'X-CSRF-Token': 'Fetch' },
+        signal: AbortSignal.timeout(SAP_ABORT_MS)
       }
     );
 
@@ -100,7 +101,8 @@ async function registrarNuevoOData(
           'Content-Type': 'application/json',
           'X-CSRF-Token': csrfToken,
           'Cookie': cookieValue
-        }
+        },
+        signal: AbortSignal.timeout(SAP_ABORT_MS)
       }
     );
 
@@ -111,9 +113,9 @@ async function registrarNuevoOData(
       statusCode: 200
     };
   } catch (error: any) {
-    console.error('[SAP Nuevo] Error:', error.message);
-    console.error('[SAP Nuevo] Status:', error.response?.status);
-    console.error('[SAP Nuevo] Response Data:', JSON.stringify(error.response?.data));
+    console.error('[SAP Nuevo] Error:', error.message, '| code:', error.code);
+    console.error('[SAP Nuevo] Status:', error.response?.status ?? 'sin respuesta');
+    console.error('[SAP Nuevo] Response Data:', JSON.stringify(error.response?.data ?? null));
 
     return {
       success: false,
@@ -134,7 +136,8 @@ async function registrarOriginalOData(
     const tokenResponse = await sapClientOriginal.get(
       '/sap/opu/odata/sap/ZSGA_USER_ASSIGN_ROLE_300_SRV',
       {
-        headers: { 'X-CSRF-Token': 'Fetch' }
+        headers: { 'X-CSRF-Token': 'Fetch' },
+        signal: AbortSignal.timeout(SAP_ABORT_MS)
       }
     );
 
@@ -169,7 +172,8 @@ async function registrarOriginalOData(
           'Content-Type': 'application/json',
           'X-CSRF-Token': csrfToken,
           'Cookie': cookieValue
-        }
+        },
+        signal: AbortSignal.timeout(SAP_ABORT_MS)
       }
     );
 
@@ -180,7 +184,9 @@ async function registrarOriginalOData(
       statusCode: 200
     };
   } catch (error: any) {
-    console.error('[SAP Original] Error:', error.message);
+    console.error('[SAP Original] Error:', error.message, '| code:', error.code);
+    console.error('[SAP Original] Status:', error.response?.status ?? 'sin respuesta');
+    console.error('[SAP Original] Response Data:', JSON.stringify(error.response?.data ?? null));
 
     return {
       success: false,
