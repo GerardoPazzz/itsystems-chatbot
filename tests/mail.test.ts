@@ -12,8 +12,7 @@ jest.mock('nodemailer', () => ({
 const mockMailConfig = {
   user: 'cuenta@gmail.com',
   appPassword: 'app-password-1234',
-  from: 'ITSYSTEMS <cuenta@gmail.com>',
-  logoUrl: 'https://agente.itscloud.ai/assets/images/itsystems-logo.png'
+  from: 'ITSYSTEMS <cuenta@gmail.com>'
 };
 
 jest.mock('../src/config', () => ({
@@ -89,7 +88,6 @@ describe('Servicio de correo - Credenciales de cuenta demo', () => {
     mockMailConfig.user = 'cuenta@gmail.com';
     mockMailConfig.appPassword = 'app-password-1234';
     mockMailConfig.from = 'ITSYSTEMS <cuenta@gmail.com>';
-    mockMailConfig.logoUrl = 'https://agente.itscloud.ai/assets/images/itsystems-logo.png';
     mockSendMail.mockResolvedValue({ messageId: 'mock-1' });
   });
 
@@ -135,17 +133,17 @@ describe('Servicio de correo - Credenciales de cuenta demo', () => {
     expect(args.html).toContain('s4hana.itscloud.store/webgui');
   });
 
-  it('debe incluir el logo en el encabezado', async () => {
+  it('debe mostrar el titulo plano ITSYSTEMS en el encabezado', async () => {
     await enviarCredencialesDemo(credenciales);
 
     const args = mockSendMail.mock.calls[0][0];
-    // El logo se referencia por URL publica: Gmail no resuelve las referencias cid
-    // cuando el HTML va en quoted-printable (que es como lo codifica nodemailer).
-    expect(args.html).toContain('src="https://agente.itscloud.ai/assets/images/itsystems-logo.png"');
-    expect(args.html).toContain('alt="ITSYSTEMS"');
+    // El encabezado va como texto plano: los clientes de correo eliminan el
+    // <svg> y no resuelven referencias cid con el HTML en quoted-printable.
+    expect(args.html).not.toContain('<img');
+    expect(args.html).toContain('ITSYSTEMS</p>');
   });
 
-  it('no debe adjuntar el logo (se referencia por URL)', async () => {
+  it('no debe adjuntar imagenes', async () => {
     await enviarCredencialesDemo(credenciales);
 
     const args = mockSendMail.mock.calls[0][0];
@@ -161,13 +159,12 @@ describe('Servicio de correo - Credenciales de cuenta demo', () => {
     expect(args.html).toContain('mailto:info@itsystems.pe');
   });
 
-  it('NO debe enviar la version de texto plano cuando hay logo por URL', async () => {
-    // Con text plano, nodemailer genera multipart/alternative > multipart/related
-    // y el email queda mas pesado de lo necesario.
+  it('debe enviar la version de texto plano con las credenciales', async () => {
     await enviarCredencialesDemo(credenciales);
 
     const args = mockSendMail.mock.calls[0][0];
-    expect(args.text).toBeUndefined();
+    expect(args.text).toContain('UT000123');
+    expect(args.text).toContain('ITSut000123');
   });
 
   it('debe devolver false sin lanzar cuando el envio falla', async () => {
@@ -187,17 +184,6 @@ describe('Servicio de correo - Credenciales de cuenta demo', () => {
     expect(enviado).toBe(false);
     expect(mockSendMail).not.toHaveBeenCalled();
   });
-
-  it('debe usar el texto ITSYSTEMS si no hay URL de logo', async () => {
-    mockMailConfig.logoUrl = '' as any;
-
-    await enviarCredencialesDemo(credenciales);
-
-    const args = mockSendMail.mock.calls[0][0];
-    expect(args.html).not.toContain('<img');
-    expect(args.html).toContain('ITSYSTEMS</p>');
-    expect(args.text).toContain('UT000123');
-  });
 });
 
 describe('Controller de registro - Envio de correo', () => {
@@ -207,7 +193,6 @@ describe('Controller de registro - Envio de correo', () => {
     mockMailConfig.user = 'cuenta@gmail.com';
     mockMailConfig.appPassword = 'app-password-1234';
     mockMailConfig.from = 'ITSYSTEMS <cuenta@gmail.com>';
-    mockMailConfig.logoUrl = 'https://agente.itscloud.ai/assets/images/itsystems-logo.png';
     mockSendMail.mockResolvedValue({ messageId: 'mock-1' });
 
     dbMocks.obtenerUsuarioPorEmail.mockResolvedValue(null);

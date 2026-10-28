@@ -37,10 +37,9 @@ const WHATSAPP_NUMERO = '51940475222';
 const WHATSAPP_TEXTO = encodeURIComponent('Hola, tengo una consulta sobre los cursos de SAP. ¿Podrían ayudarme?');
 const EMAIL_CONTACTO = 'info@itsystems.pe';
 
-// El logo se rasteriza a PNG porque los clientes de correo (Gmail, Outlook)
-// eliminan el elemento <svg> del HTML. Se referencia por URL publica (HTTPS)
-// desde config.mail.logoUrl, no como adjunto con Content-ID: Gmail no resuelve
-// las referencias cid cuando el HTML va en quoted-printable.
+// El encabezado se usa como texto plano: los clientes de correo (Gmail,
+// Outlook) eliminan el elemento <svg> y no resuelven las referencias cid
+// cuando el HTML va en quoted-printable, que es como lo codifica nodemailer.
 
 const BRAND = '#2563eb';
 const BRAND_DARK = '#1d4ed8';
@@ -60,14 +59,12 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;');
 }
 
-function buildEmailHtml(params: CredencialesDemo, logoSrc?: string | null): string {
+function buildEmailHtml(params: CredencialesDemo): string {
   const modulo = DEMO_MODULE_LABELS[params.roleId] || 'SAP';
   const webguiUrl = params.requiresFiori ? WEBGUI_URL_NUEVO : WEBGUI_URL_ORIGINAL;
   const guiaUrl = GUIAS_DRIVE[params.roleId] || 'https://drive.google.com';
 
-  const headerLogo = logoSrc
-    ? `<img src="${logoSrc}" alt="ITSYSTEMS" width="180" height="29" style="display:block;width:180px;height:auto;margin:0 0 8px 0;border:0;" />`
-    : `<p style="margin:0 0 4px 0;font-size:12px;letter-spacing:2px;font-weight:700;color:${BRAND};">ITSYSTEMS</p>`;
+  const headerLogo = `<p style="margin:0 0 4px 0;font-size:12px;letter-spacing:2px;font-weight:700;color:${BRAND};">ITSYSTEMS</p>`;
 
   const buttonStyle = [
     'display:inline-block',
@@ -213,24 +210,15 @@ export async function enviarCredencialesDemo(params: CredencialesDemo): Promise<
   if (!transporter) return false;
 
   const modulo = DEMO_MODULE_LABELS[params.roleId] || 'SAP';
-  const logoUrl = config.mail.logoUrl;
-
-  // El logo se referencia por URL publica (HTTPS) y no como adjunto con cid:
-  // Gmail no resuelve las referencias cid cuando el HTML va en
-  // quoted-printable, que es como nodemailer codifica siempre el HTML.
-  const mensaje: any = {
-    from: config.mail.from,
-    to: params.destinatario,
-    subject: `Tu cuenta demo ${modulo} - Credenciales de acceso`,
-    html: buildEmailHtml(params, logoUrl || null)
-  };
-
-  if (!logoUrl) {
-    mensaje.text = buildEmailText(params);
-  }
 
   try {
-    await transporter.sendMail(mensaje);
+    await transporter.sendMail({
+      from: config.mail.from,
+      to: params.destinatario,
+      subject: `Tu cuenta demo ${modulo} - Credenciales de acceso`,
+      html: buildEmailHtml(params),
+      text: buildEmailText(params)
+    });
 
     console.log(`[Mail] Credenciales enviadas a ${params.destinatario} para ${params.sapUsername}`);
     return true;

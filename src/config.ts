@@ -31,7 +31,6 @@ export const config = {
   mail: {
     user: process.env.GMAIL_USER,
     appPassword: process.env.GMAIL_APP_PASSWORD,
-    from: process.env.MAIL_FROM || process.env.GMAIL_USER,
-    logoUrl: process.env.LOGO_URL || 'https://agente.itscloud.ai/assets/images/itsystems-logo.png'
+    from: process.env.MAIL_FROM || process.env.GMAIL_USER
   }
 };
