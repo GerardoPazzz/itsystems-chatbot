@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { registrarAlumno } from '../services/sap.service';
+import { enviarCredencialesDemo } from '../services/mail.service';
 import {
   obtenerUsuarioPorEmail,
   obtenerUsuarioPorTelefono,
@@ -80,6 +81,12 @@ export const sapRegisterController = async (
 
     const sapUsername = await generarUsernameUnico();
 
+    if (!sapUsername) {
+      console.error('[Controller] No se pudo generar el usuario SAP');
+      res.status(500).json({ error: 'general', message: 'Ocurrio un error al procesar tu solicitud. Por favor intenta nuevamente o contacta a un asesor.' });
+      return;
+    }
+
     const usuarioData: DatosUsuario = {
       nombre: datos.nombre.trim(),
       apellidos: datos.apellidos.trim(),
@@ -99,11 +106,23 @@ export const sapRegisterController = async (
 
     await guardarSolicitud(usuarioData, datos.roleId, sapUsername);
 
+    // El correo se envia solo cuando el registro ya quedo concreto
+    // (cuenta creada en SAP y solicitud guardada en la base de datos).
+    const emailSent = await enviarCredencialesDemo({
+      destinatario: datos.email.trim(),
+      nombre: datos.nombre.trim(),
+      sapUsername,
+      contrasena: `ITS${sapUsername.toLowerCase()}`,
+      roleId: datos.roleId,
+      requiresFiori: resultSap.requiresFiori
+    });
+
     res.json({
       success: true,
       message: 'Registro exitoso',
       requiresFiori: resultSap.requiresFiori,
-      sapUsername: sapUsername
+      sapUsername: sapUsername,
+      emailSent
     });
   } catch (error: any) {
     console.error('[Controller] Error:', error.message);

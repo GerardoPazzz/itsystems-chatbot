@@ -3,6 +3,8 @@ import express from 'express';
 
 jest.mock('../src/services/db.service');
 jest.mock('../src/services/sap.service');
+// Evita que los tests envien correos reales durante el registro.
+jest.mock('../src/services/mail.service');
 
 import * as dbService from '../src/services/db.service';
 import * as sapService from '../src/services/sap.service';

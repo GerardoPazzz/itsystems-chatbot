@@ -3,6 +3,8 @@ import express from 'express';
 
 jest.mock('../src/services/db.service');
 jest.mock('../src/services/sap.service');
+// Evita que los tests envien correos reales durante el registro.
+jest.mock('../src/services/mail.service');
 
 import * as dbService from '../src/services/db.service';
 import * as sapService from '../src/services/sap.service';
@@ -31,6 +33,8 @@ describe('SAP Register Controller - Tests', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    // El username se autogenera en la base de datos (ya no viene del formulario).
+    dbMocks.generarUsernameUnico.mockResolvedValue('UT000123');
   });
 
   describe('Validaciones de Campos Requeridos', () => {
