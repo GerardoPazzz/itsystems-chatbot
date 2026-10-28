@@ -185,9 +185,34 @@ function buildEmailText(params: CredencialesDemo): string {
   return lineas.join('\n');
 }
 
+// Timeouts: Railway bloquea el SMTP saliente en los planes Free/Trial/Hobby,
+// por eso el envio real se hace por la API HTTPS de Gmail. Estos limites
+// evitan que un envio colgado retenga el registro.
+const SMTP_TIMEOUTS = {
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 20000
+};
+
+const API_TIMEOUT_MS = 10000;
+
+interface AccessTokenCache {
+  token: string;
+  expiresAt: number;
+}
+
+let accessTokenCache: AccessTokenCache | null = null;
+
+/**
+ * Limpia el access token cacheado. Se usa principalmente en los tests.
+ */
+export function resetAccessTokenCache(): void {
+  accessTokenCache = null;
+}
+
 function getTransporter(): Transporter | null {
   if (!config.mail.user || !config.mail.appPassword) {
-    console.warn('[Mail] Envio omitido: faltan GMAIL_USER y/o GMAIL_APP_PASSWORD en el .env');
+    console.warn('[Mail] Envio por SMTP omitido: faltan GMAIL_USER y/o GMAIL_APP_PASSWORD en el .env');
     return null;
   }
 
@@ -196,20 +221,132 @@ function getTransporter(): Transporter | null {
     auth: {
       user: config.mail.user,
       pass: config.mail.appPassword
-    }
+    },
+    ...SMTP_TIMEOUTS
   });
 }
 
 /**
- * Envia las credenciales de la cuenta demo por correo.
- * Nunca lanza: si falla el envio, el registro ya concretado se mantiene
- * y las credenciales siguen disponibles en el chat.
+ * Obtiene un access token de la Gmail API a partir del refresh token.
+ * El token dura 1 hora, se cachea en memoria con margen de seguridad.
  */
-export async function enviarCredencialesDemo(params: CredencialesDemo): Promise<boolean> {
+async function obtenerAccessToken(): Promise<string | null> {
+  const { clientId, clientSecret, refreshToken } = config.gmail;
+
+  if (!clientId || !clientSecret || !refreshToken) return null;
+
+  if (accessTokenCache && accessTokenCache.expiresAt > Date.now()) {
+    return accessTokenCache.token;
+  }
+
+  try {
+    const response = await fetch('https://oauth2.googleapis.com/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        client_id: clientId,
+        client_secret: clientSecret,
+        refresh_token: refreshToken,
+        grant_type: 'refresh_token'
+      }),
+      signal: AbortSignal.timeout(API_TIMEOUT_MS)
+    });
+
+    if (!response.ok) {
+      const body: any = await response.json().catch(() => ({}));
+      const error = body.error || `HTTP ${response.status}`;
+
+      if (error === 'invalid_grant') {
+        console.error(
+          '[Mail] El refresh token de Gmail es invalido o ha expirado. ' +
+          'Genera uno nuevo con: npm run oauth:token (y actualiza GMAIL_REFRESH_TOKEN en Railway). ' +
+          'Suele expirar si se revoca el acceso, si pasan 6 meses sin usarse o si se cambia la contrasena de la cuenta.'
+        );
+      } else {
+        console.error('[Mail] No se pudo obtener el access token de Gmail:', error);
+      }
+
+      return null;
+    }
+
+    const data: any = await response.json();
+    if (!data.access_token) return null;
+
+    const expiresIn = Number(data.expires_in) || 3600;
+    accessTokenCache = {
+      token: data.access_token,
+      expiresAt: Date.now() + (expiresIn - 60) * 1000
+    };
+
+    return accessTokenCache.token;
+  } catch (error: any) {
+    console.error('[Mail] Error al obtener el access token de Gmail:', error?.message || error);
+    return null;
+  }
+}
+
+/**
+ * Construye el MIME (RFC 2822) del mensaje usando nodemailer sin enviarlo.
+ */
+async function buildRawMessage(params: CredencialesDemo, modulo: string): Promise<string> {
+  const transporter = nodemailer.createTransport({ streamTransport: true, buffer: true });
+
+  const info: any = await transporter.sendMail({
+    from: config.mail.from,
+    to: params.destinatario,
+    subject: `Tu cuenta demo ${modulo} - Credenciales de acceso`,
+    html: buildEmailHtml(params),
+    text: buildEmailText(params)
+  });
+
+  return info.message.toString('base64url');
+}
+
+/**
+ * Envia por la Gmail API (HTTPS). Es la via que funciona en Railway,
+ * donde el SMTP saliente esta bloqueado.
+ */
+async function enviarPorGmailApi(params: CredencialesDemo, modulo: string): Promise<boolean> {
+  const token = await obtenerAccessToken();
+  if (!token) return false;
+
+  try {
+    const raw = await buildRawMessage(params, modulo);
+
+    const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ raw }),
+      signal: AbortSignal.timeout(API_TIMEOUT_MS)
+    });
+
+    if (!response.ok) {
+      const body: any = await response.json().catch(() => ({}));
+      console.error(
+        `[Mail] Error al enviar credenciales a ${params.destinatario}:`,
+        body?.error?.message || `HTTP ${response.status}`
+      );
+      return false;
+    }
+
+    console.log(`[Mail] Credenciales enviadas a ${params.destinatario} para ${params.sapUsername} (Gmail API)`);
+    return true;
+  } catch (error: any) {
+    console.error(`[Mail] Error al enviar credenciales a ${params.destinatario}:`, error?.message || error);
+    return false;
+  }
+}
+
+/**
+ * Envia por SMTP de Gmail. Funciona en desarrollo local; en Railway el
+ * puerto 587 esta bloqueado salvo en planes con salida SMTP habilitada.
+ */
+async function enviarPorSmtp(params: CredencialesDemo, modulo: string): Promise<boolean> {
   const transporter = getTransporter();
   if (!transporter) return false;
-
-  const modulo = DEMO_MODULE_LABELS[params.roleId] || 'SAP';
 
   try {
     await transporter.sendMail({
@@ -220,11 +357,29 @@ export async function enviarCredencialesDemo(params: CredencialesDemo): Promise<
       text: buildEmailText(params)
     });
 
-    console.log(`[Mail] Credenciales enviadas a ${params.destinatario} para ${params.sapUsername}`);
+    console.log(`[Mail] Credenciales enviadas a ${params.destinatario} para ${params.sapUsername} (SMTP)`);
     return true;
   } catch (error: any) {
     // No se loguea la contrasena, solo el motivo del fallo.
     console.error(`[Mail] Error al enviar credenciales a ${params.destinatario}:`, error?.message || error);
     return false;
   }
+}
+
+/**
+ * Envia las credenciales de la cuenta demo por correo.
+ * Nunca lanza: si falla el envio, el registro ya concretado se mantiene
+ * y las credenciales siguen disponibles en el chat.
+ *
+ * Usa la Gmail API (HTTPS) cuando hay refresh token configurado, y el
+ * SMTP de Gmail como alternativa para desarrollo local.
+ */
+export async function enviarCredencialesDemo(params: CredencialesDemo): Promise<boolean> {
+  const modulo = DEMO_MODULE_LABELS[params.roleId] || 'SAP';
+
+  if (config.gmail.refreshToken) {
+    return enviarPorGmailApi(params, modulo);
+  }
+
+  return enviarPorSmtp(params, modulo);
 }

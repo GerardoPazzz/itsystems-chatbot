@@ -2,10 +2,17 @@ import axios from 'axios';
 import https from 'https';
 import { config } from '../config';
 
+// Tope total de cada llamada a SAP. El timeout de axios no cubre bien la fase
+// de DNS ni de conexion, por eso se anade AbortSignal.timeout como tope final.
+const SAP_TIMEOUT_MS = 15000;
+const SAP_ABORT_MS = 20000;
+
 const sapClientOriginal = axios.create({
   baseURL: config.sap.baseUrl!,
   httpsAgent: new https.Agent({ rejectUnauthorized: false }),
   withCredentials: true,
+  timeout: SAP_TIMEOUT_MS,
+  signal: AbortSignal.timeout(SAP_ABORT_MS),
   auth: {
     username: config.sap.user!,
     password: config.sap.password!
@@ -16,6 +23,8 @@ const sapClientNew = axios.create({
   baseURL: config.sap.odataMatUrl!,
   httpsAgent: new https.Agent({ rejectUnauthorized: false }),
   withCredentials: true,
+  timeout: SAP_TIMEOUT_MS,
+  signal: AbortSignal.timeout(SAP_ABORT_MS),
   auth: {
     username: config.sap.user!,
     password: config.sap.password!

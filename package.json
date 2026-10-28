@@ -9,7 +9,8 @@
     "dev": "ts-node src/server.ts",
     "watch": "nodemon --exec ts-node",
     "test": "jest --verbose",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "oauth:token": "ts-node scripts/get-refresh-token.ts"
   },
   "keywords": [
     "academic-advisor",

@@ -2,17 +2,23 @@ import request from 'supertest';
 import express from 'express';
 
 const mockSendMail = jest.fn();
-const mockCreateTransport = jest.fn(() => ({ sendMail: mockSendMail }));
+const mockCreateTransport = jest.fn((_options?: any) => ({ sendMail: mockSendMail }));
 
 jest.mock('nodemailer', () => ({
-  createTransport: () => mockCreateTransport()
+  createTransport: (options?: any) => mockCreateTransport(options)
 }));
 
-// Config mutable para poder simular que no hay credenciales de correo.
+// Config mutable para poder simular distintos escenarios de correo.
 const mockMailConfig = {
   user: 'cuenta@gmail.com',
   appPassword: 'app-password-1234',
   from: 'ITSYSTEMS <cuenta@gmail.com>'
+};
+
+const mockGmailConfig = {
+  clientId: 'client-id.apps.googleusercontent.com',
+  clientSecret: 'client-secret',
+  refreshToken: 'refresh-token-123'
 };
 
 jest.mock('../src/config', () => ({
@@ -42,6 +48,9 @@ jest.mock('../src/config', () => ({
     admin: { user: 'admin', pass: 'admin' },
     get mail() {
       return mockMailConfig;
+    },
+    get gmail() {
+      return mockGmailConfig;
     }
   }
 }));
@@ -51,7 +60,7 @@ jest.mock('../src/services/sap.service');
 
 import * as dbService from '../src/services/db.service';
 import * as sapService from '../src/services/sap.service';
-import { enviarCredencialesDemo } from '../src/services/mail.service';
+import { enviarCredencialesDemo, resetAccessTokenCache } from '../src/services/mail.service';
 import { sapRegisterController } from '../src/controllers/sap.controller';
 
 const dbMocks = dbService as jest.Mocked<typeof dbService>;
@@ -88,7 +97,11 @@ describe('Servicio de correo - Credenciales de cuenta demo', () => {
     mockMailConfig.user = 'cuenta@gmail.com';
     mockMailConfig.appPassword = 'app-password-1234';
     mockMailConfig.from = 'ITSYSTEMS <cuenta@gmail.com>';
+    mockGmailConfig.clientId = 'client-id.apps.googleusercontent.com';
+    mockGmailConfig.clientSecret = 'client-secret';
+    mockGmailConfig.refreshToken = '';
     mockSendMail.mockResolvedValue({ messageId: 'mock-1' });
+    global.fetch = jest.fn() as any;
   });
 
   it('debe enviar al destinatario correcto con el asunto del modulo', async () => {
@@ -262,5 +275,130 @@ describe('Controller de registro - Envio de correo', () => {
 
     expect(response.status).toBe(500);
     expect(mockSendMail).not.toHaveBeenCalled();
+  });
+});
+
+describe('Servicio de correo - Envio por la Gmail API (HTTPS)', () => {
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockMailConfig.user = 'cuenta@gmail.com';
+    mockMailConfig.appPassword = 'app-password-1234';
+    mockMailConfig.from = 'ITSYSTEMS <cuenta@gmail.com>';
+    mockGmailConfig.clientId = 'client-id.apps.googleusercontent.com';
+    mockGmailConfig.clientSecret = 'client-secret';
+    mockGmailConfig.refreshToken = 'refresh-token-123';
+    resetAccessTokenCache();
+
+    // El MIME lo construye nodemailer con streamTransport (no envia).
+    mockSendMail.mockResolvedValue({
+      messageId: 'mock-1',
+      message: Buffer.from('Subject: prueba\r\n\r\ncuerpo', 'utf8')
+    });
+
+    global.fetch = jest.fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({ access_token: 'access-token-abc', expires_in: 3600 })
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({ id: 'msg-123' })
+      }) as any;
+  });
+
+  it('debe obtener el access token y enviar por la API de Gmail', async () => {
+    const enviado = await enviarCredencialesDemo(credenciales);
+
+    expect(enviado).toBe(true);
+
+    const fetchMock = global.fetch as jest.Mock;
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+
+    // 1) Token
+    const tokenCall = fetchMock.mock.calls[0];
+    expect(tokenCall[0]).toBe('https://oauth2.googleapis.com/token');
+    const tokenBody = tokenCall[1].body.toString();
+    expect(tokenBody).toContain('grant_type=refresh_token');
+    expect(tokenBody).toContain('refresh_token=refresh-token-123');
+
+    // 2) Envio
+    const sendCall = fetchMock.mock.calls[1];
+    expect(sendCall[0]).toBe('https://gmail.googleapis.com/gmail/v1/users/me/messages/send');
+    expect(sendCall[1].headers.Authorization).toBe('Bearer access-token-abc');
+    expect(sendCall[1].headers['Content-Type']).toBe('application/json');
+    expect(JSON.parse(sendCall[1].body).raw).toBeTruthy();
+  });
+
+  it('debe cachear el access token y no pedirlo de nuevo', async () => {
+    await enviarCredencialesDemo(credenciales);
+    await enviarCredencialesDemo(credenciales);
+
+    const fetchMock = global.fetch as jest.Mock;
+    // 2 envios = 1 token (cacheado) + 2 envios
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(fetchMock.mock.calls[2][0]).toBe('https://gmail.googleapis.com/gmail/v1/users/me/messages/send');
+  });
+
+  it('NO debe usar SMTP cuando hay refresh token', async () => {
+    await enviarCredencialesDemo(credenciales);
+
+    // mockSendMail se usa solo para construir el MIME. El transporte real
+    // debe ser la API de Gmail, no el SMTP de Google.
+    const usoSmtp = mockCreateTransport.mock.calls.some(
+      args => args[0] && (args[0] as any).service === 'gmail'
+    );
+    expect(usoSmtp).toBe(false);
+    expect(global.fetch).toHaveBeenCalledWith(
+      'https://gmail.googleapis.com/gmail/v1/users/me/messages/send',
+      expect.anything()
+    );
+  });
+
+  it('debe devolver false sin lanzar si el token es invalido', async () => {
+    (global.fetch as jest.Mock).mockReset();
+    (global.fetch as jest.Mock).mockResolvedValueOnce({
+      ok: false,
+      status: 400,
+      json: async () => ({ error: 'invalid_grant' })
+    });
+
+    const enviado = await enviarCredencialesDemo(credenciales);
+
+    expect(enviado).toBe(false);
+  });
+
+  it('debe devolver false sin lanzar si la API de Gmail responde con error', async () => {
+    (global.fetch as jest.Mock).mockReset();
+    (global.fetch as jest.Mock)
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({ access_token: 'access-token-abc', expires_in: 3600 })
+      })
+      .mockResolvedValueOnce({
+        ok: false,
+        status: 403,
+        json: async () => ({ error: { message: 'insufficient permissions' } })
+      });
+
+    const enviado = await enviarCredencialesDemo(credenciales);
+
+    expect(enviado).toBe(false);
+  });
+
+  it('debe usar el SMTP como alternativa si no hay refresh token', async () => {
+    mockGmailConfig.refreshToken = '';
+
+    const enviado = await enviarCredencialesDemo(credenciales);
+
+    expect(enviado).toBe(true);
+    const usoSmtp = mockCreateTransport.mock.calls.some(
+      args => args[0] && (args[0] as any).service === 'gmail'
+    );
+    expect(usoSmtp).toBe(true);
+    expect(global.fetch).not.toHaveBeenCalled();
   });
 });
